@@ -1,5 +1,5 @@
-import React, { Suspense, useMemo, useRef, useEffect } from 'react';
-import { Canvas, useThree } from '@react-three/fiber';
+import React, { Suspense, useMemo, useRef, useEffect, useState, useCallback } from 'react';
+import { Canvas, useThree, useFrame } from '@react-three/fiber';
 import { OrbitControls, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 import { Cpu, RefreshCw, AlertCircle } from 'lucide-react';
@@ -10,40 +10,42 @@ const MODEL_URL = '/models/PCB_3D_Model.glb';
 /**
  * 3D SBC Model Component
  * Preserves the original GLB geometry, components, green PCB color, and materials.
- * Automatically computes bounding box via Box3 & Vector3, centers geometry at (0, 0, 0),
- * and calculates optimal camera distance accounting for FOV and aspect ratio with 15% visual padding.
+ * The board is maintained UPRIGHT, aligned with the world's Y-axis.
+ * Centers geometry at (0, 0, 0) via Box3 and calculates optimal camera distance
+ * to ensure complete visibility (top, bottom, connectors, edges) at all 3D tilt angles.
  */
-function Model({ controlsRef }) {
+function Model({ controlsRef, onDefaultPositionCalculated }) {
   const { scene } = useGLTF(MODEL_URL);
   const { camera, size } = useThree();
   const isInitialized = useRef(false);
 
   // 1. Calculate bounding box using Three.js Box3 and Vector3 & center model at (0, 0, 0)
+  // Board is kept UPRIGHT along the world Y-axis (height = 1.90, width = 1.34, thickness = 0.52)
   const { centeredScene, bounds } = useMemo(() => {
-    // Clone scene to preserve clean original GLTF
     const cloned = scene.clone(true);
 
-    // Compute bounding box using Box3 and Vector3
-    const box = new THREE.Box3().setFromObject(cloned);
-    const modelSize = new THREE.Vector3();
-    const modelCenter = new THREE.Vector3();
-    box.getSize(modelSize);
-    box.getCenter(modelCenter);
+    // Compute bounding box of raw model
+    const rawBox = new THREE.Box3().setFromObject(cloned);
+    const rawCenter = new THREE.Vector3();
+    rawBox.getCenter(rawCenter);
 
-    // Position model center exactly at origin (0, 0, 0)
-    cloned.position.set(-modelCenter.x, -modelCenter.y, -modelCenter.z);
+    // Position cloned model so its geometric center is exactly at (0, 0, 0)
+    cloned.position.set(-rawCenter.x, -rawCenter.y, -rawCenter.z);
+    cloned.rotation.set(0, 0, 0);
     cloned.updateMatrixWorld(true);
 
-    // Recompute centered bounding box and bounding sphere
+    // Compute centered bounding box and bounding sphere
     const centeredBox = new THREE.Box3().setFromObject(cloned);
     const sphere = centeredBox.getBoundingSphere(new THREE.Sphere());
+    const centeredSize = new THREE.Vector3();
+    centeredBox.getSize(centeredSize);
 
     return {
       centeredScene: cloned,
       bounds: {
         box: centeredBox,
-        size: modelSize,
-        center: modelCenter,
+        size: centeredSize,
+        center: sphere.center,
         radius: sphere.radius,
       },
     };
@@ -54,7 +56,7 @@ function Model({ controlsRef }) {
     if (!bounds || !camera || !size.height) return;
 
     const { radius } = bounds;
-    const fov = camera.fov || 42;
+    const fov = camera.fov || 38;
     const fovRad = THREE.MathUtils.degToRad(fov);
     const aspect = size.width / Math.max(size.height, 1);
 
@@ -65,28 +67,47 @@ function Model({ controlsRef }) {
     const hFovHalf = Math.atan(aspect * Math.tan(fovRad / 2));
     const distH = radius / Math.sin(hFovHalf);
 
-    // Generous padding factor (1.45) guarantees comfortable breathing room (~22% clear margin)
-    // on all sides so the board, all top/bottom edge connectors, and pins are completely visible
-    // and never clipped by the canvas viewport boundary during the entire 360° rotation.
-    const paddingFactor = 1.45;
-    const requiredDistance = Math.max(distV, distH) * paddingFactor;
+    // Generous padding multiplier (1.38) guarantees ~30-35% comfortable breathing room
+    // on all sides so the upright board, all top/bottom edge connectors, and pins are completely visible
+    // and never clipped by the canvas viewport boundary during full 360° rotation and vertical tilting.
+    const paddingMultiplier = 1.38;
+    const requiredDistance = Math.max(distV, distH) * paddingMultiplier;
 
-    // Natural 3/4 isometric perspective direction vector:
-    // Azimuth ~37°, elevation ~24° — showcases front face, top edge, and side ports simultaneously
-    const threeQuarterDir = new THREE.Vector3(0.56, 0.40, 0.72).normalize();
+    // Natural 3/4 isometric perspective for upright board:
+    // Polar angle 74° (elevation 16° above horizon), Azimuth 32°
+    const phi = THREE.MathUtils.degToRad(74);
+    const theta = THREE.MathUtils.degToRad(32);
+    const threeQuarterDir = new THREE.Vector3(
+      Math.sin(phi) * Math.sin(theta),
+      Math.cos(phi),
+      Math.sin(phi) * Math.cos(theta)
+    ).normalize();
+
+    const targetPos = new THREE.Vector3(
+      threeQuarterDir.x * requiredDistance,
+      threeQuarterDir.y * requiredDistance,
+      threeQuarterDir.z * requiredDistance
+    );
+
+    if (onDefaultPositionCalculated) {
+      onDefaultPositionCalculated(targetPos);
+    }
 
     if (!isInitialized.current) {
-      // Initial mount: set camera to the natural 3/4 angle
-      camera.position.set(
-        threeQuarterDir.x * requiredDistance,
-        threeQuarterDir.y * requiredDistance,
-        threeQuarterDir.z * requiredDistance
-      );
+      // Initial mount: set camera to the natural upright 3/4 angle
+      camera.position.copy(targetPos);
       camera.lookAt(0, 0, 0);
       camera.updateProjectionMatrix();
+
+      if (controlsRef?.current) {
+        controlsRef.current.target.set(0, 0, 0);
+        controlsRef.current.minDistance = requiredDistance * 0.55;
+        controlsRef.current.maxDistance = requiredDistance * 2.2;
+        controlsRef.current.update();
+      }
       isInitialized.current = true;
     } else {
-      // On canvas resize: maintain current orbit direction but scale distance to avoid clipping
+      // On canvas resize: maintain current orbit direction but adjust distance proportionally to prevent clipping
       const currentDir = camera.position.clone().normalize();
       const dir = currentDir.lengthSq() > 0.05 ? currentDir : threeQuarterDir;
       camera.position.set(
@@ -96,18 +117,97 @@ function Model({ controlsRef }) {
       );
       camera.lookAt(0, 0, 0);
       camera.updateProjectionMatrix();
-    }
 
-    // Configure OrbitControls boundaries relative to required camera distance
-    if (controlsRef?.current) {
-      controlsRef.current.target.set(0, 0, 0);
-      controlsRef.current.minDistance = requiredDistance * 0.65;
-      controlsRef.current.maxDistance = requiredDistance * 2.2;
-      controlsRef.current.update();
+      if (controlsRef?.current) {
+        controlsRef.current.target.set(0, 0, 0);
+        controlsRef.current.minDistance = requiredDistance * 0.55;
+        controlsRef.current.maxDistance = requiredDistance * 2.2;
+        controlsRef.current.update();
+      }
     }
-  }, [bounds, camera, size.width, size.height, controlsRef]);
+  }, [bounds, camera, size.width, size.height, controlsRef, onDefaultPositionCalculated]);
 
   return <primitive object={centeredScene} />;
+}
+
+/**
+ * CameraController
+ * Manages smooth animated transitions back to default upright 3/4 orientation on reset,
+ * and attaches interaction listeners to pause autoRotate while dragging and gently resume when idle.
+ */
+function CameraController({ controlsRef, resetTrigger, defaultPosition, onResetComplete }) {
+  const { camera } = useThree();
+  const isResetting = useRef(false);
+  const targetPos = useRef(new THREE.Vector3());
+
+  // Listen to controls user interaction: pause autoRotate on drag, resume after 1.8s idle
+  useEffect(() => {
+    const controls = controlsRef.current;
+    if (!controls) return;
+
+    let resumeTimer = null;
+
+    const handleStart = () => {
+      if (resumeTimer) clearTimeout(resumeTimer);
+      controls.autoRotate = false;
+    };
+
+    const handleEnd = () => {
+      if (resumeTimer) clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(() => {
+        if (!isResetting.current) {
+          controls.autoRotate = true;
+        }
+      }, 1800);
+    };
+
+    controls.addEventListener('start', handleStart);
+    controls.addEventListener('end', handleEnd);
+
+    return () => {
+      if (resumeTimer) clearTimeout(resumeTimer);
+      controls.removeEventListener('start', handleStart);
+      controls.removeEventListener('end', handleEnd);
+    };
+  }, [controlsRef]);
+
+  // Handle reset trigger
+  useEffect(() => {
+    if (resetTrigger > 0 && defaultPosition) {
+      targetPos.current.copy(defaultPosition);
+      isResetting.current = true;
+      if (controlsRef?.current) {
+        controlsRef.current.autoRotate = false;
+      }
+    }
+  }, [resetTrigger, defaultPosition, controlsRef]);
+
+  // Smooth lerp back to upright default orientation
+  useFrame((_, delta) => {
+    if (!isResetting.current || !defaultPosition) return;
+
+    const step = 1 - Math.exp(-8 * delta);
+    camera.position.lerp(targetPos.current, step);
+    camera.lookAt(0, 0, 0);
+
+    if (controlsRef?.current) {
+      controlsRef.current.target.lerp(new THREE.Vector3(0, 0, 0), step);
+      controlsRef.current.update();
+    }
+
+    if (camera.position.distanceTo(targetPos.current) < 0.02) {
+      camera.position.copy(targetPos.current);
+      if (controlsRef?.current) {
+        controlsRef.current.target.set(0, 0, 0);
+        controlsRef.current.update();
+        controlsRef.current.autoRotate = true;
+      }
+      isResetting.current = false;
+      if (onResetComplete) onResetComplete();
+    }
+  });
+
+  return null;
 }
 
 // Preload the GLB model for instant loading
@@ -118,7 +218,7 @@ useGLTF.preload(MODEL_URL);
  */
 function ModelLoadingFallback() {
   return (
-    <div className="absolute inset-0 flex flex-col items-center justify-center bg-transparent text-center p-6 select-none z-10">
+    <div className="absolute inset-0 flex flex-col items-center justify-center bg-transparent text-center p-6 select-none z-10 pointer-events-none">
       {/* Outer pulsing ring */}
       <div className="relative flex items-center justify-center mb-5">
         <div className="w-20 h-20 rounded-full border-2 border-[#42D9F5]/30 border-t-[#3478F6] animate-spin" />
@@ -198,17 +298,34 @@ class ModelErrorBoundary extends React.Component {
 /**
  * PCBModel - Main interactive 3D Hero Component
  * Renders the actual PCB GLB model with Three.js / React Three Fiber.
+ * Keeps the model upright along the world Y-axis while providing unrestricted,
+ * controlled 3D rotation, tilting, inspection, and smooth reset.
  */
 export default function PCBModel() {
   const controlsRef = useRef(null);
+  const [defaultPosition, setDefaultPosition] = useState(null);
+  const [resetTrigger, setResetTrigger] = useState(0);
+
+  const handleDefaultPositionCalculated = useCallback((pos) => {
+    setDefaultPosition(pos);
+  }, []);
+
+  const handleResetView = useCallback((e) => {
+    if (e) e.stopPropagation();
+    setResetTrigger((prev) => prev + 1);
+  }, []);
 
   return (
-    <div className="relative w-full h-full bg-transparent select-none">
+    <div 
+      className="relative w-full h-full bg-transparent select-none overflow-visible group"
+      onDoubleClick={handleResetView}
+      title="Drag to inspect in 3D (horizontal rotation & vertical tilt)"
+    >
       {/* Interactive 3D Canvas */}
       <ModelErrorBoundary>
         <Suspense fallback={<ModelLoadingFallback />}>
           <Canvas
-            camera={{ position: [2.6, 1.8, 3.4], fov: 42, near: 0.1, far: 100 }}
+            camera={{ position: [2.61, 1.41, 4.18], fov: 38, near: 0.1, far: 100 }}
             dpr={[1, 2]}
             gl={{
               antialias: true,
@@ -218,26 +335,40 @@ export default function PCBModel() {
             className="w-full h-full cursor-grab active:cursor-grabbing"
           >
             {/* Soft Ambient Light for balanced overall visibility */}
-            <ambientLight intensity={1.2} />
+            <ambientLight intensity={1.4} />
 
-            {/* Main Key Directional Light to cast clear form-defining shadows */}
+            {/* Main Key Directional Light from front-top-right to cast crisp shadows */}
             <directionalLight 
-              position={[5, 8, 5]} 
-              intensity={2.0} 
+              position={[5, 6, 6]} 
+              intensity={2.2} 
               color="#ffffff" 
             />
 
-            {/* Back Fill Directional Light to illuminate connectors & underside */}
+            {/* Back Fill Directional Light to illuminate connectors & back side */}
             <directionalLight 
-              position={[-5, -3, -5]} 
+              position={[-5, -4, -6]} 
+              intensity={1.0} 
+              color="#b0c4de" 
+            />
+
+            {/* Top Fill Directional Light for top edge connectors */}
+            <directionalLight 
+              position={[0, 8, 2]} 
+              intensity={1.2} 
+              color="#ffffff" 
+            />
+
+            {/* Bottom Fill Directional Light for bottom pins/headers */}
+            <directionalLight 
+              position={[0, -8, 2]} 
               intensity={0.8} 
               color="#b0c4de" 
             />
 
             {/* Subtle Cyan Accent Light reflecting futuristic Aiegx brand identity */}
             <pointLight 
-              position={[-3.5, 3.0, 3.5]} 
-              intensity={2.5} 
+              position={[-4, 2, 4]} 
+              intensity={2.2} 
               color="#42D9F5" 
               distance={15} 
               decay={2}
@@ -245,42 +376,43 @@ export default function PCBModel() {
 
             {/* Subtle Deep Blue Fill Point Light for cyber-metallic contrast */}
             <pointLight 
-              position={[3.5, -2, 3.5]} 
-              intensity={2.0} 
+              position={[4, -2, 4]} 
+              intensity={1.8} 
               color="#3478F6" 
               distance={12} 
               decay={2}
             />
 
-            {/* Top Rim Light for edge definition */}
-            <pointLight 
-              position={[0, 5, -2]} 
-              intensity={1.2} 
-              color="#42D9F5" 
-              distance={10} 
-              decay={2}
-            />
-
-            {/* Sky / Ground hemisphere bounce tuned for dark navy background */}
+            {/* Sky / Ground hemisphere bounce tuned for dark navy / icy blue background */}
             <hemisphereLight 
-              args={['#e0f2fe', '#0b1329', 0.7]} 
+              args={['#e0f2fe', '#0b1329', 0.8]} 
             />
 
-            {/* The 3D Model with dynamic bounding-box auto-fitting & camera distance calculation */}
-            <Model controlsRef={controlsRef} />
+            {/* The Upright 3D Model with dynamic bounding-box auto-fitting & camera distance calculation */}
+            <Model 
+              controlsRef={controlsRef} 
+              onDefaultPositionCalculated={handleDefaultPositionCalculated}
+            />
 
-            {/* Orbit Controls with gentle continuous auto-rotation & natural boundaries */}
+            {/* Camera controller managing smooth reset & autoRotate pause/resume */}
+            <CameraController 
+              controlsRef={controlsRef} 
+              resetTrigger={resetTrigger} 
+              defaultPosition={defaultPosition}
+            />
+
+            {/* Orbit Controls with 360° horizontal rotation and vertical tilt */}
             <OrbitControls
               ref={controlsRef}
               makeDefault
               autoRotate={true}
-              autoRotateSpeed={1.2}
+              autoRotateSpeed={1.0}
               enablePan={false}
               enableZoom={true}
-              minPolarAngle={Math.PI / 4.5}
-              maxPolarAngle={Math.PI / 1.85}
+              minPolarAngle={0.08}
+              maxPolarAngle={Math.PI - 0.08}
               enableDamping={true}
-              dampingFactor={0.06}
+              dampingFactor={0.05}
             />
           </Canvas>
         </Suspense>

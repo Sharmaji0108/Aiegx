@@ -5,6 +5,7 @@ import Products from '../components/products/Products';
 import Applications from '../components/applications/Applications';
 import Developers from '../components/developers/Developers';
 import FinalCTA from '../components/cta/FinalCTA';
+import ContactSection from '../components/contact/ContactSection';
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <Applications />
       <Developers />
       <FinalCTA />
+      <ContactSection />
     </div>
   );
 }

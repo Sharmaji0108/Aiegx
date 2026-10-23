@@ -154,23 +154,17 @@ export default function QualcommBrand() {
 
                 {/* Qualcomm Official Vector Logo */}
                 <div className="flex flex-col items-center justify-center py-6 text-center">
-                  <div className="w-full max-w-[240px] mb-4">
-                    <svg
-                      viewBox="0 0 400 95"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-full h-auto text-white"
-                      aria-label="Qualcomm Logo"
-                    >
-                      <path
-                        fill="#FFFFFF"
-                        d="M51.5 86.8c-26.6 0-48.2-20.2-48.2-45.1C3.3 16.7 24.9-3.5 51.5-3.5c26.6 0 48.2 20.2 48.2 45.1 0 11.2-4.4 21.6-11.9 29.5l14.2 13.3-10.4 10.4-14.7-13.8c-7.3 3.8-15.6 5.8-25.4 5.8zm0-15.5c17.8 0 32.3-13.3 32.3-29.6 0-16.4-14.5-29.6-32.3-29.6-17.8 0-32.3 13.3-32.3 29.6 0 16.4 14.5 29.6 32.3 29.6zm66.1 14.4h15.9V1.3h-15.9v84.4zm60.7 0h15.3l-1.3-9.5c4.7 6.4 12.3 10.6 21.4 10.6 17.6 0 30.6-14.2 30.6-33.1s-13-33.1-30.6-33.1c-9.1 0-16.7 4.2-21.4 10.6V1.3h-15.9v84.4h1.9zm33.5-14.4c-10.2 0-18.4-7.8-18.4-18.7 0-10.9 8.2-18.7 18.4-18.7 10.2 0 18.4 7.8 18.4 18.7 0 10.9-8.2 18.7-18.4 18.7zm71.4 15.5c18.5 0 31.8-11.8 34.3-27.2h-16.3c-2.1 7.2-8.5 12.4-18 12.4-11.9 0-20.6-8.5-20.6-21.4s8.7-21.4 20.6-21.4c9.5 0 15.9 5.2 18 12.4h16.3c-2.5-15.4-15.8-27.2-34.3-27.2-21.2 0-36.8 15.6-36.8 36.2s15.6 36.2 36.8 36.2zm76.5 0c21.2 0 36.8-15.6 36.8-36.2s-15.6-36.2-36.8-36.2c-21.2 0-36.8 15.6-36.8 36.2s15.6 36.2 36.8 36.2zm0-14.8c-11.9 0-20.6-8.5-20.6-21.4s8.7-21.4 20.6-21.4c11.9 0 20.6 8.5 20.6 21.4s-8.7 21.4-20.6 21.4z"
-                      />
-                    </svg>
+                  <div className="w-full max-w-[240px] mb-6 flex items-center justify-center">
+                    <img
+                      src="/images/qualcomm-logo.png"
+                      alt="Qualcomm"
+                      className="h-10 sm:h-12 w-auto object-contain select-none transition-transform duration-300 group-hover:scale-105"
+                      draggable="false"
+                    />
                   </div>
                   
                   <span className="text-xs font-mono text-[#42D9F5] tracking-widest uppercase font-semibold">
-                    Silicon Partner
+                    SILICON PARTNER
                   </span>
                   
                   <p className="mt-3 text-xs text-white/60 leading-relaxed text-center">

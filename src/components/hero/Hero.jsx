@@ -212,36 +212,30 @@ export default function Hero() {
                 })}
               </div>
 
-              {/* Sleek Minimal CTA Buttons */}
-              <div className="flex flex-wrap items-center gap-4 sm:gap-5 mt-6 sm:mt-8">
+              {/* Single Hero CTA Button */}
+              <div className="flex items-center mt-6 sm:mt-8">
                 <a
                   href="#products"
-                  className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full font-semibold text-sm text-white dark:text-[#101936] bg-gradient-to-r from-[#0284C7] to-[#2563EB] dark:from-[#42D9F5] dark:to-[#3478F6] hover:from-[#0369a1] hover:to-[#1d4ed8] dark:hover:from-[#38c4de] dark:hover:to-[#2b65cf] shadow-xl shadow-blue-500/25 dark:shadow-cyan-500/25 transition-all duration-300 transform hover:-translate-y-0.5"
+                  className="group inline-flex items-center gap-2 px-6 py-3 sm:px-7 sm:py-3.5 rounded-full font-semibold text-sm text-slate-900 dark:text-white bg-white/80 dark:bg-white/10 hover:bg-white dark:hover:bg-white/15 border border-slate-300 dark:border-white/20 hover:border-blue-500 dark:hover:border-[#42D9F5] hover:text-blue-600 dark:hover:text-[#42D9F5] shadow-sm dark:shadow-none hover:shadow-md transition-all duration-300 backdrop-blur-sm cursor-pointer"
+                  aria-label="Explore Hardware Products"
                 >
-                  <span>Get Started</span>
-                  <ArrowRight className="w-4 h-4" />
-                </a>
-
-                <a
-                  href="#why-aiegx"
-                  className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-semibold text-sm text-slate-800 dark:text-white bg-white/90 dark:bg-white/10 hover:bg-white dark:hover:bg-white/15 border border-slate-300 dark:border-white/20 hover:border-slate-400 dark:hover:border-white/40 shadow-sm dark:shadow-none transition-all duration-300 backdrop-blur-sm"
-                >
-                  <span>Why Aiegx</span>
+                  <span>Explore Hardware</span>
+                  <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
                 </a>
               </div>
 
             </div>
 
             {/* Right Column: Frameless 3D PCB Model (5 cols on lg) */}
-            <div className="lg:col-span-5 relative flex items-center justify-center">
+            <div className="lg:col-span-5 relative flex items-center justify-center overflow-visible">
               
               {/* Subtle Ambient Background Glow */}
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none -z-10">
-                <div className="w-80 h-80 sm:w-96 sm:h-96 md:w-[480px] md:h-[480px] rounded-full bg-gradient-to-tr from-blue-400/20 via-cyan-400/20 to-transparent dark:from-[#3478F6]/25 dark:via-[#42D9F5]/20 blur-[85px]" />
+                <div className="w-80 h-80 sm:w-96 sm:h-96 md:w-[500px] md:h-[500px] rounded-full bg-gradient-to-tr from-blue-400/20 via-cyan-400/20 to-transparent dark:from-[#3478F6]/25 dark:via-[#42D9F5]/20 blur-[85px]" />
               </div>
 
-              {/* Frameless 3D PCB Model Container — Unconstrained & Fully Visible */}
-              <div className="relative w-full h-[400px] sm:h-[460px] md:h-[500px] lg:h-[540px] xl:h-[580px] flex items-center justify-center">
+              {/* Frameless 3D PCB Model Container — Unconstrained, Fully Visible & Responsive */}
+              <div className="relative w-full h-[420px] sm:h-[480px] md:h-[520px] lg:h-[560px] xl:h-[600px] flex items-center justify-center overflow-visible">
                 <PCBModel />
               </div>
 

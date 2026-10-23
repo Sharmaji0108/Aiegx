@@ -1,277 +1,235 @@
 import React, { useState } from 'react';
 import { 
-  Cpu, 
-  ShieldCheck,
   FileText,
   Download,
-  X
+  X,
+  ArrowRight
 } from 'lucide-react';
 
 export default function Products() {
-  const [filter, setFilter] = useState('all');
   const [activeDatasheet, setActiveDatasheet] = useState(null);
 
   const products = [
     {
-      id: 1,
-      name: 'Aiegx NeuroCore X1',
-      category: 'modules',
-      categoryLabel: 'Embedded NPU Module',
-      badge: 'Flagship Silicon',
+      id: 'rz-g2l',
+      name: 'RZ/G2L',
+      fullName: 'Renesas RZ/G2L SMARC 2.1 MPU Module',
+      categoryLabel: 'Embedded MPU Module',
+      badge: 'Cortex-A55 + M33',
       badgeColor: 'from-[#3478F6] to-[#42D9F5]',
-      price: 349,
-      image: '/images/neurocore_chip.jpg',
-      headline: '32 TOPS Edge Neural Acceleration in M.2 Form Factor',
+      image: '/images/rz-g2l.png',
+      headline: 'Dual 64-bit Arm Cortex-A55 with 3D Graphics for Next-Gen HMI',
       specs: [
-        { label: 'Compute', value: '32 TOPS INT8 / 16 TFLOPS FP16' },
-        { label: 'Power Draw', value: '3.8W – 5.5W Dynamic TDP' },
-        { label: 'Interface', value: 'PCIe Gen3 x4 / M.2 2280' },
-        { label: 'Thermal Profile', value: '-25°C to +85°C Operating' }
+        { label: 'Core CPU', value: 'Dual Arm Cortex-A55 @ 1.2GHz + Cortex-M33 @ 200MHz' },
+        { label: '3D Graphics', value: 'Arm Mali-G31 GPU (500MHz)' },
+        { label: 'Memory', value: 'Up to 4GB DDR4 / LPDDR4 + 16GB eMMC 5.1' },
+        { label: 'Connectivity', value: 'Dual Gigabit Ethernet, MIPI-CSI, USB 2.0 Host/OTG' }
       ],
-      description: 'Ultra-dense neural accelerator designed for plug-and-play integration into autonomous mobile robots, edge drones, and medical diagnostic carts.',
+      description: 'Compact SMARC v2.1 System on Module combining dual Cortex-A55 performance with integrated 3D graphics for edge HMI, industrial control, and medical devices.',
       inStock: true
     },
     {
-      id: 2,
-      name: 'Synapse Gateway Pro',
-      category: 'gateways',
-      categoryLabel: 'Rugged Industrial Edge Gateway',
-      badge: 'IP67 Sealed',
+      id: 'rz-g2n',
+      name: 'RZ/G2N',
+      fullName: 'Renesas RZ/G2N High-Performance Embedded SOM',
+      categoryLabel: 'High-Performance SOM',
+      badge: 'Dual Cortex-A57',
+      badgeColor: 'from-blue-600 to-indigo-500',
+      image: '/images/rz-g2n.png',
+      headline: 'Dual Arm Cortex-A57 @ 1.5GHz with 4K UHD Video Processing',
+      specs: [
+        { label: 'Core CPU', value: 'Dual Arm Cortex-A57 @ 1.5GHz 64-bit' },
+        { label: 'Graphics & Video', value: 'PowerVR Series 6XE GPU + 4K H.265/H.264 VPU' },
+        { label: 'High-Speed Bus', value: 'PCIe Gen2 (1-lane), USB 3.0, Dual GbE' },
+        { label: 'Display Engine', value: 'HDMI 1.4b, Dual LVDS (up to 1080p60)' }
+      ],
+      description: 'High-compute 64-bit embedded system-on-module designed for video surveillance, intelligent digital signage, and high-throughput industrial gateways.',
+      inStock: true
+    },
+    {
+      id: 'rz-v2l',
+      name: 'RZ/V2L',
+      fullName: 'Renesas RZ/V2L AI Vision Evaluation Board',
+      categoryLabel: 'Vision AI Processor',
+      badge: 'DRP-AI Neural Core',
       badgeColor: 'from-emerald-500 to-cyan-500',
-      price: 1280,
-      image: '/images/edge_robotics_ai.jpg',
-      headline: 'Heavy-Duty Industrial Gateway with Integrated 5G & Dual CAN-FD',
+      image: '/images/rz-v2l.png',
+      headline: 'Embedded MPU with Renesas DRP-AI Dedicated Neural Engine',
       specs: [
-        { label: 'Compute', value: '64 TOPS Dual NPU + Octa-Core' },
-        { label: 'Fieldbus', value: 'Dual CAN-FD, RS-485, Modbus' },
-        { label: 'Connectivity', value: '5G Sub-6GHz + Dual 2.5GbE' },
-        { label: 'Enclosure', value: 'Milled Aviation Aluminum IP67' }
+        { label: 'AI Accelerator', value: 'Renesas DRP-AI Engine (0.5 TOPS/W efficiency)' },
+        { label: 'Core CPU', value: 'Dual Arm Cortex-A55 @ 1.2GHz + Cortex-M33' },
+        { label: 'Vision Interface', value: '4-Lane MIPI-CSI2 Camera with ISP' },
+        { label: 'Power Envelope', value: 'Sub-4W Thermal Design Power (Fanless)' }
       ],
-      description: 'Fanless, vibration-resistant edge computer built for heavy mining, marine propulsion, high-speed rail, and electrical substation telemetry.',
+      description: 'Vision-optimized processor board featuring Renesas proprietary DRP-AI accelerator, delivering low-latency real-time vision analytics without active cooling.',
       inStock: true
     },
     {
-      id: 3,
-      name: 'OmniVision Sensor Pod V2',
-      category: 'vision',
-      categoryLabel: 'Neural Vision Sensor Pod',
-      badge: 'Sub-2ms Latency',
+      id: 'rz-n2h',
+      name: 'RZ/N2H',
+      fullName: 'Renesas RZ/N2H Industrial Networking Board',
+      categoryLabel: 'Industrial Network Board',
+      badge: 'TSN & EtherCAT Ready',
       badgeColor: 'from-amber-400 to-[#42D9F5]',
-      price: 620,
-      image: '/images/edge_robotics_ai.jpg',
-      headline: 'Integrated 4K HDR Global Shutter Camera with On-Die Perception',
+      image: '/images/rz-n2h.webp',
+      headline: 'Quad Cortex-A55 + Dual Real-Time Cortex-R52 with TSN Switching',
       specs: [
-        { label: 'Sensor', value: '1/1.8" 4K Global Shutter CMOS' },
-        { label: 'FPS', value: '120 FPS at 1080p / 60 FPS at 4K' },
-        { label: 'On-Die NPU', value: '16 TOPS Object Classifier' },
-        { label: 'Ingress', value: 'IP66 Industrial Sealed' }
+        { label: 'Multi-Core', value: 'Quad Arm Cortex-A55 @ 1.2GHz + Dual Cortex-R52 @ 1GHz' },
+        { label: 'Industrial Fieldbus', value: '4-Port Gigabit Ethernet with EtherCAT Slave & TSN' },
+        { label: 'Deterministic Control', value: 'Sub-microsecond latency for motion & robotics' },
+        { label: 'Expansion Ports', value: 'MikroBUS, Pmod, Qwiic, PCIe Gen2' }
       ],
-      description: 'Eliminates host PC bottleneck by performing edge bounding box tracking, barcode reading, and optical inspection directly at the camera optics.',
-      inStock: true
-    },
-    {
-      id: 4,
-      name: 'QuantumEdge Dev Kit',
-      category: 'devkits',
-      categoryLabel: 'Developer Evaluation Platform',
-      badge: 'ROS2 Native',
-      badgeColor: 'from-purple-500 to-[#3478F6]',
-      price: 499,
-      image: '/images/neurocore_chip.jpg',
-      headline: 'Complete Carrier Board with Pre-Loaded Linux & ROS2 Humble',
-      specs: [
-        { label: 'Baseboard', value: 'Dual PCIe, Quad MIPI-CSI' },
-        { label: 'Memory', value: '16GB LPDDR5 + 64GB eMMC 5.1' },
-        { label: 'Software', value: 'Ubuntu 24.04 LTS + Aiegx SDK' },
-        { label: 'IO Ports', value: '40-Pin GPIO, USB 3.2 Gen2 x4' }
-      ],
-      description: 'The fastest path from prototype to mass manufacturing. Includes breakout cables, active cooling module, 65W power adapter, and pre-trained model zoo.',
+      description: 'Unified real-time motor control and high-level networking evaluation board engineered for next-generation factory automation, smart PLCs, and multi-axis robotics.',
       inStock: true
     }
   ];
 
-  const filteredProducts = filter === 'all' 
-    ? products 
-    : products.filter(p => p.category === filter);
-
-  const _handleAddToCart = (product) => {
-    window.dispatchEvent(new CustomEvent('aiegx-add-cart', {
-      detail: {
-        id: product.id,
-        name: product.name,
-        type: product.categoryLabel,
-        price: product.price,
-        badge: product.badge
-      }
-    }));
-  };
-
   return (
-    <section id="products" className="py-24 sm:py-32 relative bg-[#101936] border-t border-white/5">
+    <section id="products" className="py-20 sm:py-24 lg:py-28 relative bg-[#F4F8FD] dark:bg-[#101936] border-t border-slate-200 dark:border-white/5 transition-colors duration-300">
       {/* Background Lighting Glows */}
       <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-[#3478F6]/10 rounded-full blur-[150px] pointer-events-none" />
       <div className="absolute bottom-10 left-10 w-[400px] h-[400px] bg-[#42D9F5]/10 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header & Filtering */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-          <div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#17264D] border border-white/10 text-xs font-mono text-[#42D9F5] uppercase tracking-wider mb-4">
-              <Cpu className="w-3.5 h-3.5" />
-              Hardware Silicon & Systems
-            </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-              Featured <span className="bg-gradient-to-r from-[#42D9F5] to-[#3478F6] bg-clip-text text-transparent">Hardware Products</span>
-            </h2>
-            <p className="mt-3 text-base text-[#F5F7FC]/70 max-w-xl">
-              Production-grade edge neural processors, sealed industrial gateways, and turnkey development kits.
-            </p>
-          </div>
-
-          {/* Filter Pills */}
-          <div className="flex flex-wrap items-center gap-2 p-1.5 rounded-2xl bg-[#17264D]/70 border border-white/10 backdrop-blur-md">
-            {[
-              { id: 'all', label: 'All Hardware' },
-              { id: 'modules', label: 'NPU Modules' },
-              { id: 'gateways', label: 'Edge Gateways' },
-              { id: 'vision', label: 'Vision Pods' },
-              { id: 'devkits', label: 'Dev Kits' }
-            ].map(tab => (
-              <button
-                key={tab.id}
-                onClick={() => setFilter(tab.id)}
-                className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all duration-200 ${
-                  filter === tab.id
-                    ? 'bg-gradient-to-r from-[#42D9F5] to-[#3478F6] text-[#101936] shadow-md shadow-cyan-500/25 font-bold'
-                    : 'text-white/70 hover:text-white hover:bg-white/5'
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
+        {/* Section Header */}
+        <div className="max-w-3xl mb-10 sm:mb-14">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Featured <span className="bg-gradient-to-r from-[#42D9F5] to-[#3478F6] bg-clip-text text-transparent">Hardware Products</span>
+          </h2>
+          <p className="mt-3 text-base text-slate-600 dark:text-[#F5F7FC]/70 max-w-xl">
+            Renesas embedded processor modules and industrial carrier boards for edge AI, HMI, and real-time networking.
+          </p>
         </div>
 
-        {/* Product Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-          {filteredProducts.map((product) => (
+        {/* 4-Card Single Horizontal Row Grid (1 col on mobile, 2 cols on tablet, 4 cols on desktop) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {products.map((product) => (
             <div
               key={product.id}
-              className="group rounded-3xl bg-gradient-to-b from-[#17264D]/80 to-[#101936]/90 border border-white/10 hover:border-[#42D9F5]/50 transition-all duration-300 shadow-xl overflow-hidden backdrop-blur-md"
+              onClick={() => setActiveDatasheet(product)}
+              className="group relative rounded-2xl sm:rounded-3xl bg-white dark:bg-[#17264D]/80 border border-slate-200 dark:border-white/10 hover:border-blue-500/60 dark:hover:border-[#42D9F5]/60 hover:shadow-xl hover:shadow-blue-500/10 dark:hover:shadow-cyan-500/10 hover:-translate-y-1.5 transition-all duration-300 flex flex-col overflow-hidden text-left cursor-pointer backdrop-blur-md"
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setActiveDatasheet(product);
+                }
+              }}
+              aria-label={`View technical specification for ${product.name}`}
             >
-              {/* Product Visual Container */}
-              <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full bg-[#17264D]/50 overflow-hidden rounded-3xl">
+              {/* Product Visual Container (Top Image) */}
+              <div className="relative aspect-[4/3] w-full p-6 sm:p-7 flex items-center justify-center bg-slate-50/80 dark:bg-[#101936]/60 border-b border-slate-100 dark:border-white/5 overflow-hidden">
                 <img
                   src={product.image}
-                  alt={product.name}
-                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                  alt={product.fullName}
+                  className="max-h-full max-w-full object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
                 />
-                {/* Subtle dark gradient at the bottom of the image for contrast and legibility */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#101936] via-[#101936]/50 to-transparent" />
 
-                {/* Category Badge (Top-Left) */}
-                <div className="absolute top-4 left-4 sm:top-5 sm:left-5 z-10">
-                  <span className={`px-3 py-1 rounded-full text-[11px] font-bold font-mono tracking-wider uppercase text-white bg-gradient-to-r ${product.badgeColor} shadow-md`}>
-                    {product.badge}
-                  </span>
-                </div>
-
-                {/* Availability Badge (Top-Right) */}
+                {/* Availability Tag */}
                 {product.inStock && (
-                  <div className="absolute top-4 right-4 sm:top-5 sm:right-5 z-10 flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#101936]/80 backdrop-blur-md border border-emerald-500/30 text-[11px] font-mono text-emerald-400">
+                  <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 dark:bg-emerald-500/20 border border-emerald-500/30 text-[10px] font-mono text-emerald-600 dark:text-emerald-400">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                    In Stock & Ready to Ship
+                    Ready
                   </div>
                 )}
+              </div>
 
-                {/* Product Category Label & Name (Near Bottom of Image) */}
-                <div className="absolute bottom-5 left-6 right-6 sm:bottom-6 sm:left-7 sm:right-7 z-10">
-                  <span className="text-xs font-mono text-[#42D9F5] font-semibold tracking-wide uppercase block mb-1">
+              {/* Product Info & Name Below Image */}
+              <div className="p-5 sm:p-6 flex flex-col flex-1 justify-between">
+                <div>
+                  <span className="text-[11px] font-mono uppercase tracking-wider text-blue-600 dark:text-[#42D9F5] font-semibold block mb-1">
                     {product.categoryLabel}
                   </span>
-                  <h3 className="text-2xl sm:text-3xl font-extrabold text-white drop-shadow-md tracking-tight">
+                  <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-[#42D9F5] transition-colors">
                     {product.name}
                   </h3>
+                  <p className="mt-2 text-xs sm:text-sm text-slate-600 dark:text-[#F5F7FC]/70 line-clamp-2 leading-relaxed">
+                    {product.description}
+                  </p>
+                </div>
+
+                <div className="mt-5 pt-3.5 border-t border-slate-100 dark:border-white/5 flex items-center justify-between text-xs font-semibold text-blue-600 dark:text-[#42D9F5]">
+                  <span>Technical Specs</span>
+                  <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform" />
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Enterprise Hardware Note */}
-        <div className="mt-12 p-6 rounded-2xl bg-gradient-to-r from-[#17264D]/90 via-[#101936] to-[#17264D]/70 border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-          <div className="flex items-center gap-3">
-            <div className="p-3 rounded-xl bg-[#17264D] text-[#42D9F5] border border-white/10">
-              <ShieldCheck className="w-6 h-6" />
-            </div>
-            <div>
-              <h4 className="text-sm font-bold text-white">Custom Silicon & Carrier Board Engineering</h4>
-              <p className="text-xs text-white/60">Need custom pinouts, automotive ASIL-D certification, or volume procurement (&gt;1,000 units)?</p>
-            </div>
-          </div>
-          <a
-            href="#why-aiegx"
-            className="px-5 py-2.5 rounded-full text-xs font-semibold text-white bg-white/10 hover:bg-white/15 border border-white/20 transition-colors whitespace-nowrap"
-          >
-            Contact OEM Solutions Team
-          </a>
-        </div>
-
       </div>
 
-      {/* Datasheet Modal Preview */}
+      {/* Datasheet Technical Specification Modal Preview */}
       {activeDatasheet && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="w-full max-w-2xl bg-[#17264D] border border-[#42D9F5]/40 rounded-3xl p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto text-white">
+          <div className="w-full max-w-2xl bg-white dark:bg-[#17264D] border border-slate-200 dark:border-[#42D9F5]/40 rounded-3xl p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto text-slate-900 dark:text-white">
             <button
               onClick={() => setActiveDatasheet(null)}
-              className="absolute top-5 right-5 p-1.5 text-white/60 hover:text-white rounded-lg hover:bg-white/10"
+              className="absolute top-5 right-5 p-1.5 text-slate-400 hover:text-slate-700 dark:text-white/60 dark:hover:text-white rounded-lg hover:bg-slate-100 dark:hover:bg-white/10 transition-colors"
+              aria-label="Close modal"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <div className="flex items-center gap-2 text-xs font-mono text-[#42D9F5] mb-2 uppercase font-semibold">
+            <div className="flex items-center gap-2 text-xs font-mono text-blue-600 dark:text-[#42D9F5] mb-2 uppercase font-semibold">
               <FileText className="w-4 h-4" />
               <span>Official Hardware Technical Specification</span>
             </div>
 
-            <h3 className="text-2xl font-extrabold text-white mb-2">{activeDatasheet.name}</h3>
-            <p className="text-sm text-white/70 mb-6">{activeDatasheet.headline}</p>
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mb-1">
+              {activeDatasheet.name}
+            </h3>
+            <p className="text-xs sm:text-sm font-mono text-slate-500 dark:text-white/50 mb-3">
+              {activeDatasheet.fullName}
+            </p>
+            <p className="text-sm text-slate-600 dark:text-white/70 mb-6">
+              {activeDatasheet.headline}
+            </p>
 
-            <div className="space-y-4 text-xs text-white">
-              <div className="p-4 rounded-xl bg-[#101936]/80 border border-white/10">
-                <h4 className="font-bold mb-2 uppercase tracking-wider text-[11px] text-[#42D9F5]">Processor & Tensor Core Microarchitecture</h4>
-                <p className="text-white/70">Dense tensor systolic matrix engine supporting native INT4, INT8, INT16, FP16, and BF16 execution with zero pipeline stalls. Dedicated RISC-V scalar micro-controller handles hardware tensor dispatching.</p>
+            <div className="space-y-4 text-xs">
+              <div className="p-4 rounded-xl bg-slate-50 dark:bg-[#101936]/80 border border-slate-200 dark:border-white/10">
+                <h4 className="font-bold mb-3 uppercase tracking-wider text-[11px] text-blue-600 dark:text-[#42D9F5]">
+                  Key Technical Specifications
+                </h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {activeDatasheet.specs.map((spec, i) => (
+                    <div key={i} className="flex flex-col">
+                      <span className="text-[10px] font-mono uppercase text-slate-400 dark:text-white/50">{spec.label}</span>
+                      <span className="font-semibold text-slate-800 dark:text-white/90">{spec.value}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
 
-              <div className="p-4 rounded-xl bg-[#101936]/80 border border-white/10">
-                <h4 className="font-bold mb-2 uppercase tracking-wider text-[11px] text-[#42D9F5]">Electrical & Environmental Rating</h4>
-                <ul className="list-disc pl-5 space-y-1 text-white/70">
-                  <li>Operating Voltage: 3.3V / 5.0V Dual Rails with integrated PMIC</li>
-                  <li>Operating Temperature: -40°C to +85°C Ambient with passive heatsink</li>
-                  <li>ESD Protection: IEC 61000-4-2 Level 4 (8kV contact, 15kV air discharge)</li>
-                  <li>Compliance: CE, FCC Class B, RoHS, REACH, ISO 9001 certified fab</li>
-                </ul>
+              <div className="p-4 rounded-xl bg-slate-50 dark:bg-[#101936]/80 border border-slate-200 dark:border-white/10">
+                <h4 className="font-bold mb-2 uppercase tracking-wider text-[11px] text-blue-600 dark:text-[#42D9F5]">
+                  Overview & Architecture
+                </h4>
+                <p className="text-slate-600 dark:text-white/70 leading-relaxed">
+                  {activeDatasheet.description}
+                </p>
               </div>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+            <div className="mt-6 pt-4 border-t border-slate-200 dark:border-white/10 flex items-center justify-between">
               <button
                 onClick={() => {
-                  alert(`Downloading technical PDF for ${activeDatasheet.name}...`);
+                  alert(`Downloading technical documentation package for ${activeDatasheet.name}...`);
                   setActiveDatasheet(null);
                 }}
-                className="px-5 py-2.5 rounded-xl text-xs font-semibold text-[#101936] bg-gradient-to-r from-[#42D9F5] to-[#3478F6] hover:opacity-90 shadow-md shadow-cyan-500/20 flex items-center gap-2 font-mono"
+                className="px-5 py-2.5 rounded-xl text-xs font-semibold text-white dark:text-[#101936] bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-[#42D9F5] dark:to-[#3478F6] hover:opacity-95 shadow-md shadow-blue-500/20 dark:shadow-cyan-500/20 flex items-center gap-2 font-mono"
               >
                 <Download className="w-3.5 h-3.5" />
-                <span>Download Complete PDF Spec (Rev 3.2)</span>
+                <span>Download Spec Sheet (PDF)</span>
               </button>
               <button
                 onClick={() => setActiveDatasheet(null)}
-                className="text-xs text-white/60 hover:text-white"
+                className="text-xs text-slate-500 dark:text-white/60 hover:text-slate-800 dark:hover:text-white"
               >
-                Close Preview
+                Close
               </button>
             </div>
           </div>
