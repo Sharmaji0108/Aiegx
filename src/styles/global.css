@@ -13,6 +13,7 @@
     --text-secondary: #AAB6D0;
     --border-color: #24355A;
     --accent-color: #2DD4F0;
+    --logo-wordmark-color: #F8FAFC;
 
     --color-bg-primary: #0D1733;
     --color-bg-surface: #17264A;
@@ -33,6 +34,7 @@
     --text-secondary: #52627C;
     --border-color: #DBE4F0;
     --accent-color: #089EC2;
+    --logo-wordmark-color: #14213D;
 
     --color-bg-primary: #F5F8FC;
     --color-bg-surface: #FFFFFF;
@@ -63,6 +65,12 @@
   .font-serif {
     font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, Cambria, 'Times New Roman', Times, serif;
   }
+}
+
+.aiegx-wordmark {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-weight: 800;
+  color: var(--logo-wordmark-color);
 }
 
 /* Custom Futuristic Glows and Glassmorphism */

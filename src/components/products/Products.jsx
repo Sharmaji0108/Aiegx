@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ArrowRight } from 'lucide-react';
 import { 
   FileText,
   Download,
@@ -107,9 +108,6 @@ export default function Products() {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#14213D] dark:text-[#F8FAFC] tracking-tight">
               Our <span className="bg-gradient-to-r from-[#2DD4F0] to-[#3285FF] bg-clip-text text-transparent">Hardware Platforms</span>
             </h2>
-            <p className="mt-3 text-base sm:text-lg text-[#52627C] dark:text-[#AAB6D0] max-w-2xl">
-              Renesas embedded processor modules and industrial carrier boards for edge AI, HMI, and real-time networking.
-            </p>
           </div>
 
           {/* 4-Card Single Horizontal Row Grid (1 col on mobile, 2 cols on tablet, 4 cols on desktop) */}
@@ -147,10 +145,14 @@ export default function Products() {
                 </div>
 
                 {/* Centered Product Name Directly Below Image */}
-                <div className="p-5 sm:p-6 w-full flex items-center justify-center">
+                <div className="px-5 pt-5 sm:px-6 sm:pt-6 w-full flex items-center justify-center">
                   <h3 className="text-xl sm:text-2xl font-bold text-[#14213D] dark:text-[#F8FAFC] group-hover:text-[#089EC2] dark:group-hover:text-[#2DD4F0] transition-colors text-center tracking-tight">
                     {product.name}
                   </h3>
+                </div>
+                <div className="self-stretch mt-4 mx-5 mb-5 sm:mx-6 sm:mb-6 pt-3 border-t border-[#DBE4F0] dark:border-[#24355A] flex items-center justify-between text-xs font-semibold text-[#089EC2] dark:text-[#2DD4F0] group-hover:text-[#067B99] dark:group-hover:text-[#42D9F5] transition-colors">
+                  <span>Explore Platform</span>
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </div>
               </div>
             ))}

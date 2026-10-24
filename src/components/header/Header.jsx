@@ -7,7 +7,6 @@ import AboutUsMegaMenu from './AboutUsMegaMenu';
 import { 
   Menu, 
   X, 
-  ChevronDown, 
   ChevronRight 
 } from 'lucide-react';
 
@@ -195,7 +194,7 @@ export default function Header() {
 
           {/* Right: Clean Horizontal Navigation Row (6 items matching sketch) */}
           <nav 
-            className="hidden lg:flex items-center gap-7 lg:gap-8 xl:gap-10 bg-transparent shadow-none border-none"
+            className="hidden lg:flex items-center justify-end gap-5 bg-transparent shadow-none border-none"
             aria-label="Main Navigation"
           >
             {/* 1. Home */}
@@ -205,7 +204,7 @@ export default function Header() {
                 window.dispatchEvent(new CustomEvent('aiegx-navigate', { detail: '/' }));
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className={`nav-link text-[14.5px] tracking-wide transition-colors duration-200 bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent shadow-none border-none focus:outline-none cursor-pointer ${
+              className={`nav-link py-2 text-base tracking-normal transition-colors duration-200 bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent shadow-none border-none focus:outline-none cursor-pointer ${
                 activeNav === 'home'
                   ? 'active text-[#089EC2] dark:text-[#2DD4F0] font-semibold' 
                   : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] font-medium'
@@ -227,7 +226,7 @@ export default function Header() {
                   closeOtherMenus('products');
                   setMegaMenuOpen(!megaMenuOpen);
                 }}
-                className={`nav-link text-[14.5px] tracking-wide transition-colors duration-200 flex items-center gap-1.5 bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent shadow-none border-none focus:outline-none cursor-pointer ${
+                className={`nav-link py-2 text-base tracking-normal transition-colors duration-200 bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent shadow-none border-none focus:outline-none cursor-pointer ${
                   megaMenuOpen || activeNav === 'products'
                     ? 'active text-[#089EC2] dark:text-[#2DD4F0] font-semibold' 
                     : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] font-medium'
@@ -237,9 +236,6 @@ export default function Header() {
                 title="Browse Product Architecture & Hardware Platforms"
               >
                 <span>Products</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                  megaMenuOpen ? 'rotate-180 text-[#089EC2] dark:text-[#2DD4F0]' : 'text-slate-400 dark:text-white/40'
-                }`} />
               </button>
             </div>
 
@@ -255,7 +251,7 @@ export default function Header() {
                   closeOtherMenus('solutions');
                   setSolutionsMenuOpen(!solutionsMenuOpen);
                 }}
-                className={`nav-link text-[14.5px] tracking-wide transition-colors duration-200 flex items-center gap-1.5 bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent shadow-none border-none focus:outline-none cursor-pointer ${
+                className={`nav-link py-2 text-base tracking-normal transition-colors duration-200 bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent shadow-none border-none focus:outline-none cursor-pointer ${
                   solutionsMenuOpen || activeNav === 'solutions'
                     ? 'active text-[#089EC2] dark:text-[#2DD4F0] font-semibold' 
                     : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] font-medium'
@@ -265,9 +261,6 @@ export default function Header() {
                 title="Browse Integrated Embedded Solutions"
               >
                 <span>Solutions</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                  solutionsMenuOpen ? 'rotate-180 text-[#089EC2] dark:text-[#2DD4F0]' : 'text-slate-400 dark:text-white/40'
-                }`} />
               </button>
             </div>
 
@@ -283,7 +276,7 @@ export default function Header() {
                   closeOtherMenus('apps');
                   setApplicationsMenuOpen(!applicationsMenuOpen);
                 }}
-                className={`nav-link text-[14.5px] tracking-wide transition-colors duration-200 flex items-center gap-1.5 bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent shadow-none border-none focus:outline-none cursor-pointer ${
+                className={`nav-link py-2 text-base tracking-normal transition-colors duration-200 bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent shadow-none border-none focus:outline-none cursor-pointer ${
                   applicationsMenuOpen || activeNav === 'industries'
                     ? 'active text-[#089EC2] dark:text-[#2DD4F0] font-semibold' 
                     : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] font-medium'
@@ -293,9 +286,6 @@ export default function Header() {
                 title="Browse Industries We Serve"
               >
                 <span>Industries</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                  applicationsMenuOpen ? 'rotate-180 text-[#089EC2] dark:text-[#2DD4F0]' : 'text-slate-400 dark:text-white/40'
-                }`} />
               </button>
             </div>
 
@@ -311,7 +301,7 @@ export default function Header() {
                   closeOtherMenus('about');
                   setAboutMenuOpen(!aboutMenuOpen);
                 }}
-                className={`nav-link text-[14.5px] tracking-wide transition-colors duration-200 flex items-center gap-1.5 bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent shadow-none border-none focus:outline-none cursor-pointer ${
+                className={`nav-link py-2 text-base tracking-normal transition-colors duration-200 bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent shadow-none border-none focus:outline-none cursor-pointer ${
                   aboutMenuOpen || activeNav === 'company'
                     ? 'active text-[#089EC2] dark:text-[#2DD4F0] font-semibold' 
                     : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] font-medium'
@@ -321,9 +311,6 @@ export default function Header() {
                 title="Learn About AIEGX Company & Engineering"
               >
                 <span>Company</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                  aboutMenuOpen ? 'rotate-180 text-[#089EC2] dark:text-[#2DD4F0]' : 'text-slate-400 dark:text-white/40'
-                }`} />
               </button>
             </div>
 
@@ -331,7 +318,7 @@ export default function Header() {
             <a
               href="#contact"
               onClick={closeAllMenus}
-              className={`nav-link text-[14.5px] tracking-wide transition-colors duration-200 bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent shadow-none border-none focus:outline-none cursor-pointer ${
+              className={`nav-link py-2 text-base tracking-normal transition-colors duration-200 bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent shadow-none border-none focus:outline-none cursor-pointer ${
                 activeNav === 'contact'
                   ? 'active text-[#089EC2] dark:text-[#2DD4F0] font-semibold'
                   : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] font-medium'
