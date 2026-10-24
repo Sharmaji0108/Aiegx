@@ -6,6 +6,7 @@ import NxpBrand from './pages/NxpBrand';
 import TiBrand from './pages/TiBrand';
 import Type1Product from './pages/Type1Product';
 import Footer from './components/common/Footer';
+import ThemeToggle from './components/common/ThemeToggle';
 
 export default function App() {
   const [currentPath, setCurrentPath] = useState(() => {
@@ -53,12 +54,13 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F4F8FD] dark:bg-[#101936] text-[#0F172A] dark:text-white flex flex-col justify-between transition-colors duration-300">
+    <div className="min-h-screen bg-[#F4F8FD] dark:bg-[#0D1733] text-[#0F172A] dark:text-[#F8FAFC] flex flex-col justify-between transition-colors duration-300">
       <Header />
       <main className="flex-1">
         {renderContent()}
       </main>
       <Footer />
+      <ThemeToggle />
     </div>
   );
 }

@@ -109,7 +109,7 @@ export default function TiBrand() {
   ];
 
   return (
-    <div className="w-full flex flex-col bg-[#101936] text-white relative selection:bg-[#3478F6]/30 selection:text-[#42D9F5]">
+    <div className="w-full flex flex-col bg-[var(--page-bg)] dark:bg-[#101936] text-[var(--text-primary)] dark:text-white relative selection:bg-[#3478F6]/30 selection:text-[#42D9F5] transition-colors duration-300">
       
       {/* =========================================================================
           HERO SECTION: TI AM6x Computer on Modules (Two-column layout)
@@ -138,7 +138,8 @@ export default function TiBrand() {
         <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[550px] sm:w-[750px] h-[450px] bg-gradient-to-tr from-[#3478F6]/25 via-[#42D9F5]/15 to-transparent rounded-full blur-[140px] pointer-events-none -z-10" />
         <div className="absolute top-1/3 right-10 w-[420px] h-[420px] bg-gradient-to-bl from-[#3478F6]/20 via-[#42D9F5]/10 to-transparent rounded-full blur-[130px] pointer-events-none -z-10" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Large Outer Section Container */}
+        <div className="section-container relative">
           
           {/* Breadcrumb Navigation: Home > Brands > TI AM6x */}
           <nav aria-label="Breadcrumb" className="mb-8 sm:mb-10">
@@ -279,9 +280,10 @@ export default function TiBrand() {
          ========================================================================= */}
       <section 
         id="am69" 
-        className="relative py-20 sm:py-28 overflow-hidden bg-[#101936] text-white border-t border-white/10"
+        className="relative py-6 sm:py-8 lg:py-10 overflow-hidden bg-[#101936] text-white"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Large Outer Section Container */}
+        <div className="section-container relative">
           
           {/* Section Heading */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-14 pb-5 border-b border-white/10">
@@ -464,9 +466,10 @@ export default function TiBrand() {
          ========================================================================= */}
       <section 
         id="am62" 
-        className="relative py-20 sm:py-28 overflow-hidden bg-gradient-to-b from-[#101936] via-[#122047] to-[#101936] text-white border-t border-white/10"
+        className="relative py-6 sm:py-8 lg:py-10 pb-16 sm:pb-20 overflow-hidden bg-gradient-to-b from-[#101936] via-[#122047] to-[#101936] text-white"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Large Outer Section Container */}
+        <div className="section-container relative">
           
           {/* Section Heading */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-14 pb-5 border-b border-white/10">

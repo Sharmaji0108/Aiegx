@@ -71,7 +71,8 @@ export default function QualcommBrand() {
         <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[550px] sm:w-[750px] h-[450px] bg-gradient-to-tr from-[#3478F6]/20 via-[#42D9F5]/10 to-transparent rounded-full blur-[140px] pointer-events-none -z-10" />
         <div className="absolute top-1/3 right-10 w-[420px] h-[420px] bg-gradient-to-bl from-[#3478F6]/20 via-[#42D9F5]/10 to-transparent rounded-full blur-[130px] pointer-events-none -z-10" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Large Outer Section Container */}
+        <div className="section-container relative">
           
           {/* Breadcrumb Navigation: Home > Brands > Qualcomm */}
           <nav aria-label="Breadcrumb" className="mb-8 sm:mb-12">
@@ -191,12 +192,13 @@ export default function QualcommBrand() {
          ========================================================================= */}
       <section 
         id="dragonwing-showcase" 
-        className="relative py-20 sm:py-28 overflow-hidden bg-gradient-to-b from-[#101936] via-[#122047] to-[#101936] text-white border-t border-white/10"
+        className="relative py-6 sm:py-8 lg:py-10 pb-16 sm:pb-20 overflow-hidden bg-gradient-to-b from-[#101936] via-[#122047] to-[#101936] text-white"
       >
         {/* Background Ambient Radial Glow Lights */}
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[450px] bg-gradient-to-tr from-[#3478F6]/15 via-[#42D9F5]/10 to-transparent rounded-full blur-[160px] pointer-events-none -z-10" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Large Outer Section Container */}
+        <div className="section-container relative">
           
           {/* Centered Heading & Coming Soon Label */}
           <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">

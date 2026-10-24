@@ -182,7 +182,7 @@ export default function NxpBrand() {
   ];
 
   return (
-    <div className="w-full flex flex-col bg-[#101936] text-white relative selection:bg-[#3478F6]/30 selection:text-[#42D9F5]">
+    <div className="w-full flex flex-col bg-[var(--page-bg)] dark:bg-[#101936] text-[var(--text-primary)] dark:text-white relative selection:bg-[#3478F6]/30 selection:text-[#42D9F5] transition-colors duration-300">
       
       {/* =========================================================================
           HERO SECTION: NXP i.MX - Computer on Modules (Two-column responsive)
@@ -211,7 +211,8 @@ export default function NxpBrand() {
         <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[550px] sm:w-[750px] h-[450px] bg-gradient-to-tr from-[#3478F6]/25 via-[#42D9F5]/15 to-transparent rounded-full blur-[140px] pointer-events-none -z-10" />
         <div className="absolute top-1/3 right-10 w-[420px] h-[420px] bg-gradient-to-bl from-[#3478F6]/20 via-[#42D9F5]/10 to-transparent rounded-full blur-[130px] pointer-events-none -z-10" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Large Outer Section Container */}
+        <div className="section-container relative">
           
           {/* Breadcrumb Navigation: Home > Brands > NXP i.MX */}
           <nav aria-label="Breadcrumb" className="mb-8 sm:mb-10">
@@ -409,10 +410,11 @@ export default function NxpBrand() {
          ========================================================================= */}
       <section 
         id="webinar-section"
-        className="py-12 bg-gradient-to-r from-[#0d1633] via-[#152347] to-[#0d1633] border-y border-white/10 relative overflow-hidden"
+        className="py-6 sm:py-8 lg:py-10 bg-gradient-to-r from-[#0d1633] via-[#152347] to-[#0d1633] relative overflow-hidden"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-6 p-6 sm:p-8 rounded-2xl bg-[#101936]/80 border border-white/10 shadow-xl">
+        {/* Large Outer Section Container */}
+        <div className="section-container relative">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 rounded-xl bg-[#17264D] border border-[#42D9F5]/30 flex items-center justify-center text-[#42D9F5] flex-shrink-0 shadow-md">
                 <Calendar className="w-6 h-6 text-[#42D9F5]" />
@@ -453,9 +455,10 @@ export default function NxpBrand() {
          ========================================================================= */}
       <section 
         id="imx9" 
-        className="relative py-20 sm:py-28 overflow-hidden bg-[#101936] text-white"
+        className="relative py-6 sm:py-8 lg:py-10 overflow-hidden bg-[#101936] text-white"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Large Outer Section Container */}
+        <div className="section-container relative">
           
           {/* Section Header */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-14 pb-5 border-b border-white/10">
@@ -589,9 +592,10 @@ export default function NxpBrand() {
          ========================================================================= */}
       <section 
         id="imx8" 
-        className="relative py-20 sm:py-28 overflow-hidden bg-gradient-to-b from-[#101936] via-[#122047] to-[#101936] text-white border-t border-white/10"
+        className="relative py-6 sm:py-8 lg:py-10 overflow-hidden bg-gradient-to-b from-[#101936] via-[#122047] to-[#101936] text-white"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Large Outer Section Container */}
+        <div className="section-container relative">
           
           {/* Section Header */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-14 pb-5 border-b border-white/10">
@@ -727,10 +731,10 @@ export default function NxpBrand() {
          ========================================================================= */}
       <section 
         id="legacy-families"
-        className="py-16 bg-[#0e1630] border-t border-white/10 relative"
+        className="py-6 sm:py-8 lg:py-10 pb-16 sm:pb-20 bg-[#0e1630] relative"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="p-8 sm:p-10 rounded-2xl bg-[#121c3d]/60 border border-white/10 flex flex-col md:flex-row items-center justify-between gap-8">
+        {/* Large Outer Section Container */}
+        <div className="section-container relative flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl">
             <div className="max-w-2xl">
               <span className="text-xs font-mono text-[#42D9F5] uppercase tracking-wider font-semibold block mb-2">
                 LEGACY ARCHITECTURE LIFECYCLE COMMITMENT
@@ -760,8 +764,7 @@ export default function NxpBrand() {
               </a>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
       {/* =========================================================================
           INTERACTIVE MODAL: Product Details Drawer / Modal

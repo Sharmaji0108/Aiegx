@@ -3,36 +3,45 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {
-  :root {
-    --color-bg-primary: #101936;
-    --color-bg-surface: #17264D;
-    --color-accent-blue: #3478F6;
-    --color-accent-cyan: #42D9F5;
-    --color-text-primary: #F5F7FC;
-    --color-text-secondary: rgba(245, 247, 252, 0.7);
-    --color-border: rgba(255, 255, 255, 0.1);
+  :root,
+  [data-theme="dark"],
+  html.dark {
+    --page-bg: #0D1733;
+    --surface-bg: #17264A;
+    --surface-secondary: #101936;
+    --text-primary: #F8FAFC;
+    --text-secondary: #AAB6D0;
+    --border-color: #24355A;
+    --accent-color: #2DD4F0;
+
+    --color-bg-primary: #0D1733;
+    --color-bg-surface: #17264A;
+    --color-accent-blue: #3285FF;
+    --color-accent-cyan: #2DD4F0;
+    --color-text-primary: #F8FAFC;
+    --color-text-secondary: #AAB6D0;
+    --color-border: #24355A;
+    color-scheme: dark;
   }
 
+  [data-theme="light"],
   html.light {
-    --color-bg-primary: #F4F8FD;
+    --page-bg: #F5F8FC;
+    --surface-bg: #FFFFFF;
+    --surface-secondary: #EDF2F7;
+    --text-primary: #14213D;
+    --text-secondary: #52627C;
+    --border-color: #DBE4F0;
+    --accent-color: #089EC2;
+
+    --color-bg-primary: #F5F8FC;
     --color-bg-surface: #FFFFFF;
     --color-accent-blue: #2563EB;
-    --color-accent-cyan: #0284C7;
-    --color-text-primary: #0F172A;
-    --color-text-secondary: #506385;
-    --color-border: #DCE6F3;
+    --color-accent-cyan: #089EC2;
+    --color-text-primary: #14213D;
+    --color-text-secondary: #52627C;
+    --color-border: #DBE4F0;
     color-scheme: light;
-  }
-
-  html.dark {
-    --color-bg-primary: #101936;
-    --color-bg-surface: #17264D;
-    --color-accent-blue: #3478F6;
-    --color-accent-cyan: #42D9F5;
-    --color-text-primary: #F5F7FC;
-    --color-text-secondary: rgba(245, 247, 252, 0.7);
-    --color-border: rgba(255, 255, 255, 0.1);
-    color-scheme: dark;
   }
 
   html {
@@ -41,8 +50,8 @@
 
   body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background-color: #101936;
-    color: #F5F7FC;
+    background-color: var(--page-bg);
+    color: var(--text-primary);
     overflow-x: hidden;
     transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
@@ -87,6 +96,55 @@
 
 .glow-cyan {
   box-shadow: 0 0 25px rgba(66, 217, 245, 0.35);
+}
+
+/* ==========================================================================
+   GLOBAL SECTION OUTER CONTAINER
+   Matching the reference Hardware Platforms section container:
+   - Width: calc(100% - 32px) on mobile, calc(100% - 48px) on sm, calc(100% - 64px) on lg
+   - Max width: 1720px, margin-inline: auto
+   - Border radius: 1.75rem (28px)
+   - Border: 1px solid var(--border-color) (#DBE4F0 light / #24355A dark)
+   - Background: translucent light in light mode, translucent dark navy in dark mode
+   - Responsive comfortable padding: 24px mobile up to 48px desktop
+   ========================================================================== */
+.section-container {
+  width: calc(100% - 32px);
+  max-width: 1720px;
+  margin-inline: auto;
+  border-radius: 1.75rem;
+  border: 1px solid var(--border-color);
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 1.5rem;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 10;
+}
+
+[data-theme="dark"] .section-container,
+html.dark .section-container {
+  background-color: rgba(16, 25, 54, 0.2);
+  border-color: #24355A;
+}
+
+@media (min-width: 640px) {
+  .section-container {
+    width: calc(100% - 48px);
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-container {
+    width: calc(100% - 64px);
+    padding: 2.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .section-container {
+    padding: 3rem;
+  }
 }
 
 .text-gradient-electric {
@@ -335,40 +393,68 @@ html.light .text-gradient-silver {
   -webkit-text-fill-color: transparent !important;
 }
 
-/* Navbar in Light Mode */
-html.light header.border-b {
-  background: rgba(255, 255, 255, 0.9) !important;
-  border-color: #DCE6F3 !important;
-  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06) !important;
+/* Navigation Menu: Clean & Fully Transparent (No white box or highlight rectangles) */
+header nav,
+html.light header nav,
+html.dark header nav {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
-html.light header nav {
-  background: rgba(255, 255, 255, 0.94) !important;
-  border-color: #DCE6F3 !important;
-  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.05) !important;
-}
-
+.nav-link,
+header nav a,
+header nav button,
 html.light header nav a,
-html.light header nav button {
-  color: #1E293B !important;
+html.light header nav button,
+html.dark header nav a,
+html.dark header nav button {
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
 }
 
+/* Hover, Active, Focus, and Expanded states: transparent background with subtle cyan text highlight */
+.nav-link:hover,
+.nav-link:focus,
+.nav-link:active,
+.nav-link.active,
+.nav-link[aria-expanded="true"],
+header nav a:hover,
+header nav button:hover,
+header nav a:focus,
+header nav button:focus,
+header nav a:active,
+header nav button:active,
+header nav button[aria-expanded="true"],
+html.dark header nav a:hover,
+html.dark header nav button:hover,
+html.dark header nav a:focus,
+html.dark header nav button:focus,
+html.dark header nav button[aria-expanded="true"] {
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  color: #2DD4F0 !important;
+}
+
+html.light .nav-link:hover,
+html.light .nav-link:focus,
+html.light .nav-link:active,
+html.light .nav-link.active,
+html.light .nav-link[aria-expanded="true"],
 html.light header nav a:hover,
-html.light header nav button:hover {
-  color: #2563EB !important;
-  background-color: rgba(37, 99, 235, 0.06) !important;
-}
-
-html.light header button.rounded-full:not([class*="bg-gradient"]) {
-  background-color: rgba(255, 255, 255, 0.92) !important;
-  border-color: #DCE6F3 !important;
-  color: #1E293B !important;
-}
-
-html.light header button.rounded-full:not([class*="bg-gradient"]):hover {
-  color: #2563EB !important;
-  border-color: #93C5FD !important;
-  background-color: #FFFFFF !important;
+html.light header nav button:hover,
+html.light header nav a:focus,
+html.light header nav button:focus,
+html.light header nav button[aria-expanded="true"] {
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  color: #089EC2 !important;
 }
 
 /* Dropdown Mega Menus & Dialogs */

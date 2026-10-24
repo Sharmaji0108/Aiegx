@@ -22,7 +22,7 @@ const megaMenuData = {
       { id: 'accessories', name: 'Accessories' }
     ],
     thumbnail: {
-      image: '/images/why_aiegx_product.png',
+      image: '/images/aiegx-hardware-som-hd.jpg',
       title: 'Aiegx Apalis & Verdin CoM Modules',
       subtitle: 'Pin-compatible system-on-modules with 10+ year longevity guarantee.',
       linkText: 'Explore Module Lineup',
@@ -131,7 +131,7 @@ const megaMenuData = {
       { id: 'accessories', name: 'Accessories' }
     ],
     thumbnail: {
-      image: '/images/sbc-front-transparent.png',
+      image: '/images/sbc-platform-hd.jpg',
       title: 'Aiegx Industrial SBC Family',
       subtitle: 'Complete standalone computers ready for deployment out of the box.',
       linkText: 'View SBC Models',

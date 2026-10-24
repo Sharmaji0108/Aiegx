@@ -22,39 +22,35 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#0b1226] border-t border-white/10 text-white pt-16 pb-12 relative overflow-hidden">
-      
-      {/* Background Subtle Accent */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[1px] bg-gradient-to-r from-transparent via-[#42D9F5]/40 to-transparent" />
-      
+    <footer className="bg-[#EDF2F7] dark:bg-[#0D1733] text-[#14213D] dark:text-[#F8FAFC] pt-16 pb-12 relative overflow-hidden transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Top Grid: Branding & Multi-column links */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12 border-b border-white/10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12 border-b border-[#DBE4F0] dark:border-[#24355A]">
           
           {/* Brand Info & Newsletter (5 cols on lg) */}
           <div className="lg:col-span-5 flex flex-col justify-between">
             <div>
               {/* Logo */}
-              <Logo className="mb-4" />
+              <Logo className="mb-4" imgClassName="w-10 h-10 sm:w-11 sm:h-11" />
 
-              <p className="text-sm text-white/60 leading-relaxed max-w-sm mb-6">
-                Aiegx designs and manufactures ultra-low-power neural silicon, rugged industrial edge gateways, and real-time embedded software for autonomous systems.
+              <p className="text-sm text-[#52627C] dark:text-[#AAB6D0] leading-relaxed max-w-sm mb-6">
+                Aiegx designs and manufactures ultra-low-power neural silicon, rugged industrial edge hardware, and real-time embedded software for autonomous systems.
               </p>
             </div>
 
             {/* Newsletter Input */}
             <div>
-              <span className="text-xs font-mono uppercase text-[#42D9F5] tracking-wider block mb-2 font-semibold">
+              <span className="text-xs font-mono uppercase text-[#089EC2] dark:text-[#2DD4F0] tracking-wider block mb-2 font-semibold">
                 Subscribe to Silicon Dispatch
               </span>
-              <p className="text-xs text-white/60 mb-3">
+              <p className="text-xs text-[#52627C] dark:text-[#AAB6D0] mb-3">
                 Monthly technical benchmarks, silicon errata notes, and SDK releases.
               </p>
 
               {subscribed ? (
-                <div className="flex items-center gap-2 p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                <div className="flex items-center gap-2 p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                   <span>Subscribed! Check your inbox for technical briefings.</span>
                 </div>
               ) : (
@@ -65,11 +61,11 @@ export default function Footer() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="engineer@enterprise.ai"
-                    className="flex-1 px-4 py-2.5 rounded-xl bg-[#17264D] border border-white/10 text-white placeholder-white/30 text-xs focus:outline-none focus:border-[#42D9F5]"
+                    className="flex-1 px-4 py-2.5 rounded-xl bg-white dark:bg-[#17264A] border border-[#DBE4F0] dark:border-[#24355A] text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-white/30 text-xs focus:outline-none focus:border-[#089EC2] dark:focus:border-[#2DD4F0]"
                   />
                   <button
                     type="submit"
-                    className="px-4 py-2.5 rounded-xl font-semibold text-xs text-[#101936] bg-gradient-to-r from-[#42D9F5] to-[#3478F6] hover:opacity-90 transition-opacity flex items-center gap-1.5 font-mono"
+                    className="px-4 py-2.5 rounded-xl font-semibold text-xs text-[#0D1733] bg-gradient-to-r from-[#2DD4F0] to-[#3285FF] hover:opacity-90 transition-opacity flex items-center gap-1.5 font-mono cursor-pointer"
                   >
                     <Send className="w-3.5 h-3.5" />
                     <span className="hidden sm:inline">Join</span>
@@ -79,48 +75,48 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Links Column 1: Hardware Products (2 cols) */}
+          {/* Links Column 1: Hardware Platforms (2 cols) */}
           <div className="lg:col-span-2 space-y-3">
-            <h4 className="text-xs font-mono uppercase tracking-wider text-[#42D9F5] font-bold">
-              Hardware
+            <h4 className="text-xs font-mono uppercase tracking-wider text-[#089EC2] dark:text-[#2DD4F0] font-bold">
+              Platforms
             </h4>
-            <ul className="space-y-2 text-xs text-white/60">
-              <li><a href="#products" className="hover:text-[#42D9F5] transition-colors">NeuroCore X1 Module</a></li>
-              <li><a href="#products" className="hover:text-[#42D9F5] transition-colors">Synapse Gateway Pro</a></li>
-              <li><a href="#products" className="hover:text-[#42D9F5] transition-colors">OmniVision Sensor Pod</a></li>
-              <li><a href="#products" className="hover:text-[#42D9F5] transition-colors">QuantumEdge Dev Board</a></li>
-              <li><a href="#products" className="hover:text-[#42D9F5] transition-colors">Evaluation Accessories</a></li>
-              <li><a href="#products" className="hover:text-[#42D9F5] transition-colors">Custom ASIC Inquiries</a></li>
+            <ul className="space-y-2 text-xs text-[#52627C] dark:text-[#AAB6D0]">
+              <li><a href="#hardware-platforms" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">RZ/G2L MPU Module</a></li>
+              <li><a href="#hardware-platforms" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">RZ/G2N Embedded SOM</a></li>
+              <li><a href="#hardware-platforms" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">RZ/V2L Vision AI Board</a></li>
+              <li><a href="#hardware-platforms" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">RZ/N2H Industrial Board</a></li>
+              <li><a href="/products/type-1" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Type 1 Product</a></li>
+              <li><a href="#hardware-platforms" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Custom Carrier Boards</a></li>
             </ul>
           </div>
 
           {/* Links Column 2: Solutions (2 cols) */}
           <div className="lg:col-span-2 space-y-3">
-            <h4 className="text-xs font-mono uppercase tracking-wider text-[#42D9F5] font-bold">
+            <h4 className="text-xs font-mono uppercase tracking-wider text-[#089EC2] dark:text-[#2DD4F0] font-bold">
               Solutions
             </h4>
-            <ul className="space-y-2 text-xs text-white/60">
-              <li><a href="#solutions" className="hover:text-[#42D9F5] transition-colors">Autonomous Robotics</a></li>
-              <li><a href="#solutions" className="hover:text-[#42D9F5] transition-colors">Embedded Computer Vision</a></li>
-              <li><a href="#solutions" className="hover:text-[#42D9F5] transition-colors">Predictive Telemetry</a></li>
-              <li><a href="#solutions" className="hover:text-[#42D9F5] transition-colors">Zero-Trust Fleet OTA</a></li>
-              <li><a href="#solutions" className="hover:text-[#42D9F5] transition-colors">Sub-Watt Micro-Compute</a></li>
-              <li><a href="#applications" className="hover:text-[#42D9F5] transition-colors">Industrial Case Studies</a></li>
+            <ul className="space-y-2 text-xs text-[#52627C] dark:text-[#AAB6D0]">
+              <li><a href="#integrated-solutions" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">HMI Display Interface</a></li>
+              <li><a href="#integrated-solutions" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">DMS In-Cabin Vision</a></li>
+              <li><a href="#integrated-solutions" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Vehicle Domain Controller</a></li>
+              <li><a href="#integrated-solutions" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">ANPR Edge Neural OCR</a></li>
+              <li><a href="#industries" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Railways Transit</a></li>
+              <li><a href="#industries" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Smart City & Defense</a></li>
             </ul>
           </div>
 
-          {/* Links Column 3: Developers & Legal (3 cols) */}
+          {/* Links Column 3: Engineering & Company (3 cols) */}
           <div className="lg:col-span-3 space-y-3">
-            <h4 className="text-xs font-mono uppercase tracking-wider text-[#42D9F5] font-bold">
-              Developers & Legal
+            <h4 className="text-xs font-mono uppercase tracking-wider text-[#089EC2] dark:text-[#2DD4F0] font-bold">
+              Engineering & Company
             </h4>
-            <ul className="space-y-2 text-xs text-white/60">
-              <li><a href="#developers" className="hover:text-[#42D9F5] transition-colors">Aiegx Python / C++ SDK</a></li>
-              <li><a href="#developers" className="hover:text-[#42D9F5] transition-colors">Quantized Model Zoo</a></li>
-              <li><a href="#developers" className="hover:text-[#42D9F5] transition-colors">ROS 2 Humble / Iron Drivers</a></li>
-              <li><a href="#developers" className="hover:text-[#42D9F5] transition-colors">Hardware Errata & Specs</a></li>
-              <li><a href="#why-aiegx" className="hover:text-[#42D9F5] transition-colors">Security Whitepaper</a></li>
-              <li><a href="#why-aiegx" className="hover:text-[#42D9F5] transition-colors">ISO 9001 / IEC 62443 Compliance</a></li>
+            <ul className="space-y-2 text-xs text-[#52627C] dark:text-[#AAB6D0]">
+              <li><a href="#engineering-capabilities" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Hardware & Carrier Design</a></li>
+              <li><a href="#engineering-capabilities" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Linux / Yocto BSP Drivers</a></li>
+              <li><a href="#engineering-capabilities" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Camera & ISP Integration</a></li>
+              <li><a href="#engineering-capabilities" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Edge AI Model Quantization</a></li>
+              <li><a href="#contact" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Speak with Engineers</a></li>
+              <li><a href="#contact" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Request Technical Inquiry</a></li>
             </ul>
           </div>
 
@@ -129,31 +125,31 @@ export default function Footer() {
         {/* Bottom Compliance & Copyright Row */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
           
-          <div className="flex flex-wrap items-center gap-4 text-xs text-white/40">
+          <div className="flex flex-wrap items-center gap-4 text-xs text-slate-500 dark:text-white/40">
             <span>&copy; {new Date().getFullYear()} Aiegx Technologies Inc. All rights reserved.</span>
             <span className="hidden sm:inline">&bull;</span>
-            <a href="#why-aiegx" className="hover:text-white transition-colors">Privacy Policy</a>
+            <a href="#why-aiegx" className="hover:text-slate-900 dark:hover:text-white transition-colors">Privacy Policy</a>
             <span className="hidden sm:inline">&bull;</span>
-            <a href="#why-aiegx" className="hover:text-white transition-colors">Terms of Hardware Procurement</a>
+            <a href="#why-aiegx" className="hover:text-slate-900 dark:hover:text-white transition-colors">Terms of Hardware Procurement</a>
             <span className="hidden sm:inline">&bull;</span>
-            <a href="#why-aiegx" className="hover:text-white transition-colors">Supply Chain Statement</a>
+            <a href="#why-aiegx" className="hover:text-slate-900 dark:hover:text-white transition-colors">Supply Chain Statement</a>
           </div>
 
           {/* Certifications and Social Icons */}
           <div className="flex items-center gap-4">
             {/* Cert Pills */}
-            <div className="flex items-center gap-2 text-[10px] font-mono text-white/60 border border-white/10 px-3 py-1 rounded-full bg-[#17264D]/50 shadow-sm">
-              <ShieldCheck className="w-3.5 h-3.5 text-[#42D9F5]" />
+            <div className="flex items-center gap-2 text-[10px] font-mono text-slate-700 dark:text-white/60 border border-[#DBE4F0] dark:border-[#24355A] px-3 py-1 rounded-full bg-white dark:bg-[#17264A] shadow-xs">
+              <ShieldCheck className="w-3.5 h-3.5 text-[#089EC2] dark:text-[#2DD4F0]" />
               <span>ISO 9001 &bull; CE &bull; FCC &bull; RoHS</span>
             </div>
 
             {/* Social Icons */}
-            <div className="flex items-center gap-2 text-white/60">
+            <div className="flex items-center gap-2 text-slate-500 dark:text-white/60">
               <a 
                 href="https://github.com" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="p-2 rounded-lg hover:text-[#42D9F5] hover:bg-white/5 transition-colors"
+                className="p-2 rounded-lg hover:text-[#089EC2] dark:hover:text-[#2DD4F0] hover:bg-slate-200/60 dark:hover:bg-white/5 transition-colors"
                 aria-label="GitHub"
               >
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -164,7 +160,7 @@ export default function Footer() {
                 href="https://linkedin.com" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="p-2 rounded-lg hover:text-[#42D9F5] hover:bg-white/5 transition-colors"
+                className="p-2 rounded-lg hover:text-[#089EC2] dark:hover:text-[#2DD4F0] hover:bg-slate-200/60 dark:hover:bg-white/5 transition-colors"
                 aria-label="LinkedIn"
               >
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -175,7 +171,7 @@ export default function Footer() {
                 href="https://twitter.com" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="p-2 rounded-lg hover:text-[#42D9F5] hover:bg-white/5 transition-colors"
+                className="p-2 rounded-lg hover:text-[#089EC2] dark:hover:text-[#2DD4F0] hover:bg-slate-200/60 dark:hover:bg-white/5 transition-colors"
                 aria-label="Twitter / X"
               >
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">

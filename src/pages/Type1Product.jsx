@@ -172,7 +172,7 @@ export default function Type1Product() {
   ];
 
   return (
-    <div className="w-full flex flex-col bg-[#101936] text-white relative selection:bg-[#3478F6]/30 selection:text-[#42D9F5] font-['Times_New_Roman',serif]">
+    <div className="w-full flex flex-col bg-[var(--page-bg)] dark:bg-[#101936] text-[var(--text-primary)] dark:text-white relative selection:bg-[#3478F6]/30 selection:text-[#42D9F5] font-['Times_New_Roman',serif] transition-colors duration-300">
       
       {/* =========================================================================
           HERO SECTION: TI AM69 / TDA4 Computer on Module
@@ -201,7 +201,8 @@ export default function Type1Product() {
         <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[850px] h-[500px] bg-gradient-to-tr from-[#3478F6]/20 via-[#42D9F5]/15 to-transparent rounded-full blur-[140px] pointer-events-none -z-10" />
         <div className="absolute top-1/3 right-10 w-[450px] h-[450px] bg-gradient-to-bl from-[#10B981]/15 via-[#42D9F5]/10 to-transparent rounded-full blur-[130px] pointer-events-none -z-10" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Large Outer Section Container */}
+        <div className="section-container relative">
           
           {/* Breadcrumb Navigation: Home > Products > Computer on Modules > By Type > Type 1 */}
           <nav aria-label="Breadcrumb" className="mb-8 sm:mb-10">
@@ -396,12 +397,13 @@ export default function Type1Product() {
       {/* =========================================================================
           HARDWARE HIGHLIGHTS SECTION (Four-Column Responsive Feature Grid)
          ========================================================================= */}
-      <section className="relative py-20 bg-[#0e1630] border-t border-b border-white/10">
+      <section className="relative py-6 sm:py-8 lg:py-10 bg-[#0e1630]">
         
         {/* Ambient Glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#3478F6]/10 blur-[150px] pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Large Outer Section Container */}
+        <div className="section-container relative">
           
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-14">
@@ -673,9 +675,10 @@ export default function Type1Product() {
       {/* =========================================================================
           JACINTO 7 ARCHITECTURE SECTION
          ========================================================================= */}
-      <section className="relative py-20 bg-[#0e1630] border-t border-white/10">
+      <section className="relative py-6 sm:py-8 lg:py-10 bg-[#0e1630]">
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Large Outer Section Container */}
+        <div className="section-container relative">
           
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-14">
@@ -867,37 +870,36 @@ export default function Type1Product() {
       {/* =========================================================================
           BOTTOM TECHNICAL CALL-TO-ACTION SECTION
          ========================================================================= */}
-      <section className="py-16 bg-[#101936] border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-[#0e1630] via-[#122047] to-[#17264D] border border-white/15 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
-            <div>
-              <span className="text-xs font-mono uppercase tracking-widest text-[#42D9F5] font-semibold block mb-2">
-                READY TO EVALUATE TYPE 1 HARDWARE?
-              </span>
-              <h3 className="text-2xl sm:text-3xl font-bold text-white">
-                Accelerate Your Next-Gen Edge AI Platform
-              </h3>
-              <p className="mt-2 text-sm text-white/70 max-w-xl">
-                Get early access to Aquila AM69 evaluation kits, carrier board schematics, and direct engineering support from our embedded specialists.
-              </p>
-            </div>
+      <section className="py-6 sm:py-8 lg:py-10 pb-16 sm:pb-20 relative bg-[#101936]">
+        {/* Large Outer Section Container */}
+        <div className="section-container relative flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left shadow-xl">
+          <div>
+            <span className="text-xs font-mono uppercase tracking-widest text-[#42D9F5] font-semibold block mb-2">
+              READY TO EVALUATE TYPE 1 HARDWARE?
+            </span>
+            <h3 className="text-2xl sm:text-3xl font-bold text-white">
+              Accelerate Your Next-Gen Edge AI Platform
+            </h3>
+            <p className="mt-2 text-sm text-white/70 max-w-xl">
+              Get early access to Aquila AM69 evaluation kits, carrier board schematics, and direct engineering support from our embedded specialists.
+            </p>
+          </div>
 
-            <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
-              <button
-                onClick={() => setActiveModal('contact')}
-                className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-[#42D9F5] hover:bg-[#38bdf8] text-[#0b1226] font-bold text-sm font-mono uppercase tracking-wider transition-all duration-200 shadow-lg shadow-[#42D9F5]/20 flex items-center justify-center gap-2 cursor-pointer"
-              >
-                <span>Request Eval Kit</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-              <button
-                onClick={() => setActiveModal('datasheet')}
-                className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 text-white font-semibold text-sm font-mono uppercase tracking-wider border border-white/15 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
-              >
-                <Download className="w-4 h-4 text-white/70" />
-                <span>Download Specs</span>
-              </button>
-            </div>
+          <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
+            <button
+              onClick={() => setActiveModal('contact')}
+              className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-[#42D9F5] hover:bg-[#38bdf8] text-[#0b1226] font-bold text-sm font-mono uppercase tracking-wider transition-all duration-200 shadow-lg shadow-[#42D9F5]/20 flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <span>Request Eval Kit</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => setActiveModal('datasheet')}
+              className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 text-white font-semibold text-sm font-mono uppercase tracking-wider border border-white/15 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <Download className="w-4 h-4 text-white/70" />
+              <span>Download Specs</span>
+            </button>
           </div>
         </div>
       </section>

@@ -2,11 +2,13 @@ import React from 'react';
 
 export default function Logo({ 
   className = '', 
-  imgClassName = 'w-10 h-10 sm:w-11 sm:h-11', 
+  imgClassName = 'w-11 h-11 sm:w-12 sm:h-12 lg:w-[68px] lg:h-[68px]', 
   showText = true, 
+  showTagline = true,
+  tagline = 'EMBEDDED & EDGE AI',
   href = '/', 
   _variant = 'default',
-  textColor = 'text-slate-900 dark:text-white transition-colors duration-200',
+  textColor = 'text-white',
   onClick
 }) {
   const handleClick = (e) => {
@@ -24,23 +26,30 @@ export default function Logo({
     <a 
       href={href} 
       onClick={handleClick}
-      className={`inline-flex items-center gap-2.5 sm:gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#42D9F5] rounded-xl p-0.5 ${className}`}
-      aria-label="Aiegx Homepage"
+      className={`inline-flex items-center gap-3 sm:gap-3.5 lg:gap-4 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2DD4F0] rounded-2xl p-0.5 ${className}`}
+      aria-label="AIEGX Homepage"
     >
-      {/* Official Aiegx Logo Mark: Rounded square with Aiegx symbol */}
-      <div className="relative rounded-2xl overflow-hidden shadow-md shadow-[#3478F6]/20 group-hover:shadow-[#42D9F5]/40 transition-all duration-300 transform group-hover:scale-105 flex-shrink-0 border border-white/10">
+      {/* Official AIEGX Logo Mark: 64-72px on desktop, cleanly contained */}
+      <div className="relative rounded-2xl overflow-hidden shadow-md shadow-[#3285FF]/20 group-hover:shadow-[#2DD4F0]/40 transition-all duration-300 transform group-hover:scale-105 flex-shrink-0 border border-white/10">
         <img 
           src="/images/aiegx-logo-official.png" 
-          alt="Aiegx Logo" 
+          alt="AIEGX Logo" 
           className={`${imgClassName} object-contain rounded-2xl`}
         />
       </div>
 
-      {/* Brand Wordmark */}
+      {/* Brand Wordmark & Compact Tagline */}
       {showText && (
-        <span className={`text-[1.35rem] sm:text-2xl font-bold tracking-wider ${textColor} font-mono leading-none select-none`}>
-          AIEGX
-        </span>
+        <div className="flex flex-col justify-center">
+          <span className={`text-[1.35rem] sm:text-2xl lg:text-[1.85rem] font-bold tracking-wider ${textColor} font-mono leading-none select-none`}>
+            AIEGX
+          </span>
+          {showTagline && (
+            <span className="text-[8.5px] sm:text-[9.5px] lg:text-[11px] font-mono tracking-wider sm:tracking-widest text-[#2DD4F0] uppercase font-semibold mt-1 sm:mt-1.5 leading-none select-none">
+              {tagline}
+            </span>
+          )}
+        </div>
       )}
     </a>
   );
