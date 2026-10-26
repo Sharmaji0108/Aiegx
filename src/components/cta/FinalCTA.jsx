@@ -54,14 +54,11 @@ export default function FinalCTA() {
       {/* Large Outer Section Container */}
       <div className="section-container relative">
         
-        {/* Section Heading — Centered Horizontally at Top */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+        {/* Section Heading */}
+        <div className="max-w-4xl mb-8 sm:mb-10">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#14213D] dark:text-[#F8FAFC]">
             Our <span className="bg-gradient-to-r from-[#2DD4F0] to-[#3285FF] bg-clip-text text-transparent">Engineering Capabilities</span>
           </h2>
-          <p className="mt-3 text-base text-[#52627C] dark:text-[#AAB6D0] max-w-xl mx-auto">
-            Full-lifecycle embedded hardware design, custom board support packages, and vision AI engineering.
-          </p>
         </div>
 
         {/* 4 Engineering Capability Cards in a Single Horizontal Row on Desktop */}

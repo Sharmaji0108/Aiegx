@@ -8,7 +8,6 @@ export default function Logo({
   tagline = 'EMBEDDED & EDGE AI',
   href = '/', 
   _variant = 'default',
-  textColor = 'text-white',
   onClick
 }) {
   const handleClick = (e) => {
@@ -41,11 +40,11 @@ export default function Logo({
       {/* Brand Wordmark & Compact Tagline */}
       {showText && (
         <div className="flex flex-col justify-center">
-          <span className={`text-[1.35rem] sm:text-2xl lg:text-[1.85rem] font-bold tracking-wider ${textColor} font-mono leading-none select-none`}>
+          <span className="aiegx-wordmark text-[1.35rem] sm:text-2xl lg:text-[1.85rem] tracking-wider leading-none select-none">
             AIEGX
           </span>
           {showTagline && (
-            <span className="text-[8.5px] sm:text-[9.5px] lg:text-[11px] font-mono tracking-wider sm:tracking-widest text-[#2DD4F0] uppercase font-semibold mt-1 sm:mt-1.5 leading-none select-none">
+            <span className="text-[13px] font-mono tracking-wider sm:tracking-widest text-[#64748B] dark:text-[#AAB6D0] uppercase font-semibold mt-1 sm:mt-1.5 leading-none select-none">
               {tagline}
             </span>
           )}

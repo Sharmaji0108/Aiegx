@@ -461,7 +461,7 @@ export default function NxpBrand() {
         <div className="section-container relative">
           
           {/* Section Header */}
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-14 pb-5 border-b border-white/10">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 pb-5 border-b border-white/10">
             <div>
               <div className="inline-flex items-center gap-2 text-xs font-mono text-[#42D9F5] uppercase tracking-wider mb-2 font-semibold">
                 <Cpu className="w-3.5 h-3.5" />
@@ -470,9 +470,6 @@ export default function NxpBrand() {
               <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-white tracking-tight">
                 NXP i.MX 9 Computer on Modules
               </h2>
-              <p className="text-sm sm:text-base text-white/60 mt-2 max-w-2xl">
-                Next-generation heterogeneous compute with on-die eIQ Neutron NPU neural acceleration, LPDDR5 memory speed, and integrated functional safety island.
-              </p>
             </div>
 
             <span className="text-xs font-mono text-white/40 self-start sm:self-end">
@@ -598,7 +595,7 @@ export default function NxpBrand() {
         <div className="section-container relative">
           
           {/* Section Header */}
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-14 pb-5 border-b border-white/10">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 pb-5 border-b border-white/10">
             <div>
               <div className="inline-flex items-center gap-2 text-xs font-mono text-[#42D9F5] uppercase tracking-wider mb-2 font-semibold">
                 <Layers className="w-3.5 h-3.5" />
@@ -607,9 +604,6 @@ export default function NxpBrand() {
               <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-white tracking-tight">
                 NXP i.MX 8M Mini/Nano | Plus
               </h2>
-              <p className="text-sm sm:text-base text-white/60 mt-2 max-w-2xl">
-                Industry-proven compute platforms for low-power edge gateways, dual-camera computer vision, and industrial multimedia telemetry.
-              </p>
             </div>
 
             <span className="text-xs font-mono text-white/40 self-start sm:self-end">

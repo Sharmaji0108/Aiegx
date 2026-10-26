@@ -406,16 +406,13 @@ export default function Type1Product() {
         <div className="section-container relative">
           
           {/* Section Header */}
-          <div className="text-center max-w-3xl mx-auto mb-14">
+          <div className="max-w-3xl mb-10">
             <span className="text-xs font-mono uppercase tracking-widest text-[#42D9F5] font-semibold block mb-2">
               HARDWARE HIGHLIGHTS
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
               Engineered for High-Bandwidth Autonomous Computing
             </h2>
-            <p className="mt-3 text-sm sm:text-base text-white/70">
-              Discover the silicon architecture, extreme camera throughput, and safety-critical subsystem features engineered into the Aquila AM69.
-            </p>
           </div>
 
           {/* 4-Column Responsive Grid (2 rows of 4 highlights = 8 total) */}
@@ -538,16 +535,13 @@ export default function Type1Product() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
           {/* Section Header */}
-          <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="max-w-3xl mb-10">
             <span className="text-xs font-mono uppercase tracking-widest text-[#10B981] font-semibold block mb-2">
               NEURAL INFERENCE & VISION ACCELERATION
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">
               AI and Computer Vision Capabilities
             </h2>
-            <p className="mt-3 text-base sm:text-lg text-white/70">
-              Process multiple real-time camera streams with dedicated Matrix Multiply deep learning hardware, achieving high inference throughput with minimal latency.
-            </p>
           </div>
 
           {/* 4 Primary AI Feature Pillars */}
@@ -681,16 +675,13 @@ export default function Type1Product() {
         <div className="section-container relative">
           
           {/* Section Header */}
-          <div className="text-center max-w-3xl mx-auto mb-14">
+          <div className="max-w-3xl mb-10">
             <span className="text-xs font-mono uppercase tracking-widest text-[#42D9F5] font-semibold block mb-2">
               SOC ARCHITECTURE OVERVIEW
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">
               Jacinto™ 7 Architecture
             </h2>
-            <p className="mt-4 text-sm sm:text-base text-white/75 leading-relaxed">
-              Family of automotive and industrial processors from TI designed for autonomous vehicles, robots, and edge AI applications. It brings scalable high-performance, usually with Cortex-A72 cores, deep learning accelerators, and other hardware accelerators integrated into system-on-chips built on a common 16nm FinFET silicon.
-            </p>
           </div>
 
           {/* Highlighted Panel: J784S4 Processors */}

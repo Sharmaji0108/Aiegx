@@ -3,8 +3,7 @@ import {
   Monitor, 
   Eye, 
   Cpu, 
-  Scan, 
-  ArrowRight
+  Scan
 } from 'lucide-react';
 
 /**
@@ -131,18 +130,11 @@ export default function Applications() {
       {/* Large Outer Section Container */}
       <div className="section-container relative">
         
-        {/* Section Heading — Center Aligned */}
-        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-[#17264A] border border-slate-200 dark:border-[#24355A] text-xs font-mono text-[#089EC2] dark:text-[#2DD4F0] uppercase tracking-wider mb-3 shadow-xs">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#089EC2] dark:bg-[#2DD4F0] animate-pulse" />
-            <span>Turnkey Embedded Architectures</span>
-          </div>
+        {/* Section Heading */}
+        <div className="max-w-4xl mb-8 sm:mb-10">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#14213D] dark:text-[#F8FAFC]">
             Our Integrated <span className="bg-gradient-to-r from-[#2DD4F0] to-[#3285FF] bg-clip-text text-transparent">Solutions</span>
           </h2>
-          <p className="mt-3.5 text-base sm:text-lg text-[#52627C] dark:text-[#AAB6D0] max-w-2xl mx-auto font-normal">
-            Pre-validated hardware and software stacks engineered to solve complex vision, control, and edge-intelligence challenges out of the box.
-          </p>
         </div>
 
         {/* 4 Interactive Solution Cards in a Horizontal Arrangement */}
@@ -156,7 +148,7 @@ export default function Applications() {
               <button
                 key={item.id}
                 onClick={() => setSelectedSolution(idx)}
-                className={`group relative text-left p-6 sm:p-7 rounded-2xl transition-all duration-300 border flex flex-col justify-between cursor-pointer backdrop-blur-md outline-none focus-visible:ring-2 focus-visible:ring-[#2DD4F0] ${
+                className={`group relative text-left p-6 sm:p-7 rounded-2xl transition-all duration-300 border flex flex-col cursor-pointer backdrop-blur-md outline-none focus-visible:ring-2 focus-visible:ring-[#2DD4F0] ${
                   isSelected
                     ? 'bg-white dark:bg-[#17264A] border-[#089EC2] dark:border-[#2DD4F0] shadow-xl shadow-[#089EC2]/10 dark:shadow-[#2DD4F0]/15 ring-1 ring-[#089EC2]/50 dark:ring-[#2DD4F0]/50 -translate-y-1'
                     : 'bg-white/80 dark:bg-[#17264A]/70 border-[#DBE4F0] dark:border-[#24355A] hover:border-[#089EC2]/50 dark:hover:border-[#2DD4F0]/50 hover:bg-white dark:hover:bg-[#17264A] hover:-translate-y-0.5 hover:shadow-md'
@@ -207,21 +199,6 @@ export default function Applications() {
                   </p>
                 </div>
 
-                {/* Bottom Action Hint */}
-                <div 
-                  className={`mt-6 pt-3.5 border-t flex items-center justify-between text-xs font-semibold transition-colors ${
-                    isSelected
-                      ? 'border-[#089EC2]/25 dark:border-[#2DD4F0]/25 text-[#089EC2] dark:text-[#2DD4F0]'
-                      : 'border-[#DBE4F0] dark:border-[#24355A] text-slate-400 dark:text-white/40 group-hover:text-[#089EC2] dark:group-hover:text-[#2DD4F0]'
-                  }`}
-                >
-                  <span>{isSelected ? 'Active Solution' : 'Explore Platform'}</span>
-                  <ArrowRight 
-                    className={`w-3.5 h-3.5 transform transition-transform ${
-                      isSelected ? 'translate-x-1 text-[#089EC2] dark:text-[#2DD4F0]' : 'group-hover:translate-x-1'
-                    }`} 
-                  />
-                </div>
               </button>
             );
           })}

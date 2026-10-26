@@ -200,8 +200,8 @@ export default function QualcommBrand() {
         {/* Large Outer Section Container */}
         <div className="section-container relative">
           
-          {/* Centered Heading & Coming Soon Label */}
-          <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
+          {/* Section Heading & Coming Soon Label */}
+          <div className="max-w-3xl mb-10">
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-semibold text-white tracking-tight mb-4">
               Dragonwing IQ-8275
             </h2>
@@ -212,9 +212,6 @@ export default function QualcommBrand() {
               <span>Coming Soon</span>
             </div>
 
-            <p className="mt-5 text-base sm:text-lg text-[#F5F7FC]/70 leading-relaxed max-w-2xl mx-auto">
-              The flagship Computer on Module engineered with Qualcomm Dragonwing IQ8 silicon, delivering deterministic heterogeneous compute and hardware neural inference for next-generation edge automation.
-            </p>
           </div>
 
           {/* Main Product Showcase Card — Dark Navy Glass Panel */}

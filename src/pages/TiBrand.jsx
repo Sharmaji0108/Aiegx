@@ -286,7 +286,7 @@ export default function TiBrand() {
         <div className="section-container relative">
           
           {/* Section Heading */}
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-14 pb-5 border-b border-white/10">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 pb-5 border-b border-white/10">
             <div>
               <div className="inline-flex items-center gap-2 text-xs font-mono text-[#42D9F5] uppercase tracking-wider mb-2 font-semibold">
                 <Cpu className="w-3.5 h-3.5" />
@@ -295,9 +295,6 @@ export default function TiBrand() {
               <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-white tracking-tight">
                 TI AM69 / TDA4
               </h2>
-              <p className="text-sm sm:text-base text-white/60 mt-2 max-w-2xl">
-                High-compute processor platform integrating 32 TOPS deep learning acceleration, octa-core Cortex-A72 processing, and multi-camera perception.
-              </p>
             </div>
 
             <span className="text-xs font-mono text-[#42D9F5] bg-[#17264D] border border-[#42D9F5]/30 px-3 py-1 rounded-full self-start sm:self-end font-semibold">
@@ -472,7 +469,7 @@ export default function TiBrand() {
         <div className="section-container relative">
           
           {/* Section Heading */}
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-14 pb-5 border-b border-white/10">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 pb-5 border-b border-white/10">
             <div>
               <div className="inline-flex items-center gap-2 text-xs font-mono text-[#42D9F5] uppercase tracking-wider mb-2 font-semibold">
                 <Layers className="w-3.5 h-3.5" />
@@ -481,9 +478,6 @@ export default function TiBrand() {
               <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-white tracking-tight">
                 TI AM62
               </h2>
-              <p className="text-sm sm:text-base text-white/60 mt-2 max-w-2xl">
-                Scalable Quad-Core Cortex-A53 computing designed for smart edge telemetry, industrial HMI screens, and energy-harvesting IoT appliances.
-              </p>
             </div>
 
             <span className="text-xs font-mono text-white/40 self-start sm:self-end">
