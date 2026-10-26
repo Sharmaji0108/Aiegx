@@ -397,12 +397,12 @@ export default function Type1Product() {
       {/* =========================================================================
           HARDWARE HIGHLIGHTS SECTION (Four-Column Responsive Feature Grid)
          ========================================================================= */}
-      <section className="relative py-6 sm:py-8 lg:py-10 bg-[#0e1630]">
+      <section className="relative py-16 sm:py-20 lg:py-24 bg-[#0e1630]">
         
         {/* Ambient Glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#3478F6]/10 blur-[150px] pointer-events-none" />
 
-        {/* Large Outer Section Container */}
+        {/* Section Content Wrapper */}
         <div className="section-container relative">
           
           {/* Section Header */}
@@ -669,9 +669,9 @@ export default function Type1Product() {
       {/* =========================================================================
           JACINTO 7 ARCHITECTURE SECTION
          ========================================================================= */}
-      <section className="relative py-6 sm:py-8 lg:py-10 bg-[#0e1630]">
+      <section className="relative py-16 sm:py-20 lg:py-24 bg-[#0e1630]">
         
-        {/* Large Outer Section Container */}
+        {/* Section Content Wrapper */}
         <div className="section-container relative">
           
           {/* Section Header */}
@@ -861,9 +861,9 @@ export default function Type1Product() {
       {/* =========================================================================
           BOTTOM TECHNICAL CALL-TO-ACTION SECTION
          ========================================================================= */}
-      <section className="py-6 sm:py-8 lg:py-10 pb-16 sm:pb-20 relative bg-[#101936]">
-        {/* Large Outer Section Container */}
-        <div className="section-container relative flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left shadow-xl">
+      <section className="py-16 sm:py-20 lg:py-24 relative bg-[#101936]">
+        {/* Section Content Wrapper */}
+        <div className="section-container relative flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
           <div>
             <span className="text-xs font-mono uppercase tracking-widest text-[#42D9F5] font-semibold block mb-2">
               READY TO EVALUATE TYPE 1 HARDWARE?

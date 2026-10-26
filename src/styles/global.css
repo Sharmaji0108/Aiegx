@@ -107,23 +107,20 @@
 }
 
 /* ==========================================================================
-   GLOBAL SECTION OUTER CONTAINER
-   Matching the reference Hardware Platforms section container:
-   - Width: calc(100% - 32px) on mobile, calc(100% - 48px) on sm, calc(100% - 64px) on lg
-   - Max width: 1720px, margin-inline: auto
-   - Border radius: 1.75rem (28px)
-   - Border: 1px solid var(--border-color) (#DBE4F0 light / #24355A dark)
-   - Background: translucent light in light mode, translucent dark navy in dark mode
-   - Responsive comfortable padding: 24px mobile up to 48px desktop
+   GLOBAL SECTION CONTAINER
+   Clean layout container that centers content and provides consistent
+   responsive margins, without outer boxed borders, radius, or backgrounds.
    ========================================================================== */
 .section-container {
   width: calc(100% - 32px);
   max-width: 1720px;
   margin-inline: auto;
-  border-radius: 1.75rem;
-  border: 1px solid var(--border-color);
-  background-color: rgba(255, 255, 255, 0.2);
-  padding: 1.5rem;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  padding: 0;
   box-sizing: border-box;
   position: relative;
   z-index: 10;
@@ -131,27 +128,29 @@
 
 [data-theme="dark"] .section-container,
 html.dark .section-container {
-  background-color: rgba(16, 25, 54, 0.2);
-  border-color: #24355A;
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 @media (min-width: 640px) {
   .section-container {
     width: calc(100% - 48px);
-    padding: 2rem;
+    padding: 0;
   }
 }
 
 @media (min-width: 1024px) {
   .section-container {
     width: calc(100% - 64px);
-    padding: 2.5rem;
+    padding: 0;
   }
 }
 
 @media (min-width: 1280px) {
   .section-container {
-    padding: 3rem;
+    padding: 0;
   }
 }
 

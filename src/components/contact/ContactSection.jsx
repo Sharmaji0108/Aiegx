@@ -45,14 +45,14 @@ export default function ContactSection() {
   return (
     <section 
       id="contact" 
-      className="py-6 sm:py-8 lg:py-10 pb-16 sm:pb-20 lg:pb-24 relative bg-[#F5F8FC] dark:bg-gradient-to-b dark:from-[#0D1733] dark:via-[#101C3D] dark:to-[#0D1733] scroll-mt-20 transition-colors duration-300 overflow-hidden"
+      className="py-16 sm:py-20 lg:py-24 relative bg-[#F5F8FC] dark:bg-gradient-to-b dark:from-[#0D1733] dark:via-[#101C3D] dark:to-[#0D1733] scroll-mt-20 transition-colors duration-300 overflow-hidden"
     >
       {/* Subtle Ambient Background Lighting Glow */}
       <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[300px] bg-gradient-to-tr from-[#3285FF]/10 via-[#2DD4F0]/10 to-transparent rounded-full blur-[140px] pointer-events-none -z-10" />
       <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[400px] h-[250px] bg-gradient-to-bl from-[#2DD4F0]/10 via-[#3285FF]/10 to-transparent rounded-full blur-[140px] pointer-events-none -z-10" />
 
-      {/* Large Outer Section Container */}
-      <div className="section-container relative flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 lg:gap-12 shadow-xl">
+      {/* Main Section Content Wrapper */}
+      <div className="section-container relative flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 lg:gap-12">
         
         {/* Left Column: Heading & Description */}
         <div className="max-w-2xl">

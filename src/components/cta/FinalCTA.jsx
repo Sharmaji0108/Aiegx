@@ -42,7 +42,7 @@ export default function FinalCTA() {
   return (
     <section 
       id="engineering-capabilities" 
-      className="py-6 sm:py-8 lg:py-10 relative bg-[#F5F8FC] dark:bg-[#0D1733] scroll-mt-20 transition-colors duration-300 overflow-hidden"
+      className="py-16 sm:py-20 lg:py-24 relative bg-[#F5F8FC] dark:bg-[#0D1733] scroll-mt-20 transition-colors duration-300 overflow-hidden"
     >
       {/* Anchor alias for backwards-compatible capability links */}
       <div id="capabilities" className="sr-only" />
@@ -51,7 +51,6 @@ export default function FinalCTA() {
       <div className="absolute top-1/3 left-1/4 w-[600px] h-[500px] bg-gradient-to-tr from-[#3285FF]/10 via-[#2DD4F0]/10 to-transparent rounded-full blur-[140px] pointer-events-none -z-10" />
       <div className="absolute bottom-1/3 right-1/4 w-[500px] h-[400px] bg-gradient-to-bl from-[#2DD4F0]/10 via-[#3285FF]/10 to-transparent rounded-full blur-[140px] pointer-events-none -z-10" />
 
-      {/* Large Outer Section Container */}
       <div className="section-container relative">
         
         {/* Section Heading */}

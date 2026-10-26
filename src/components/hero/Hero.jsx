@@ -210,7 +210,7 @@ export default function Hero() {
       onMouseLeave={() => setIsHovered(false)}
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
-      className="relative pt-[88px] pb-6 sm:pt-[102px] sm:pb-8 lg:pt-[118px] lg:pb-10 overflow-hidden bg-[#F5F8FC] dark:bg-[#0D1733] select-none transition-colors duration-300"
+      className="relative pt-[88px] pb-16 sm:pt-[102px] sm:pb-20 lg:pt-[118px] lg:pb-24 overflow-hidden bg-[#F5F8FC] dark:bg-[#0D1733] select-none transition-colors duration-300"
     >
       {/* Circuit-board traces & technical grid pattern overlay */}
       <svg 
@@ -247,33 +247,31 @@ export default function Hero() {
         className="absolute top-1/3 right-10 w-[500px] h-[500px] bg-gradient-to-bl from-[#2DD4F0]/20 via-[#3285FF]/15 to-transparent rounded-full blur-[140px] pointer-events-none -z-10" 
       />
 
-      {/* Large Outer Section Container Matching Hardware Platforms Design */}
+      {/* Previous Slide Arrow Button */}
+      <button
+        type="button"
+        onClick={goToPrevSlide}
+        className="absolute left-2.5 sm:left-6 lg:left-8 top-1/2 -translate-y-1/2 z-20 p-2.5 sm:p-3.5 rounded-full bg-white/90 dark:bg-[#17264A]/90 hover:bg-white dark:hover:bg-[#1E3360] border border-slate-200 dark:border-[#24355A] hover:border-[#089EC2] dark:hover:border-[#2DD4F0] text-slate-700 dark:text-white/80 hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-all duration-200 shadow-md hover:shadow-lg hover:shadow-[#2DD4F0]/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2DD4F0] cursor-pointer"
+        aria-label="Previous slide"
+        title="Previous slide"
+      >
+        <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+      </button>
+
+      {/* Next Slide Arrow Button */}
+      <button
+        type="button"
+        onClick={goToNextSlide}
+        className="absolute right-2.5 sm:right-6 lg:right-8 top-1/2 -translate-y-1/2 z-20 p-2.5 sm:p-3.5 rounded-full bg-white/90 dark:bg-[#17264A]/90 hover:bg-white dark:hover:bg-[#1E3360] border border-slate-200 dark:border-[#24355A] hover:border-[#089EC2] dark:hover:border-[#2DD4F0] text-slate-700 dark:text-white/80 hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-all duration-200 shadow-md hover:shadow-lg hover:shadow-[#2DD4F0]/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2DD4F0] cursor-pointer"
+        aria-label="Next slide"
+        title="Next slide"
+      >
+        <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+      </button>
+
       <div className="section-container relative">
-        
-        {/* Previous Slide Arrow Button */}
-        <button
-          type="button"
-          onClick={goToPrevSlide}
-          className="absolute left-2.5 sm:left-4 lg:left-6 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-3 rounded-full bg-white/90 dark:bg-[#17264A]/90 hover:bg-white dark:hover:bg-[#1E3360] border border-slate-200 dark:border-[#24355A] hover:border-[#089EC2] dark:hover:border-[#2DD4F0] text-slate-700 dark:text-white/80 hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-all duration-200 shadow-md hover:shadow-lg hover:shadow-[#2DD4F0]/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2DD4F0] cursor-pointer"
-          aria-label="Previous slide"
-          title="Previous slide"
-        >
-          <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
-        </button>
-
-        {/* Next Slide Arrow Button */}
-        <button
-          type="button"
-          onClick={goToNextSlide}
-          className="absolute right-2.5 sm:right-4 lg:right-6 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-3 rounded-full bg-white/90 dark:bg-[#17264A]/90 hover:bg-white dark:hover:bg-[#1E3360] border border-slate-200 dark:border-[#24355A] hover:border-[#089EC2] dark:hover:border-[#2DD4F0] text-slate-700 dark:text-white/80 hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-all duration-200 shadow-md hover:shadow-lg hover:shadow-[#2DD4F0]/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2DD4F0] cursor-pointer"
-          aria-label="Next slide"
-          title="Next slide"
-        >
-          <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
-        </button>
-
         {/* Main Two-Column Hero Grid: Left Column Text, Right Column Hardware Image */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center min-h-[460px] px-3 sm:px-8 lg:px-12 pb-10 sm:pb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center min-h-[460px] px-2 sm:px-6 lg:px-8">
           
           {/* Left Column: Heading, Description, and CTA Button (7 cols) */}
           <div className="lg:col-span-7 flex flex-col items-start z-10">
@@ -349,33 +347,32 @@ export default function Hero() {
           </div>
 
         </div>
+      </div>
 
-        {/* Four Slide Indicators Horizontally Centered at the Bottom of the Outer Container */}
-        <div 
-          className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center justify-center gap-3" 
-          role="tablist" 
-          aria-label="Hero slide indicators"
-        >
-          {heroSlides.map((slide, idx) => {
-            const isActive = currentSlide === idx;
-            return (
-              <button
-                key={slide.id}
-                role="tab"
-                type="button"
-                aria-selected={isActive}
-                aria-label={`Go to slide ${idx + 1}: ${slide.heading}`}
-                onClick={() => goToSlide(idx, idx > currentSlide ? 'next' : 'prev')}
-                className={`h-2 rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2DD4F0] cursor-pointer ${
-                  isActive 
-                    ? 'w-10 bg-gradient-to-r from-[#2DD4F0] to-[#3285FF] shadow-md shadow-[#2DD4F0]/40' 
-                    : 'w-4 bg-slate-300 dark:bg-white/20 hover:bg-slate-400 dark:hover:bg-white/40'
-                }`}
-              />
-            );
-          })}
-        </div>
-
+      {/* Four Slide Indicators Horizontally Centered at the Bottom of the Entire Hero Section */}
+      <div 
+        className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-20 flex items-center justify-center gap-3" 
+        role="tablist" 
+        aria-label="Hero slide indicators"
+      >
+        {heroSlides.map((slide, idx) => {
+          const isActive = currentSlide === idx;
+          return (
+            <button
+              key={slide.id}
+              role="tab"
+              type="button"
+              aria-selected={isActive}
+              aria-label={`Go to slide ${idx + 1}: ${slide.heading}`}
+              onClick={() => goToSlide(idx, idx > currentSlide ? 'next' : 'prev')}
+              className={`h-2 rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2DD4F0] cursor-pointer ${
+                isActive 
+                  ? 'w-10 bg-gradient-to-r from-[#2DD4F0] to-[#3285FF] shadow-md shadow-[#2DD4F0]/40' 
+                  : 'w-4 bg-slate-300 dark:bg-white/20 hover:bg-slate-400 dark:hover:bg-white/40'
+              }`}
+            />
+          );
+        })}
       </div>
     </section>
   );

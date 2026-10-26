@@ -410,9 +410,9 @@ export default function NxpBrand() {
          ========================================================================= */}
       <section 
         id="webinar-section"
-        className="py-6 sm:py-8 lg:py-10 bg-gradient-to-r from-[#0d1633] via-[#152347] to-[#0d1633] relative overflow-hidden"
+        className="py-16 sm:py-20 lg:py-24 bg-gradient-to-r from-[#0d1633] via-[#152347] to-[#0d1633] relative overflow-hidden"
       >
-        {/* Large Outer Section Container */}
+        {/* Section Content Wrapper */}
         <div className="section-container relative">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
             <div className="flex items-start gap-4">
@@ -455,9 +455,9 @@ export default function NxpBrand() {
          ========================================================================= */}
       <section 
         id="imx9" 
-        className="relative py-6 sm:py-8 lg:py-10 overflow-hidden bg-[#101936] text-white"
+        className="relative py-16 sm:py-20 lg:py-24 overflow-hidden bg-[#101936] text-white"
       >
-        {/* Large Outer Section Container */}
+        {/* Section Content Wrapper */}
         <div className="section-container relative">
           
           {/* Section Header */}
@@ -589,9 +589,9 @@ export default function NxpBrand() {
          ========================================================================= */}
       <section 
         id="imx8" 
-        className="relative py-6 sm:py-8 lg:py-10 overflow-hidden bg-gradient-to-b from-[#101936] via-[#122047] to-[#101936] text-white"
+        className="relative py-16 sm:py-20 lg:py-24 overflow-hidden bg-gradient-to-b from-[#101936] via-[#122047] to-[#101936] text-white"
       >
-        {/* Large Outer Section Container */}
+        {/* Section Content Wrapper */}
         <div className="section-container relative">
           
           {/* Section Header */}
@@ -725,10 +725,10 @@ export default function NxpBrand() {
          ========================================================================= */}
       <section 
         id="legacy-families"
-        className="py-6 sm:py-8 lg:py-10 pb-16 sm:pb-20 bg-[#0e1630] relative"
+        className="py-16 sm:py-20 lg:py-24 bg-[#0e1630] relative"
       >
-        {/* Large Outer Section Container */}
-        <div className="section-container relative flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl">
+        {/* Section Content Wrapper */}
+        <div className="section-container relative flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="max-w-2xl">
               <span className="text-xs font-mono text-[#42D9F5] uppercase tracking-wider font-semibold block mb-2">
                 LEGACY ARCHITECTURE LIFECYCLE COMMITMENT

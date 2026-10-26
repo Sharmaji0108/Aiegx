@@ -117,7 +117,7 @@ export default function Applications() {
   return (
     <section 
       id="integrated-solutions" 
-      className="py-6 sm:py-8 lg:py-10 relative bg-[#F5F8FC] dark:bg-[#0D1733] scroll-mt-20 transition-colors duration-300"
+      className="py-16 sm:py-20 lg:py-24 relative bg-[#F5F8FC] dark:bg-[#0D1733] scroll-mt-20 transition-colors duration-300"
     >
       {/* Anchor aliases for backwards compatibility */}
       <div id="solutions" className="sr-only" />
@@ -127,7 +127,6 @@ export default function Applications() {
       <div className="absolute top-1/3 left-10 w-[550px] h-[550px] bg-[#3285FF]/10 rounded-full blur-[150px] pointer-events-none" />
       <div className="absolute bottom-10 right-10 w-[450px] h-[450px] bg-[#2DD4F0]/10 rounded-full blur-[140px] pointer-events-none" />
 
-      {/* Large Outer Section Container */}
       <div className="section-container relative">
         
         {/* Section Heading */}

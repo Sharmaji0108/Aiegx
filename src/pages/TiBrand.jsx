@@ -280,9 +280,9 @@ export default function TiBrand() {
          ========================================================================= */}
       <section 
         id="am69" 
-        className="relative py-6 sm:py-8 lg:py-10 overflow-hidden bg-[#101936] text-white"
+        className="relative py-16 sm:py-20 lg:py-24 overflow-hidden bg-[#101936] text-white"
       >
-        {/* Large Outer Section Container */}
+        {/* Section Content Wrapper */}
         <div className="section-container relative">
           
           {/* Section Heading */}
@@ -463,9 +463,9 @@ export default function TiBrand() {
          ========================================================================= */}
       <section 
         id="am62" 
-        className="relative py-6 sm:py-8 lg:py-10 pb-16 sm:pb-20 overflow-hidden bg-gradient-to-b from-[#101936] via-[#122047] to-[#101936] text-white"
+        className="relative py-16 sm:py-20 lg:py-24 overflow-hidden bg-gradient-to-b from-[#101936] via-[#122047] to-[#101936] text-white"
       >
-        {/* Large Outer Section Container */}
+        {/* Section Content Wrapper */}
         <div className="section-container relative">
           
           {/* Section Heading */}

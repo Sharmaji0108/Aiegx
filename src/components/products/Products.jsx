@@ -91,7 +91,7 @@ export default function Products() {
   return (
     <section 
       id="hardware-platforms" 
-      className="py-6 sm:py-8 lg:py-10 relative bg-[#F5F8FC] dark:bg-[#0D1733] scroll-mt-20 transition-colors duration-300"
+      className="py-16 sm:py-20 lg:py-24 relative bg-[#F5F8FC] dark:bg-[#0D1733] scroll-mt-20 transition-colors duration-300"
     >
       {/* Anchor alias for backwards-compatible links */}
       <div id="products" className="sr-only" />
@@ -100,7 +100,6 @@ export default function Products() {
       <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-[#3285FF]/10 rounded-full blur-[150px] pointer-events-none" />
       <div className="absolute bottom-10 left-10 w-[400px] h-[400px] bg-[#2DD4F0]/10 rounded-full blur-[140px] pointer-events-none" />
 
-      {/* Large Outer Section Container */}
       <div className="section-container relative">
           
           {/* Section Header */}

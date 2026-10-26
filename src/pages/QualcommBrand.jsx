@@ -192,12 +192,12 @@ export default function QualcommBrand() {
          ========================================================================= */}
       <section 
         id="dragonwing-showcase" 
-        className="relative py-6 sm:py-8 lg:py-10 pb-16 sm:pb-20 overflow-hidden bg-gradient-to-b from-[#101936] via-[#122047] to-[#101936] text-white"
+        className="relative py-16 sm:py-20 lg:py-24 overflow-hidden bg-gradient-to-b from-[#101936] via-[#122047] to-[#101936] text-white"
       >
         {/* Background Ambient Radial Glow Lights */}
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[450px] bg-gradient-to-tr from-[#3478F6]/15 via-[#42D9F5]/10 to-transparent rounded-full blur-[160px] pointer-events-none -z-10" />
 
-        {/* Large Outer Section Container */}
+        {/* Section Content Wrapper */}
         <div className="section-container relative">
           
           {/* Section Heading & Coming Soon Label */}
