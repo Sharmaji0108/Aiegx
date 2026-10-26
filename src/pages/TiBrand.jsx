@@ -286,18 +286,18 @@ export default function TiBrand() {
         <div className="section-container relative">
           
           {/* Section Heading */}
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 pb-5 border-b border-white/10">
+          <div className="section-heading-container relative w-full mb-8 sm:mb-10 px-5 py-4 sm:px-7 sm:py-5 overflow-hidden rounded-2xl border border-[#DCE6F3] dark:border-[#24355A] shadow-[0_8px_24px_rgba(50,133,255,0.12)] dark:shadow-[0_8px_24px_rgba(45,212,240,0.12)] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
-              <div className="inline-flex items-center gap-2 text-xs font-mono text-[#42D9F5] uppercase tracking-wider mb-2 font-semibold">
+              <div className="inline-flex items-center gap-2 text-xs font-mono text-[#0284C7] uppercase tracking-wider mb-1 font-semibold">
                 <Cpu className="w-3.5 h-3.5" />
                 <span>Heavy AI & Autonomous Vision Platform</span>
               </div>
-              <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-white tracking-tight">
-                TI AM69 / TDA4
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0D1733] tracking-tight">
+                TI AM69 / <span className="bg-gradient-to-r from-[#0284C7] to-[#3285FF] bg-clip-text text-transparent">TDA4</span>
               </h2>
             </div>
 
-            <span className="text-xs font-mono text-[#42D9F5] bg-[#17264D] border border-[#42D9F5]/30 px-3 py-1 rounded-full self-start sm:self-end font-semibold">
+            <span className="text-xs font-mono text-[#0369A1] bg-white border border-[#BAE6FD] px-3 py-1 rounded-full self-start sm:self-center font-semibold">
               32 TOPS Deep Learning MMA
             </span>
           </div>
@@ -469,18 +469,18 @@ export default function TiBrand() {
         <div className="section-container relative">
           
           {/* Section Heading */}
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 pb-5 border-b border-white/10">
+          <div className="section-heading-container relative w-full mb-8 sm:mb-10 px-5 py-4 sm:px-7 sm:py-5 overflow-hidden rounded-2xl border border-[#DCE6F3] dark:border-[#24355A] shadow-[0_8px_24px_rgba(50,133,255,0.12)] dark:shadow-[0_8px_24px_rgba(45,212,240,0.12)] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
-              <div className="inline-flex items-center gap-2 text-xs font-mono text-[#42D9F5] uppercase tracking-wider mb-2 font-semibold">
+              <div className="inline-flex items-center gap-2 text-xs font-mono text-[#0284C7] uppercase tracking-wider mb-1 font-semibold">
                 <Layers className="w-3.5 h-3.5" />
                 <span>Cost & Power-Optimized Multiprocessors</span>
               </div>
-              <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-white tracking-tight">
-                TI AM62
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0D1733] tracking-tight">
+                TI <span className="bg-gradient-to-r from-[#0284C7] to-[#3285FF] bg-clip-text text-transparent">AM62</span>
               </h2>
             </div>
 
-            <span className="text-xs font-mono text-white/40 self-start sm:self-end">
+            <span className="text-xs font-mono text-slate-600 bg-white/80 border border-[#BAE6FD] px-3 py-1 rounded-full self-start sm:self-center font-semibold">
               2 Hardware Configurations
             </span>
           </div>

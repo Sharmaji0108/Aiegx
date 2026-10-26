@@ -53,7 +53,7 @@ const solutionsData = [
   }
 ];
 
-export default function SolutionsMegaMenu({ isOpen, onClose, onMouseEnter, onMouseLeave }) {
+export default function SolutionsMegaMenu({ isOpen, onClose }) {
   const menuRef = useRef(null);
 
   useEffect(() => {
@@ -90,8 +90,7 @@ export default function SolutionsMegaMenu({ isOpen, onClose, onMouseEnter, onMou
 
       <div 
         ref={menuRef}
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
+        id="solutions-mega-menu"
         className="fixed top-[68px] sm:top-[74px] left-0 right-0 z-50 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto animate-in fade-in slide-in-from-top-2 duration-200 pointer-events-auto"
         role="dialog"
         aria-label="Solutions Mega Menu"
@@ -136,7 +135,17 @@ export default function SolutionsMegaMenu({ isOpen, onClose, onMouseEnter, onMou
                       <a
                         key={iIdx}
                         href={item.href}
-                        onClick={onClose}
+                        onClick={(e) => {
+                          onClose();
+                          if (item.href && item.href.startsWith('#') && window.location.pathname !== '/') {
+                            e.preventDefault();
+                            window.dispatchEvent(new CustomEvent('aiegx-navigate', { detail: `/${item.href}` }));
+                            setTimeout(() => {
+                              const el = document.getElementById(item.href.replace('#', ''));
+                              if (el) el.scrollIntoView({ behavior: 'smooth' });
+                            }, 120);
+                          }
+                        }}
                         className="flex items-center justify-between px-3 py-2.5 rounded-lg text-xs font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-100 dark:text-white/80 dark:hover:text-white dark:hover:bg-white/5 group transition-all duration-150"
                       >
                         <span className="group-hover:text-[#0284C7] dark:group-hover:text-[#42D9F5] transition-colors leading-snug">{item.name}</span>
@@ -156,7 +165,17 @@ export default function SolutionsMegaMenu({ isOpen, onClose, onMouseEnter, onMou
             </span>
             <a
               href="#solutions"
-              onClick={onClose}
+              onClick={(e) => {
+                onClose();
+                if (window.location.pathname !== '/') {
+                  e.preventDefault();
+                  window.dispatchEvent(new CustomEvent('aiegx-navigate', { detail: '/#solutions' }));
+                  setTimeout(() => {
+                    const el = document.getElementById('integrated-solutions') || document.getElementById('solutions');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  }, 120);
+                }
+              }}
               className="font-mono text-[#0284C7] dark:text-[#42D9F5] hover:underline flex items-center gap-1.5 font-semibold"
             >
               <span>Explore All Solutions</span>

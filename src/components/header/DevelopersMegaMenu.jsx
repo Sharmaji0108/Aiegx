@@ -158,9 +158,7 @@ const categoryOrder = ['support', 'carrier', 'quality', 'partners'];
 
 export default function DevelopersMegaMenu({ 
   isOpen, 
-  onClose, 
-  onMouseEnter, 
-  onMouseLeave 
+  onClose 
 }) {
   const [selectedCategory, setSelectedCategory] = useState('carrier');
   const [mobileStep, setMobileStep] = useState(1); // 1 = categories, 2 = content
@@ -219,8 +217,7 @@ export default function DevelopersMegaMenu({
       {/* Main Full-Width Developers Mega Menu Panel */}
       <div 
         ref={menuRef}
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
+        id="developers-mega-menu"
         className="fixed top-[68px] sm:top-[74px] left-0 right-0 z-50 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto animate-in fade-in slide-in-from-top-2 duration-200 pointer-events-auto"
         role="dialog"
         aria-label="Developers Mega Menu"

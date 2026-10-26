@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Logo from '../common/Logo';
 import ProductsMegaMenu from './ProductsMegaMenu';
 import ApplicationsMegaMenu from './ApplicationsMegaMenu';
@@ -7,6 +7,7 @@ import AboutUsMegaMenu from './AboutUsMegaMenu';
 import { 
   Menu, 
   X, 
+  ChevronDown, 
   ChevronRight 
 } from 'lucide-react';
 
@@ -18,65 +19,19 @@ export default function Header() {
   const [solutionsMenuOpen, setSolutionsMenuOpen] = useState(false);
   const [aboutMenuOpen, setAboutMenuOpen] = useState(false);
 
-  const [activeNav, setActiveNav] = useState('home');
+  // Single React state variable to track the clicked menu (click-only active state)
+  const [activeMenu, setActiveMenu] = useState('home');
 
+  // Header background blur/shadow on scroll only - does NOT modify activeMenu
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
-
-      if (window.location.pathname !== '/') {
-        setActiveNav('products');
-        return;
-      }
-
-      const sections = [
-        { id: 'contact', name: 'contact' },
-        { id: 'engineering-capabilities', name: 'company' },
-        { id: 'industries', name: 'industries' },
-        { id: 'integrated-solutions', name: 'solutions' },
-        { id: 'hardware-platforms', name: 'products' },
-      ];
-
-      if (window.scrollY < 260) {
-        setActiveNav('home');
-        return;
-      }
-
-      for (const section of sections) {
-        const el = document.getElementById(section.id);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= 240 && rect.bottom >= 80) {
-            setActiveNav(section.name);
-            return;
-          }
-        }
-      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const hoverTimeoutRef = useRef(null);
-  const appsHoverTimeoutRef = useRef(null);
-  const solutionsHoverTimeoutRef = useRef(null);
-  const aboutHoverTimeoutRef = useRef(null);
-
-  const clearAllTimeouts = () => {
-    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
-    if (appsHoverTimeoutRef.current) clearTimeout(appsHoverTimeoutRef.current);
-    if (solutionsHoverTimeoutRef.current) clearTimeout(solutionsHoverTimeoutRef.current);
-    if (aboutHoverTimeoutRef.current) clearTimeout(aboutHoverTimeoutRef.current);
-  };
-
-  const closeOtherMenus = (current) => {
-    if (current !== 'products') setMegaMenuOpen(false);
-    if (current !== 'apps') setApplicationsMenuOpen(false);
-    if (current !== 'solutions') setSolutionsMenuOpen(false);
-    if (current !== 'about') setAboutMenuOpen(false);
-  };
 
   const closeAllMenus = () => {
     setMegaMenuOpen(false);
@@ -85,105 +40,42 @@ export default function Header() {
     setAboutMenuOpen(false);
   };
 
-  // Hover handlers for Products
-  const handleProductsMouseEnter = () => {
-    clearAllTimeouts();
-    closeOtherMenus('products');
-    setMegaMenuOpen(true);
-  };
-
-  const handleProductsMouseLeave = () => {
-    hoverTimeoutRef.current = setTimeout(() => {
-      setMegaMenuOpen(false);
-    }, 280);
-  };
-
-  const handleMegaMenuMouseEnter = () => {
-    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
-  };
-
-  const handleMegaMenuMouseLeave = () => {
-    hoverTimeoutRef.current = setTimeout(() => {
-      setMegaMenuOpen(false);
-    }, 280);
-  };
-
-  // Hover handlers for Industries (mapped to Applications Mega Menu)
-  const handleAppsMouseEnter = () => {
-    clearAllTimeouts();
-    closeOtherMenus('apps');
-    setApplicationsMenuOpen(true);
-  };
-
-  const handleAppsMouseLeave = () => {
-    appsHoverTimeoutRef.current = setTimeout(() => {
-      setApplicationsMenuOpen(false);
-    }, 280);
-  };
-
-  const handleAppsMegaMenuMouseEnter = () => {
-    if (appsHoverTimeoutRef.current) clearTimeout(appsHoverTimeoutRef.current);
-  };
-
-  const handleAppsMegaMenuMouseLeave = () => {
-    appsHoverTimeoutRef.current = setTimeout(() => {
-      setApplicationsMenuOpen(false);
-    }, 280);
-  };
-
-  // Hover handlers for Solutions
-  const handleSolutionsMouseEnter = () => {
-    clearAllTimeouts();
-    closeOtherMenus('solutions');
-    setSolutionsMenuOpen(true);
-  };
-
-  const handleSolutionsMouseLeave = () => {
-    solutionsHoverTimeoutRef.current = setTimeout(() => {
-      setSolutionsMenuOpen(false);
-    }, 280);
-  };
-
-  const handleSolutionsMegaMenuMouseEnter = () => {
-    if (solutionsHoverTimeoutRef.current) clearTimeout(solutionsHoverTimeoutRef.current);
-  };
-
-  const handleSolutionsMegaMenuMouseLeave = () => {
-    solutionsHoverTimeoutRef.current = setTimeout(() => {
-      setSolutionsMenuOpen(false);
-    }, 280);
-  };
-
-  // Hover handlers for Company (mapped to About Us Mega Menu)
-  const handleAboutMouseEnter = () => {
-    clearAllTimeouts();
-    closeOtherMenus('about');
-    setAboutMenuOpen(true);
-  };
-
-  const handleAboutMouseLeave = () => {
-    aboutHoverTimeoutRef.current = setTimeout(() => {
-      setAboutMenuOpen(false);
-    }, 280);
-  };
-
-  const handleAboutMegaMenuMouseEnter = () => {
-    if (aboutHoverTimeoutRef.current) clearTimeout(aboutHoverTimeoutRef.current);
-  };
-
-  const handleAboutMegaMenuMouseLeave = () => {
-    aboutHoverTimeoutRef.current = setTimeout(() => {
-      setAboutMenuOpen(false);
-    }, 280);
+  const toggleMenu = (menuKey) => {
+    setActiveMenu(menuKey);
+    if (menuKey === 'products') {
+      const willOpen = !megaMenuOpen;
+      closeAllMenus();
+      if (willOpen) {
+        setMegaMenuOpen(true);
+      }
+    } else if (menuKey === 'solutions') {
+      const willOpen = !solutionsMenuOpen;
+      closeAllMenus();
+      if (willOpen) {
+        setSolutionsMenuOpen(true);
+      }
+    } else if (menuKey === 'industries') {
+      const willOpen = !applicationsMenuOpen;
+      closeAllMenus();
+      if (willOpen) {
+        setApplicationsMenuOpen(true);
+      }
+    } else if (menuKey === 'company') {
+      const willOpen = !aboutMenuOpen;
+      closeAllMenus();
+      if (willOpen) {
+        setAboutMenuOpen(true);
+      }
+    }
   };
 
   return (
     <>
-      {/* Navbar Container: Edge-to-edge layout with small 16-24px padding (no max-w-7xl auto-centering constraint) */}
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-4 sm:px-5 lg:px-6 ${
+      {/* Navbar Container: Enclosed rectangle with continuous 1px blue border on all 4 sides */}
+      <header className={`site-header fixed z-50 transition-all duration-300 px-4 sm:px-5 lg:px-6 ${
         isScrolled 
-          ? 'backdrop-blur-md bg-white/92 dark:bg-[#0D1733]/92 border-b border-slate-200/80 dark:border-[#24355A]/80 shadow-lg shadow-slate-200/40 dark:shadow-black/20 py-2 sm:py-2.5' 
-          : 'bg-white/70 dark:bg-[#0D1733]/40 backdrop-blur-[4px] border-b border-slate-200/50 dark:border-[#24355A]/30 py-2.5 sm:py-3.5'
+          ? 'shadow-md shadow-slate-200/40 dark:shadow-black/20 py-2 sm:py-2.5' 
+          : 'py-2.5 sm:py-3.5'
       }`}>
         <div className="w-full flex items-center justify-start gap-6 xl:gap-10">
           
@@ -201,13 +93,18 @@ export default function Header() {
             <button
               onClick={() => {
                 closeAllMenus();
-                window.dispatchEvent(new CustomEvent('aiegx-navigate', { detail: '/' }));
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                setActiveMenu('home');
+                if (window.location.pathname !== '/') {
+                  window.dispatchEvent(new CustomEvent('aiegx-navigate', { detail: '/' }));
+                } else {
+                  if (window.location.hash) {
+                    window.history.pushState({}, '', '/');
+                  }
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
               }}
-              className={`nav-link inline-flex items-center justify-center rounded-lg px-3 py-2 text-base tracking-normal transition-all duration-200 cursor-pointer ${
-                activeNav === 'home'
-                  ? 'active text-[#089EC2] dark:text-[#2DD4F0] font-semibold' 
-                  : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] font-medium'
+              className={`nav-button nav-link inline-flex items-center justify-center rounded-lg px-3.5 py-2 text-base tracking-normal cursor-pointer transition-all duration-200 ${
+                activeMenu === 'home' ? 'nav-button--active font-semibold' : 'font-medium'
               }`}
               title="AIEGX Homepage"
             >
@@ -215,113 +112,102 @@ export default function Header() {
             </button>
 
             {/* 2. Products Dropdown Trigger */}
-            <div 
-              className="relative bg-transparent"
-              onMouseEnter={handleProductsMouseEnter}
-              onMouseLeave={handleProductsMouseLeave}
-            >
+            <div className="relative bg-transparent">
               <button
                 id="navbar-products-toggle"
-                onClick={() => {
-                  closeOtherMenus('products');
-                  setMegaMenuOpen(!megaMenuOpen);
-                }}
-                className={`nav-link inline-flex items-center justify-center rounded-lg px-3 py-2 text-base tracking-normal transition-all duration-200 cursor-pointer ${
-                  megaMenuOpen || activeNav === 'products'
-                    ? 'active text-[#089EC2] dark:text-[#2DD4F0] font-semibold' 
-                    : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] font-medium'
+                onClick={() => toggleMenu('products')}
+                className={`nav-button nav-link inline-flex items-center justify-center gap-1.5 rounded-lg px-3.5 py-2 text-base tracking-normal cursor-pointer transition-all duration-200 ${
+                  activeMenu === 'products' ? 'nav-button--active font-semibold' : 'font-medium'
                 }`}
                 aria-expanded={megaMenuOpen}
                 aria-haspopup="true"
+                aria-controls="products-mega-menu"
                 title="Browse Product Architecture & Hardware Platforms"
               >
                 <span>Products</span>
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                  megaMenuOpen ? 'rotate-180' : ''
+                }`} aria-hidden="true" />
               </button>
             </div>
 
             {/* 3. Solutions Dropdown Trigger */}
-            <div 
-              className="relative bg-transparent"
-              onMouseEnter={handleSolutionsMouseEnter}
-              onMouseLeave={handleSolutionsMouseLeave}
-            >
+            <div className="relative bg-transparent">
               <button
                 id="navbar-solutions-toggle"
-                onClick={() => {
-                  closeOtherMenus('solutions');
-                  setSolutionsMenuOpen(!solutionsMenuOpen);
-                }}
-                className={`nav-link inline-flex items-center justify-center rounded-lg px-3 py-2 text-base tracking-normal transition-all duration-200 cursor-pointer ${
-                  solutionsMenuOpen || activeNav === 'solutions'
-                    ? 'active text-[#089EC2] dark:text-[#2DD4F0] font-semibold' 
-                    : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] font-medium'
+                onClick={() => toggleMenu('solutions')}
+                className={`nav-button nav-link inline-flex items-center justify-center gap-1.5 rounded-lg px-3.5 py-2 text-base tracking-normal cursor-pointer transition-all duration-200 ${
+                  activeMenu === 'solutions' ? 'nav-button--active font-semibold' : 'font-medium'
                 }`}
                 aria-expanded={solutionsMenuOpen}
                 aria-haspopup="true"
+                aria-controls="solutions-mega-menu"
                 title="Browse Integrated Embedded Solutions"
               >
                 <span>Solutions</span>
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                  solutionsMenuOpen ? 'rotate-180' : ''
+                }`} aria-hidden="true" />
               </button>
             </div>
 
             {/* 4. Industries Dropdown Trigger */}
-            <div 
-              className="relative bg-transparent"
-              onMouseEnter={handleAppsMouseEnter}
-              onMouseLeave={handleAppsMouseLeave}
-            >
+            <div className="relative bg-transparent">
               <button
                 id="navbar-applications-toggle"
-                onClick={() => {
-                  closeOtherMenus('apps');
-                  setApplicationsMenuOpen(!applicationsMenuOpen);
-                }}
-                className={`nav-link inline-flex items-center justify-center rounded-lg px-3 py-2 text-base tracking-normal transition-all duration-200 cursor-pointer ${
-                  applicationsMenuOpen || activeNav === 'industries'
-                    ? 'active text-[#089EC2] dark:text-[#2DD4F0] font-semibold' 
-                    : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] font-medium'
+                onClick={() => toggleMenu('industries')}
+                className={`nav-button nav-link inline-flex items-center justify-center gap-1.5 rounded-lg px-3.5 py-2 text-base tracking-normal cursor-pointer transition-all duration-200 ${
+                  activeMenu === 'industries' ? 'nav-button--active font-semibold' : 'font-medium'
                 }`}
                 aria-expanded={applicationsMenuOpen}
                 aria-haspopup="true"
+                aria-controls="applications-mega-menu"
                 title="Browse Industries We Serve"
               >
                 <span>Industries</span>
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                  applicationsMenuOpen ? 'rotate-180' : ''
+                }`} aria-hidden="true" />
               </button>
             </div>
 
             {/* 5. Company Dropdown Trigger */}
-            <div 
-              className="relative bg-transparent"
-              onMouseEnter={handleAboutMouseEnter}
-              onMouseLeave={handleAboutMouseLeave}
-            >
+            <div className="relative bg-transparent">
               <button
                 id="navbar-about-toggle"
-                onClick={() => {
-                  closeOtherMenus('about');
-                  setAboutMenuOpen(!aboutMenuOpen);
-                }}
-                className={`nav-link inline-flex items-center justify-center rounded-lg px-3 py-2 text-base tracking-normal transition-all duration-200 cursor-pointer ${
-                  aboutMenuOpen || activeNav === 'company'
-                    ? 'active text-[#089EC2] dark:text-[#2DD4F0] font-semibold' 
-                    : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] font-medium'
+                onClick={() => toggleMenu('company')}
+                className={`nav-button nav-link inline-flex items-center justify-center gap-1.5 rounded-lg px-3.5 py-2 text-base tracking-normal cursor-pointer transition-all duration-200 ${
+                  activeMenu === 'company' ? 'nav-button--active font-semibold' : 'font-medium'
                 }`}
                 aria-expanded={aboutMenuOpen}
                 aria-haspopup="true"
+                aria-controls="about-mega-menu"
                 title="Learn About AIEGX Company & Engineering"
               >
                 <span>Company</span>
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                  aboutMenuOpen ? 'rotate-180' : ''
+                }`} aria-hidden="true" />
               </button>
             </div>
 
             {/* 6. Contact Link */}
             <a
               href="#contact"
-              onClick={closeAllMenus}
-              className={`nav-link inline-flex items-center justify-center rounded-lg px-3 py-2 text-base tracking-normal transition-all duration-200 cursor-pointer ${
-                activeNav === 'contact'
-                  ? 'active text-[#089EC2] dark:text-[#2DD4F0] font-semibold'
-                  : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] font-medium'
+              onClick={(e) => {
+                closeAllMenus();
+                setActiveMenu('contact');
+                if (window.location.pathname !== '/') {
+                  e.preventDefault();
+                  window.dispatchEvent(new CustomEvent('aiegx-navigate', { detail: '/#contact' }));
+                  setTimeout(() => {
+                    const contactEl = document.getElementById('contact');
+                    if (contactEl) contactEl.scrollIntoView({ behavior: 'smooth' });
+                  }, 120);
+                }
+              }}
+              className={`nav-button nav-link inline-flex items-center justify-center rounded-lg px-3.5 py-2 text-base tracking-normal cursor-pointer transition-all duration-200 ${
+                activeMenu === 'contact' ? 'nav-button--active font-semibold' : 'font-medium'
               }`}
               title="Contact AIEGX Engineering Team"
             >
@@ -366,102 +252,122 @@ export default function Header() {
                 onClick={() => {
                   setMobileMenuOpen(false);
                   closeAllMenus();
-                  window.dispatchEvent(new CustomEvent('aiegx-navigate', { detail: '/' }));
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  setActiveMenu('home');
+                  if (window.location.pathname !== '/') {
+                    window.dispatchEvent(new CustomEvent('aiegx-navigate', { detail: '/' }));
+                  } else {
+                    if (window.location.hash) {
+                      window.history.pushState({}, '', '/');
+                    }
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }
                 }}
-                className={`px-4 py-3 rounded-xl text-sm font-semibold transition-colors flex items-center justify-between text-left ${
-                  activeNav === 'home'
-                    ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-blue-50 dark:bg-[#17264A] border border-[#089EC2]/40 dark:border-[#2DD4F0]/40'
-                    : 'text-slate-700 dark:text-[#AAB6D0] bg-slate-50 dark:bg-[#17264A]/60 hover:bg-slate-100 dark:hover:bg-[#17264A] border border-slate-200 dark:border-[#24355A]'
+                className={`px-4 py-3 rounded-xl text-sm font-semibold transition-all flex items-center justify-between text-left ${
+                  activeMenu === 'home'
+                    ? 'text-white bg-[#089EC2] border border-[#2DD4F0] shadow-[0_2px_10px_rgba(8,158,194,0.35)]'
+                    : 'text-[#0D1733] bg-white border border-slate-200 shadow-xs hover:border-[#089EC2]/40'
                 }`}
               >
                 <span>Home</span>
-                <ChevronRight className="w-4 h-4 text-[#089EC2] dark:text-[#2DD4F0]" />
+                <ChevronRight className={`w-4 h-4 ${activeMenu === 'home' ? 'text-white' : 'text-slate-400'}`} />
               </button>
 
               {/* 2. Products */}
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
-                  closeOtherMenus('products');
+                  closeAllMenus();
                   setMegaMenuOpen(true);
+                  setActiveMenu('products');
                 }}
-                className={`px-4 py-3 rounded-xl text-sm font-semibold transition-colors flex items-center justify-between text-left ${
-                  activeNav === 'products'
-                    ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-blue-50 dark:bg-[#17264A] border border-[#089EC2]/40 dark:border-[#2DD4F0]/40'
-                    : 'text-slate-700 dark:text-[#AAB6D0] bg-slate-50 dark:bg-[#17264A]/60 hover:bg-slate-100 dark:hover:bg-[#17264A] border border-slate-200 dark:border-[#24355A]'
+                className={`px-4 py-3 rounded-xl text-sm font-semibold transition-all flex items-center justify-between text-left ${
+                  activeMenu === 'products'
+                    ? 'text-white bg-[#089EC2] border border-[#2DD4F0] shadow-[0_2px_10px_rgba(8,158,194,0.35)]'
+                    : 'text-[#0D1733] bg-white border border-slate-200 shadow-xs hover:border-[#089EC2]/40'
                 }`}
               >
                 <span>Products & Hardware Platforms</span>
-                <ChevronRight className="w-4 h-4 text-[#089EC2] dark:text-[#2DD4F0]" />
+                <ChevronRight className={`w-4 h-4 ${activeMenu === 'products' ? 'text-white' : 'text-slate-400'}`} />
               </button>
 
               {/* 3. Solutions */}
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
-                  closeOtherMenus('solutions');
+                  closeAllMenus();
                   setSolutionsMenuOpen(true);
+                  setActiveMenu('solutions');
                 }}
-                className={`px-4 py-3 rounded-xl text-sm font-semibold transition-colors flex items-center justify-between text-left ${
-                  activeNav === 'solutions'
-                    ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-blue-50 dark:bg-[#17264A] border border-[#089EC2]/40 dark:border-[#2DD4F0]/40'
-                    : 'text-slate-700 dark:text-[#AAB6D0] bg-slate-50 dark:bg-[#17264A]/60 hover:bg-slate-100 dark:hover:bg-[#17264A] border border-slate-200 dark:border-[#24355A]'
+                className={`px-4 py-3 rounded-xl text-sm font-semibold transition-all flex items-center justify-between text-left ${
+                  activeMenu === 'solutions'
+                    ? 'text-white bg-[#089EC2] border border-[#2DD4F0] shadow-[0_2px_10px_rgba(8,158,194,0.35)]'
+                    : 'text-[#0D1733] bg-white border border-slate-200 shadow-xs hover:border-[#089EC2]/40'
                 }`}
               >
                 <span>Solutions</span>
-                <ChevronRight className="w-4 h-4 text-[#089EC2] dark:text-[#2DD4F0]" />
+                <ChevronRight className={`w-4 h-4 ${activeMenu === 'solutions' ? 'text-white' : 'text-slate-400'}`} />
               </button>
 
               {/* 4. Industries */}
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
-                  closeOtherMenus('apps');
+                  closeAllMenus();
                   setApplicationsMenuOpen(true);
+                  setActiveMenu('industries');
                 }}
-                className={`px-4 py-3 rounded-xl text-sm font-semibold transition-colors flex items-center justify-between text-left ${
-                  activeNav === 'industries'
-                    ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-blue-50 dark:bg-[#17264A] border border-[#089EC2]/40 dark:border-[#2DD4F0]/40'
-                    : 'text-slate-700 dark:text-[#AAB6D0] bg-slate-50 dark:bg-[#17264A]/60 hover:bg-slate-100 dark:hover:bg-[#17264A] border border-slate-200 dark:border-[#24355A]'
+                className={`px-4 py-3 rounded-xl text-sm font-semibold transition-all flex items-center justify-between text-left ${
+                  activeMenu === 'industries'
+                    ? 'text-white bg-[#089EC2] border border-[#2DD4F0] shadow-[0_2px_10px_rgba(8,158,194,0.35)]'
+                    : 'text-[#0D1733] bg-white border border-slate-200 shadow-xs hover:border-[#089EC2]/40'
                 }`}
               >
                 <span>Industries We Serve</span>
-                <ChevronRight className="w-4 h-4 text-[#089EC2] dark:text-[#2DD4F0]" />
+                <ChevronRight className={`w-4 h-4 ${activeMenu === 'industries' ? 'text-white' : 'text-slate-400'}`} />
               </button>
 
               {/* 5. Company */}
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
-                  closeOtherMenus('about');
+                  closeAllMenus();
                   setAboutMenuOpen(true);
+                  setActiveMenu('company');
                 }}
-                className={`px-4 py-3 rounded-xl text-sm font-semibold transition-colors flex items-center justify-between text-left ${
-                  activeNav === 'company'
-                    ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-blue-50 dark:bg-[#17264A] border border-[#089EC2]/40 dark:border-[#2DD4F0]/40'
-                    : 'text-slate-700 dark:text-[#AAB6D0] bg-slate-50 dark:bg-[#17264A]/60 hover:bg-slate-100 dark:hover:bg-[#17264A] border border-slate-200 dark:border-[#24355A]'
+                className={`px-4 py-3 rounded-xl text-sm font-semibold transition-all flex items-center justify-between text-left ${
+                  activeMenu === 'company'
+                    ? 'text-white bg-[#089EC2] border border-[#2DD4F0] shadow-[0_2px_10px_rgba(8,158,194,0.35)]'
+                    : 'text-[#0D1733] bg-white border border-slate-200 shadow-xs hover:border-[#089EC2]/40'
                 }`}
               >
                 <span>Company & Capabilities</span>
-                <ChevronRight className="w-4 h-4 text-[#089EC2] dark:text-[#2DD4F0]" />
+                <ChevronRight className={`w-4 h-4 ${activeMenu === 'company' ? 'text-white' : 'text-slate-400'}`} />
               </button>
 
               {/* 6. Contact */}
               <a
                 href="#contact"
-                onClick={() => {
+                onClick={(e) => {
                   setMobileMenuOpen(false);
                   closeAllMenus();
+                  setActiveMenu('contact');
+                  if (window.location.pathname !== '/') {
+                    e.preventDefault();
+                    window.dispatchEvent(new CustomEvent('aiegx-navigate', { detail: '/#contact' }));
+                    setTimeout(() => {
+                      const contactEl = document.getElementById('contact');
+                      if (contactEl) contactEl.scrollIntoView({ behavior: 'smooth' });
+                    }, 120);
+                  }
                 }}
-                className={`px-4 py-3 rounded-xl text-sm font-semibold transition-colors flex items-center justify-between ${
-                  activeNav === 'contact'
-                    ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-blue-50 dark:bg-[#17264A] border border-[#089EC2]/40 dark:border-[#2DD4F0]/40'
-                    : 'text-slate-700 dark:text-[#AAB6D0] bg-slate-50 dark:bg-[#17264A]/60 hover:bg-slate-100 dark:hover:bg-[#17264A] border border-slate-200 dark:border-[#24355A]'
+                className={`px-4 py-3 rounded-xl text-sm font-semibold transition-all flex items-center justify-between ${
+                  activeMenu === 'contact'
+                    ? 'text-white bg-[#089EC2] border border-[#2DD4F0] shadow-[0_2px_10px_rgba(8,158,194,0.35)]'
+                    : 'text-[#0D1733] bg-white border border-slate-200 shadow-xs hover:border-[#089EC2]/40'
                 }`}
               >
                 <span>Contact Us</span>
-                <ChevronRight className="w-4 h-4 text-[#089EC2] dark:text-[#2DD4F0]" />
+                <ChevronRight className={`w-4 h-4 ${activeMenu === 'contact' ? 'text-white' : 'text-slate-400'}`} />
               </a>
             </div>
           </div>
@@ -472,32 +378,24 @@ export default function Header() {
       <ProductsMegaMenu 
         isOpen={megaMenuOpen} 
         onClose={() => setMegaMenuOpen(false)} 
-        onMouseEnter={handleMegaMenuMouseEnter}
-        onMouseLeave={handleMegaMenuMouseLeave}
       />
 
       {/* Applications (Industries) Mega Menu Component */}
       <ApplicationsMegaMenu 
         isOpen={applicationsMenuOpen} 
         onClose={() => setApplicationsMenuOpen(false)} 
-        onMouseEnter={handleAppsMegaMenuMouseEnter}
-        onMouseLeave={handleAppsMegaMenuMouseLeave}
       />
 
       {/* Solutions Mega Menu Component */}
       <SolutionsMegaMenu 
         isOpen={solutionsMenuOpen} 
         onClose={() => setSolutionsMenuOpen(false)} 
-        onMouseEnter={handleSolutionsMegaMenuMouseEnter}
-        onMouseLeave={handleSolutionsMegaMenuMouseLeave}
       />
 
       {/* About Us (Company) Mega Menu Component */}
       <AboutUsMegaMenu 
         isOpen={aboutMenuOpen} 
         onClose={() => setAboutMenuOpen(false)} 
-        onMouseEnter={handleAboutMegaMenuMouseEnter}
-        onMouseLeave={handleAboutMegaMenuMouseLeave}
       />
     </>
   );

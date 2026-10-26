@@ -39,11 +39,11 @@ export default function App() {
     };
   }, []);
 
-  const normalizedPath = currentPath.toLowerCase().replace(/\/+$/, '') || '/';
-  const isType1Page = normalizedPath === '/products/type-1' || normalizedPath === '/type-1';
-  const isQualcommPage = normalizedPath === '/brands/qualcomm';
-  const isNxpPage = normalizedPath === '/brands/nxp' || normalizedPath === '/brands/nxp-imx';
-  const isTiPage = normalizedPath === '/brands/ti' || normalizedPath === '/brands/ti-am6x';
+  const cleanPath = currentPath.split('#')[0].split('?')[0].toLowerCase().replace(/\/+$/, '') || '/';
+  const isType1Page = cleanPath === '/products/type-1' || cleanPath === '/type-1';
+  const isQualcommPage = cleanPath === '/brands/qualcomm';
+  const isNxpPage = cleanPath === '/brands/nxp' || cleanPath === '/brands/nxp-imx';
+  const isTiPage = cleanPath === '/brands/ti' || cleanPath === '/brands/ti-am6x';
 
   const renderContent = () => {
     if (isType1Page) return <Type1Product />;

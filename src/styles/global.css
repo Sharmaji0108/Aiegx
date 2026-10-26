@@ -22,6 +22,7 @@
     --color-text-primary: #F8FAFC;
     --color-text-secondary: #AAB6D0;
     --color-border: #24355A;
+    --header-bg: #0D1733;
     color-scheme: dark;
   }
 
@@ -43,6 +44,7 @@
     --color-text-primary: #14213D;
     --color-text-secondary: #52627C;
     --color-border: #DBE4F0;
+    --header-bg: #FFFFFF;
     color-scheme: light;
   }
 
@@ -400,57 +402,131 @@ html.light .text-gradient-silver {
   -webkit-text-fill-color: transparent !important;
 }
 
-/* Desktop navigation links: compact button treatment with theme-aware hover and focus states. */
+/* ==========================================================================
+   NAVBAR / HEADER CONTINUOUS SOLID BLUE BORDER
+   - Solid 2px blue border (#3985FF) covering all four sides: TOP, BOTTOM, LEFT, RIGHT
+   - Continuous closed rectangle with rounded corners: border-radius: 12px
+   - Clearly visible on all 4 sides with clean inset from viewport edges
+   - Solid background: var(--header-bg) (#FFFFFF in light mode, #0D1733 in dark mode)
+   - Box-sizing: border-box ensures border is included in navbar dimensions
+   ========================================================================== */
+.site-header {
+  position: fixed !important;
+  top: 8px !important;
+  left: 10px !important;
+  right: 10px !important;
+  width: auto !important;
+  background-color: var(--header-bg) !important;
+  border: 2px solid #3985FF !important;
+  border-radius: 12px !important;
+  box-sizing: border-box !important;
+  z-index: 50 !important;
+}
+
+@media (min-width: 640px) {
+  .site-header {
+    top: 10px !important;
+    left: 14px !important;
+    right: 14px !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-header {
+    top: 12px !important;
+    left: 20px !important;
+    right: 20px !important;
+    max-width: 1720px !important;
+    margin-inline: auto !important;
+  }
+}
+
+/* Desktop navigation links: White default button styling with click-only cyan-blue active state */
 header nav {
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
 }
 
-header nav .nav-link {
-  border: 1px solid transparent;
-  background-color: transparent;
-  box-shadow: none;
+/* Default state: white background, dark navy text, subtle light-blue border */
+header nav .nav-link,
+header nav .nav-button {
+  background-color: #FFFFFF !important;
+  color: #0D1733 !important;
+  border: 1px solid #DCE6F3 !important;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.07);
   outline: none;
-  transition: color 200ms ease, background-color 200ms ease, border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+  font-weight: 500;
+  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
 }
 
-header nav .nav-link:hover,
-header nav .nav-link[aria-expanded="true"] {
-  color: #089EC2;
-  background-color: rgba(8, 158, 194, 0.09);
-  border-color: rgba(8, 158, 194, 0.14);
-  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08);
+header nav .nav-link svg,
+header nav .nav-button svg {
+  stroke: currentColor;
+  transition: stroke 180ms ease, transform 200ms ease;
+}
+
+/* Hover state: very subtle transition without turning the button solid blue */
+header nav .nav-link:not(.nav-button--active):hover,
+header nav .nav-button:not(.nav-button--active):hover {
+  background-color: #FFFFFF !important;
+  color: #0D1733 !important;
+  border-color: rgba(8, 158, 194, 0.5) !important;
+  box-shadow: 0 3px 8px rgba(15, 23, 42, 0.1), 0 1px 3px rgba(8, 158, 194, 0.15) !important;
   transform: translateY(-1px);
 }
 
-html.dark header nav .nav-link:hover,
-html.dark header nav .nav-link[aria-expanded="true"] {
-  color: #2DD4F0;
-  background-color: rgba(45, 212, 240, 0.1);
-  border-color: rgba(45, 212, 240, 0.16);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+/* In dark mode, default menu buttons remain white with dark navy text for high contrast */
+html.dark header nav .nav-link,
+html.dark header nav .nav-button {
+  background-color: #FFFFFF !important;
+  color: #0D1733 !important;
+  border-color: rgba(255, 255, 255, 0.85) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 }
 
-header nav .nav-link.active {
-  background-color: rgba(8, 158, 194, 0.08);
-  border-color: rgba(8, 158, 194, 0.12);
+html.dark header nav .nav-link:not(.nav-button--active):hover,
+html.dark header nav .nav-button:not(.nav-button--active):hover {
+  background-color: #FFFFFF !important;
+  color: #0D1733 !important;
+  border-color: #2DD4F0 !important;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3), 0 0 10px rgba(45, 212, 240, 0.35) !important;
+  transform: translateY(-1px);
 }
 
-html.dark header nav .nav-link.active {
-  background-color: rgba(45, 212, 240, 0.08);
-  border-color: rgba(45, 212, 240, 0.12);
+/* Selected state (click-only): cyan-blue background, white text, subtle cyan shadow */
+header nav .nav-link.nav-button--active,
+header nav .nav-button.nav-button--active,
+html.light header nav .nav-link.nav-button--active,
+html.dark header nav .nav-link.nav-button--active {
+  background-color: #089EC2 !important;
+  color: #FFFFFF !important;
+  font-weight: 600;
+  border: 1px solid #2DD4F0 !important;
+  box-shadow: 0 2px 10px rgba(8, 158, 194, 0.4), 0 0 14px rgba(8, 158, 194, 0.28) !important;
 }
 
-header nav .nav-link:focus-visible {
-  outline: 2px solid #089EC2;
-  outline-offset: 2px;
-  background-color: rgba(8, 158, 194, 0.1);
+header nav .nav-link.nav-button--active:hover,
+header nav .nav-button.nav-button--active:hover,
+html.dark header nav .nav-link.nav-button--active:hover {
+  background-color: #078DAE !important;
+  color: #FFFFFF !important;
+  border-color: #2DD4F0 !important;
+  box-shadow: 0 4px 14px rgba(8, 158, 194, 0.5), 0 0 18px rgba(45, 212, 240, 0.4) !important;
+  transform: translateY(-1px);
 }
 
-html.dark header nav .nav-link:focus-visible {
-  outline-color: #2DD4F0;
-  background-color: rgba(45, 212, 240, 0.12);
+/* Keyboard-focus indicator for accessibility */
+header nav .nav-link:focus-visible,
+header nav .nav-button:focus-visible {
+  outline: 2px solid #089EC2 !important;
+  outline-offset: 2px !important;
+}
+
+html.dark header nav .nav-link:focus-visible,
+html.dark header nav .nav-button:focus-visible {
+  outline: 2px solid #2DD4F0 !important;
+  outline-offset: 2px !important;
 }
 /* Dropdown Mega Menus & Dialogs */
 .mega-menu-scroll {
@@ -570,3 +646,64 @@ html.light ::-webkit-scrollbar-thumb {
 html.light ::-webkit-scrollbar-thumb:hover {
   background: #2563EB;
 }
+
+/* ==========================================================================
+   GLOBAL SECTION HEADING CONTAINER GRADIENT BANNER
+   White on left (0-68%), clear soft cyan-to-blue gradient on right (74-100%),
+   with a 3px subtle cyan-to-blue gradient border along the bottom edge:
+   - Border thickness: 3px
+   - Left (0%): Subtle cyan (#22D3EE)
+   - Right (100%): Subtle blue (#3B82F6)
+   - Placement: Bottom edge of section heading container, continuous with rounded corners
+   ========================================================================== */
+.section-heading-container,
+.hardware-platforms-heading-container {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    90deg,
+    #FFFFFF 0%,
+    #FFFFFF 68%,
+    #F0FCFF 74%,
+    #D8F6FF 82%,
+    #A8E9FF 91%,
+    #83C8FF 100%
+  ) !important;
+  border: 1px solid #DCE6F3 !important;
+  border-bottom: none !important;
+  box-shadow: 0 4px 20px rgba(50, 133, 255, 0.08) !important;
+}
+
+.section-heading-container::after,
+.hardware-platforms-heading-container::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px !important;
+  background: linear-gradient(
+    90deg,
+    #22D3EE 0%,
+    #3B82F6 100%
+  ) !important;
+  pointer-events: none;
+  z-index: 10;
+}
+
+html.dark .section-heading-container,
+html.dark .hardware-platforms-heading-container {
+  border-color: #24355A !important;
+  border-bottom: none !important;
+  box-shadow: 0 4px 20px rgba(45, 212, 240, 0.10) !important;
+}
+
+.section-heading-container h1,
+.section-heading-container h2,
+.section-heading-container h3,
+.hardware-platforms-heading-container h2 {
+  color: #0D1733 !important;
+}
+
+
+

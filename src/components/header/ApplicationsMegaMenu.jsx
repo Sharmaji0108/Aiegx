@@ -427,7 +427,7 @@ const categoryList = [
   { id: 'signage', name: 'Digital Signage & Entertainment' }
 ];
 
-export default function ApplicationsMegaMenu({ isOpen, onClose, onMouseEnter, onMouseLeave }) {
+export default function ApplicationsMegaMenu({ isOpen, onClose }) {
   const [selectedCategory, setSelectedCategory] = useState('industrial');
   const [mobileStep, setMobileStep] = useState(1); // 1 = Categories, 2 = Customer Stories, 3 = Tech & Products
   const menuRef = useRef(null);
@@ -475,8 +475,7 @@ export default function ApplicationsMegaMenu({ isOpen, onClose, onMouseEnter, on
       {/* Main Full-Width Applications Mega Menu Panel */}
       <div 
         ref={menuRef}
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
+        id="applications-mega-menu"
         className="fixed top-[68px] sm:top-[74px] left-0 right-0 z-50 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto animate-in fade-in slide-in-from-top-2 duration-200 pointer-events-auto"
         role="dialog"
         aria-label="Applications Mega Menu"
@@ -675,7 +674,17 @@ export default function ApplicationsMegaMenu({ isOpen, onClose, onMouseEnter, on
                       <a
                         key={pIdx}
                         href={prod.href}
-                        onClick={onClose}
+                        onClick={(e) => {
+                          onClose();
+                          if (prod.href && prod.href.startsWith('#') && window.location.pathname !== '/') {
+                            e.preventDefault();
+                            window.dispatchEvent(new CustomEvent('aiegx-navigate', { detail: `/${prod.href}` }));
+                            setTimeout(() => {
+                              const el = document.getElementById(prod.href.replace('#', ''));
+                              if (el) el.scrollIntoView({ behavior: 'smooth' });
+                            }, 120);
+                          }
+                        }}
                         className="flex items-center justify-between p-2.5 rounded-xl bg-[#F8FAFD] dark:bg-[#17264D]/40 hover:bg-[#F0F6FE] dark:hover:bg-[#17264D]/70 border border-[#DCE6F3] dark:border-white/5 hover:border-[#0284C7]/40 dark:hover:border-[#42D9F5]/30 transition-all group shadow-2xs"
                       >
                         <div className="flex items-center gap-2.5">

@@ -379,7 +379,7 @@ const categoryList = [
   { id: 'software', name: 'Software', icon: Layers }
 ];
 
-export default function ProductsMegaMenu({ isOpen, onClose, onMouseEnter, onMouseLeave }) {
+export default function ProductsMegaMenu({ isOpen, onClose }) {
   const [selectedCategory, setSelectedCategory] = useState('com');
   const [selectedSubcategory, setSelectedSubcategory] = useState('overview');
   const [mobileStep, setMobileStep] = useState(1); // 1 = Categories, 2 = Subcategories, 3 = Products (mobile view)
@@ -429,8 +429,7 @@ export default function ProductsMegaMenu({ isOpen, onClose, onMouseEnter, onMous
       {/* Main Full-Width Mega Menu Panel */}
       <div 
         ref={menuRef}
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
+        id="products-mega-menu"
         className="fixed top-[68px] sm:top-[74px] left-0 right-0 z-50 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto animate-in fade-in slide-in-from-top-2 duration-200 pointer-events-auto"
         role="dialog"
         aria-label="Products Mega Menu"
@@ -477,7 +476,7 @@ export default function ProductsMegaMenu({ isOpen, onClose, onMouseEnter, onMous
                 </span>
                 <button 
                   onClick={onClose}
-                  className="p-1 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-200/60 dark:text-white/60 dark:hover:text-white dark:hover:bg-white/5 transition-colors focus:outline-none focus:ring-1 focus:ring-[#0284C7] dark:focus:ring-[#42D9F5]"
+                  className="p-1 rounded-lg text-slate-500 hover:text-slate-900 dark:text-white/60 dark:hover:text-white transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-[#0284C7] dark:focus-visible:ring-[#42D9F5]"
                   aria-label="Close menu"
                   title="Close Menu (Esc)"
                 >
@@ -499,18 +498,18 @@ export default function ProductsMegaMenu({ isOpen, onClose, onMouseEnter, onMous
                         setSelectedSubcategory(firstSub);
                         setMobileStep(2);
                       }}
-                      className={`w-full text-left px-4 py-3 rounded-xl text-xs sm:text-sm font-medium transition-all duration-150 flex items-center justify-between group focus:outline-none focus:ring-1 focus:ring-[#0284C7] dark:focus:ring-[#42D9F5] ${
+                      className={`w-full text-left px-4 py-3 rounded-xl text-xs sm:text-sm font-medium flex items-center justify-between focus:outline-none focus-visible:ring-1 focus-visible:ring-[#0284C7] dark:focus-visible:ring-[#42D9F5] ${
                         isSelected 
                           ? 'bg-blue-50 text-[#0284C7] border-l-4 border-[#0284C7] dark:bg-[#17264D] dark:text-[#42D9F5] dark:border-[#42D9F5] font-semibold shadow-xs' 
-                          : 'text-slate-700 hover:text-slate-900 hover:bg-slate-200/50 dark:text-white/80 dark:hover:text-white dark:hover:bg-white/5'
+                          : 'text-slate-700 dark:text-white/80'
                       }`}
                     >
                       <div className="flex items-center gap-3">
-                        <Icon className={`w-4 h-4 ${isSelected ? 'text-[#0284C7] dark:text-[#42D9F5]' : 'text-slate-500 group-hover:text-slate-800 dark:text-white/60 dark:group-hover:text-white'}`} />
+                        <Icon className={`w-4 h-4 ${isSelected ? 'text-[#0284C7] dark:text-[#42D9F5]' : 'text-slate-500 dark:text-white/60'}`} />
                         <span>{cat.name}</span>
                       </div>
-                      <ChevronRight className={`w-3.5 h-3.5 transition-transform ${
-                        isSelected ? 'text-[#0284C7] dark:text-[#42D9F5] translate-x-0.5' : 'text-slate-400 group-hover:text-slate-600 dark:text-white/30 dark:group-hover:text-white/60'
+                      <ChevronRight className={`w-3.5 h-3.5 ${
+                        isSelected ? 'text-[#0284C7] dark:text-[#42D9F5] translate-x-0.5' : 'text-slate-400 dark:text-white/30'
                       }`} />
                     </button>
                   );
@@ -542,14 +541,14 @@ export default function ProductsMegaMenu({ isOpen, onClose, onMouseEnter, onMous
                           setSelectedSubcategory(sub.id);
                           setMobileStep(3);
                         }}
-                        className={`w-full text-left px-3.5 py-2.5 rounded-lg text-xs font-medium transition-all duration-150 flex items-center justify-between focus:outline-none focus:ring-1 focus:ring-[#0284C7] dark:focus:ring-[#42D9F5] ${
+                        className={`w-full text-left px-3.5 py-2.5 rounded-lg text-xs font-medium flex items-center justify-between focus:outline-none focus-visible:ring-1 focus-visible:ring-[#0284C7] dark:focus-visible:ring-[#42D9F5] ${
                           isSelected 
                             ? 'bg-blue-50 text-[#0284C7] border-l-2 border-[#0284C7] dark:bg-[#17264D] dark:text-[#42D9F5] dark:border-none font-semibold shadow-xs' 
-                            : 'text-slate-700 hover:text-slate-900 hover:bg-slate-200/50 dark:text-white/80 dark:hover:text-white dark:hover:bg-white/5'
+                            : 'text-slate-700 dark:text-white/80'
                         }`}
                       >
                         <span className="truncate pr-1">{sub.name}</span>
-                        <ChevronRight className={`w-3 h-3 flex-shrink-0 transition-transform ${
+                        <ChevronRight className={`w-3 h-3 flex-shrink-0 ${
                           isSelected ? 'text-[#0284C7] dark:text-[#42D9F5] translate-x-0.5' : 'text-slate-400 dark:text-white/40'
                         }`} />
                       </button>
@@ -561,16 +560,16 @@ export default function ProductsMegaMenu({ isOpen, onClose, onMouseEnter, onMous
               {/* Bottom Column 2 Thumbnail Card */}
               {currentCategoryData.thumbnail && (
                 <div className="pt-3 border-t border-[#DCE6F3] dark:border-white/10 hidden sm:block">
-                  <div className="p-3 rounded-xl bg-white dark:bg-[#101936] border border-[#DCE6F3] dark:border-white/10 hover:border-[#0284C7]/40 dark:hover:border-[#42D9F5]/40 transition-all duration-300 group shadow-xs">
+                  <div className="p-3 rounded-xl bg-white dark:bg-[#101936] border border-[#DCE6F3] dark:border-white/10 shadow-xs">
                     <div className="h-24 w-full rounded-lg overflow-hidden bg-[#F1F6FC] dark:bg-[#0b1226] mb-2 flex items-center justify-center p-1 relative border border-[#E2EAF4] dark:border-white/5">
                       <img 
                         src={currentCategoryData.thumbnail.image} 
                         alt={currentCategoryData.thumbnail.title}
-                        className="max-h-full max-w-full object-contain transform group-hover:scale-105 transition-transform duration-300"
+                        className="max-h-full max-w-full object-contain"
                         loading="lazy"
                       />
                     </div>
-                    <h4 className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-[#0284C7] dark:group-hover:text-[#42D9F5] transition-colors line-clamp-1">
+                    <h4 className="text-xs font-bold text-slate-900 dark:text-white line-clamp-1">
                       {currentCategoryData.thumbnail.title}
                     </h4>
                     <a 
@@ -614,13 +613,13 @@ export default function ProductsMegaMenu({ isOpen, onClose, onMouseEnter, onMous
                           onClose();
                           window.dispatchEvent(new CustomEvent('aiegx-navigate', { detail: sec.href }));
                         }}
-                        className="group/brand block pb-1.5 border-b border-[#DCE6F3] dark:border-white/10 hover:border-[#0284C7] dark:hover:border-[#42D9F5] transition-all cursor-pointer focus:outline-none focus:ring-1 focus:ring-[#0284C7] dark:focus:ring-[#42D9F5] rounded-xs"
+                        className="block pb-1.5 border-b border-[#DCE6F3] dark:border-white/10 cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-[#0284C7] dark:focus-visible:ring-[#42D9F5] rounded-xs"
                       >
                         <div className="flex items-center justify-between">
-                          <h3 className="text-xs font-bold text-slate-900 dark:text-white group-hover/brand:text-[#0284C7] dark:group-hover/brand:text-[#42D9F5] uppercase tracking-wider font-mono transition-colors">
+                          <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider font-mono">
                             {sec.heading}
                           </h3>
-                          <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover/brand:text-[#0284C7] dark:text-white/30 dark:group-hover/brand:text-[#42D9F5] group-hover/brand:translate-x-0.5 transition-all" />
+                          <ChevronRight className="w-3.5 h-3.5 text-slate-400 dark:text-white/30" />
                         </div>
                       </a>
                     ) : (
@@ -648,10 +647,10 @@ export default function ProductsMegaMenu({ isOpen, onClose, onMouseEnter, onMous
                                 window.location.href = `/${item.href}`;
                               }
                             }}
-                            className="flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-100 dark:text-white/80 dark:hover:text-white dark:hover:bg-white/5 group transition-all duration-150"
+                            className="flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium text-slate-700 dark:text-white/80 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#0284C7] dark:focus-visible:ring-[#42D9F5]"
                           >
-                            <span className="group-hover:text-[#0284C7] dark:group-hover:text-[#42D9F5] transition-colors">{item.name}</span>
-                            <ChevronRight className="w-3 h-3 text-slate-400 dark:text-white/20 group-hover:text-[#0284C7] dark:group-hover:text-[#42D9F5] group-hover:translate-x-0.5 transition-all flex-shrink-0" />
+                            <span>{item.name}</span>
+                            <ChevronRight className="w-3 h-3 text-slate-400 dark:text-white/20 flex-shrink-0" />
                           </a>
                         ))}
                       </div>

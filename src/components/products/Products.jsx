@@ -103,11 +103,10 @@ export default function Products() {
       <div className="section-container relative">
           
           {/* Section Header: deliberately scoped to Our Hardware Platforms */}
-          <div className="relative w-full mb-8 sm:mb-10 px-5 py-4 sm:px-7 sm:py-5 overflow-hidden rounded-2xl border border-[#DCE6F3] dark:border-[#24355A] bg-white/80 dark:bg-[#101936]/80 shadow-[0_8px_24px_rgba(50,133,255,0.10)] dark:shadow-[0_8px_24px_rgba(45,212,240,0.08)] backdrop-blur-sm">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#14213D] dark:text-[#F8FAFC] tracking-tight">
-              Our <span className="bg-gradient-to-r from-[#2DD4F0] to-[#3285FF] bg-clip-text text-transparent">Hardware Platforms</span>
+          <div className="section-heading-container relative w-full mb-8 sm:mb-10 px-5 py-4 sm:px-7 sm:py-5 overflow-hidden rounded-2xl border border-[#DCE6F3] dark:border-[#24355A] shadow-[0_8px_24px_rgba(50,133,255,0.12)] dark:shadow-[0_8px_24px_rgba(45,212,240,0.12)]">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0D1733] tracking-tight">
+              Our <span className="bg-gradient-to-r from-[#2DD4F0] to-[#3285FF] bg-clip-text text-transparent drop-shadow-[0_1px_1px_rgba(13,23,51,0.30)]">Hardware Platforms</span>
             </h2>
-            <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-[3px] bg-gradient-to-r from-[#2DD4F0] to-[#3285FF]" />
           </div>
           {/* 4-Card Single Horizontal Row Grid (1 col on mobile, 2 cols on tablet, 4 cols on desktop) */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8">

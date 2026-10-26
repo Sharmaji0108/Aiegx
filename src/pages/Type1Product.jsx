@@ -406,12 +406,12 @@ export default function Type1Product() {
         <div className="section-container relative">
           
           {/* Section Header */}
-          <div className="max-w-3xl mb-10">
-            <span className="text-xs font-mono uppercase tracking-widest text-[#42D9F5] font-semibold block mb-2">
+          <div className="section-heading-container relative w-full mb-8 sm:mb-10 px-5 py-4 sm:px-7 sm:py-5 overflow-hidden rounded-2xl border border-[#DCE6F3] dark:border-[#24355A] shadow-[0_8px_24px_rgba(50,133,255,0.12)] dark:shadow-[0_8px_24px_rgba(45,212,240,0.12)]">
+            <span className="text-xs font-mono uppercase tracking-widest text-[#0284C7] font-bold block mb-1">
               HARDWARE HIGHLIGHTS
             </span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-              Engineered for High-Bandwidth Autonomous Computing
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0D1733] tracking-tight">
+              Engineered for High-Bandwidth <span className="bg-gradient-to-r from-[#0284C7] to-[#3285FF] bg-clip-text text-transparent">Autonomous Computing</span>
             </h2>
           </div>
 
@@ -675,12 +675,12 @@ export default function Type1Product() {
         <div className="section-container relative">
           
           {/* Section Header */}
-          <div className="max-w-3xl mb-10">
-            <span className="text-xs font-mono uppercase tracking-widest text-[#42D9F5] font-semibold block mb-2">
+          <div className="section-heading-container relative w-full mb-8 sm:mb-10 px-5 py-4 sm:px-7 sm:py-5 overflow-hidden rounded-2xl border border-[#DCE6F3] dark:border-[#24355A] shadow-[0_8px_24px_rgba(50,133,255,0.12)] dark:shadow-[0_8px_24px_rgba(45,212,240,0.12)]">
+            <span className="text-xs font-mono uppercase tracking-widest text-[#0284C7] font-bold block mb-1">
               SOC ARCHITECTURE OVERVIEW
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">
-              Jacinto™ 7 Architecture
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0D1733] tracking-tight">
+              Jacinto™ 7 <span className="bg-gradient-to-r from-[#0284C7] to-[#3285FF] bg-clip-text text-transparent">Architecture</span>
             </h2>
           </div>
 

@@ -52,30 +52,30 @@ export default function ContactSection() {
       <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[400px] h-[250px] bg-gradient-to-bl from-[#2DD4F0]/10 via-[#3285FF]/10 to-transparent rounded-full blur-[140px] pointer-events-none -z-10" />
 
       {/* Main Section Content Wrapper */}
-      <div className="section-container relative flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 lg:gap-12">
-        
-        {/* Left Column: Heading & Description */}
-        <div className="max-w-2xl">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#14213D] dark:text-[#F8FAFC] leading-[1.18]">
-            Let's Build Your <span className="bg-gradient-to-r from-[#2DD4F0] to-[#3285FF] bg-clip-text text-transparent">Next Product</span>
+      <div className="section-container relative">
+        {/* Section Heading Banner */}
+        <div className="section-heading-container relative w-full mb-8 sm:mb-10 px-5 py-4 sm:px-7 sm:py-5 overflow-hidden rounded-2xl border border-[#DCE6F3] dark:border-[#24355A] shadow-[0_8px_24px_rgba(50,133,255,0.12)] dark:shadow-[0_8px_24px_rgba(45,212,240,0.12)]">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0D1733] tracking-tight leading-[1.18]">
+            Let's Build Your <span className="bg-gradient-to-r from-[#2DD4F0] to-[#3285FF] bg-clip-text text-transparent drop-shadow-[0_1px_1px_rgba(13,23,51,0.30)]">Next Product</span>
           </h2>
-          <p className="mt-3.5 text-base sm:text-lg text-[#52627C] dark:text-[#AAB6D0] leading-relaxed">
+        </div>
+
+        {/* Action Row: Description & Contact Us Button */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#17264A] border border-[#DBE4F0] dark:border-[#24355A] shadow-xs">
+          <p className="text-base sm:text-lg text-[#52627C] dark:text-[#AAB6D0] leading-relaxed max-w-2xl">
             Talk to our engineers about your hardware, solution, or custom development requirements.
           </p>
+          <div className="shrink-0 w-full sm:w-auto">
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full font-bold text-sm sm:text-base text-[#0D1733] bg-gradient-to-r from-[#2DD4F0] to-[#3285FF] hover:from-[#4be0f7] hover:to-[#4392ff] shadow-lg shadow-[#3285FF]/25 hover:shadow-[#2DD4F0]/35 transition-all duration-300 transform hover:-translate-y-0.5 group cursor-pointer"
+              aria-label="Contact Us to build your next product"
+            >
+              <span>Contact Us</span>
+              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform" />
+            </button>
+          </div>
         </div>
-
-        {/* Right Column: Contact Us Button */}
-        <div className="shrink-0 w-full sm:w-auto">
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full font-bold text-sm sm:text-base text-[#0D1733] bg-gradient-to-r from-[#2DD4F0] to-[#3285FF] hover:from-[#4be0f7] hover:to-[#4392ff] shadow-lg shadow-[#3285FF]/25 hover:shadow-[#2DD4F0]/35 transition-all duration-300 transform hover:-translate-y-0.5 group cursor-pointer"
-            aria-label="Contact Us to build your next product"
-          >
-            <span>Contact Us</span>
-            <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform" />
-          </button>
-        </div>
-
       </div>
 
       {/* Interactive Contact & Inquiry Modal */}
