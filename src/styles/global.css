@@ -400,70 +400,58 @@ html.light .text-gradient-silver {
   -webkit-text-fill-color: transparent !important;
 }
 
-/* Navigation Menu: Clean & Fully Transparent (No white box or highlight rectangles) */
-header nav,
-html.light header nav,
-html.dark header nav {
+/* Desktop navigation links: compact button treatment with theme-aware hover and focus states. */
+header nav {
   background: transparent !important;
-  background-color: transparent !important;
   border: none !important;
   box-shadow: none !important;
 }
 
-.nav-link,
-header nav a,
-header nav button,
-html.light header nav a,
-html.light header nav button,
-html.dark header nav a,
-html.dark header nav button {
-  background: transparent !important;
-  background-color: transparent !important;
-  box-shadow: none !important;
-  border: none !important;
-  outline: none !important;
+header nav .nav-link {
+  border: 1px solid transparent;
+  background-color: transparent;
+  box-shadow: none;
+  outline: none;
+  transition: color 200ms ease, background-color 200ms ease, border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
 }
 
-/* Hover, Active, Focus, and Expanded states: transparent background with subtle cyan text highlight */
-.nav-link:hover,
-.nav-link:focus,
-.nav-link:active,
-.nav-link.active,
-.nav-link[aria-expanded="true"],
-header nav a:hover,
-header nav button:hover,
-header nav a:focus,
-header nav button:focus,
-header nav a:active,
-header nav button:active,
-header nav button[aria-expanded="true"],
-html.dark header nav a:hover,
-html.dark header nav button:hover,
-html.dark header nav a:focus,
-html.dark header nav button:focus,
-html.dark header nav button[aria-expanded="true"] {
-  background: transparent !important;
-  background-color: transparent !important;
-  box-shadow: none !important;
-  color: #2DD4F0 !important;
+header nav .nav-link:hover,
+header nav .nav-link[aria-expanded="true"] {
+  color: #089EC2;
+  background-color: rgba(8, 158, 194, 0.09);
+  border-color: rgba(8, 158, 194, 0.14);
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08);
+  transform: translateY(-1px);
 }
 
-html.light .nav-link:hover,
-html.light .nav-link:focus,
-html.light .nav-link:active,
-html.light .nav-link.active,
-html.light .nav-link[aria-expanded="true"],
-html.light header nav a:hover,
-html.light header nav button:hover,
-html.light header nav a:focus,
-html.light header nav button:focus,
-html.light header nav button[aria-expanded="true"] {
-  background: transparent !important;
-  background-color: transparent !important;
-  box-shadow: none !important;
-  color: #089EC2 !important;
+html.dark header nav .nav-link:hover,
+html.dark header nav .nav-link[aria-expanded="true"] {
+  color: #2DD4F0;
+  background-color: rgba(45, 212, 240, 0.1);
+  border-color: rgba(45, 212, 240, 0.16);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
 }
 
+header nav .nav-link.active {
+  background-color: rgba(8, 158, 194, 0.08);
+  border-color: rgba(8, 158, 194, 0.12);
+}
+
+html.dark header nav .nav-link.active {
+  background-color: rgba(45, 212, 240, 0.08);
+  border-color: rgba(45, 212, 240, 0.12);
+}
+
+header nav .nav-link:focus-visible {
+  outline: 2px solid #089EC2;
+  outline-offset: 2px;
+  background-color: rgba(8, 158, 194, 0.1);
+}
+
+html.dark header nav .nav-link:focus-visible {
+  outline-color: #2DD4F0;
+  background-color: rgba(45, 212, 240, 0.12);
+}
 /* Dropdown Mega Menus & Dialogs */
 .mega-menu-scroll {
   scrollbar-width: thin;

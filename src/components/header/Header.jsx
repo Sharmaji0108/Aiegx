@@ -185,7 +185,7 @@ export default function Header() {
           ? 'backdrop-blur-md bg-white/92 dark:bg-[#0D1733]/92 border-b border-slate-200/80 dark:border-[#24355A]/80 shadow-lg shadow-slate-200/40 dark:shadow-black/20 py-2 sm:py-2.5' 
           : 'bg-white/70 dark:bg-[#0D1733]/40 backdrop-blur-[4px] border-b border-slate-200/50 dark:border-[#24355A]/30 py-2.5 sm:py-3.5'
       }`}>
-        <div className="w-full flex items-center justify-between">
+        <div className="w-full flex items-center justify-start gap-6 xl:gap-10">
           
           {/* Extreme Left: Larger 64-72px Logo Icon, Brand Name & Tagline */}
           <div className="flex-shrink-0 flex items-center">
@@ -194,7 +194,7 @@ export default function Header() {
 
           {/* Right: Clean Horizontal Navigation Row (6 items matching sketch) */}
           <nav 
-            className="hidden lg:flex items-center justify-end gap-5 bg-transparent shadow-none border-none"
+            className="hidden lg:flex flex-1 items-center justify-end gap-1.5 xl:gap-3 lg:pr-6 xl:pr-10 bg-transparent shadow-none border-none"
             aria-label="Main Navigation"
           >
             {/* 1. Home */}
@@ -204,7 +204,7 @@ export default function Header() {
                 window.dispatchEvent(new CustomEvent('aiegx-navigate', { detail: '/' }));
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className={`nav-link py-2 text-base tracking-normal transition-colors duration-200 bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent shadow-none border-none focus:outline-none cursor-pointer ${
+              className={`nav-link inline-flex items-center justify-center rounded-lg px-3 py-2 text-base tracking-normal transition-all duration-200 cursor-pointer ${
                 activeNav === 'home'
                   ? 'active text-[#089EC2] dark:text-[#2DD4F0] font-semibold' 
                   : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] font-medium'
@@ -226,7 +226,7 @@ export default function Header() {
                   closeOtherMenus('products');
                   setMegaMenuOpen(!megaMenuOpen);
                 }}
-                className={`nav-link py-2 text-base tracking-normal transition-colors duration-200 bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent shadow-none border-none focus:outline-none cursor-pointer ${
+                className={`nav-link inline-flex items-center justify-center rounded-lg px-3 py-2 text-base tracking-normal transition-all duration-200 cursor-pointer ${
                   megaMenuOpen || activeNav === 'products'
                     ? 'active text-[#089EC2] dark:text-[#2DD4F0] font-semibold' 
                     : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] font-medium'
@@ -251,7 +251,7 @@ export default function Header() {
                   closeOtherMenus('solutions');
                   setSolutionsMenuOpen(!solutionsMenuOpen);
                 }}
-                className={`nav-link py-2 text-base tracking-normal transition-colors duration-200 bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent shadow-none border-none focus:outline-none cursor-pointer ${
+                className={`nav-link inline-flex items-center justify-center rounded-lg px-3 py-2 text-base tracking-normal transition-all duration-200 cursor-pointer ${
                   solutionsMenuOpen || activeNav === 'solutions'
                     ? 'active text-[#089EC2] dark:text-[#2DD4F0] font-semibold' 
                     : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] font-medium'
@@ -276,7 +276,7 @@ export default function Header() {
                   closeOtherMenus('apps');
                   setApplicationsMenuOpen(!applicationsMenuOpen);
                 }}
-                className={`nav-link py-2 text-base tracking-normal transition-colors duration-200 bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent shadow-none border-none focus:outline-none cursor-pointer ${
+                className={`nav-link inline-flex items-center justify-center rounded-lg px-3 py-2 text-base tracking-normal transition-all duration-200 cursor-pointer ${
                   applicationsMenuOpen || activeNav === 'industries'
                     ? 'active text-[#089EC2] dark:text-[#2DD4F0] font-semibold' 
                     : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] font-medium'
@@ -301,7 +301,7 @@ export default function Header() {
                   closeOtherMenus('about');
                   setAboutMenuOpen(!aboutMenuOpen);
                 }}
-                className={`nav-link py-2 text-base tracking-normal transition-colors duration-200 bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent shadow-none border-none focus:outline-none cursor-pointer ${
+                className={`nav-link inline-flex items-center justify-center rounded-lg px-3 py-2 text-base tracking-normal transition-all duration-200 cursor-pointer ${
                   aboutMenuOpen || activeNav === 'company'
                     ? 'active text-[#089EC2] dark:text-[#2DD4F0] font-semibold' 
                     : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] font-medium'
@@ -318,7 +318,7 @@ export default function Header() {
             <a
               href="#contact"
               onClick={closeAllMenus}
-              className={`nav-link py-2 text-base tracking-normal transition-colors duration-200 bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent shadow-none border-none focus:outline-none cursor-pointer ${
+              className={`nav-link inline-flex items-center justify-center rounded-lg px-3 py-2 text-base tracking-normal transition-all duration-200 cursor-pointer ${
                 activeNav === 'contact'
                   ? 'active text-[#089EC2] dark:text-[#2DD4F0] font-semibold'
                   : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] font-medium'
