@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Logo from '../common/Logo';
 import ProductsMegaMenu from './ProductsMegaMenu';
 import ApplicationsMegaMenu from './ApplicationsMegaMenu';
@@ -19,8 +19,56 @@ export default function Header() {
   const [solutionsMenuOpen, setSolutionsMenuOpen] = useState(false);
   const [aboutMenuOpen, setAboutMenuOpen] = useState(false);
 
+  const headerRef = useRef(null);
+
+  const getRouteActiveMenu = () => {
+    if (typeof window === 'undefined') return 'home';
+    const path = window.location.pathname.toLowerCase();
+    if (path.startsWith('/products') || path.startsWith('/brands')) {
+      return 'products';
+    }
+    return 'home';
+  };
+
   // Single React state variable to track the clicked menu (click-only active state)
-  const [activeMenu, setActiveMenu] = useState('home');
+  const [activeMenu, setActiveMenu] = useState(getRouteActiveMenu);
+
+  // Measure navbar height dynamically and set CSS variable --navbar-height
+  useEffect(() => {
+    const updateNavbarHeight = () => {
+      if (headerRef.current) {
+        const height = headerRef.current.offsetHeight;
+        document.documentElement.style.setProperty('--navbar-height', `${height}px`);
+      }
+    };
+
+    updateNavbarHeight();
+
+    let resizeObserver;
+    if (typeof ResizeObserver !== 'undefined' && headerRef.current) {
+      resizeObserver = new ResizeObserver(updateNavbarHeight);
+      resizeObserver.observe(headerRef.current);
+    }
+
+    window.addEventListener('resize', updateNavbarHeight);
+    return () => {
+      if (resizeObserver) resizeObserver.disconnect();
+      window.removeEventListener('resize', updateNavbarHeight);
+    };
+  }, [isScrolled]);
+
+  // Sync route on popstate and aiegx-navigate
+  useEffect(() => {
+    const syncRoute = () => {
+      setActiveMenu(getRouteActiveMenu());
+    };
+    window.addEventListener('popstate', syncRoute);
+    window.addEventListener('aiegx-navigate', syncRoute);
+    return () => {
+      window.removeEventListener('popstate', syncRoute);
+      window.removeEventListener('aiegx-navigate', syncRoute);
+    };
+  }, []);
 
   // Header background blur/shadow on scroll only - does NOT modify activeMenu
   useEffect(() => {
@@ -38,45 +86,52 @@ export default function Header() {
     setApplicationsMenuOpen(false);
     setSolutionsMenuOpen(false);
     setAboutMenuOpen(false);
+    setActiveMenu(getRouteActiveMenu());
   };
 
   const toggleMenu = (menuKey) => {
-    setActiveMenu(menuKey);
     if (menuKey === 'products') {
       const willOpen = !megaMenuOpen;
       closeAllMenus();
       if (willOpen) {
         setMegaMenuOpen(true);
+        setActiveMenu('products');
       }
     } else if (menuKey === 'solutions') {
       const willOpen = !solutionsMenuOpen;
       closeAllMenus();
       if (willOpen) {
         setSolutionsMenuOpen(true);
+        setActiveMenu('solutions');
       }
     } else if (menuKey === 'industries') {
       const willOpen = !applicationsMenuOpen;
       closeAllMenus();
       if (willOpen) {
         setApplicationsMenuOpen(true);
+        setActiveMenu('industries');
       }
     } else if (menuKey === 'company') {
       const willOpen = !aboutMenuOpen;
       closeAllMenus();
       if (willOpen) {
         setAboutMenuOpen(true);
+        setActiveMenu('company');
       }
     }
   };
 
   return (
     <>
-      {/* Navbar Container: Enclosed rectangle with continuous 1px blue border on all 4 sides */}
-      <header className={`site-header fixed z-50 transition-all duration-300 px-4 sm:px-5 lg:px-6 ${
-        isScrolled 
-          ? 'shadow-md shadow-slate-200/40 dark:shadow-black/20 py-2 sm:py-2.5' 
-          : 'py-2.5 sm:py-3.5'
-      }`}>
+      {/* Navbar Container: Compact full-width navbar with 3px cyan-to-blue bottom gradient border */}
+      <header 
+        ref={headerRef}
+        className={`site-header fixed z-50 transition-all duration-300 px-4 sm:px-5 lg:px-6 ${
+          isScrolled 
+            ? 'shadow-md shadow-slate-200/40 dark:shadow-black/20 py-1 sm:py-1.5' 
+            : 'py-1.5 sm:py-2'
+        }`}
+      >
         <div className="w-full flex items-center justify-start gap-6 xl:gap-10">
           
           {/* Extreme Left: Larger 64-72px Logo Icon, Brand Name & Tagline */}
@@ -104,7 +159,7 @@ export default function Header() {
                 }
               }}
               className={`nav-button nav-link inline-flex items-center justify-center rounded-lg px-3.5 py-2 text-base tracking-normal cursor-pointer transition-all duration-200 ${
-                activeMenu === 'home' ? 'nav-button--active font-semibold' : 'font-medium'
+                activeMenu === 'home' && !megaMenuOpen && !solutionsMenuOpen && !applicationsMenuOpen && !aboutMenuOpen ? 'nav-button--active font-semibold' : 'font-medium'
               }`}
               title="AIEGX Homepage"
             >
@@ -117,7 +172,7 @@ export default function Header() {
                 id="navbar-products-toggle"
                 onClick={() => toggleMenu('products')}
                 className={`nav-button nav-link inline-flex items-center justify-center gap-1.5 rounded-lg px-3.5 py-2 text-base tracking-normal cursor-pointer transition-all duration-200 ${
-                  activeMenu === 'products' ? 'nav-button--active font-semibold' : 'font-medium'
+                  (activeMenu === 'products' && (megaMenuOpen || (typeof window !== 'undefined' && (window.location.pathname.startsWith('/products') || window.location.pathname.startsWith('/brands'))))) ? 'nav-button--active font-semibold' : 'font-medium'
                 }`}
                 aria-expanded={megaMenuOpen}
                 aria-haspopup="true"
@@ -137,7 +192,7 @@ export default function Header() {
                 id="navbar-solutions-toggle"
                 onClick={() => toggleMenu('solutions')}
                 className={`nav-button nav-link inline-flex items-center justify-center gap-1.5 rounded-lg px-3.5 py-2 text-base tracking-normal cursor-pointer transition-all duration-200 ${
-                  activeMenu === 'solutions' ? 'nav-button--active font-semibold' : 'font-medium'
+                  (activeMenu === 'solutions' && solutionsMenuOpen) ? 'nav-button--active font-semibold' : 'font-medium'
                 }`}
                 aria-expanded={solutionsMenuOpen}
                 aria-haspopup="true"
@@ -157,7 +212,7 @@ export default function Header() {
                 id="navbar-applications-toggle"
                 onClick={() => toggleMenu('industries')}
                 className={`nav-button nav-link inline-flex items-center justify-center gap-1.5 rounded-lg px-3.5 py-2 text-base tracking-normal cursor-pointer transition-all duration-200 ${
-                  activeMenu === 'industries' ? 'nav-button--active font-semibold' : 'font-medium'
+                  (activeMenu === 'industries' && applicationsMenuOpen) ? 'nav-button--active font-semibold' : 'font-medium'
                 }`}
                 aria-expanded={applicationsMenuOpen}
                 aria-haspopup="true"
@@ -177,7 +232,7 @@ export default function Header() {
                 id="navbar-about-toggle"
                 onClick={() => toggleMenu('company')}
                 className={`nav-button nav-link inline-flex items-center justify-center gap-1.5 rounded-lg px-3.5 py-2 text-base tracking-normal cursor-pointer transition-all duration-200 ${
-                  activeMenu === 'company' ? 'nav-button--active font-semibold' : 'font-medium'
+                  (activeMenu === 'company' && aboutMenuOpen) ? 'nav-button--active font-semibold' : 'font-medium'
                 }`}
                 aria-expanded={aboutMenuOpen}
                 aria-haspopup="true"
@@ -207,7 +262,7 @@ export default function Header() {
                 }
               }}
               className={`nav-button nav-link inline-flex items-center justify-center rounded-lg px-3.5 py-2 text-base tracking-normal cursor-pointer transition-all duration-200 ${
-                activeMenu === 'contact' ? 'nav-button--active font-semibold' : 'font-medium'
+                activeMenu === 'contact' && !megaMenuOpen && !solutionsMenuOpen && !applicationsMenuOpen && !aboutMenuOpen ? 'nav-button--active font-semibold' : 'font-medium'
               }`}
               title="Contact AIEGX Engineering Team"
             >
@@ -377,25 +432,25 @@ export default function Header() {
       {/* Products Mega Menu Component */}
       <ProductsMegaMenu 
         isOpen={megaMenuOpen} 
-        onClose={() => setMegaMenuOpen(false)} 
+        onClose={closeAllMenus} 
       />
 
       {/* Applications (Industries) Mega Menu Component */}
       <ApplicationsMegaMenu 
         isOpen={applicationsMenuOpen} 
-        onClose={() => setApplicationsMenuOpen(false)} 
+        onClose={closeAllMenus} 
       />
 
       {/* Solutions Mega Menu Component */}
       <SolutionsMegaMenu 
         isOpen={solutionsMenuOpen} 
-        onClose={() => setSolutionsMenuOpen(false)} 
+        onClose={closeAllMenus} 
       />
 
       {/* About Us (Company) Mega Menu Component */}
       <AboutUsMegaMenu 
         isOpen={aboutMenuOpen} 
-        onClose={() => setAboutMenuOpen(false)} 
+        onClose={closeAllMenus} 
       />
     </>
   );

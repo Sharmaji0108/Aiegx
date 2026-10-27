@@ -210,7 +210,7 @@ export default function Hero() {
       onMouseLeave={() => setIsHovered(false)}
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
-      className="relative pt-[88px] pb-16 sm:pt-[102px] sm:pb-20 lg:pt-[118px] lg:pb-24 overflow-hidden bg-[#F5F8FC] dark:bg-[#0D1733] select-none transition-colors duration-300"
+      className="relative pt-[88px] pb-4 sm:pt-[102px] sm:pb-5 lg:pt-[118px] lg:pb-6 overflow-hidden bg-[#F5F8FC] dark:bg-[#0D1733] select-none transition-colors duration-300"
     >
       {/* Circuit-board traces & technical grid pattern overlay */}
       <svg 

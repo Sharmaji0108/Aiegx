@@ -218,11 +218,11 @@ export default function DevelopersMegaMenu({
       <div 
         ref={menuRef}
         id="developers-mega-menu"
-        className="fixed top-[68px] sm:top-[74px] left-0 right-0 z-50 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto animate-in fade-in slide-in-from-top-2 duration-200 pointer-events-auto"
+        className="mega-menu-dropdown-wrapper animate-in fade-in slide-in-from-top-2 duration-200"
         role="dialog"
         aria-label="Developers Mega Menu"
       >
-        <div className="bg-white/95 dark:bg-[#101936]/98 backdrop-blur-2xl border border-[#DCE6F3] dark:border-white/10 rounded-2xl shadow-2xl shadow-slate-900/10 dark:shadow-black/80 overflow-hidden text-slate-900 dark:text-white flex flex-col h-[min(590px,calc(100vh-88px))]">
+        <div className="mega-menu-dropdown-card bg-white/95 dark:bg-[#101936]/98 backdrop-blur-2xl border border-[#DCE6F3] dark:border-white/10 rounded-2xl shadow-2xl shadow-slate-900/10 dark:shadow-black/80 text-slate-900 dark:text-white lg:min-h-[380px]">
           
           {/* Mobile Drill-Down Bar (Shown on small screens) */}
           <div className="lg:hidden flex items-center justify-between p-3.5 bg-[#F1F6FC] dark:bg-[#0b1226] border-b border-[#DCE6F3] dark:border-white/10">
@@ -249,10 +249,10 @@ export default function DevelopersMegaMenu({
           </div>
 
           {/* Two-Column Desktop & Tablet Layout */}
-          <div className="flex flex-col lg:flex-row flex-1 overflow-hidden h-full">
+          <div className="flex flex-col lg:flex-row flex-1 overflow-hidden min-h-0">
             
             {/* COLUMN 1 — Developer Categories (Left Sidebar) */}
-            <div className={`lg:w-[300px] xl:w-[320px] flex-shrink-0 bg-[#F1F6FC] dark:bg-[#0e1630] border-b lg:border-b-0 lg:border-r border-[#DCE6F3] dark:border-white/10 flex flex-col justify-between p-4 sm:p-5 h-full overflow-y-auto mega-menu-scroll ${
+            <div className={`lg:w-[300px] xl:w-[320px] flex-shrink-0 bg-[#F1F6FC] dark:bg-[#0e1630] border-b lg:border-b-0 lg:border-r border-[#DCE6F3] dark:border-white/10 flex flex-col justify-between p-4 sm:p-5 min-h-0 overflow-y-auto mega-menu-scroll ${
               mobileStep !== 1 ? 'hidden lg:flex' : 'flex'
             }`}>
               <div>
@@ -335,7 +335,7 @@ export default function DevelopersMegaMenu({
             </div>
 
             {/* COLUMN 2 — Selected Category Content (Right Column) */}
-            <div className={`flex-1 bg-white dark:bg-[#101936] p-5 sm:p-6 lg:p-7 flex flex-col justify-between h-full overflow-y-auto mega-menu-scroll ${
+            <div className={`flex-1 bg-white dark:bg-[#101936] p-5 sm:p-6 lg:p-7 flex flex-col justify-between min-h-0 overflow-y-auto mega-menu-scroll ${
               mobileStep === 1 ? 'hidden lg:flex' : 'flex'
             }`}>
               <div className="space-y-6">

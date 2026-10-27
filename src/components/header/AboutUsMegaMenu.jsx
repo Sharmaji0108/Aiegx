@@ -79,11 +79,11 @@ export default function AboutUsMegaMenu({ isOpen, onClose }) {
       <div 
         ref={menuRef}
         id="about-mega-menu"
-        className="fixed top-[68px] sm:top-[74px] left-0 right-0 z-50 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto animate-in fade-in slide-in-from-top-2 duration-200 pointer-events-auto"
+        className="mega-menu-dropdown-wrapper animate-in fade-in slide-in-from-top-2 duration-200"
         role="dialog"
         aria-label="About Us Mega Menu"
       >
-        <div className="bg-white/95 dark:bg-[#101936]/98 backdrop-blur-2xl border border-[#DCE6F3] dark:border-white/10 rounded-2xl shadow-2xl shadow-slate-900/10 dark:shadow-black/80 overflow-hidden text-slate-900 dark:text-white flex flex-col max-h-[min(590px,calc(100vh-88px))] p-6 sm:p-7">
+        <div className="mega-menu-dropdown-card bg-white/95 dark:bg-[#101936]/98 backdrop-blur-2xl border border-[#DCE6F3] dark:border-white/10 rounded-2xl shadow-2xl shadow-slate-900/10 dark:shadow-black/80 text-slate-900 dark:text-white p-6 sm:p-7">
           
           {/* Header */}
           <div className="flex items-center justify-between pb-4 mb-6 border-b border-[#DCE6F3] dark:border-white/10">
@@ -106,7 +106,7 @@ export default function AboutUsMegaMenu({ isOpen, onClose }) {
           </div>
 
           {/* About Us Navigation Categories Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 overflow-y-auto mega-menu-scroll pr-1">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 overflow-y-auto mega-menu-scroll pr-1 flex-1 min-h-0">
             {aboutUsData.map((sec, sIdx) => {
               const Icon = sec.icon;
               return (

@@ -280,13 +280,13 @@ export default function TiBrand() {
          ========================================================================= */}
       <section 
         id="am69" 
-        className="relative py-16 sm:py-20 lg:py-24 overflow-hidden bg-[#101936] text-white"
+        className="relative py-4 sm:py-5 lg:py-6 overflow-hidden bg-[#101936] text-white"
       >
         {/* Section Content Wrapper */}
         <div className="section-container relative">
           
           {/* Section Heading */}
-          <div className="section-heading-container relative w-full mb-8 sm:mb-10 px-5 py-4 sm:px-7 sm:py-5 overflow-hidden rounded-2xl border border-[#DCE6F3] dark:border-[#24355A] shadow-[0_8px_24px_rgba(50,133,255,0.12)] dark:shadow-[0_8px_24px_rgba(45,212,240,0.12)] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="section-heading-container relative w-full mb-4 sm:mb-5 px-5 py-4 sm:px-7 sm:py-5 overflow-hidden rounded-2xl border border-[#DCE6F3] dark:border-[#24355A] shadow-[0_8px_24px_rgba(50,133,255,0.12)] dark:shadow-[0_8px_24px_rgba(45,212,240,0.12)] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
               <div className="inline-flex items-center gap-2 text-xs font-mono text-[#0284C7] uppercase tracking-wider mb-1 font-semibold">
                 <Cpu className="w-3.5 h-3.5" />
@@ -463,13 +463,13 @@ export default function TiBrand() {
          ========================================================================= */}
       <section 
         id="am62" 
-        className="relative py-16 sm:py-20 lg:py-24 overflow-hidden bg-gradient-to-b from-[#101936] via-[#122047] to-[#101936] text-white"
+        className="relative py-4 sm:py-5 lg:py-6 overflow-hidden bg-gradient-to-b from-[#101936] via-[#122047] to-[#101936] text-white"
       >
         {/* Section Content Wrapper */}
         <div className="section-container relative">
           
           {/* Section Heading */}
-          <div className="section-heading-container relative w-full mb-8 sm:mb-10 px-5 py-4 sm:px-7 sm:py-5 overflow-hidden rounded-2xl border border-[#DCE6F3] dark:border-[#24355A] shadow-[0_8px_24px_rgba(50,133,255,0.12)] dark:shadow-[0_8px_24px_rgba(45,212,240,0.12)] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="section-heading-container relative w-full mb-4 sm:mb-5 px-5 py-4 sm:px-7 sm:py-5 overflow-hidden rounded-2xl border border-[#DCE6F3] dark:border-[#24355A] shadow-[0_8px_24px_rgba(50,133,255,0.12)] dark:shadow-[0_8px_24px_rgba(45,212,240,0.12)] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
               <div className="inline-flex items-center gap-2 text-xs font-mono text-[#0284C7] uppercase tracking-wider mb-1 font-semibold">
                 <Layers className="w-3.5 h-3.5" />

@@ -403,42 +403,76 @@ html.light .text-gradient-silver {
 }
 
 /* ==========================================================================
-   NAVBAR / HEADER CONTINUOUS SOLID BLUE BORDER
-   - Solid 2px blue border (#3985FF) covering all four sides: TOP, BOTTOM, LEFT, RIGHT
-   - Continuous closed rectangle with rounded corners: border-radius: 12px
-   - Clearly visible on all 4 sides with clean inset from viewport edges
+   NAVBAR / HEADER WITH 3PX CYAN-TO-BLUE GRADIENT BOTTOM BORDER
+   - Clean navbar docked to viewport top spanning full width
+   - No top, left, or right borders; border-radius removed
+   - Single clean 3px gradient bottom border:
+     Cyan (#22D3EE) on left transitioning to Blue (#3B82F6) on right
    - Solid background: var(--header-bg) (#FFFFFF in light mode, #0D1733 in dark mode)
-   - Box-sizing: border-box ensures border is included in navbar dimensions
    ========================================================================== */
-.site-header {
+.site-header,
+.navbar {
   position: fixed !important;
-  top: 8px !important;
-  left: 10px !important;
-  right: 10px !important;
-  width: auto !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
   background-color: var(--header-bg) !important;
-  border: 2px solid #3985FF !important;
-  border-radius: 12px !important;
+  border: none !important;
+  border-radius: 0 !important;
   box-sizing: border-box !important;
+  z-index: 60 !important;
+}
+
+:root {
+  --navbar-height: 86px;
+}
+
+/* Mega Menu Dropdown Container - anchored directly below navbar with 6px gap */
+.mega-menu-dropdown-wrapper {
+  position: fixed !important;
+  top: calc(var(--navbar-height, 86px) + 6px) !important;
+  left: 0 !important;
+  right: 0 !important;
+  margin-inline: auto !important;
+  width: calc(100% - 24px) !important;
+  max-width: 1360px !important;
   z-index: 50 !important;
+  pointer-events: auto !important;
+  box-sizing: border-box !important;
 }
 
 @media (min-width: 640px) {
-  .site-header {
-    top: 10px !important;
-    left: 14px !important;
-    right: 14px !important;
+  .mega-menu-dropdown-wrapper {
+    width: calc(100% - 36px) !important;
   }
 }
 
 @media (min-width: 1024px) {
-  .site-header {
-    top: 12px !important;
-    left: 20px !important;
-    right: 20px !important;
-    max-width: 1720px !important;
-    margin-inline: auto !important;
+  .mega-menu-dropdown-wrapper {
+    width: calc(100% - 48px) !important;
+    max-width: 1360px !important;
   }
+}
+
+.mega-menu-dropdown-card {
+  max-height: calc(100vh - var(--navbar-height, 86px) - 20px) !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.site-header::after,
+.navbar::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to right, #22D3EE, #3B82F6);
+  pointer-events: none;
+  z-index: 10;
 }
 
 /* Desktop navigation links: White default button styling with click-only cyan-blue active state */
@@ -649,29 +683,37 @@ html.light ::-webkit-scrollbar-thumb:hover {
 
 /* ==========================================================================
    GLOBAL SECTION HEADING CONTAINER GRADIENT BANNER
-   White on left (0-68%), clear soft cyan-to-blue gradient on right (74-100%),
-   with a 3px subtle cyan-to-blue gradient border along the bottom edge:
-   - Border thickness: 3px
-   - Left (0%): Subtle cyan (#22D3EE)
-   - Right (100%): Subtle blue (#3B82F6)
-   - Placement: Bottom edge of section heading container, continuous with rounded corners
+   - Pure white on left (0-70%)
+   - Subtle, soft pastel cyan shading starting around 70% (78-86%)
+   - Smooth transition into soft pastel blue toward right edge (94-100%)
+   - 40-50% reduced saturation and intensity, avoiding harsh glows or vivid colors
+   - Subtle 3px soft pastel cyan-to-blue gradient bottom border:
+     Left: #8CD3DC, Right: #8CB3ED
    ========================================================================== */
 .section-heading-container,
 .hardware-platforms-heading-container {
   position: relative;
   overflow: hidden;
+  margin-bottom: 1.25rem !important; /* 20px clean gap to cards below */
   background: linear-gradient(
     90deg,
     #FFFFFF 0%,
-    #FFFFFF 68%,
-    #F0FCFF 74%,
-    #D8F6FF 82%,
-    #A8E9FF 91%,
-    #83C8FF 100%
+    #FFFFFF 70%,
+    #F3FAFD 78%,
+    #E1F2FA 86%,
+    #D2E7F8 94%,
+    #C5DDF5 100%
   ) !important;
   border: 1px solid #DCE6F3 !important;
   border-bottom: none !important;
   box-shadow: 0 4px 20px rgba(50, 133, 255, 0.08) !important;
+}
+
+@media (max-width: 639px) {
+  .section-heading-container,
+  .hardware-platforms-heading-container {
+    margin-bottom: 1rem !important; /* 16px clean gap on mobile */
+  }
 }
 
 .section-heading-container::after,
@@ -684,8 +726,8 @@ html.light ::-webkit-scrollbar-thumb:hover {
   height: 3px !important;
   background: linear-gradient(
     90deg,
-    #22D3EE 0%,
-    #3B82F6 100%
+    #8CD3DC 0%,
+    #8CB3ED 100%
   ) !important;
   pointer-events: none;
   z-index: 10;

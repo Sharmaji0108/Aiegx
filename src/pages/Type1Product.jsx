@@ -397,7 +397,7 @@ export default function Type1Product() {
       {/* =========================================================================
           HARDWARE HIGHLIGHTS SECTION (Four-Column Responsive Feature Grid)
          ========================================================================= */}
-      <section className="relative py-16 sm:py-20 lg:py-24 bg-[#0e1630]">
+      <section className="relative py-4 sm:py-5 lg:py-6 bg-[#0e1630]">
         
         {/* Ambient Glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#3478F6]/10 blur-[150px] pointer-events-none" />
@@ -406,7 +406,7 @@ export default function Type1Product() {
         <div className="section-container relative">
           
           {/* Section Header */}
-          <div className="section-heading-container relative w-full mb-8 sm:mb-10 px-5 py-4 sm:px-7 sm:py-5 overflow-hidden rounded-2xl border border-[#DCE6F3] dark:border-[#24355A] shadow-[0_8px_24px_rgba(50,133,255,0.12)] dark:shadow-[0_8px_24px_rgba(45,212,240,0.12)]">
+          <div className="section-heading-container relative w-full mb-4 sm:mb-5 px-5 py-4 sm:px-7 sm:py-5 overflow-hidden rounded-2xl border border-[#DCE6F3] dark:border-[#24355A] shadow-[0_8px_24px_rgba(50,133,255,0.12)] dark:shadow-[0_8px_24px_rgba(45,212,240,0.12)]">
             <span className="text-xs font-mono uppercase tracking-widest text-[#0284C7] font-bold block mb-1">
               HARDWARE HIGHLIGHTS
             </span>
@@ -669,13 +669,13 @@ export default function Type1Product() {
       {/* =========================================================================
           JACINTO 7 ARCHITECTURE SECTION
          ========================================================================= */}
-      <section className="relative py-16 sm:py-20 lg:py-24 bg-[#0e1630]">
+      <section className="relative py-4 sm:py-5 lg:py-6 bg-[#0e1630]">
         
         {/* Section Content Wrapper */}
         <div className="section-container relative">
           
           {/* Section Header */}
-          <div className="section-heading-container relative w-full mb-8 sm:mb-10 px-5 py-4 sm:px-7 sm:py-5 overflow-hidden rounded-2xl border border-[#DCE6F3] dark:border-[#24355A] shadow-[0_8px_24px_rgba(50,133,255,0.12)] dark:shadow-[0_8px_24px_rgba(45,212,240,0.12)]">
+          <div className="section-heading-container relative w-full mb-4 sm:mb-5 px-5 py-4 sm:px-7 sm:py-5 overflow-hidden rounded-2xl border border-[#DCE6F3] dark:border-[#24355A] shadow-[0_8px_24px_rgba(50,133,255,0.12)] dark:shadow-[0_8px_24px_rgba(45,212,240,0.12)]">
             <span className="text-xs font-mono uppercase tracking-widest text-[#0284C7] font-bold block mb-1">
               SOC ARCHITECTURE OVERVIEW
             </span>
@@ -861,7 +861,7 @@ export default function Type1Product() {
       {/* =========================================================================
           BOTTOM TECHNICAL CALL-TO-ACTION SECTION
          ========================================================================= */}
-      <section className="py-16 sm:py-20 lg:py-24 relative bg-[#101936]">
+      <section className="py-4 sm:py-5 lg:py-6 relative bg-[#101936]">
         {/* Section Content Wrapper */}
         <div className="section-container relative flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
           <div>

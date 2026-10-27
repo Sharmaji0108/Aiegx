@@ -430,11 +430,11 @@ export default function ProductsMegaMenu({ isOpen, onClose }) {
       <div 
         ref={menuRef}
         id="products-mega-menu"
-        className="fixed top-[68px] sm:top-[74px] left-0 right-0 z-50 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto animate-in fade-in slide-in-from-top-2 duration-200 pointer-events-auto"
+        className="mega-menu-dropdown-wrapper animate-in fade-in slide-in-from-top-2 duration-200"
         role="dialog"
         aria-label="Products Mega Menu"
       >
-        <div className="bg-white/95 dark:bg-[#101936]/98 backdrop-blur-2xl border border-[#DCE6F3] dark:border-white/10 rounded-2xl shadow-2xl shadow-slate-900/10 dark:shadow-black/80 overflow-hidden text-slate-900 dark:text-white flex flex-col h-[min(590px,calc(100vh-88px))]">
+        <div className="mega-menu-dropdown-card bg-white/95 dark:bg-[#101936]/98 backdrop-blur-2xl border border-[#DCE6F3] dark:border-white/10 rounded-2xl shadow-2xl shadow-slate-900/10 dark:shadow-black/80 text-slate-900 dark:text-white lg:min-h-[380px]">
           
           {/* Mobile Drill-Down Bar (Shown on small screens) */}
           <div className="lg:hidden flex items-center justify-between p-3.5 bg-[#F1F6FC] dark:bg-[#0b1226] border-b border-[#DCE6F3] dark:border-white/10">
@@ -463,10 +463,10 @@ export default function ProductsMegaMenu({ isOpen, onClose }) {
           </div>
 
           {/* Three-Column Desktop & Tablet Layout */}
-          <div className="flex flex-col lg:flex-row flex-1 overflow-hidden h-full">
+          <div className="flex flex-col lg:flex-row flex-1 overflow-hidden min-h-0">
             
             {/* COLUMN 1 — Product Categories (Left Sidebar) */}
-            <div className={`lg:w-[260px] xl:w-[280px] flex-shrink-0 bg-[#F1F6FC] dark:bg-[#0e1630] border-b lg:border-b-0 lg:border-r border-[#DCE6F3] dark:border-white/10 flex flex-col p-4 sm:p-5 h-full overflow-y-auto mega-menu-scroll ${
+            <div className={`lg:w-[260px] xl:w-[280px] flex-shrink-0 bg-[#F1F6FC] dark:bg-[#0e1630] border-b lg:border-b-0 lg:border-r border-[#DCE6F3] dark:border-white/10 flex flex-col p-4 sm:p-5 min-h-0 overflow-y-auto mega-menu-scroll ${
               mobileStep !== 1 ? 'hidden lg:flex' : 'flex'
             }`}>
               {/* Column 1 Header with Close Icon & PRODUCTS heading */}
@@ -518,7 +518,7 @@ export default function ProductsMegaMenu({ isOpen, onClose }) {
             </div>
 
             {/* COLUMN 2 — Category Navigation (Subcategories & Product Thumbnail) */}
-            <div className={`lg:w-[270px] xl:w-[300px] flex-shrink-0 bg-[#F8FAFD] dark:bg-[#121c3d] border-b lg:border-b-0 lg:border-r border-[#DCE6F3] dark:border-white/10 flex flex-col justify-between p-4 sm:p-5 h-full overflow-y-auto mega-menu-scroll ${
+            <div className={`lg:w-[270px] xl:w-[300px] flex-shrink-0 bg-[#F8FAFD] dark:bg-[#121c3d] border-b lg:border-b-0 lg:border-r border-[#DCE6F3] dark:border-white/10 flex flex-col justify-between p-4 sm:p-5 min-h-0 overflow-y-auto mega-menu-scroll ${
               mobileStep !== 2 ? 'hidden lg:flex' : 'flex'
             }`}>
               <div className="space-y-1 mb-4">
@@ -586,7 +586,7 @@ export default function ProductsMegaMenu({ isOpen, onClose }) {
             </div>
 
             {/* COLUMN 3 — Dynamic Product Links */}
-            <div className={`flex-1 bg-white dark:bg-[#101936] p-4 sm:p-6 h-full overflow-y-auto mega-menu-scroll ${
+            <div className={`flex-1 bg-white dark:bg-[#101936] p-4 sm:p-6 min-h-0 overflow-y-auto mega-menu-scroll ${
               mobileStep !== 3 ? 'hidden lg:block' : 'block'
             }`}>
               
