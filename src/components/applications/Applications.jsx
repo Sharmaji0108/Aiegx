@@ -1,206 +1,253 @@
-import React, { useState } from 'react';
-import { 
-  Monitor, 
-  Eye, 
-  Cpu, 
-  Scan
+import React from 'react';
+import {
+  Car,
+  Camera,
+  Factory,
+  Shield,
+  Eye,
+  ScanLine,
+  Car as CarIcon,
+  ParkingCircle,
+  HardDrive,
+  Monitor,
+  Settings,
+  Users,
+  BarChart2,
+  Layers,
+  Search,
+  Cpu,
+  Server,
+  Target,
+  RadioTower,
+  ArrowRight,
 } from 'lucide-react';
 
-/**
- * Integrated Solutions Component
- * Displays the 4 core embedded solutions: HMI, DMS, VDC, and ANPR in a 4-box horizontal arrangement.
- * Responsive: 4 columns on desktop, 2 columns on tablet, 1 column on mobile.
- * Interactive: Clicking any solution switches the active view and reveals detailed solution specs and high-res hardware architecture below.
- */
-export default function Applications() {
-  const [selectedSolution, setSelectedSolution] = useState(0);
+/* ─── Data ─────────────────────────────────────────────────────────────── */
+const solutions = [
+  {
+    id: 'vehicle',
+    icon: Car,
+    title: 'Vehicle & Mobility Solutions',
+    description:
+      'Intelligent vision and monitoring systems for vehicles, traffic and transportation.',
+    image: '/images/AI Traffic Surveillance with Plate Detection.png',
+    imageAlt: 'AI Traffic Surveillance with Plate Detection',
+    features: [
+      { icon: Eye,          label: 'Driver Monitoring System (DMS)',             status: null },
+      { icon: ScanLine,     label: 'Automatic Number Plate Recognition (ANPR)',  status: null },
+      { icon: Camera,       label: 'Vehicle Detection Camera',                   status: null },
+      { icon: ParkingCircle,label: 'Smart Parking',                              status: 'Planned' },
+    ],
+    ctaGradient: true,
+    href: '#integrated-solutions',
+  },
+  {
+    id: 'surveillance',
+    icon: Camera,
+    title: 'Video & Surveillance Solutions',
+    description:
+      'Recording, monitoring and intelligent video analytics for enhanced security.',
+    image: '/images/AI Security Surveillance at Modern Entrance.png',
+    imageAlt: 'AI Security Surveillance at Modern Entrance',
+    features: [
+      { icon: HardDrive, label: 'Network Video Recorder (NVR)',        status: null },
+      { icon: Monitor,   label: 'CCTV Monitoring System',             status: null },
+      { icon: Settings,  label: 'AI Video Analytics',                 status: null },
+      { icon: Users,     label: 'People Counting',                    status: 'Planned' },
+      { icon: BarChart2, label: 'Multi-Camera Video Analytics',       status: 'Planned' },
+    ],
+    ctaGradient: false,
+    href: '#integrated-solutions',
+  },
+  {
+    id: 'industrial',
+    icon: Factory,
+    title: 'Industrial & Machine Vision Solutions',
+    description:
+      'Embedded control, HMI and vision systems for industrial automation and inspection.',
+    image: '/images/Automated Gear Inspection Line.png',
+    imageAlt: 'Automated Gear Inspection Line',
+    features: [
+      { icon: Monitor, label: 'Industrial / Railway HMI',            status: null },
+      { icon: Layers,  label: 'Display / Video Controller',          status: null },
+      { icon: Search,  label: 'AI Visual Inspection',                status: null },
+      { icon: Camera,  label: 'Smart Vision AI Camera',              status: null },
+      { icon: Server,  label: 'Infrastructure Control Systems',      status: 'Planned' },
+    ],
+    ctaGradient: false,
+    href: '#integrated-solutions',
+  },
+  {
+    id: 'defence',
+    icon: Shield,
+    title: 'Defence & Advanced Vision Solutions',
+    description:
+      'Specialized vision and guidance systems for defence and strategic applications.',
+    image: '/images/Futuristic Mountain Surveillance HUD.png',
+    imageAlt: 'Futuristic Mountain Surveillance HUD',
+    features: [
+      { icon: Target,     label: 'Seeker',                          status: 'In Development' },
+      { icon: RadioTower, label: 'Surveillance Vision System',       status: 'Planned' },
+      { icon: Eye,        label: 'Target Tracking & Recognition',    status: 'Planned' },
+      { icon: Cpu,        label: 'Rugged AI Embedded System',        status: 'Planned' },
+    ],
+    ctaGradient: false,
+    href: '#integrated-solutions',
+  },
+];
 
-  const solutions = [
-    {
-      id: 'hmi',
-      shortName: 'HMI',
-      name: 'Human-Machine Interface',
-      category: 'Intelligent Display & GUI',
-      badge: 'Graphics & Control',
-      icon: Monitor,
-      image: '/images/hmi-solution-hd.jpg',
-      alt: 'Industrial Human-Machine Interface Multi-Touch Panel Computer',
-      tagline: 'High-responsiveness intelligent GUI & interactive industrial touch display control',
-      description: 'Ultra-low latency graphical user interfaces powered by hardware-accelerated 2D/3D rendering engines. Designed for mission-critical industrial dashboards, medical monitoring displays, and automotive smart cockpits with multi-touch and functional safety compliance.',
-      features: [
-        'Multi-display 4K & FHD rendering with LVDS, MIPI-DSI, and HDMI/eDP',
-        'Sub-15ms tactile touch-to-screen response latency for zero operator delay',
-        'Optimized Qt, Flutter & LVGL runtimes on Linux, Android, and RTOS',
-        'Industrial-grade -40°C to +85°C continuous 24/7 mission-critical operation'
-      ],
-      specs: [
-        { label: 'Display Channels', value: 'Dual LVDS / MIPI / HDMI' },
-        { label: 'Render Pipeline', value: 'Arm Mali / OpenGL ES 3.2' },
-        { label: 'Touch Latency', value: '< 15 ms' },
-        { label: 'Boot-to-UI', value: '< 1.8 seconds' }
-      ]
-    },
-    {
-      id: 'dms',
-      shortName: 'DMS',
-      name: 'Driver Monitoring System',
-      category: 'In-Cabin Vision AI',
-      badge: 'Safety Compliance',
-      icon: Eye,
-      image: '/images/dms-solution-hd.jpg',
-      alt: 'Automotive Driver Monitoring System NIR Camera Module',
-      tagline: 'Real-time in-cabin vision AI for distraction, drowsiness & occupant safety detection',
-      description: 'Automotive-grade edge vision pipeline utilizing near-infrared (NIR) sensors and low-power neural processors. Delivers real-time eye-gaze tracking, head pose estimation, microsleep detection, and seat occupancy recognition in compliance with Euro NCAP and GSR standards.',
-      features: [
-        'Full Euro NCAP & GSR compliant driver vigilance and attention tracking',
-        'Night-vision NIR camera illumination with sunglasses and face-mask bypass',
-        '100% on-device edge neural inference with zero biometric data leakage',
-        'Deterministic sub-10ms driver alert warning trigger to prevent accidents'
-      ],
-      specs: [
-        { label: 'Neural Latency', value: '4.2 ms / frame' },
-        { label: 'Sensor Input', value: 'Global Shutter NIR MIPI-CSI' },
-        { label: 'Safety Standard', value: 'ASIL-B / ISO 26262' },
-        { label: 'Power Budget', value: '< 3.5 Watts' }
-      ]
-    },
-    {
-      id: 'vdc',
-      shortName: 'VDC',
-      name: 'Vehicle Domain Controller',
-      category: 'Chassis & Gateway',
-      badge: 'Deterministic Control',
-      icon: Cpu,
-      image: '/images/vdc-solution-hd.jpg',
-      alt: 'Automotive Vehicle Domain Controller Central Processing Unit',
-      tagline: 'Deterministic chassis control, CAN-FD/Ethernet gateway & powertrain telematics',
-      description: 'Centralized vehicular computing unit consolidating chassis dynamics, body electronics, and multi-bus sensor gateways into a robust lockstep processing core. Delivers fail-operational real-time determinism with integrated hardware security modules (HSM).',
-      features: [
-        'Real-time dual-core lockstep Cortex-M architecture for functional safety',
-        'Multi-channel CAN-FD, LIN, FlexRay & Automotive Ethernet sensor gateways',
-        'Integrated Hardware Security Module (HSM) for encrypted ECU authentication',
-        'AUTOSAR Classic & Adaptive software stack with OTA lifecycle management'
-      ],
-      specs: [
-        { label: 'Processing Architecture', value: 'Lockstep Real-Time + Cortex-A' },
-        { label: 'Bus Connectivity', value: '8x CAN-FD, 2x 100BASE-T1' },
-        { label: 'Safety Integrity', value: 'ISO 26262 ASIL-D Ready' },
-        { label: 'Fault Recovery', value: 'Zero-Downtime Fail-Operational' }
-      ]
-    },
-    {
-      id: 'anpr',
-      shortName: 'ANPR',
-      name: 'Automatic Number Plate Recognition',
-      category: 'Edge Neural Vision',
-      badge: 'High-Speed OCR',
-      icon: Scan,
-      image: '/images/anpr-solution-hd.jpg',
-      alt: 'High-Speed Automatic Number Plate Recognition Edge AI Camera',
-      tagline: 'High-accuracy edge neural OCR & vehicle identification across high-speed lanes',
-      description: 'Embedded vision AI system capable of detecting, recognizing, and cataloging license plates across multi-lane roadways in real time. Features integrated optical character recognition (OCR) models optimized for low-light, extreme weather, and fast-moving traffic.',
-      features: [
-        'Multi-lane simultaneous plate capture at vehicle speeds up to 160 km/h',
-        '99.4%+ recognition accuracy across reflective, embossed & multinational plates',
-        'On-device edge inference eliminating costly high-bandwidth cloud video streams',
-        'Seamless plug-and-play integration with electronic tolling & smart parking APIs'
-      ],
-      specs: [
-        { label: 'Inference Speed', value: '1.6 ms / plate' },
-        { label: 'Recognition Accuracy', value: '99.4% Multi-Region' },
-        { label: 'Max Vehicle Speed', value: 'Up to 160 km/h' },
-        { label: 'Environmental', value: 'IP67 Weather-Sealed' }
-      ]
-    }
-  ];
+/* ─── Badge component ───────────────────────────────────────────────────── */
+function StatusBadge({ status }) {
+  if (!status) return null;
+  const isDev = status === 'In Development';
+  return (
+    <span
+      className={`inline-flex items-center ml-2 px-2 py-0.5 rounded-full text-[10px] font-semibold whitespace-nowrap ${
+        isDev
+          ? 'bg-amber-100 text-amber-700 border border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-700/40'
+          : 'bg-[#E2EEFB] text-[#089EC2] border border-[#C5DDF5] dark:bg-[#1A2C52] dark:text-[#2DD4F0] dark:border-[#244277]'
+      }`}
+    >
+      {status}
+    </span>
+  );
+}
+
+/* ─── Single Card ───────────────────────────────────────────────────────── */
+function SolutionCard({ solution }) {
+  const CardIcon = solution.icon;
 
   return (
-    <section 
-      id="integrated-solutions" 
-      className="py-4 sm:py-5 lg:py-6 relative bg-[#F5F8FC] dark:bg-[#0D1733] scroll-mt-20 transition-colors duration-300"
+    <div className="flex flex-col bg-white dark:bg-[#17264A] border border-[#DCE8F5] dark:border-[#24355A] rounded-[18px] shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 overflow-hidden">
+
+      {/* ── Icon + Title + Description ── */}
+      <div className="p-5 pb-4">
+        <div className="flex items-start gap-3 mb-3">
+          {/* Icon circle */}
+          <div className="flex-shrink-0 w-11 h-11 rounded-full bg-[#E8F4FD] dark:bg-[#1A2C52] border border-[#C5DDF5] dark:border-[#244277] flex items-center justify-center">
+            <CardIcon className="w-5 h-5 text-[#089EC2] dark:text-[#2DD4F0]" />
+          </div>
+          {/* Title */}
+          <h3 className="text-base font-bold leading-snug text-[#14213D] dark:text-[#F8FAFC] pt-0.5">
+            {solution.title}
+          </h3>
+        </div>
+        {/* Description */}
+        <p className="text-xs leading-relaxed text-[#52627C] dark:text-[#AAB6D0]">
+          {solution.description}
+        </p>
+      </div>
+
+      {/* ── Image ── */}
+      <div className="mx-5 rounded-xl overflow-hidden border border-[#DCE8F5] dark:border-[#24355A] flex-shrink-0 h-44">
+        <img
+          src={solution.image}
+          alt={solution.imageAlt}
+          className="w-full h-full object-cover"
+          loading="lazy"
+        />
+      </div>
+
+      {/* ── Feature List ── */}
+      <div className="flex-1 px-5 pt-4 pb-4 space-y-2.5">
+        {solution.features.map((feat, i) => {
+          const FeatIcon = feat.icon;
+          return (
+            <div key={i} className="flex items-center gap-2.5">
+              <div className="flex-shrink-0 w-6 h-6 rounded-md bg-[#E8F4FD] dark:bg-[#1A2C52] flex items-center justify-center">
+                <FeatIcon className="w-3.5 h-3.5 text-[#089EC2] dark:text-[#2DD4F0]" />
+              </div>
+              <span className="text-xs text-[#14213D] dark:text-[#D4E3F5] font-medium leading-tight">
+                {feat.label}
+              </span>
+              <StatusBadge status={feat.status} />
+            </div>
+          );
+        })}
+      </div>
+
+      {/* ── CTA Button ── */}
+      <div className="px-5 pb-5 mt-auto">
+        <a
+          href={solution.href}
+          onClick={(e) => {
+            e.preventDefault();
+            const el = document.getElementById('integrated-solutions');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }}
+          className="explore-btn"
+        >
+          Explore Solutions
+          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+        </a>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Section ───────────────────────────────────────────────────────────── */
+export default function Applications() {
+  return (
+    <section
+      id="integrated-solutions"
+      className="py-6 sm:py-8 lg:py-10 relative bg-[#F5F8FC] dark:bg-[#0D1733] scroll-mt-20 transition-colors duration-300"
     >
-      {/* Anchor aliases for backwards compatibility */}
+      {/* Anchor aliases */}
       <div id="solutions" className="sr-only" />
       <div id="applications" className="sr-only" />
 
-      {/* Subtle Background Lighting Glows */}
-      <div className="absolute top-1/3 left-10 w-[550px] h-[550px] bg-[#3285FF]/10 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-10 right-10 w-[450px] h-[450px] bg-[#2DD4F0]/10 rounded-full blur-[140px] pointer-events-none" />
+      {/* Ambient glows */}
+      <div className="absolute top-1/3 left-10 w-[500px] h-[500px] bg-[#3285FF]/8 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-[400px] h-[400px] bg-[#2DD4F0]/8 rounded-full blur-[130px] pointer-events-none" />
 
       <div className="section-container relative">
-        
-        {/* Section Heading */}
-        <div className="section-heading-container relative w-full mb-4 sm:mb-5 px-5 py-4 sm:px-7 sm:py-5 overflow-hidden rounded-2xl border border-[#DCE6F3] dark:border-[#24355A] shadow-[0_8px_24px_rgba(50,133,255,0.12)] dark:shadow-[0_8px_24px_rgba(45,212,240,0.12)]">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0D1733] tracking-tight">
-            Our Integrated <span className="bg-gradient-to-r from-[#2DD4F0] to-[#3285FF] bg-clip-text text-transparent drop-shadow-[0_1px_1px_rgba(13,23,51,0.30)]">Solutions</span>
+
+        {/* ── Section Header Banner ── */}
+        <div className="relative w-full mb-6 sm:mb-8 px-4 py-3 sm:px-5 sm:py-4 rounded-2xl border border-[#DCE6F3] dark:border-[#24355A] bg-gradient-to-br from-[#EEF5FD] via-white to-[#E5F2FB] dark:from-[#101936] dark:via-[#0D1733] dark:to-[#101936] shadow-[0_6px_24px_rgba(50,133,255,0.10)] dark:shadow-[0_6px_24px_rgba(45,212,240,0.08)] overflow-hidden">
+
+          {/* Background network decoration */}
+          <svg
+            className="absolute right-0 top-0 h-full w-auto opacity-[0.07] dark:opacity-[0.04] pointer-events-none select-none"
+            viewBox="0 0 400 200"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <circle cx="320" cy="40"  r="5" fill="#089EC2" />
+            <circle cx="360" cy="100" r="5" fill="#3285FF" />
+            <circle cx="280" cy="140" r="5" fill="#089EC2" />
+            <circle cx="380" cy="160" r="4" fill="#3285FF" />
+            <circle cx="240" cy="60"  r="4" fill="#089EC2" />
+            <circle cx="340" cy="180" r="3" fill="#3285FF" />
+            <line x1="320" y1="40"  x2="360" y2="100" stroke="#089EC2" strokeWidth="1" />
+            <line x1="360" y1="100" x2="280" y2="140" stroke="#3285FF" strokeWidth="1" />
+            <line x1="280" y1="140" x2="380" y2="160" stroke="#089EC2" strokeWidth="1" />
+            <line x1="360" y1="100" x2="380" y2="160" stroke="#3285FF" strokeWidth="1" />
+            <line x1="240" y1="60"  x2="320" y2="40"  stroke="#089EC2" strokeWidth="1" />
+            <line x1="240" y1="60"  x2="280" y2="140" stroke="#3285FF" strokeWidth="1" />
+            <line x1="340" y1="180" x2="280" y2="140" stroke="#089EC2" strokeWidth="1" />
+          </svg>
+
+          <p className="text-[10px] sm:text-xs font-bold tracking-[0.18em] uppercase text-[#1672E8] mb-0.5">
+            INTEGRATED SOLUTIONS
+          </p>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0D1733] dark:text-[#F8FAFC] tracking-tight mb-2">
+            Our{' '}
+            <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
+              Integrated Solutions
+            </span>
           </h2>
+          <p className="text-sm sm:text-base text-[#52627C] dark:text-[#AAB6D0] max-w-3xl leading-snug">
+            Application-ready embedded systems combining hardware, software and AI for
+            transportation, video surveillance, industrial automation and defence applications.
+          </p>
         </div>
 
-        {/* 4 Interactive Solution Cards in a Horizontal Arrangement */}
-        {/* Responsive: 4 items in 1 row on desktop (lg:grid-cols-4), 2 cols on tablet (sm:grid-cols-2), 1 col on mobile */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
-          {solutions.map((item, idx) => {
-            const isSelected = selectedSolution === idx;
-            const CardIcon = item.icon;
-
-            return (
-              <button
-                key={item.id}
-                onClick={() => setSelectedSolution(idx)}
-                className={`group relative text-left p-6 sm:p-7 rounded-2xl transition-all duration-300 border flex flex-col cursor-pointer backdrop-blur-md outline-none focus-visible:ring-2 focus-visible:ring-[#2DD4F0] ${
-                  isSelected
-                    ? 'bg-white dark:bg-[#17264A] border-[#089EC2] dark:border-[#2DD4F0] shadow-xl shadow-[#089EC2]/10 dark:shadow-[#2DD4F0]/15 ring-1 ring-[#089EC2]/50 dark:ring-[#2DD4F0]/50 -translate-y-1'
-                    : 'bg-white/80 dark:bg-[#17264A]/70 border-[#DBE4F0] dark:border-[#24355A] hover:border-[#089EC2]/50 dark:hover:border-[#2DD4F0]/50 hover:bg-white dark:hover:bg-[#17264A] hover:-translate-y-0.5 hover:shadow-md'
-                }`}
-                aria-pressed={isSelected}
-                aria-label={`Select ${item.shortName}: ${item.name}`}
-              >
-                <div>
-                  {/* Top Header Row with Icon and Active Pill */}
-                  <div className="flex items-center justify-between mb-4">
-                    <div 
-                      className={`p-3 rounded-2xl transition-all duration-300 ${
-                        isSelected
-                          ? 'bg-gradient-to-tr from-[#2DD4F0] to-[#3285FF] text-[#0D1733] shadow-md shadow-[#2DD4F0]/25'
-                          : 'bg-[#EDF2F7] dark:bg-[#101936] text-[#089EC2] dark:text-[#2DD4F0] border border-[#DBE4F0] dark:border-[#24355A] group-hover:border-[#089EC2]/40 dark:group-hover:border-[#2DD4F0]/40'
-                      }`}
-                    >
-                      <CardIcon className="w-5 h-5 sm:w-6 sm:h-6" />
-                    </div>
-
-                    {isSelected && (
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-mono font-semibold bg-[#089EC2]/15 dark:bg-[#2DD4F0]/15 text-[#089EC2] dark:text-[#2DD4F0] border border-[#089EC2]/30 dark:border-[#2DD4F0]/30">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#089EC2] dark:bg-[#2DD4F0] animate-pulse" />
-                        Selected
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Main Acronym */}
-                  <h3 
-                    className={`text-2xl sm:text-3xl font-extrabold tracking-tight transition-colors duration-200 ${
-                      isSelected 
-                        ? 'text-[#089EC2] dark:text-[#2DD4F0]' 
-                        : 'text-[#14213D] dark:text-[#F8FAFC] group-hover:text-[#089EC2] dark:group-hover:text-[#2DD4F0]'
-                    }`}
-                  >
-                    {item.shortName}
-                  </h3>
-
-                  {/* Full Name */}
-                  <p className="text-sm font-semibold text-slate-800 dark:text-[#F8FAFC]/90 mt-1">
-                    {item.name}
-                  </p>
-
-                  {/* Brief Tagline */}
-                  <p className="text-xs text-[#52627C] dark:text-[#AAB6D0] mt-2 line-clamp-2 leading-relaxed">
-                    {item.tagline}
-                  </p>
-                </div>
-
-              </button>
-            );
-          })}
+        {/* ── Four Cards ── */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+          {solutions.map((sol) => (
+            <SolutionCard key={sol.id} solution={sol} />
+          ))}
         </div>
 
       </div>

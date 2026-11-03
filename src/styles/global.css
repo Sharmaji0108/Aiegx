@@ -485,32 +485,52 @@ header nav {
 /* Default state: white background, dark navy text, subtle light-blue border */
 header nav .nav-link,
 header nav .nav-button {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   background-color: #FFFFFF !important;
   color: #0D1733 !important;
   border: 1px solid #DCE6F3 !important;
   box-shadow: 0 1px 3px rgba(15, 23, 42, 0.07);
   outline: none;
   font-weight: 500;
-  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+  transition: color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+header nav .nav-link::before,
+header nav .nav-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, #0AA6C6, #3285FF);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: -1;
+  border-radius: inherit;
 }
 
 header nav .nav-link svg,
 header nav .nav-button svg {
   stroke: currentColor;
-  transition: stroke 180ms ease, transform 200ms ease;
+  transition: stroke 0.25s ease, transform 200ms ease;
 }
 
-/* Hover state: very subtle transition without turning the button solid blue */
+/* Hover state: gradient bg, white text */
 header nav .nav-link:not(.nav-button--active):hover,
 header nav .nav-button:not(.nav-button--active):hover {
-  background-color: #FFFFFF !important;
-  color: #0D1733 !important;
-  border-color: rgba(8, 158, 194, 0.5) !important;
-  box-shadow: 0 3px 8px rgba(15, 23, 42, 0.1), 0 1px 3px rgba(8, 158, 194, 0.15) !important;
+  background-color: transparent !important;
+  color: #FFFFFF !important;
+  border-color: transparent !important;
+  box-shadow: 0 4px 16px rgba(50, 133, 255, 0.35) !important;
   transform: translateY(-1px);
 }
 
-/* In dark mode, default menu buttons remain white with dark navy text for high contrast */
+header nav .nav-link:not(.nav-button--active):hover::before,
+header nav .nav-button:not(.nav-button--active):hover::before {
+  opacity: 1;
+}
+
+/* In dark mode, same defaults */
 html.dark header nav .nav-link,
 html.dark header nav .nav-button {
   background-color: #FFFFFF !important;
@@ -521,11 +541,16 @@ html.dark header nav .nav-button {
 
 html.dark header nav .nav-link:not(.nav-button--active):hover,
 html.dark header nav .nav-button:not(.nav-button--active):hover {
-  background-color: #FFFFFF !important;
-  color: #0D1733 !important;
-  border-color: #2DD4F0 !important;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3), 0 0 10px rgba(45, 212, 240, 0.35) !important;
+  background-color: transparent !important;
+  color: #FFFFFF !important;
+  border-color: transparent !important;
+  box-shadow: 0 4px 16px rgba(45, 212, 240, 0.35) !important;
   transform: translateY(-1px);
+}
+
+html.dark header nav .nav-link:not(.nav-button--active):hover::before,
+html.dark header nav .nav-button:not(.nav-button--active):hover::before {
+  opacity: 1;
 }
 
 /* Selected state (click-only): cyan-blue background, white text, subtle cyan shadow */
@@ -738,6 +763,71 @@ html.dark .hardware-platforms-heading-container {
   border-color: #24355A !important;
   border-bottom: none !important;
   box-shadow: 0 4px 20px rgba(45, 212, 240, 0.10) !important;
+}
+
+/* ==========================================================================
+   EXPLORE BUTTON — Default white + blue border; hover gradient blue
+   ========================================================================== */
+.explore-btn {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #089EC2;
+  background: #FFFFFF;
+  border: 1px solid #C5DDF5;
+  box-shadow: none;
+  cursor: pointer;
+  transition: color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+  text-decoration: none;
+}
+
+.explore-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, #0AA6C6, #3285FF);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: -1;
+  border-radius: 9999px;
+}
+
+.explore-btn:hover::before {
+  opacity: 1;
+}
+
+.explore-btn:hover {
+  color: #FFFFFF !important;
+  border-color: transparent;
+  box-shadow: 0 4px 16px rgba(50, 133, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+html.dark .explore-btn {
+  color: #2DD4F0;
+  background: transparent;
+  border-color: #244277;
+}
+
+html.dark .explore-btn:hover {
+  color: #FFFFFF !important;
+  border-color: transparent;
+  box-shadow: 0 4px 16px rgba(45, 212, 240, 0.30);
+}
+
+/* Ensure white text stays white inside gradient hover (light mode override) */
+html.light .explore-btn:hover,
+html.light .explore-btn:hover * {
+  color: #FFFFFF !important;
 }
 
 .section-heading-container h1,

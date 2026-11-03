@@ -82,9 +82,9 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2 text-xs text-[#52627C] dark:text-[#AAB6D0]">
               <li><a href="#hardware-platforms" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">RZ/G2L MPU Module</a></li>
-              <li><a href="#hardware-platforms" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">RZ/G2N Embedded SOM</a></li>
+              <li><a href="#hardware-platforms" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">RZ/G2N Embedded SBC</a></li>
               <li><a href="#hardware-platforms" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">RZ/V2L Vision AI Board</a></li>
-              <li><a href="#hardware-platforms" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">RZ/N2H Industrial Board</a></li>
+              <li><a href="#hardware-platforms" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">RZ/V2H Industrial Board</a></li>
               <li><a href="/products/type-1" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Type 1 Product</a></li>
               <li><a href="#hardware-platforms" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Custom Carrier Boards</a></li>
             </ul>
