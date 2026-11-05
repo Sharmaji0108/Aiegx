@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Logo from '../common/Logo';
+import ThemeToggle from '../common/ThemeToggle';
 import ProductsMegaMenu from './ProductsMegaMenu';
 import ApplicationsMegaMenu from './ApplicationsMegaMenu';
 import SolutionsMegaMenu from './SolutionsMegaMenu';
@@ -19,6 +20,30 @@ export default function Header() {
   const [aboutMenuOpen, setAboutMenuOpen] = useState(false);
 
   const [activeNav, setActiveNav] = useState('home');
+  const headerRef = useRef(null);
+
+  useEffect(() => {
+    const updateNavbarHeight = () => {
+      if (headerRef.current) {
+        const height = headerRef.current.offsetHeight;
+        document.documentElement.style.setProperty('--navbar-height', `${height}px`);
+      }
+    };
+
+    updateNavbarHeight();
+
+    let resizeObserver;
+    if (typeof ResizeObserver !== 'undefined' && headerRef.current) {
+      resizeObserver = new ResizeObserver(updateNavbarHeight);
+      resizeObserver.observe(headerRef.current);
+    }
+
+    window.addEventListener('resize', updateNavbarHeight);
+    return () => {
+      if (resizeObserver) resizeObserver.disconnect();
+      window.removeEventListener('resize', updateNavbarHeight);
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -180,11 +205,11 @@ export default function Header() {
   return (
     <>
       {/* Navbar Container: Edge-to-edge layout with small 16-24px padding (no max-w-7xl auto-centering constraint) */}
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-4 sm:px-5 lg:px-6 ${isScrolled
-        ? 'backdrop-blur-md bg-white/92 dark:bg-[#0D1733]/92 border-b border-slate-200/80 dark:border-[#24355A]/80 shadow-lg shadow-slate-200/40 dark:shadow-black/20 py-2 sm:py-2.5'
-        : 'bg-white/70 dark:bg-[#0D1733]/40 backdrop-blur-[4px] border-b border-slate-200/50 dark:border-[#24355A]/30 py-2.5 sm:py-3.5'
-        }`}>
-        <div className="w-full flex items-center justify-start gap-6 xl:gap-10">
+      <header
+        ref={headerRef}
+        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-2.5 pt-2 sm:px-4 sm:pt-2.5 md:p-0 pointer-events-none md:pointer-events-auto"
+      >
+        <div className="w-full transition-all duration-300 flex items-center justify-between gap-2 sm:gap-4 pointer-events-auto bg-white/95 dark:bg-[#0D1733]/95 backdrop-blur-md border border-slate-200/90 dark:border-[#24355A]/90 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] px-3 py-2 sm:px-4 sm:py-2.5 md:max-w-none md:rounded-none md:border-x-0 md:border-t-0 md:border-b md:border-slate-200/80 dark:md:border-[#24355A]/80 md:shadow-xs md:px-6 lg:px-8 xl:px-12 md:py-2.5 lg:py-3">
 
           {/* Extreme Left: Larger 64-72px Logo Icon, Brand Name & Tagline */}
           <div className="flex-shrink-0 flex items-center">
@@ -194,7 +219,7 @@ export default function Header() {
 
           {/* Right: Clean Horizontal Navigation Row (6 items matching sketch) */}
           <nav
-            className="hidden lg:flex flex-1 items-center justify-end gap-1.5 xl:gap-3 lg:pr-6 xl:pr-10 bg-transparent shadow-none border-none"
+            className="hidden md:flex flex-1 items-center justify-end gap-1.5 md:gap-2 lg:gap-2.5 xl:gap-3 bg-transparent shadow-none border-none"
             aria-label="Main Navigation"
           >
             {/* 1. Home */}
@@ -204,7 +229,7 @@ export default function Header() {
                 window.dispatchEvent(new CustomEvent('aiegx-navigate', { detail: '/' }));
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className={`nav-link inline-flex items-center justify-center rounded-lg px-3 py-2 text-base tracking-normal transition-all duration-200 cursor-pointer ${activeNav === 'home'
+              className={`nav-link inline-flex items-center justify-center rounded-lg px-2.5 py-1.5 md:px-3 md:py-2 text-sm lg:text-base tracking-normal transition-all duration-200 cursor-pointer ${activeNav === 'home'
                 ? 'active text-[#089EC2] dark:text-[#2DD4F0] font-semibold'
                 : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] font-medium'
                 }`}
@@ -225,7 +250,7 @@ export default function Header() {
                   closeOtherMenus('products');
                   setMegaMenuOpen(!megaMenuOpen);
                 }}
-                className={`nav-link inline-flex items-center justify-center rounded-lg px-3 py-2 text-base tracking-normal transition-all duration-200 cursor-pointer ${megaMenuOpen || activeNav === 'products'
+                className={`nav-link inline-flex items-center justify-center rounded-lg px-2.5 py-1.5 md:px-3 md:py-2 text-sm lg:text-base tracking-normal transition-all duration-200 cursor-pointer ${megaMenuOpen || activeNav === 'products'
                   ? 'active text-[#089EC2] dark:text-[#2DD4F0] font-semibold'
                   : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] font-medium'
                   }`}
@@ -249,7 +274,7 @@ export default function Header() {
                   closeOtherMenus('solutions');
                   setSolutionsMenuOpen(!solutionsMenuOpen);
                 }}
-                className={`nav-link inline-flex items-center justify-center rounded-lg px-3 py-2 text-base tracking-normal transition-all duration-200 cursor-pointer ${solutionsMenuOpen || activeNav === 'solutions'
+                className={`nav-link inline-flex items-center justify-center rounded-lg px-2.5 py-1.5 md:px-3 md:py-2 text-sm lg:text-base tracking-normal transition-all duration-200 cursor-pointer ${solutionsMenuOpen || activeNav === 'solutions'
                   ? 'active text-[#089EC2] dark:text-[#2DD4F0] font-semibold'
                   : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] font-medium'
                   }`}
@@ -273,7 +298,7 @@ export default function Header() {
                   closeOtherMenus('apps');
                   setApplicationsMenuOpen(!applicationsMenuOpen);
                 }}
-                className={`nav-link inline-flex items-center justify-center rounded-lg px-3 py-2 text-base tracking-normal transition-all duration-200 cursor-pointer ${applicationsMenuOpen || activeNav === 'industries'
+                className={`nav-link inline-flex items-center justify-center rounded-lg px-2.5 py-1.5 md:px-3 md:py-2 text-sm lg:text-base tracking-normal transition-all duration-200 cursor-pointer ${applicationsMenuOpen || activeNav === 'industries'
                   ? 'active text-[#089EC2] dark:text-[#2DD4F0] font-semibold'
                   : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] font-medium'
                   }`}
@@ -297,7 +322,7 @@ export default function Header() {
                   closeOtherMenus('about');
                   setAboutMenuOpen(!aboutMenuOpen);
                 }}
-                className={`nav-link inline-flex items-center justify-center rounded-lg px-3 py-2 text-base tracking-normal transition-all duration-200 cursor-pointer ${aboutMenuOpen || activeNav === 'company'
+                className={`nav-link inline-flex items-center justify-center rounded-lg px-2.5 py-1.5 md:px-3 md:py-2 text-sm lg:text-base tracking-normal transition-all duration-200 cursor-pointer ${aboutMenuOpen || activeNav === 'company'
                   ? 'active text-[#089EC2] dark:text-[#2DD4F0] font-semibold'
                   : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] font-medium'
                   }`}
@@ -313,7 +338,7 @@ export default function Header() {
             <a
               href="#contact"
               onClick={closeAllMenus}
-              className={`nav-link inline-flex items-center justify-center rounded-lg px-3 py-2 text-base tracking-normal transition-all duration-200 cursor-pointer ${activeNav === 'contact'
+              className={`nav-link inline-flex items-center justify-center rounded-lg px-2.5 py-1.5 md:px-3 md:py-2 text-sm lg:text-base tracking-normal transition-all duration-200 cursor-pointer ${activeNav === 'contact'
                 ? 'active text-[#089EC2] dark:text-[#2DD4F0] font-semibold'
                 : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] font-medium'
                 }`}
@@ -323,15 +348,23 @@ export default function Header() {
             </a>
           </nav>
 
-          {/* Mobile Hamburger Button */}
-          <div className="flex items-center lg:hidden">
+          {/* Mobile Right Controls: Center-Right Theme Toggle & Extreme-Right Hamburger */}
+          <div className="flex items-center gap-2 sm:gap-3 md:hidden ml-auto shrink-0 flex-nowrap">
+            {/* Center-Right: Compact Pill Theme Toggle */}
+            <ThemeToggle variant="navbar" />
+
+            {/* Extreme-Right: Dark 3-line Hamburger Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2.5 text-slate-700 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] rounded-xl bg-slate-100 dark:bg-[#17264A]/60 border border-slate-200 dark:border-[#24355A] focus:outline-none focus:ring-2 focus:ring-[#2DD4F0] cursor-pointer transition-colors"
+              className="p-2 sm:p-2.5 text-slate-800 dark:text-white hover:text-[#089EC2] dark:hover:text-[#2DD4F0] rounded-xl bg-slate-100 hover:bg-slate-200/80 dark:bg-[#17264A] dark:hover:bg-[#1E3360] border border-slate-200 dark:border-[#24355A] focus:outline-none focus:ring-2 focus:ring-[#089EC2] dark:focus:ring-[#2DD4F0] cursor-pointer transition-colors flex items-center justify-center shrink-0"
               aria-label="Toggle navigation menu"
               aria-expanded={mobileMenuOpen}
             >
-              {mobileMenuOpen ? <X className="w-5 h-5 text-slate-900 dark:text-white" /> : <Menu className="w-5 h-5" />}
+              {mobileMenuOpen ? (
+                <X className="w-5 h-5 text-slate-800 dark:text-white" strokeWidth={2.2} />
+              ) : (
+                <Menu className="w-5 h-5 text-slate-800 dark:text-white" strokeWidth={2.2} />
+              )}
             </button>
           </div>
 
@@ -339,20 +372,7 @@ export default function Header() {
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="lg:hidden mt-2.5 w-full px-4 py-4 rounded-2xl bg-white/98 dark:bg-[#0D1733]/98 backdrop-blur-2xl border border-slate-200 dark:border-[#24355A] shadow-2xl text-slate-800 dark:text-white animate-in fade-in slide-in-from-top-2 duration-200">
-            {/* Mobile Drawer Header with Logo & Tagline */}
-            <div className="pb-3 mb-3 border-b border-slate-200 dark:border-[#24355A] flex items-center justify-between">
-              <Logo
-                showTagline={true}
-                tagline="EMBEDDED & EDGE AI"
-                imgClassName="w-10 h-10 sm:w-11 sm:h-11"
-                onClick={() => setMobileMenuOpen(false)}
-              />
-              <span className="text-[10px] font-mono text-[#089EC2] dark:text-[#2DD4F0] uppercase tracking-wider px-2.5 py-1 rounded-full bg-slate-100 dark:bg-[#17264A] border border-slate-200 dark:border-[#24355A] font-semibold">
-                Menu
-              </span>
-            </div>
-
+          <div className="md:hidden mt-2 w-full max-h-[calc(100vh-90px)] overflow-y-auto p-3 sm:p-4 rounded-2xl bg-white/98 dark:bg-[#0D1733]/98 backdrop-blur-2xl border border-slate-200 dark:border-[#24355A] shadow-2xl text-slate-800 dark:text-white animate-in fade-in slide-in-from-top-2 duration-200">
             {/* 6 Mobile Navigation Links in exact order */}
             <div className="flex flex-col space-y-2">
               {/* 1. Home */}

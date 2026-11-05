@@ -8,7 +8,7 @@ import ContactSection from '../components/contact/ContactSection';
 
 export default function Home() {
   return (
-    <div className="flex flex-col w-full bg-[var(--page-bg)] text-[var(--text-primary)] transition-colors duration-300">
+    <div className="flex flex-col w-full max-w-full min-w-0 overflow-x-hidden bg-[var(--page-bg)] text-[var(--text-primary)] transition-colors duration-300">
       <Hero />
       <Products />
       <Applications />

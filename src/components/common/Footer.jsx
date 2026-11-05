@@ -136,7 +136,7 @@ export default function Footer() {
           </div>
 
           {/* Certifications and Social Icons */}
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
             {/* Cert Pills */}
             <div className="flex items-center gap-2 text-[10px] font-mono text-slate-700 dark:text-white/60 border border-[#DBE4F0] dark:border-[#24355A] px-3 py-1 rounded-full bg-white dark:bg-[#17264A] shadow-xs">
               <ShieldCheck className="w-3.5 h-3.5 text-[#089EC2] dark:text-[#2DD4F0]" />

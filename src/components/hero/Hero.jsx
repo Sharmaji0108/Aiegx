@@ -62,6 +62,33 @@ export default function Hero() {
 
   const exitTimeoutRef = useRef(null);
   const enterTimeoutRef = useRef(null);
+  const touchStartX = useRef(null);
+  const touchEndX = useRef(null);
+
+  const handleTouchStart = (e) => {
+    if (e.targetTouches && e.targetTouches[0]) {
+      touchStartX.current = e.targetTouches[0].clientX;
+      touchEndX.current = e.targetTouches[0].clientX;
+    }
+  };
+
+  const handleTouchMove = (e) => {
+    if (e.targetTouches && e.targetTouches[0]) {
+      touchEndX.current = e.targetTouches[0].clientX;
+    }
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX.current === null || touchEndX.current === null) return;
+    const distance = touchStartX.current - touchEndX.current;
+    if (distance > 45) {
+      goToNextSlide();
+    } else if (distance < -45) {
+      goToPrevSlide();
+    }
+    touchStartX.current = null;
+    touchEndX.current = null;
+  };
 
   // Accessibility: detect prefers-reduced-motion
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(() => {
@@ -210,11 +237,14 @@ export default function Hero() {
       onMouseLeave={() => setIsHovered(false)}
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
-      className="relative pt-[88px] pb-4 sm:pt-[102px] sm:pb-5 lg:pt-[118px] lg:pb-6 overflow-hidden bg-[#F5F8FC] dark:bg-[#0D1733] select-none transition-colors duration-300"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+      className="relative pt-[88px] pb-4 sm:pt-[102px] sm:pb-5 lg:pt-[118px] lg:pb-6 overflow-hidden w-full max-w-full min-w-0 isolate bg-[#F5F8FC] dark:bg-[#0D1733] select-none transition-colors duration-300"
     >
       {/* Circuit-board traces & technical grid pattern overlay */}
       <svg 
-        className="absolute inset-0 w-full h-full pointer-events-none opacity-30 dark:opacity-30" 
+        className="absolute inset-0 w-full h-full pointer-events-none opacity-30 dark:opacity-30 overflow-hidden" 
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true"
       >
@@ -241,17 +271,17 @@ export default function Hero() {
 
       {/* Ambient Radial Under-Glow Lights */}
       <div 
-        className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[550px] sm:w-[750px] h-[450px] bg-gradient-to-tr from-[#3285FF]/20 via-[#2DD4F0]/15 to-transparent rounded-full blur-[140px] pointer-events-none -z-10" 
+        className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[550px] lg:w-[750px] h-[320px] sm:h-[450px] bg-gradient-to-tr from-[#3285FF]/20 via-[#2DD4F0]/15 to-transparent rounded-full blur-[100px] sm:blur-[140px] pointer-events-none -z-10 max-w-full overflow-hidden" 
       />
       <div 
-        className="absolute top-1/3 right-10 w-[500px] h-[500px] bg-gradient-to-bl from-[#2DD4F0]/20 via-[#3285FF]/15 to-transparent rounded-full blur-[140px] pointer-events-none -z-10" 
+        className="absolute top-1/3 right-0 sm:right-10 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-gradient-to-bl from-[#2DD4F0]/20 via-[#3285FF]/15 to-transparent rounded-full blur-[100px] sm:blur-[140px] pointer-events-none -z-10 max-w-full overflow-hidden" 
       />
 
       {/* Previous Slide Arrow Button */}
       <button
         type="button"
         onClick={goToPrevSlide}
-        className="absolute left-2.5 sm:left-6 lg:left-8 top-1/2 -translate-y-1/2 z-20 p-2.5 sm:p-3.5 rounded-full bg-white/90 dark:bg-[#17264A]/90 hover:bg-white dark:hover:bg-[#1E3360] border border-slate-200 dark:border-[#24355A] hover:border-[#089EC2] dark:hover:border-[#2DD4F0] text-slate-700 dark:text-white/80 hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-all duration-200 shadow-md hover:shadow-lg hover:shadow-[#2DD4F0]/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2DD4F0] cursor-pointer"
+        className="absolute left-1.5 sm:left-6 lg:left-8 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-3.5 rounded-full bg-white/90 dark:bg-[#17264A]/90 hover:bg-white dark:hover:bg-[#1E3360] border border-slate-200 dark:border-[#24355A] hover:border-[#089EC2] dark:hover:border-[#2DD4F0] text-slate-700 dark:text-white/80 hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-all duration-200 shadow-md hover:shadow-lg hover:shadow-[#2DD4F0]/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2DD4F0] cursor-pointer"
         aria-label="Previous slide"
         title="Previous slide"
       >
@@ -262,7 +292,7 @@ export default function Hero() {
       <button
         type="button"
         onClick={goToNextSlide}
-        className="absolute right-2.5 sm:right-6 lg:right-8 top-1/2 -translate-y-1/2 z-20 p-2.5 sm:p-3.5 rounded-full bg-white/90 dark:bg-[#17264A]/90 hover:bg-white dark:hover:bg-[#1E3360] border border-slate-200 dark:border-[#24355A] hover:border-[#089EC2] dark:hover:border-[#2DD4F0] text-slate-700 dark:text-white/80 hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-all duration-200 shadow-md hover:shadow-lg hover:shadow-[#2DD4F0]/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2DD4F0] cursor-pointer"
+        className="absolute right-1.5 sm:right-6 lg:right-8 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-3.5 rounded-full bg-white/90 dark:bg-[#17264A]/90 hover:bg-white dark:hover:bg-[#1E3360] border border-slate-200 dark:border-[#24355A] hover:border-[#089EC2] dark:hover:border-[#2DD4F0] text-slate-700 dark:text-white/80 hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-all duration-200 shadow-md hover:shadow-lg hover:shadow-[#2DD4F0]/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2DD4F0] cursor-pointer"
         aria-label="Next slide"
         title="Next slide"
       >
@@ -271,14 +301,14 @@ export default function Hero() {
 
       <div className="section-container relative">
         {/* Main Two-Column Hero Grid: Left Column Text, Right Column Hardware Image */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center min-h-[460px] px-2 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center min-h-[420px] lg:min-h-[460px] w-full max-w-full min-w-0 px-2 sm:px-6 lg:px-8">
           
           {/* Left Column: Heading, Description, and CTA Button (7 cols) */}
-          <div className="lg:col-span-7 flex flex-col items-start z-10">
+          <div className="lg:col-span-7 flex flex-col items-start z-10 w-full max-w-full min-w-0">
             
             {/* Sliding Hero Text Container with Stable Dimensions */}
             <div 
-              className="w-full min-h-[260px] sm:min-h-[240px] flex flex-col justify-start"
+              className="w-full max-w-full min-w-0 min-h-[220px] sm:min-h-[240px] flex flex-col justify-start overflow-hidden"
               aria-live="polite"
               aria-atomic="true"
             >
@@ -290,12 +320,12 @@ export default function Hero() {
                 </div>
 
                 {/* Heading */}
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#14213D] dark:text-[#F8FAFC] leading-[1.18] mb-5 max-w-2xl">
+                <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#14213D] dark:text-[#F8FAFC] leading-[1.2] mb-3 sm:mb-5 max-w-2xl break-words">
                   {current.heading}
                 </h1>
 
                 {/* Description */}
-                <p className="text-base sm:text-lg text-[#52627C] dark:text-[#AAB6D0] leading-relaxed max-w-2xl font-normal">
+                <p className="text-sm sm:text-base lg:text-lg text-[#52627C] dark:text-[#AAB6D0] leading-relaxed max-w-2xl font-normal break-words">
                   {current.description}
                 </p>
               </div>
@@ -319,7 +349,7 @@ export default function Hero() {
 
           {/* Right Column: Large Hardware Product Image (5 cols) */}
           {/* Frameless presentation, cleanly floating with soft under-glow and horizontal transition */}
-          <div className="lg:col-span-5 relative flex items-center justify-center min-h-[360px] sm:min-h-[420px] lg:min-h-[480px]">
+          <div className="lg:col-span-5 relative flex items-center justify-center min-h-[280px] sm:min-h-[380px] lg:min-h-[480px] w-full max-w-full min-w-0 overflow-hidden">
             
             {/* Ambient Radial Backlight Glow specifically positioned behind hardware */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none -z-10">
@@ -327,19 +357,17 @@ export default function Hero() {
             </div>
 
             {/* The Hardware Product Image — Frameless and Proportioned */}
-            <div className={`w-full flex items-center justify-center transform will-change-[transform,opacity] ${getImageTransitionClass()}`}>
+            <div className={`w-full max-w-full flex items-center justify-center overflow-hidden transform will-change-[transform,opacity] ${getImageTransitionClass()}`}>
                 <img
                   key={current.id}
                   src={current.image}
                   alt={current.alt}
-                  width={1024}
-                  height={1024}
                   onError={(e) => {
                     if (current.fallbackImage && e.currentTarget.src !== current.fallbackImage) {
                       e.currentTarget.src = current.fallbackImage;
                     }
                   }}
-                  className="max-h-[340px] sm:max-h-[420px] lg:max-h-[460px] w-auto max-w-full object-contain rounded-2xl drop-shadow-[0_20px_35px_rgba(0,0,0,0.7)] transition-transform duration-500 hover:scale-102"
+                  className="max-h-[260px] sm:max-h-[380px] lg:max-h-[460px] w-auto max-w-full h-auto object-contain rounded-2xl drop-shadow-[0_16px_30px_rgba(0,0,0,0.6)] transition-transform duration-500 hover:scale-102"
                   loading="eager"
                 />
             </div>

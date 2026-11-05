@@ -54,9 +54,9 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F4F8FD] dark:bg-[#0D1733] text-[#0F172A] dark:text-[#F8FAFC] flex flex-col justify-between transition-colors duration-300">
+    <div className="min-h-screen w-full max-w-full overflow-x-hidden min-w-0 bg-[#F4F8FD] dark:bg-[#0D1733] text-[#0F172A] dark:text-[#F8FAFC] flex flex-col justify-between transition-colors duration-300">
       <Header />
-      <main className="flex-1">
+      <main className="flex-1 w-full max-w-full overflow-x-hidden min-w-0">
         {renderContent()}
       </main>
       <Footer />

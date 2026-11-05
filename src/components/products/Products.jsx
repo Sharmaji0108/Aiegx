@@ -186,27 +186,22 @@ export default function Products() {
           }
           description="High-reliability System-on-Modules and single-board computers powered by Renesas RZ processors for edge computing and industrial control."
           rightContent={
-            <div className="flex-shrink-0 w-full xl:w-auto flex flex-wrap lg:flex-nowrap items-center justify-between xl:justify-end gap-y-4">
+            <div className="w-full xl:w-auto grid grid-cols-2 sm:grid-cols-4 xl:flex xl:flex-nowrap items-center gap-2 sm:gap-3">
               {[
                 { icon: Cpu, title: 'Renesas RZ Family', sub: 'Powered Platforms' },
                 { icon: Layers, title: 'Multiple', sub: 'Form Factors' },
                 { icon: ShieldCheck, title: 'Industrial Grade', sub: 'Rugged & Reliable' },
                 { icon: Clock, title: 'Long Product', sub: 'Lifecycle Support' },
               ].map(({ icon: Icon, title, sub }, idx, arr) => (
-                <React.Fragment key={title}>
-                  <div className="flex items-center gap-2 px-1 sm:px-1.5 xl:px-2 py-1 min-w-0 flex-1 lg:flex-initial">
-                    <div className="flex-shrink-0 w-9 h-9 rounded-xl bg-[#E2EEFB] dark:bg-[#1A2C52] border border-[#C5DDF5] dark:border-[#244277] flex items-center justify-center shadow-xs">
-                      <Icon className="w-4.5 h-4.5 text-[#089EC2] dark:text-[#2DD4F0]" />
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-[12.5px] xl:text-[13px] font-bold text-[#14213D] dark:text-[#F8FAFC] leading-snug tracking-tight whitespace-nowrap">{title}</p>
-                      <p className="text-[11px] xl:text-[11.5px] text-[#52627C] dark:text-[#AAB6D0] leading-snug mt-0.5 whitespace-nowrap">{sub}</p>
-                    </div>
+                <div key={title} className="flex items-center gap-2 px-1 sm:px-1.5 xl:px-2 py-1 min-w-0">
+                  <div className="flex-shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-[#E2EEFB] dark:bg-[#1A2C52] border border-[#C5DDF5] dark:border-[#244277] flex items-center justify-center shadow-xs">
+                    <Icon className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#089EC2] dark:text-[#2DD4F0]" />
                   </div>
-                  {idx < arr.length - 1 && (
-                    <div className="hidden lg:block w-px h-7 bg-[#D4E3F5] dark:bg-[#223660] mx-1 xl:mx-1.5 flex-shrink-0" aria-hidden="true" />
-                  )}
-                </React.Fragment>
+                  <div className="min-w-0">
+                    <p className="text-[11px] sm:text-[12.5px] xl:text-[13px] font-bold text-[#14213D] dark:text-[#F8FAFC] leading-snug tracking-tight truncate">{title}</p>
+                    <p className="text-[10px] sm:text-[11px] xl:text-[11.5px] text-[#52627C] dark:text-[#AAB6D0] leading-snug mt-0.5 truncate">{sub}</p>
+                  </div>
+                </div>
               ))}
             </div>
           }

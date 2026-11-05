@@ -136,8 +136,8 @@ export default function TiBrand() {
         </svg>
 
         {/* Ambient Radial Glow Lights */}
-        <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[550px] sm:w-[750px] h-[450px] bg-gradient-to-tr from-[#3478F6]/25 via-[#42D9F5]/15 to-transparent rounded-full blur-[140px] pointer-events-none -z-10" />
-        <div className="absolute top-1/3 right-10 w-[420px] h-[420px] bg-gradient-to-bl from-[#3478F6]/20 via-[#42D9F5]/10 to-transparent rounded-full blur-[130px] pointer-events-none -z-10" />
+        <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[550px] lg:w-[750px] h-[320px] sm:h-[450px] max-w-full overflow-hidden bg-gradient-to-tr from-[#3478F6]/25 via-[#42D9F5]/15 to-transparent rounded-full blur-[140px] pointer-events-none -z-10" />
+        <div className="absolute top-1/3 right-10 w-[300px] sm:w-[420px] h-[300px] sm:h-[420px] max-w-full overflow-hidden bg-gradient-to-bl from-[#3478F6]/20 via-[#42D9F5]/10 to-transparent rounded-full blur-[130px] pointer-events-none -z-10" />
 
         {/* Large Outer Section Container */}
         <div className="section-container relative">
@@ -281,7 +281,7 @@ export default function TiBrand() {
          ========================================================================= */}
       <section 
         id="am69" 
-        className="relative py-4 sm:py-5 lg:py-6 overflow-hidden bg-[#101936] text-white"
+        className="relative py-4 sm:py-5 lg:py-6 overflow-hidden w-full max-w-full min-w-0 isolate bg-[#101936] text-white"
       >
         {/* Section Content Wrapper */}
         <div className="section-container relative">
@@ -463,7 +463,7 @@ export default function TiBrand() {
          ========================================================================= */}
       <section 
         id="am62" 
-        className="relative py-4 sm:py-5 lg:py-6 overflow-hidden bg-gradient-to-b from-[#101936] via-[#122047] to-[#101936] text-white"
+        className="relative py-4 sm:py-5 lg:py-6 overflow-hidden w-full max-w-full min-w-0 isolate bg-gradient-to-b from-[#101936] via-[#122047] to-[#101936] text-white"
       >
         {/* Section Content Wrapper */}
         <div className="section-container relative">

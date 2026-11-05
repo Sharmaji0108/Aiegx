@@ -50,15 +50,40 @@
   }
 
   html {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+    box-sizing: border-box;
     transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   body {
+    width: 100%;
+    max-width: 100vw;
+    min-width: 0;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    position: relative;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     background-color: var(--page-bg);
     color: var(--text-primary);
-    overflow-x: hidden;
     transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  #root {
+    width: 100%;
+    max-width: 100vw;
+    min-width: 0;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  img, svg, video, canvas, audio, iframe, embed, object {
+    max-width: 100%;
   }
 
   code,
@@ -132,8 +157,9 @@ html.dark .platform-subtitle {
    responsive margins, without outer boxed borders, radius, or backgrounds.
    ========================================================================== */
 .section-container {
-  width: calc(100% - 32px);
+  width: calc(100% - 24px);
   max-width: 1720px;
+  min-width: 0;
   margin-inline: auto;
   border: none !important;
   border-radius: 0 !important;
@@ -146,6 +172,12 @@ html.dark .platform-subtitle {
   z-index: 10;
 }
 
+@media (max-width: 360px) {
+  .section-container {
+    width: calc(100% - 16px);
+  }
+}
+
 [data-theme="dark"] .section-container,
 html.dark .section-container {
   background: transparent !important;
@@ -156,7 +188,7 @@ html.dark .section-container {
 
 @media (min-width: 640px) {
   .section-container {
-    width: calc(100% - 48px);
+    width: calc(100% - 40px);
     padding: 0;
   }
 }
@@ -546,8 +578,8 @@ header nav .nav-button svg {
 }
 
 /* Hover state: gradient bg, white text */
-header nav .nav-link:not(.nav-button--active):hover,
-header nav .nav-button:not(.nav-button--active):hover {
+header nav .nav-link:not(.nav-button--active):not(.active):hover,
+header nav .nav-button:not(.nav-button--active):not(.active):hover {
   background-color: transparent !important;
   color: #FFFFFF !important;
   border-color: transparent !important;
@@ -560,17 +592,17 @@ header nav .nav-button:not(.nav-button--active):hover::before {
   opacity: 1;
 }
 
-/* In dark mode, same defaults */
+/* In dark mode: dark sleek background, light crisp text, matching border */
 html.dark header nav .nav-link,
 html.dark header nav .nav-button {
-  background-color: #FFFFFF !important;
-  color: #0D1733 !important;
-  border-color: rgba(255, 255, 255, 0.85) !important;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  background-color: #17264A !important;
+  color: #F8FAFC !important;
+  border-color: #24355A !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
 }
 
-html.dark header nav .nav-link:not(.nav-button--active):hover,
-html.dark header nav .nav-button:not(.nav-button--active):hover {
+html.dark header nav .nav-link:not(.nav-button--active):not(.active):hover,
+html.dark header nav .nav-button:not(.nav-button--active):not(.active):hover {
   background-color: transparent !important;
   color: #FFFFFF !important;
   border-color: transparent !important;
@@ -745,12 +777,10 @@ html.light ::-webkit-scrollbar-thumb:hover {
 
 /* ==========================================================================
    GLOBAL SECTION HEADING CONTAINER GRADIENT BANNER
-   - Pure white on left (0-70%)
-   - Subtle, soft pastel cyan shading starting around 70% (78-86%)
-   - Smooth transition into soft pastel blue toward right edge (94-100%)
-   - 40-50% reduced saturation and intensity, avoiding harsh glows or vivid colors
-   - Subtle 3px soft pastel cyan-to-blue gradient bottom border:
-     Left: #8CD3DC, Right: #8CB3ED
+   - Soft, continuous white-to-light-ice-blue gradient background matching reference
+   - Clean, uniform 1px rounded border all around (no bottom cut-off)
+   - Left-aligned eyebrow, dual-tone bold heading (dark navy + vibrant blue span), and readable description
+   - Futuristic subtle flowing waves and luminous nodes on the right
    ========================================================================== */
 .section-heading-container,
 .hardware-platforms-heading-container {
@@ -759,63 +789,41 @@ html.light ::-webkit-scrollbar-thumb:hover {
   margin-bottom: 1.25rem !important;
   /* 20px clean gap to cards below */
   background: linear-gradient(90deg,
-      #FFFFFF 0%,
-      #FFFFFF 70%,
-      #F7FBFE 78%,
-      #ECF5FC 86%,
-      #E1F0FA 94%,
-      #D6EBF8 100%) !important;
+      #F8FAFD 0%,
+      #F1F6FD 30%,
+      #E5F0FC 65%,
+      #CCE4FC 100%) !important;
   border: 1px solid #DCE6F3 !important;
-  border-bottom: none !important;
-  box-shadow: 0 4px 20px rgba(50, 133, 255, 0.08) !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 4px 20px rgba(50, 133, 255, 0.06) !important;
 }
 
 @media (max-width: 639px) {
-
   .section-heading-container,
   .hardware-platforms-heading-container {
     margin-bottom: 1rem !important;
     /* 16px clean gap on mobile */
+    border-radius: 0.875rem !important;
   }
 }
 
+/* Remove intrusive 3px bottom bar to match clean uniform card border in reference */
 .section-heading-container::after,
 .hardware-platforms-heading-container::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 3px !important;
-  background: linear-gradient(90deg,
-      #8CD3DC 0%,
-      #8CB3ED 100%) !important;
-  pointer-events: none;
-  z-index: 10;
+  display: none !important;
 }
 
 html.dark .section-heading-container,
 html.dark .hardware-platforms-heading-container {
   background: linear-gradient(
     90deg,
-    #101936 0%,
-    #101936 68%,
-    #12224c 78%,
-    #152d62 88%,
-    #173875 100%
+    #0E172E 0%,
+    #101B37 35%,
+    #13254E 70%,
+    #163268 100%
   ) !important;
   border-color: #24355A !important;
-  border-bottom: none !important;
-  box-shadow: 0 4px 20px rgba(45, 212, 240, 0.10) !important;
-}
-
-html.dark .section-heading-container::after,
-html.dark .hardware-platforms-heading-container::after {
-  background: linear-gradient(
-    90deg,
-    #2DD4F0 0%,
-    #3285FF 100%
-  ) !important;
+  box-shadow: 0 4px 20px rgba(45, 212, 240, 0.08) !important;
 }
 
 .section-heading-container > *:not(.section-heading-graphic) {
@@ -828,6 +836,28 @@ html.dark .section-heading-container h2,
 html.dark .section-heading-container h3,
 html.dark .hardware-platforms-heading-container h2 {
   color: #F8FAFC !important;
+}
+
+/* Dual-tone blue span styling inside section heading */
+.section-heading-container h1 span,
+.section-heading-container h2 span,
+.section-heading-container h3 span,
+.hardware-platforms-heading-container h2 span {
+  color: #1672E8 !important;
+  background: linear-gradient(90deg, #0284C7 0%, #3285FF 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  display: inline !important;
+}
+
+html.dark .section-heading-container h1 span,
+html.dark .section-heading-container h2 span,
+html.dark .section-heading-container h3 span,
+html.dark .hardware-platforms-heading-container h2 span {
+  color: #2DD4F0 !important;
+  background: linear-gradient(90deg, #2DD4F0 0%, #38BDF8 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
 }
 
 /* ==========================================================================
@@ -902,6 +932,29 @@ html.light .explore-btn:hover * {
   color: #0D1733 !important;
 }
 
+/* Span highlight inside section headings always retains bright blue / cyan accent */
+.section-heading-container h1 span,
+.section-heading-container h2 span,
+.section-heading-container h3 span,
+.hardware-platforms-heading-container h2 span {
+  color: #1672E8 !important;
+  background: linear-gradient(90deg, #0284C7 0%, #3285FF 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  display: inline !important;
+}
+
+html.dark .section-heading-container h1 span,
+html.dark .section-heading-container h2 span,
+html.dark .section-heading-container h3 span,
+html.dark .hardware-platforms-heading-container h2 span {
+  color: #2DD4F0 !important;
+  background: linear-gradient(90deg, #2DD4F0 0%, #38BDF8 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  display: inline !important;
+}
+
 /* Section heading description - Dark navy in light mode, clean slate in dark mode */
 .section-heading-description {
   color: #0D1733 !important;
@@ -916,4 +969,93 @@ html.dark .section-heading-description {
 /* Card subtitle blue � overrides global html.light p rule */
 .card-subtitle-blue {
   color: #1672E8 !important;
+}
+
+
+/* ==========================================================================
+   Industry & Engineering Capabilities Responsive Scrolling & Desktop Grid
+   - Mobile (< 1024px): Smooth continuous right-to-left marquee animation
+   - Desktop (>= 1024px): Animation disabled (none), original grid restored
+   ========================================================================== */
+
+/* Keyframe Animations */
+@keyframes industryMarqueeScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes capabilityMarqueeScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Mobile & Tablet (< 1024px): Infinite Right-to-Left Scrolling Carousel */
+@media (max-width: 1023px) {
+  .industry-marquee-track {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    white-space: nowrap !important;
+    width: max-content !important;
+    animation: industryMarqueeScroll 30s linear infinite !important;
+    will-change: transform;
+  }
+
+  .capability-marquee-track {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    white-space: nowrap !important;
+    width: max-content !important;
+    animation: capabilityMarqueeScroll 30s linear infinite !important;
+    will-change: transform;
+  }
+
+  .industry-marquee-track:hover,
+  .industry-marquee-track:focus-within,
+  .industry-marquee-track:active,
+  .capability-marquee-track:hover,
+  .capability-marquee-track:focus-within,
+  .capability-marquee-track:active {
+    animation-play-state: paused !important;
+  }
+}
+
+/* Desktop View (1024px and above): Animation Disabled & Original Grid Restored */
+@media (min-width: 1024px) {
+  .industry-carousel-viewport,
+  .capability-carousel-viewport {
+    overflow: visible !important;
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+    cursor: default !important;
+  }
+
+  .industry-marquee-track,
+  .capability-marquee-track {
+    display: block !important;
+    width: 100% !important;
+    animation: none !important;
+    transform: none !important;
+    white-space: normal !important;
+  }
+
+  .carousel-clone-track {
+    display: none !important;
+  }
+}
+
+/* Hide scrollbar utility across all browsers */
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+}
+.no-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
 }

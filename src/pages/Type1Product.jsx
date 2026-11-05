@@ -199,8 +199,8 @@ export default function Type1Product() {
         </svg>
 
         {/* Ambient Radial Glow Lights */}
-        <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[850px] h-[500px] bg-gradient-to-tr from-[#3478F6]/20 via-[#42D9F5]/15 to-transparent rounded-full blur-[140px] pointer-events-none -z-10" />
-        <div className="absolute top-1/3 right-10 w-[450px] h-[450px] bg-gradient-to-bl from-[#10B981]/15 via-[#42D9F5]/10 to-transparent rounded-full blur-[130px] pointer-events-none -z-10" />
+        <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[600px] lg:w-[850px] h-[320px] sm:h-[500px] max-w-full overflow-hidden bg-gradient-to-tr from-[#3478F6]/20 via-[#42D9F5]/15 to-transparent rounded-full blur-[140px] pointer-events-none -z-10" />
+        <div className="absolute top-1/3 right-10 w-[300px] sm:w-[450px] h-[300px] sm:h-[450px] max-w-full overflow-hidden bg-gradient-to-bl from-[#10B981]/15 via-[#42D9F5]/10 to-transparent rounded-full blur-[130px] pointer-events-none -z-10" />
 
         {/* Large Outer Section Container */}
         <div className="section-container relative">

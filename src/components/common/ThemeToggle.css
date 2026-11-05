@@ -201,3 +201,10 @@
     animation: none !important;
   }
 }
+
+/* On mobile screens, hide floating bottom-right container as toggle is docked in navbar */
+@media (max-width: 767px) {
+  .theme-switch-container {
+    display: none !important;
+  }
+}

@@ -1,20 +1,43 @@
 import React from 'react';
 import { useTheme } from '../../context/ThemeContext';
+import { Sun, Moon } from 'lucide-react';
 import './ThemeToggle.css';
 
 /**
  * Functional Day/Night Theme Switch Component
- * Fixed at bottom-right corner of the website.
- * Exact Dimensions:
- * - Width: 64px, Height: 34px, Border radius: 30px
- * - Light Track: #73C0FC | Dark Track: #183153
- * - Circular Knob: 30px x 30px, Color: #e8e8e8
- * - Yellow Sun Icon & Blue Moon Icon with smooth 400ms transition
+ * Supports:
+ * - variant="navbar": Compact pill-shaped toggle for navbar with sun/moon icon and theme label
+ * - variant="floating": Original fixed toggle widget at bottom-right
  */
-export default function ThemeToggle() {
+export default function ThemeToggle({ variant = 'floating', className = '' }) {
   const { toggleTheme, isDark } = useTheme();
 
-  // Keyboard accessibility handler for Space & Enter
+  // 1. Compact Navbar Pill Variant
+  if (variant === 'navbar') {
+    return (
+      <button
+        type="button"
+        onClick={toggleTheme}
+        className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer select-none bg-slate-100 hover:bg-slate-200/80 dark:bg-[#17264A] dark:hover:bg-[#1E3360] border border-slate-200 dark:border-[#24355A] text-slate-700 dark:text-slate-200 shadow-xs focus:outline-none focus-visible:ring-2 focus-visible:ring-[#089EC2] dark:focus-visible:ring-[#2DD4F0] shrink-0 ${className}`}
+        aria-label={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+        title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+      >
+        {isDark ? (
+          <>
+            <Moon className="w-3.5 h-3.5 text-[#2DD4F0] fill-current" />
+            <span className="text-[11px] sm:text-xs font-semibold tracking-wide">Dark</span>
+          </>
+        ) : (
+          <>
+            <Sun className="w-3.5 h-3.5 text-amber-500 fill-amber-400" />
+            <span className="text-[11px] sm:text-xs font-semibold tracking-wide text-slate-700">Light</span>
+          </>
+        )}
+      </button>
+    );
+  }
+
+  // 2. Original Floating Widget Variant (Keyboard accessibility handler for Space & Enter)
   const handleKeyDown = (e) => {
     if (e.key === ' ' || e.key === 'Enter') {
       e.preventDefault();
@@ -24,7 +47,7 @@ export default function ThemeToggle() {
 
   return (
     <div 
-      className="theme-switch-container" 
+      className={`theme-switch-container ${className}`} 
       role="region" 
       aria-label="Theme switcher"
     >
@@ -99,7 +122,7 @@ export default function ThemeToggle() {
                 <path 
                   d="M12 2V4M12 20V22M4 12H2M22 12H20M5.636 5.636L7.05 7.05M16.95 16.95L18.364 18.364M5.636 18.364L7.05 16.95M16.95 7.05L18.364 5.636" 
                   stroke="#FB8500" 
-                  strokeWidth="2" 
+                  strokeWidth="1.5" 
                   strokeLinecap="round" 
                 />
               </svg>
@@ -109,22 +132,17 @@ export default function ThemeToggle() {
             <span className="theme-switch-icon theme-switch-moon" aria-hidden={!isDark}>
               <svg 
                 viewBox="0 0 24 24" 
-                width="17" 
-                height="17" 
+                width="16" 
+                height="16" 
                 fill="none" 
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path 
-                  d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" 
+                  d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" 
                   fill="#73C0FC" 
-                  stroke="#3285FF" 
+                  stroke="#38BDF8" 
                   strokeWidth="1" 
-                  strokeLinejoin="round" 
                 />
-                {/* Moon Craters */}
-                <circle cx="10" cy="12" r="1.1" fill="#3285FF" fillOpacity="0.4" />
-                <circle cx="13" cy="15" r="1.4" fill="#3285FF" fillOpacity="0.4" />
-                <circle cx="14" cy="10" r="0.9" fill="#3285FF" fillOpacity="0.4" />
               </svg>
             </span>
 

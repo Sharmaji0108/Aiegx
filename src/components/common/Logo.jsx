@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Logo({ 
   className = '', 
-  imgClassName = 'w-11 h-11 sm:w-12 sm:h-12 lg:w-[68px] lg:h-[68px]', 
+  imgClassName = 'w-9 h-9 sm:w-11 sm:h-11 lg:w-[68px] lg:h-[68px]', 
   showText = true, 
   showTagline = true,
   tagline = 'EMBEDDED & EDGE AI',
@@ -25,7 +25,7 @@ export default function Logo({
     <a 
       href={href} 
       onClick={handleClick}
-      className={`inline-flex items-center gap-3 sm:gap-3.5 lg:gap-4 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2DD4F0] rounded-2xl p-0.5 ${className}`}
+      className={`inline-flex items-center gap-2 sm:gap-3 lg:gap-4 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2DD4F0] rounded-2xl p-0.5 ${className}`}
       aria-label="AIEGX Homepage"
     >
       {/* Official AIEGX Logo Mark: 64-72px on desktop, cleanly contained */}
@@ -40,11 +40,11 @@ export default function Logo({
       {/* Brand Wordmark & Compact Tagline */}
       {showText && (
         <div className="flex flex-col justify-center">
-          <span className="aiegx-wordmark text-[1.35rem] sm:text-2xl lg:text-[1.85rem] tracking-wider leading-none select-none">
+          <span className="aiegx-wordmark text-[1.2rem] sm:text-2xl lg:text-[1.85rem] tracking-wider leading-none select-none">
             AIEGX
           </span>
           {showTagline && (
-            <span className="text-[13px] font-mono tracking-wider sm:tracking-widest text-[#64748B] dark:text-[#AAB6D0] uppercase font-semibold mt-1 sm:mt-1.5 leading-none select-none">
+            <span className="text-[10px] sm:text-[13px] font-mono tracking-wider sm:tracking-widest text-[#64748B] dark:text-[#AAB6D0] uppercase font-semibold mt-0.5 sm:mt-1.5 leading-none select-none truncate">
               {tagline}
             </span>
           )}
