@@ -1,42 +1,40 @@
 import React from 'react';
-import { 
-  CircuitBoard, 
-  Terminal, 
-  Camera, 
-  BrainCircuit 
-} from 'lucide-react';
+import SectionHeadingContainer from '../common/SectionHeadingContainer';
 
 /**
  * Our Engineering Capabilities Component
- * Replaces the previous Final CTA section.
  * Displays four horizontally aligned engineering capability cards in one row on desktop:
- * 1. Hardware Design (SoM, SBC, and carrier board design)
- * 2. Linux / Yocto BSP & Driver Development (Embedded Linux, Yocto BSP customization, kernel and device drivers)
- * 3. Camera & Multimedia Integration (Camera interfaces, multimedia pipelines, and HW/SW integration)
- * 4. Edge AI Application Development (Edge AI deployment, model optimization, and on-device inference)
+ * 1. Hardware Design (hardware-design.png)
+ * 2. Linux / Yocto BSP & Driver Development (linux-yocto.png)
+ * 3. Camera & Multimedia Integration (camera-multimedia.png)
+ * 4. Edge AI Application Development (edge-ai.png)
  */
 export default function FinalCTA() {
   const capabilities = [
     {
       id: 'hardware-design',
       title: 'Hardware Design',
-      icon: CircuitBoard
+      image: '/images/capabilities/hardware-design.png',
+      alt: 'Photorealistic green circuit board hardware design',
     },
     {
       id: 'linux-yocto-bsp',
       title: 'Linux / Yocto BSP & Driver Development',
-      icon: Terminal
+      image: '/images/capabilities/linux-yocto.png',
+      alt: 'Linux software stack and BSP drivers on embedded board',
     },
     {
       id: 'camera-multimedia',
       title: 'Camera & Multimedia Integration',
-      icon: Camera
+      image: '/images/capabilities/camera-multimedia.png',
+      alt: 'Industrial camera hardware and multimedia pipeline showcase',
     },
     {
       id: 'edge-ai-development',
       title: 'Edge AI Application Development',
-      icon: BrainCircuit
-    }
+      image: '/images/capabilities/edge-ai.png',
+      alt: 'Futuristic edge AI compute board with holographic applications',
+    },
   ];
 
   return (
@@ -54,34 +52,40 @@ export default function FinalCTA() {
       <div className="section-container relative">
         
         {/* Section Heading */}
-        <div className="section-heading-container relative w-full mb-4 sm:mb-5 px-5 py-4 sm:px-7 sm:py-5 overflow-hidden rounded-2xl border border-[#DCE6F3] dark:border-[#24355A] shadow-[0_8px_24px_rgba(50,133,255,0.12)] dark:shadow-[0_8px_24px_rgba(45,212,240,0.12)]">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0D1733] tracking-tight">
-            Our <span className="bg-gradient-to-r from-[#2DD4F0] to-[#3285FF] bg-clip-text text-transparent drop-shadow-[0_1px_1px_rgba(13,23,51,0.30)]">Engineering Capabilities</span>
-          </h2>
-        </div>
+        <SectionHeadingContainer
+          subheading="OUR ENGINEERING CAPABILITIES"
+          heading={
+            <>
+              Our <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">Engineering Capabilities</span>
+            </>
+          }
+          description="End-to-end design, development and integration of embedded hardware, software and AI-based vision systems."
+        />
 
         {/* 4 Engineering Capability Cards in a Single Horizontal Row on Desktop */}
         {/* Responsive: 4 cols on lg, 2 cols on tablet, 1 col on mobile */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
-          {capabilities.map((item) => {
-            const Icon = item.icon;
-            return (
-              <div
-                key={item.id}
-                className="group relative rounded-2xl bg-white dark:bg-[#17264A] border border-[#DBE4F0] dark:border-[#24355A] hover:border-[#089EC2]/70 dark:hover:border-[#2DD4F0]/70 py-7 px-4 sm:py-8 sm:px-5 flex flex-col justify-center items-center text-center hover:-translate-y-1.5 hover:shadow-xl hover:shadow-[#3285FF]/10 transition-all duration-300 backdrop-blur-md shadow-xs h-full"
-              >
-                {/* Capability Icon Container */}
-                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-[#EDF2F7] dark:bg-[#101936] text-[#089EC2] dark:text-[#2DD4F0] border border-[#DBE4F0] dark:border-[#24355A] flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-gradient-to-tr group-hover:from-[#2DD4F0] group-hover:to-[#3285FF] group-hover:text-[#0D1733] group-hover:border-transparent group-hover:shadow-md group-hover:shadow-[#2DD4F0]/20 transition-all duration-300">
-                  <Icon className="w-7 h-7" />
-                </div>
-
-                {/* Capability Title Directly Below Icon */}
-                <h3 className="text-base sm:text-lg font-bold text-[#14213D] dark:text-[#F8FAFC] group-hover:text-[#089EC2] dark:group-hover:text-[#2DD4F0] transition-colors leading-snug text-center">
-                  {item.title}
-                </h3>
+          {capabilities.map((item) => (
+            <div
+              key={item.id}
+              className="group relative rounded-2xl bg-white dark:bg-[#17264A] border border-[#DBE4F0] dark:border-[#24355A] hover:border-[#089EC2]/70 dark:hover:border-[#2DD4F0]/70 p-4 sm:p-5 flex flex-col items-center text-center hover:-translate-y-1.5 hover:shadow-xl hover:shadow-[#3285FF]/10 transition-all duration-300 backdrop-blur-md shadow-xs h-full overflow-hidden"
+            >
+              {/* Capability Image Container */}
+              <div className="w-full aspect-[4/3] rounded-xl overflow-hidden mb-4 bg-slate-100 dark:bg-[#101936] border border-[#E2E8F0] dark:border-[#24355A]/80 shadow-inner">
+                <img
+                  src={item.image}
+                  alt={item.alt}
+                  loading="lazy"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+                />
               </div>
-            );
-          })}
+
+              {/* Capability Title Directly Below Image */}
+              <h3 className="text-base sm:text-lg font-bold text-[#14213D] dark:text-[#F8FAFC] group-hover:text-[#089EC2] dark:group-hover:text-[#2DD4F0] transition-colors leading-snug text-center mt-auto">
+                {item.title}
+              </h3>
+            </div>
+          ))}
         </div>
 
       </div>

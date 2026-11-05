@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SectionHeadingContainer from '../components/common/SectionHeadingContainer';
 import { 
   ChevronRight, 
   Home as HomeIcon, 
@@ -461,21 +462,20 @@ export default function NxpBrand() {
         <div className="section-container relative">
           
           {/* Section Header */}
-          <div className="section-heading-container relative w-full mb-4 sm:mb-5 px-5 py-4 sm:px-7 sm:py-5 overflow-hidden rounded-2xl border border-[#DCE6F3] dark:border-[#24355A] shadow-[0_8px_24px_rgba(50,133,255,0.12)] dark:shadow-[0_8px_24px_rgba(45,212,240,0.12)] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div>
-              <div className="inline-flex items-center gap-2 text-xs font-mono text-[#0284C7] uppercase tracking-wider mb-1 font-semibold">
-                <Cpu className="w-3.5 h-3.5" />
-                <span>NXP i.MX 9 Applications Processors</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0D1733] tracking-tight">
+          <SectionHeadingContainer
+            subheading="NXP i.MX 9 APPLICATIONS PROCESSORS"
+            heading={
+              <>
                 NXP i.MX 9 <span className="bg-gradient-to-r from-[#0284C7] to-[#3285FF] bg-clip-text text-transparent">Computer on Modules</span>
-              </h2>
-            </div>
-
-            <span className="text-xs font-mono text-slate-600 bg-white/80 border border-[#BAE6FD] px-3 py-1 rounded-full self-start sm:self-center font-semibold">
-              3 Configurations Available
-            </span>
-          </div>
+              </>
+            }
+            description="Next-generation energy-efficient modules with dedicated neural processing units for intelligent edge vision, industrial IoT, and building automation."
+            rightContent={
+              <span className="text-xs font-mono text-slate-600 dark:text-slate-300 bg-white/80 dark:bg-[#101936]/80 border border-[#BAE6FD] dark:border-[#24355A] px-3 py-1 rounded-full font-semibold">
+                3 Configurations Available
+              </span>
+            }
+          />
 
           {/* Three Product Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -595,21 +595,20 @@ export default function NxpBrand() {
         <div className="section-container relative">
           
           {/* Section Header */}
-          <div className="section-heading-container relative w-full mb-4 sm:mb-5 px-5 py-4 sm:px-7 sm:py-5 overflow-hidden rounded-2xl border border-[#DCE6F3] dark:border-[#24355A] shadow-[0_8px_24px_rgba(50,133,255,0.12)] dark:shadow-[0_8px_24px_rgba(45,212,240,0.12)] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div>
-              <div className="inline-flex items-center gap-2 text-xs font-mono text-[#0284C7] uppercase tracking-wider mb-1 font-semibold">
-                <Layers className="w-3.5 h-3.5" />
-                <span>NXP i.MX 8M Multiprocessor Lineup</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0D1733] tracking-tight">
+          <SectionHeadingContainer
+            subheading="NXP i.MX 8M MULTIPROCESSOR LINEUP"
+            heading={
+              <>
                 NXP i.MX 8M <span className="bg-gradient-to-r from-[#0284C7] to-[#3285FF] bg-clip-text text-transparent">Mini/Nano | Plus</span>
-              </h2>
-            </div>
-
-            <span className="text-xs font-mono text-slate-600 bg-white/80 border border-[#BAE6FD] px-3 py-1 rounded-full self-start sm:self-center font-semibold">
-              15+ Year Longevity Commitment
-            </span>
-          </div>
+              </>
+            }
+            description="Proven multi-core computing modules featuring advanced 4K multimedia processing, dual GPU graphics, and real-time industrial control interfaces."
+            rightContent={
+              <span className="text-xs font-mono text-slate-600 dark:text-slate-300 bg-white/80 dark:bg-[#101936]/80 border border-[#BAE6FD] dark:border-[#24355A] px-3 py-1 rounded-full font-semibold">
+                15+ Year Longevity Commitment
+              </span>
+            }
+          />
 
           {/* Three Product Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

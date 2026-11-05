@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SectionHeadingContainer from '../common/SectionHeadingContainer';
 import { 
   ArrowRight, 
   MessageSquare, 
@@ -54,11 +55,15 @@ export default function ContactSection() {
       {/* Main Section Content Wrapper */}
       <div className="section-container relative">
         {/* Section Heading Banner */}
-        <div className="section-heading-container relative w-full mb-4 sm:mb-5 px-5 py-4 sm:px-7 sm:py-5 overflow-hidden rounded-2xl border border-[#DCE6F3] dark:border-[#24355A] shadow-[0_8px_24px_rgba(50,133,255,0.12)] dark:shadow-[0_8px_24px_rgba(45,212,240,0.12)]">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0D1733] tracking-tight leading-[1.18]">
-            Let's Build Your <span className="bg-gradient-to-r from-[#2DD4F0] to-[#3285FF] bg-clip-text text-transparent drop-shadow-[0_1px_1px_rgba(13,23,51,0.30)]">Next Product</span>
-          </h2>
-        </div>
+        <SectionHeadingContainer
+          subheading="GET IN TOUCH"
+          heading={
+            <>
+              Let's Build Your <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">Next Product</span>
+            </>
+          }
+          description="Collaborate with our engineering team to design, customize, and deploy your next-generation embedded or edge AI solution."
+        />
 
         {/* Action Row: Description & Contact Us Button */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#17264A] border border-[#DBE4F0] dark:border-[#24355A] shadow-xs">

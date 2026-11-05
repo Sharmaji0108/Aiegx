@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SectionHeadingContainer from '../components/common/SectionHeadingContainer';
 import { 
   ChevronRight, 
   Home as HomeIcon, 
@@ -201,23 +202,21 @@ export default function QualcommBrand() {
         <div className="section-container relative">
           
           {/* Section Heading & Coming Soon Label */}
-          <div className="section-heading-container relative w-full mb-4 sm:mb-5 px-5 py-4 sm:px-7 sm:py-5 overflow-hidden rounded-2xl border border-[#DCE6F3] dark:border-[#24355A] shadow-[0_8px_24px_rgba(50,133,255,0.12)] dark:shadow-[0_8px_24px_rgba(45,212,240,0.12)] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div>
-              <div className="inline-flex items-center gap-2 text-xs font-mono text-[#0284C7] uppercase tracking-wider mb-1 font-semibold">
-                <Cpu className="w-3.5 h-3.5" />
-                <span>Next-Gen Robotics & Edge Compute</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0D1733] tracking-tight">
+          <SectionHeadingContainer
+            subheading="QUALCOMM SNAPDRAGON PLATFORMS"
+            heading={
+              <>
                 Dragonwing <span className="bg-gradient-to-r from-[#0284C7] to-[#3285FF] bg-clip-text text-transparent">IQ-8275</span>
-              </h2>
-            </div>
-
-            {/* Coming Soon Label */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-widest text-[#0369A1] bg-white border border-[#BAE6FD] shadow-xs uppercase self-start sm:self-center">
-              <Clock className="w-3.5 h-3.5 text-[#0284C7]" />
-              <span>Coming Soon</span>
-            </div>
-          </div>
+              </>
+            }
+            description="Heterogeneous high-throughput compute modules delivering leading-edge AI inference, multi-camera ISP pipelines, and high-performance connectivity for robotics."
+            rightContent={
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-widest text-[#0369A1] dark:text-[#2DD4F0] bg-white dark:bg-[#101936] border border-[#BAE6FD] dark:border-[#24355A] shadow-xs uppercase">
+                <Clock className="w-3.5 h-3.5 text-[#0284C7] dark:text-[#2DD4F0]" />
+                <span>Coming Soon</span>
+              </div>
+            }
+          />
 
           {/* Main Product Showcase Card — Dark Navy Glass Panel */}
           <div className="bg-[#121c3d]/80 border border-white/10 backdrop-blur-xl rounded-3xl p-6 sm:p-10 lg:p-12 shadow-2xl shadow-black/40 mb-16 relative overflow-hidden">

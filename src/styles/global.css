@@ -3,6 +3,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {
+
   :root,
   [data-theme="dark"],
   html.dark {
@@ -60,13 +61,30 @@
     transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  code, pre, .font-mono {
+  code,
+  pre,
+  .font-mono {
     font-family: 'JetBrains Mono', monospace;
   }
 
   .font-serif {
     font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, Cambria, 'Times New Roman', Times, serif;
   }
+}
+
+.platform-subtitle {
+  color: #1672E8 !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  line-height: 1.35 !important;
+  margin-top: 2px !important;
+  margin-bottom: 8px !important;
+}
+
+html.dark .platform-subtitle {
+  color: #2DD4F0 !important;
 }
 
 .aiegx-wordmark {
@@ -177,7 +195,7 @@ html.dark .section-container {
 /* Background Cyber Grid */
 .cyber-grid-bg {
   background-size: 40px 40px;
-  background-image: 
+  background-image:
     linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
 }
@@ -189,19 +207,25 @@ html.dark .section-container {
 
 /* Floating Animations */
 @keyframes float-gentle {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
+
   50% {
     transform: translateY(-10px) rotate(0.5deg);
   }
 }
 
 @keyframes pulse-glow {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.6;
     transform: scale(1);
   }
+
   50% {
     opacity: 0.95;
     transform: scale(1.05);
@@ -212,6 +236,7 @@ html.dark .section-container {
   from {
     transform: rotate(0deg) translateX(120px) rotate(0deg);
   }
+
   to {
     transform: rotate(360deg) translateX(120px) rotate(-360deg);
   }
@@ -333,6 +358,11 @@ html.light h6 {
 
 html.light p {
   color: #4A5D78 !important;
+}
+
+/* Allow inline style color overrides on <p> elements (e.g. card subtitles) */
+html.light p[style*='color'] {
+  color: revert !important;
 }
 
 /* Primary text on surfaces */
@@ -553,25 +583,31 @@ html.dark header nav .nav-button:not(.nav-button--active):hover::before {
   opacity: 1;
 }
 
-/* Selected state (click-only): cyan-blue background, white text, subtle cyan shadow */
+/* Active state: show gradient via ::before, same as hover */
+header nav .nav-link.nav-button--active::before,
+header nav .nav-button.nav-button--active::before {
+  opacity: 1 !important;
+}
+
+/* Selected state: same gradient as hover — #0AA6C6 to #3285FF, white text */
 header nav .nav-link.nav-button--active,
 header nav .nav-button.nav-button--active,
 html.light header nav .nav-link.nav-button--active,
 html.dark header nav .nav-link.nav-button--active {
-  background-color: #089EC2 !important;
+  background: linear-gradient(to right, #0AA6C6, #3285FF) !important;
   color: #FFFFFF !important;
   font-weight: 600;
-  border: 1px solid #2DD4F0 !important;
-  box-shadow: 0 2px 10px rgba(8, 158, 194, 0.4), 0 0 14px rgba(8, 158, 194, 0.28) !important;
+  border: 1px solid transparent !important;
+  box-shadow: 0 4px 16px rgba(50, 133, 255, 0.35) !important;
 }
 
 header nav .nav-link.nav-button--active:hover,
 header nav .nav-button.nav-button--active:hover,
 html.dark header nav .nav-link.nav-button--active:hover {
-  background-color: #078DAE !important;
+  background: linear-gradient(to right, #0AA6C6, #3285FF) !important;
   color: #FFFFFF !important;
-  border-color: #2DD4F0 !important;
-  box-shadow: 0 4px 14px rgba(8, 158, 194, 0.5), 0 0 18px rgba(45, 212, 240, 0.4) !important;
+  border-color: transparent !important;
+  box-shadow: 0 6px 20px rgba(50, 133, 255, 0.45) !important;
   transform: translateY(-1px);
 }
 
@@ -587,6 +623,7 @@ html.dark header nav .nav-button:focus-visible {
   outline: 2px solid #2DD4F0 !important;
   outline-offset: 2px !important;
 }
+
 /* Dropdown Mega Menus & Dialogs */
 .mega-menu-scroll {
   scrollbar-width: thin;
@@ -643,7 +680,7 @@ html.light .fixed.inset-0 .bg-\[\#101936\] {
 
 /* Cyber Grid & Dots in Light Mode */
 html.light .cyber-grid-bg {
-  background-image: 
+  background-image:
     linear-gradient(to right, rgba(37, 99, 235, 0.05) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(37, 99, 235, 0.05) 1px, transparent 1px) !important;
 }
@@ -719,25 +756,26 @@ html.light ::-webkit-scrollbar-thumb:hover {
 .hardware-platforms-heading-container {
   position: relative;
   overflow: hidden;
-  margin-bottom: 1.25rem !important; /* 20px clean gap to cards below */
-  background: linear-gradient(
-    90deg,
-    #FFFFFF 0%,
-    #FFFFFF 70%,
-    #F3FAFD 78%,
-    #E1F2FA 86%,
-    #D2E7F8 94%,
-    #C5DDF5 100%
-  ) !important;
+  margin-bottom: 1.25rem !important;
+  /* 20px clean gap to cards below */
+  background: linear-gradient(90deg,
+      #FFFFFF 0%,
+      #FFFFFF 70%,
+      #F7FBFE 78%,
+      #ECF5FC 86%,
+      #E1F0FA 94%,
+      #D6EBF8 100%) !important;
   border: 1px solid #DCE6F3 !important;
   border-bottom: none !important;
   box-shadow: 0 4px 20px rgba(50, 133, 255, 0.08) !important;
 }
 
 @media (max-width: 639px) {
+
   .section-heading-container,
   .hardware-platforms-heading-container {
-    margin-bottom: 1rem !important; /* 16px clean gap on mobile */
+    margin-bottom: 1rem !important;
+    /* 16px clean gap on mobile */
   }
 }
 
@@ -749,20 +787,47 @@ html.light ::-webkit-scrollbar-thumb:hover {
   left: 0;
   width: 100%;
   height: 3px !important;
-  background: linear-gradient(
-    90deg,
-    #8CD3DC 0%,
-    #8CB3ED 100%
-  ) !important;
+  background: linear-gradient(90deg,
+      #8CD3DC 0%,
+      #8CB3ED 100%) !important;
   pointer-events: none;
   z-index: 10;
 }
 
 html.dark .section-heading-container,
 html.dark .hardware-platforms-heading-container {
+  background: linear-gradient(
+    90deg,
+    #101936 0%,
+    #101936 68%,
+    #12224c 78%,
+    #152d62 88%,
+    #173875 100%
+  ) !important;
   border-color: #24355A !important;
   border-bottom: none !important;
   box-shadow: 0 4px 20px rgba(45, 212, 240, 0.10) !important;
+}
+
+html.dark .section-heading-container::after,
+html.dark .hardware-platforms-heading-container::after {
+  background: linear-gradient(
+    90deg,
+    #2DD4F0 0%,
+    #3285FF 100%
+  ) !important;
+}
+
+.section-heading-container > *:not(.section-heading-graphic) {
+  position: relative;
+  z-index: 1;
+}
+
+html.dark .section-heading-container h1,
+html.dark .section-heading-container h2,
+html.dark .section-heading-container h3,
+html.dark .hardware-platforms-heading-container h2 {
+  color: #F8FAFC !important;
 }
 
 /* ==========================================================================
@@ -837,5 +902,18 @@ html.light .explore-btn:hover * {
   color: #0D1733 !important;
 }
 
+/* Section heading description - Dark navy in light mode, clean slate in dark mode */
+.section-heading-description {
+  color: #0D1733 !important;
+  font-weight: 500;
+  line-height: 1.55;
+}
 
+html.dark .section-heading-description {
+  color: #CBD5E1 !important;
+}
 
+/* Card subtitle blue � overrides global html.light p rule */
+.card-subtitle-blue {
+  color: #1672E8 !important;
+}

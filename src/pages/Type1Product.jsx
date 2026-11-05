@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
+import SectionHeadingContainer from '../components/common/SectionHeadingContainer';
 import { 
   ChevronRight, 
   Home as HomeIcon, 
@@ -406,14 +407,15 @@ export default function Type1Product() {
         <div className="section-container relative">
           
           {/* Section Header */}
-          <div className="section-heading-container relative w-full mb-4 sm:mb-5 px-5 py-4 sm:px-7 sm:py-5 overflow-hidden rounded-2xl border border-[#DCE6F3] dark:border-[#24355A] shadow-[0_8px_24px_rgba(50,133,255,0.12)] dark:shadow-[0_8px_24px_rgba(45,212,240,0.12)]">
-            <span className="text-xs font-mono uppercase tracking-widest text-[#0284C7] font-bold block mb-1">
-              HARDWARE HIGHLIGHTS
-            </span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0D1733] tracking-tight">
-              Engineered for High-Bandwidth <span className="bg-gradient-to-r from-[#0284C7] to-[#3285FF] bg-clip-text text-transparent">Autonomous Computing</span>
-            </h2>
-          </div>
+          <SectionHeadingContainer
+            subheading="HARDWARE HIGHLIGHTS"
+            heading={
+              <>
+                Engineered for High-Bandwidth <span className="bg-gradient-to-r from-[#0284C7] to-[#3285FF] bg-clip-text text-transparent">Autonomous Computing</span>
+              </>
+            }
+            description="Comprehensive architectural features engineered for deterministic multi-sensor fusion, automotive functional safety, and real-time deep learning acceleration."
+          />
 
           {/* 4-Column Responsive Grid (2 rows of 4 highlights = 8 total) */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -675,14 +677,15 @@ export default function Type1Product() {
         <div className="section-container relative">
           
           {/* Section Header */}
-          <div className="section-heading-container relative w-full mb-4 sm:mb-5 px-5 py-4 sm:px-7 sm:py-5 overflow-hidden rounded-2xl border border-[#DCE6F3] dark:border-[#24355A] shadow-[0_8px_24px_rgba(50,133,255,0.12)] dark:shadow-[0_8px_24px_rgba(45,212,240,0.12)]">
-            <span className="text-xs font-mono uppercase tracking-widest text-[#0284C7] font-bold block mb-1">
-              SOC ARCHITECTURE OVERVIEW
-            </span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0D1733] tracking-tight">
-              Jacinto™ 7 <span className="bg-gradient-to-r from-[#0284C7] to-[#3285FF] bg-clip-text text-transparent">Architecture</span>
-            </h2>
-          </div>
+          <SectionHeadingContainer
+            subheading="SOC ARCHITECTURE OVERVIEW"
+            heading={
+              <>
+                Jacinto™ 7 <span className="bg-gradient-to-r from-[#0284C7] to-[#3285FF] bg-clip-text text-transparent">Architecture</span>
+              </>
+            }
+            description="Detailed multi-core silicon layout showcasing high-speed memory subsystems, hardware accelerators, and specialized vision-DSP compute engines."
+          />
 
           {/* Highlighted Panel: J784S4 Processors */}
           <div className="rounded-3xl bg-gradient-to-b from-[#122047] to-[#101936] border-2 border-[#42D9F5]/40 p-6 sm:p-10 shadow-2xl relative overflow-hidden">

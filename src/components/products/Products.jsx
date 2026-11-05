@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SectionHeadingContainer from '../common/SectionHeadingContainer';
 import RZG2L from '../../../public/images/RZG2L.png';
 import RZG2N from '../../../public/images/RZG2N.png';
 import RZV2L from '../../../public/images/RZV2L.png';
@@ -138,7 +139,7 @@ export default function Products() {
       id: 'rz-v2h',
       name: 'RZ/V2H',
       subtitle: 'High-Performance Edge AI',
-      image: null,
+      image: RZV2H,
       fallbackImage: '/images/RZV2H.png',
       fullName: 'Renesas RZ/V2H High-Performance AI Vision Module',
       shortDescription:
@@ -173,53 +174,18 @@ export default function Products() {
       <div className="section-container relative">
 
         {/* ══ Section Header Banner ══════════════════════════════════════════ */}
-        <div className="relative w-full mb-6 sm:mb-8 rounded-2xl border border-[#DCE6F3] dark:border-[#24355A] bg-gradient-to-br from-[#EEF5FD] via-white to-[#E5F2FB] dark:from-[#101936] dark:via-[#0D1733] dark:to-[#101936] shadow-[0_6px_24px_rgba(50,133,255,0.10)] dark:shadow-[0_6px_24px_rgba(45,212,240,0.08)] overflow-hidden">
-
-          {/* Network decoration SVG */}
-          <svg
-            className="absolute right-0 top-0 h-full w-[550px] lg:w-[650px] xl:w-[750px] opacity-[0.08] dark:opacity-[0.04] pointer-events-none select-none object-cover"
-            viewBox="0 0 550 200"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-          >
-            <circle cx="340" cy="30" r="5" fill="#089EC2" />
-            <circle cx="420" cy="85" r="5.5" fill="#3285FF" />
-            <circle cx="305" cy="135" r="5" fill="#089EC2" />
-            <circle cx="480" cy="155" r="4.5" fill="#3285FF" />
-            <circle cx="255" cy="50" r="4" fill="#089EC2" />
-            <circle cx="385" cy="175" r="3.5" fill="#3285FF" />
-            <circle cx="510" cy="45" r="3.5" fill="#089EC2" />
-            <line x1="340" y1="30" x2="420" y2="85" stroke="#089EC2" strokeWidth="1.2" />
-            <line x1="420" y1="85" x2="305" y2="135" stroke="#3285FF" strokeWidth="1.2" />
-            <line x1="305" y1="135" x2="480" y2="155" stroke="#089EC2" strokeWidth="1.2" />
-            <line x1="420" y1="85" x2="480" y2="155" stroke="#3285FF" strokeWidth="1.2" />
-            <line x1="255" y1="50" x2="340" y2="30" stroke="#089EC2" strokeWidth="1.2" />
-            <line x1="255" y1="50" x2="305" y2="135" stroke="#3285FF" strokeWidth="1.2" />
-            <line x1="385" y1="175" x2="305" y2="135" stroke="#089EC2" strokeWidth="1.2" />
-            <line x1="510" y1="45" x2="420" y2="85" stroke="#3285FF" strokeWidth="1.2" />
-            <line x1="510" y1="45" x2="340" y2="30" stroke="#089EC2" strokeWidth="1.2" />
-          </svg>
-
-          <div className="relative flex flex-col xl:flex-row xl:items-center justify-between gap-3 px-4 py-3 sm:px-5 sm:py-4">
-
-            {/* Left: label + heading + description */}
-            <div className="flex-1 min-w-0 pr-2">
-              <p className="text-[10px] sm:text-xs font-bold tracking-[0.18em] uppercase text-[#2DD4F0] mb-0.5">
-                EMBEDDED HARDWARE PLATFORMS
-              </p>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0D1733] dark:text-[#F8FAFC] tracking-tight mb-2">
-                Our{' '}
-                <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
-                  Hardware Platforms
-                </span>
-              </h2>
-              <p className="text-sm sm:text-base lg:text-[15px] font-normal text-[#52627C] dark:text-[#AAB6D0] leading-snug max-w-2xl xl:max-w-3xl">
-                Processor-based embedded platforms for HMI, multimedia, vision AI and edge applications, available in different hardware form factors depending on the platform.
-              </p>
-            </div>
-
-            {/* Right: 4 feature highlights */}
+        <SectionHeadingContainer
+          subheading="EMBEDDED HARDWARE PLATFORMS"
+          heading={
+            <>
+              Our{' '}
+              <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
+                Hardware Platforms
+              </span>
+            </>
+          }
+          description="High-reliability System-on-Modules and single-board computers powered by Renesas RZ processors for edge computing and industrial control."
+          rightContent={
             <div className="flex-shrink-0 w-full xl:w-auto flex flex-wrap lg:flex-nowrap items-center justify-between xl:justify-end gap-y-4">
               {[
                 { icon: Cpu, title: 'Renesas RZ Family', sub: 'Powered Platforms' },
@@ -243,9 +209,8 @@ export default function Products() {
                 </React.Fragment>
               ))}
             </div>
-
-          </div>
-        </div>
+          }
+        />
 
         {/* ══ Four Platform Cards ════════════════════════════════════════════ */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 items-stretch">
@@ -254,11 +219,10 @@ export default function Products() {
             return (
               <div
                 key={product.id}
-                className={`group relative flex flex-col bg-white dark:bg-[#17264A] rounded-[18px] border transition-all duration-300 overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-0.5 p-4 sm:p-5 ${
-                  product.ctaGradient
-                    ? 'border-[#089EC2]/50 dark:border-[#2DD4F0]/40 shadow-[0_2px_12px_rgba(8,158,194,0.12)]'
-                    : 'border-[#DCE8F5] dark:border-[#24355A] hover:border-[#089EC2]/40 dark:hover:border-[#2DD4F0]/30'
-                }`}
+                className={`group relative flex flex-col bg-white dark:bg-[#17264A] rounded-[18px] border transition-all duration-300 overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-0.5 p-4 sm:p-5 ${product.ctaGradient
+                  ? 'border-[#089EC2]/50 dark:border-[#2DD4F0]/40 shadow-[0_2px_12px_rgba(8,158,194,0.12)]'
+                  : 'border-[#DCE8F5] dark:border-[#24355A] hover:border-[#089EC2]/40 dark:hover:border-[#2DD4F0]/30'
+                  }`}
               >
                 {/* 1. Platform name */}
                 <h3 className="text-lg sm:text-xl font-extrabold text-[#14213D] dark:text-[#F8FAFC] tracking-tight leading-tight">
@@ -266,7 +230,7 @@ export default function Products() {
                 </h3>
 
                 {/* 2. Subtitle */}
-                <p className="text-[11px] font-semibold text-[#089EC2] dark:text-[#2DD4F0] uppercase tracking-wide mt-0.5 mb-2">
+                <p className="platform-subtitle text-sm font-bold text-[#1672E8] dark:text-[#2DD4F0] normal-case">
                   {product.subtitle}
                 </p>
 

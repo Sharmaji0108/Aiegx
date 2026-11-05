@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
+import SectionHeadingContainer from '../components/common/SectionHeadingContainer';
 import { 
   ChevronRight, 
   Home as HomeIcon, 
@@ -286,21 +287,20 @@ export default function TiBrand() {
         <div className="section-container relative">
           
           {/* Section Heading */}
-          <div className="section-heading-container relative w-full mb-4 sm:mb-5 px-5 py-4 sm:px-7 sm:py-5 overflow-hidden rounded-2xl border border-[#DCE6F3] dark:border-[#24355A] shadow-[0_8px_24px_rgba(50,133,255,0.12)] dark:shadow-[0_8px_24px_rgba(45,212,240,0.12)] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div>
-              <div className="inline-flex items-center gap-2 text-xs font-mono text-[#0284C7] uppercase tracking-wider mb-1 font-semibold">
-                <Cpu className="w-3.5 h-3.5" />
-                <span>Heavy AI & Autonomous Vision Platform</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0D1733] tracking-tight">
+          <SectionHeadingContainer
+            subheading="HEAVY AI & AUTONOMOUS VISION PLATFORM"
+            heading={
+              <>
                 TI AM69 / <span className="bg-gradient-to-r from-[#0284C7] to-[#3285FF] bg-clip-text text-transparent">TDA4</span>
-              </h2>
-            </div>
-
-            <span className="text-xs font-mono text-[#0369A1] bg-white border border-[#BAE6FD] px-3 py-1 rounded-full self-start sm:self-center font-semibold">
-              32 TOPS Deep Learning MMA
-            </span>
-          </div>
+              </>
+            }
+            description="Rugged System-on-Modules combining functional safety architectures, TSN networking, and deterministic real-time processing for industrial automation."
+            rightContent={
+              <span className="text-xs font-mono text-[#0369A1] dark:text-[#2DD4F0] bg-white dark:bg-[#101936] border border-[#BAE6FD] dark:border-[#24355A] px-3 py-1 rounded-full font-semibold">
+                32 TOPS Deep Learning MMA
+              </span>
+            }
+          />
 
           {/* Single Product Entry: Aquila AM69 / TDA4 */}
           <div className="rounded-3xl bg-[#121c3d]/90 border border-white/10 hover:border-[#42D9F5]/50 transition-all duration-300 shadow-2xl shadow-black/50 p-6 sm:p-10 lg:p-12 overflow-hidden relative group">
@@ -469,21 +469,20 @@ export default function TiBrand() {
         <div className="section-container relative">
           
           {/* Section Heading */}
-          <div className="section-heading-container relative w-full mb-4 sm:mb-5 px-5 py-4 sm:px-7 sm:py-5 overflow-hidden rounded-2xl border border-[#DCE6F3] dark:border-[#24355A] shadow-[0_8px_24px_rgba(50,133,255,0.12)] dark:shadow-[0_8px_24px_rgba(45,212,240,0.12)] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div>
-              <div className="inline-flex items-center gap-2 text-xs font-mono text-[#0284C7] uppercase tracking-wider mb-1 font-semibold">
-                <Layers className="w-3.5 h-3.5" />
-                <span>Cost & Power-Optimized Multiprocessors</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0D1733] tracking-tight">
+          <SectionHeadingContainer
+            subheading="COST & POWER-OPTIMIZED MULTIPROCESSORS"
+            heading={
+              <>
                 TI <span className="bg-gradient-to-r from-[#0284C7] to-[#3285FF] bg-clip-text text-transparent">AM62</span>
-              </h2>
-            </div>
-
-            <span className="text-xs font-mono text-slate-600 bg-white/80 border border-[#BAE6FD] px-3 py-1 rounded-full self-start sm:self-center font-semibold">
-              2 Hardware Configurations
-            </span>
-          </div>
+              </>
+            }
+            description="Integrated development platforms engineered for rapid prototyping of deep learning vision algorithms, multi-sensor perception, and autonomous robotics."
+            rightContent={
+              <span className="text-xs font-mono text-slate-600 dark:text-slate-300 bg-white/80 dark:bg-[#101936]/80 border border-[#BAE6FD] dark:border-[#24355A] px-3 py-1 rounded-full font-semibold">
+                2 Hardware Configurations
+              </span>
+            }
+          />
 
           {/* Responsive Two-Column Layout (Side by side on desktop, stacked on mobile) */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
