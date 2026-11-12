@@ -90,7 +90,7 @@ export default function NxpBrand() {
       id: 'smarc-imx95',
       name: 'SMARC iMX95',
       family: 'i.MX 9',
-      formFactor: 'SMARC 2.1 Standard',
+      formFactor: 'SMARC Standard',
       image: '/images/why_aiegx_product.png',
       badge: 'Industry Standard Pinout',
       processor: 'Up to 6x Cortex-A55 @ 2.0 GHz',
@@ -104,7 +104,7 @@ export default function NxpBrand() {
       osList: ['Yocto Linux', 'TorizonCore', 'FreeRTOS', 'Android'],
       longevity: '15+ Years Longevity Support',
       highlights: [
-        'Compliant with standard SMARC 2.1 edge connector specification',
+        'Compliant with standard SMARC edge connector specification',
         'Dual independent display outputs with 4K HDMI support',
         'Engineered for rapid integration into existing carrier baseboards'
       ]
@@ -161,7 +161,7 @@ export default function NxpBrand() {
       id: 'smarc-imx8m-plus',
       name: 'SMARC iMX8M Plus',
       family: 'i.MX 8M Plus',
-      formFactor: 'SMARC 2.1 Standard',
+      formFactor: 'SMARC Standard',
       image: '/images/why_aiegx_product.png',
       badge: 'SMARC AI Acceleration',
       processor: 'Quad Cortex-A53 @ 1.8 GHz',
@@ -175,7 +175,7 @@ export default function NxpBrand() {
       osList: ['Linux Yocto', 'Android', 'Windows 10 IoT Core', 'FreeRTOS'],
       longevity: '15+ Years Supply Commitment',
       highlights: [
-        'Standard 82 x 50 mm SMARC 2.1 mechanical footprint',
+        'Standard 82 x 50 mm SMARC mechanical footprint',
         'Dual independent display outputs with HDMI 2.0a and LVDS',
         'Rugged industrial temperature qualification with conformal coating'
       ]

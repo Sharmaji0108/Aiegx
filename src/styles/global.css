@@ -1,4 +1,4 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -13,7 +13,7 @@
     --text-primary: #F8FAFC;
     --text-secondary: #AAB6D0;
     --border-color: #24355A;
-    --accent-color: #2DD4F0;
+    m --accent-color: #2DD4F0;
     --logo-wordmark-color: #F8FAFC;
 
     --color-bg-primary: #0D1733;
@@ -78,11 +78,20 @@
     box-sizing: border-box;
   }
 
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     box-sizing: border-box;
   }
 
-  img, svg, video, canvas, audio, iframe, embed, object {
+  img,
+  svg,
+  video,
+  canvas,
+  audio,
+  iframe,
+  embed,
+  object {
     max-width: 100%;
   }
 
@@ -799,6 +808,7 @@ html.light ::-webkit-scrollbar-thumb:hover {
 }
 
 @media (max-width: 639px) {
+
   .section-heading-container,
   .hardware-platforms-heading-container {
     margin-bottom: 1rem !important;
@@ -815,18 +825,16 @@ html.light ::-webkit-scrollbar-thumb:hover {
 
 html.dark .section-heading-container,
 html.dark .hardware-platforms-heading-container {
-  background: linear-gradient(
-    90deg,
-    #0E172E 0%,
-    #101B37 35%,
-    #13254E 70%,
-    #163268 100%
-  ) !important;
+  background: linear-gradient(90deg,
+      #0E172E 0%,
+      #101B37 35%,
+      #13254E 70%,
+      #163268 100%) !important;
   border-color: #24355A !important;
   box-shadow: 0 4px 20px rgba(45, 212, 240, 0.08) !important;
 }
 
-.section-heading-container > *:not(.section-heading-graphic) {
+.section-heading-container>*:not(.section-heading-graphic) {
   position: relative;
   z-index: 1;
 }
@@ -983,6 +991,7 @@ html.dark .section-heading-description {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -992,6 +1001,7 @@ html.dark .section-heading-description {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -1029,6 +1039,7 @@ html.dark .section-heading-description {
 
 /* Desktop View (1024px and above): Animation Disabled & Original Grid Restored */
 @media (min-width: 1024px) {
+
   .industry-carousel-viewport,
   .capability-carousel-viewport {
     overflow: visible !important;
@@ -1055,6 +1066,7 @@ html.dark .section-heading-description {
 .no-scrollbar::-webkit-scrollbar {
   display: none !important;
 }
+
 .no-scrollbar {
   -ms-overflow-style: none !important;
   scrollbar-width: none !important;

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import SectionHeadingContainer from '../common/SectionHeadingContainer';
+import { navigateTo } from '../../utils/navigation';
 import RZG2L from '../../../public/images/RZG2L.png';
 import RZG2N from '../../../public/images/RZG2N.png';
 import RZV2L from '../../../public/images/RZV2L.png';
@@ -75,7 +76,7 @@ export default function Products() {
       subtitle: 'Embedded Control & HMI',
       image: RZG2L,
       fallbackImage: '/images/RZG2L.png',
-      fullName: 'Renesas RZ/G2L SMARC 2.1 MPU Module',
+      fullName: 'Renesas RZ/G2L SMARC MPU Module',
       shortDescription:
         'For industrial HMI, control, display and connected embedded applications.',
       categoryLabel: 'Embedded MPU Module',
@@ -88,7 +89,7 @@ export default function Products() {
         { label: 'Connectivity', value: 'Dual Gigabit Ethernet, MIPI-CSI, USB 2.0 Host/OTG' },
       ],
       description:
-        'Compact SMARC v2.1 System on Module combining dual Cortex-A55 performance with integrated 3D graphics for edge HMI, industrial control, and medical devices.',
+        'Compact SMARC System on Module combining dual Cortex-A55 performance with integrated 3D graphics for edge HMI, industrial control, and medical devices.',
       ctaGradient: true,
     },
     {
@@ -288,7 +289,13 @@ export default function Products() {
                 {/* 7. Explore Platform button */}
                 <div className="mt-auto">
                   <button
-                    onClick={() => setActiveDatasheet(product)}
+                    onClick={() => {
+                      if (product.id === 'rz-g2l') {
+                        navigateTo('/products/rz-g2l');
+                      } else {
+                        setActiveDatasheet(product);
+                      }
+                    }}
                     className="explore-btn"
                   >
                     Explore Platform
