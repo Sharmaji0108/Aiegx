@@ -5,7 +5,7 @@ import ProductHero from '../../components/products/ProductHero';
 import PlatformFeatures from '../../components/products/PlatformFeatures';
 import HardwareArchitecture from '../../components/products/HardwareArchitecture';
 import AvailableHardware from '../../components/products/AvailableHardware';
-import ProductApplications from '../../components/products/ProductApplications';
+import TypicalApplicationsCarousel from '../../components/products/TypicalApplicationsCarousel';
 import ProductEnquiry, { ProductEnquiryModal } from '../../components/products/ProductEnquiry';
 import { RZG2L_PLATFORM_DATA, RZG2L_APPLICATIONS } from '../../data/rzg2lData';
 
@@ -64,8 +64,8 @@ export default function RZG2LPlatform() {
       {/* Section E: Available Hardware (3 Product Cards) */}
       <AvailableHardware products={RZG2L_PLATFORM_DATA.availableHardware} />
 
-      {/* Section F: Typical Applications (5 image-focused cards) */}
-      <ProductApplications applications={RZG2L_APPLICATIONS} />
+      {/* Section F: Typical Applications (Single horizontal row with continuous automatic right-to-left marquee) */}
+      <TypicalApplicationsCarousel applications={RZG2L_APPLICATIONS} />
 
       {/* Section G: Why RZ/G2L? */}
       <section className="py-6 sm:py-8 lg:py-10 relative bg-[#F5F8FC] dark:bg-[#0D1733] transition-colors duration-300">

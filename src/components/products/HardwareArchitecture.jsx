@@ -7,29 +7,48 @@ import { Plus, Equal } from 'lucide-react';
  * Tablet: Horizontal 3-stage arrangement with adjusted spacing.
  * Mobile: Description stacked above horizontally scrollable 3-stage diagram.
  */
-export default function HardwareArchitecture({ blocks = [] }) {
+export default function HardwareArchitecture({
+  blocks = [],
+  title = 'Hardware',
+  titleGradient = 'Architecture',
+  description = 'The RZ/G2L platform supports a modular architecture. SMARC SoM provides the core computing module, Carrier Board provides application interfaces, and together they form a complete SBC / Development Platform.',
+  statement,
+}) {
   return (
     <section className="py-6 sm:py-8 lg:py-10 relative bg-[#F5F8FC] dark:bg-[#0D1733] transition-colors duration-300">
       <div className="section-container relative">
         <div className="rounded-2xl bg-white dark:bg-[#17264A] border border-[#DBE4F0] dark:border-[#24355A] p-5 sm:p-6 lg:p-8 shadow-xs">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
-            {/* Left Column: Compact Heading & Description */}
-            <div className="lg:col-span-4 min-w-0">
+          {statement ? (
+            <div className="max-w-3xl">
               <h2 className="text-xl sm:text-2xl lg:text-[28px] font-extrabold tracking-tight text-[#14213D] dark:text-[#F8FAFC] leading-tight mb-2.5">
-                Hardware{' '}
+                {title}{' '}
                 <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] dark:from-[#2DD4F0] dark:to-[#38BDF8] bg-clip-text text-transparent">
-                  Architecture
+                  {titleGradient}
                 </span>
               </h2>
-              <p className="text-xs sm:text-[13.5px] text-[#52627C] dark:text-[#AAB6D0] leading-relaxed">
-                The RZ/G2L platform supports a modular architecture. SMARC SoM provides the core computing module, Carrier Board provides application interfaces, and together they form a complete SBC / Development Platform.
+              <p className="text-sm sm:text-base lg:text-[17px] font-medium text-[#52627C] dark:text-[#AAB6D0] leading-relaxed">
+                {statement}
               </p>
             </div>
+          ) : (
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+              {/* Left Column: Compact Heading & Description */}
+              <div className="lg:col-span-4 min-w-0">
+                <h2 className="text-xl sm:text-2xl lg:text-[28px] font-extrabold tracking-tight text-[#14213D] dark:text-[#F8FAFC] leading-tight mb-2.5">
+                  {title}{' '}
+                  <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] dark:from-[#2DD4F0] dark:to-[#38BDF8] bg-clip-text text-transparent">
+                    {titleGradient}
+                  </span>
+                </h2>
+                <p className="text-xs sm:text-[13.5px] text-[#52627C] dark:text-[#AAB6D0] leading-relaxed">
+                  {description}
+                </p>
+              </div>
 
-            {/* Right Column: Horizontal 3-Stage Hardware Diagram */}
-            <div className="lg:col-span-8 min-w-0">
-              <div className="w-full overflow-x-auto no-scrollbar pb-1 sm:pb-0">
-                <div className="flex items-stretch gap-2 sm:gap-3 min-w-[540px] sm:min-w-0">
+              {/* Right Column: Horizontal 3-Stage Hardware Diagram */}
+              <div className="lg:col-span-8 min-w-0">
+                <div className="w-full overflow-x-auto no-scrollbar pb-1 sm:pb-0">
+                  <div className="flex items-stretch gap-2 sm:gap-3 min-w-[540px] sm:min-w-0">
                   {blocks.map((block, index) => {
                     const isResult = index === blocks.length - 1;
 
@@ -86,6 +105,7 @@ export default function HardwareArchitecture({ blocks = [] }) {
               </div>
             </div>
           </div>
+          )}
         </div>
       </div>
     </section>

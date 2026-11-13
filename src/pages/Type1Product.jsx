@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import SectionHeadingContainer from '../components/common/SectionHeadingContainer';
 import { 
   ChevronRight, 
@@ -235,7 +235,7 @@ export default function Type1Product() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             
             {/* Left Column: Heading, Subheading, Description, Bullets, Action Buttons, Webinar */}
-            <div className="lg:col-span-7 space-y-6">
+            <div className="order-2 lg:order-2 lg:col-span-7 space-y-6">
               
               {/* Family Tag / Top Category */}
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#17264D]/80 border border-[#42D9F5]/30 text-[#42D9F5] text-xs font-mono tracking-wider uppercase font-semibold">
@@ -322,7 +322,7 @@ export default function Type1Product() {
             </div>
 
             {/* Right Column: Texas Instruments Premium Partner Badge & Large Board Image */}
-            <div className="lg:col-span-5 flex flex-col items-center">
+            <div className="order-1 lg:order-1 lg:col-span-5 flex flex-col items-center">
               
               {/* Texas Instruments Premium Partner Badge */}
               <div className="w-full max-w-md mb-4 flex items-center justify-center">

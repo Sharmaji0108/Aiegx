@@ -6,7 +6,12 @@ import { navigateTo } from '../../utils/navigation';
 /**
  * Available Hardware section displaying RZ/G2L SMARC SoM, Carrier Board, and SBC.
  */
-export default function AvailableHardware({ products = [] }) {
+export default function AvailableHardware({
+  products = [],
+  subheading = 'AVAILABLE HARDWARE',
+  heading,
+  description = 'Scalable Renesas hardware options spanning compact modules, carrier baseboards, and complete development platforms.',
+}) {
   return (
     <section
       id="available-hardware"
@@ -14,19 +19,29 @@ export default function AvailableHardware({ products = [] }) {
     >
       <div className="section-container relative">
         <SectionHeadingContainer
-          subheading="AVAILABLE HARDWARE"
+          subheading={subheading}
           heading={
-            <>
-              Available{' '}
-              <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
-                Hardware
-              </span>
-            </>
+            heading || (
+              <>
+                Available{' '}
+                <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
+                  Hardware
+                </span>
+              </>
+            )
           }
-          description="Scalable Renesas RZ/G2L hardware options spanning compact SMARC modules, carrier baseboards, and complete development platforms."
+          description={description}
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 items-stretch">
+        <div
+          className={`grid gap-4 sm:gap-5 lg:gap-6 items-stretch ${
+            products.length === 1
+              ? 'grid-cols-1 max-w-lg mx-auto w-full'
+              : products.length === 2
+              ? 'grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto'
+              : 'grid-cols-1 md:grid-cols-3'
+          }`}
+        >
           {products.map((product) => (
             <div
               key={product.id}

@@ -5,7 +5,7 @@ import ProductGallery from '../../components/products/ProductGallery';
 import ProductTabs from '../../components/products/ProductTabs';
 import ProductSpecifications from '../../components/products/ProductSpecifications';
 import TechnicalInfoTable from '../../components/products/TechnicalInfoTable';
-import ProductApplications from '../../components/products/ProductApplications';
+import TypicalApplicationsCarousel from '../../components/products/TypicalApplicationsCarousel';
 import ProductDocuments from '../../components/products/ProductDocuments';
 import ProductEnquiry, { ProductEnquiryModal } from '../../components/products/ProductEnquiry';
 import { RZG2L_PRODUCT_DETAILS, RZG2L_APPLICATIONS } from '../../data/rzg2lData';
@@ -18,12 +18,12 @@ import { navigateTo } from '../../utils/navigation';
 export default function RZG2LSMARCSoM({ productSlug = 'smarc-som' }) {
   const product = RZG2L_PRODUCT_DETAILS[productSlug] || RZG2L_PRODUCT_DETAILS['smarc-som'];
   const [prevSlug, setPrevSlug] = useState(productSlug);
-  const [activeTab, setActiveTab] = useState('overview');
+  const [activeTab, setActiveTab] = useState('key-features');
   const tabContentRef = useRef(null);
 
   if (productSlug !== prevSlug) {
     setPrevSlug(productSlug);
-    setActiveTab('overview');
+    setActiveTab('key-features');
   }
 
   const handleTabChange = (nextTab) => {
@@ -82,15 +82,15 @@ export default function RZG2LSMARCSoM({ productSlug = 'smarc-som' }) {
             </a>
           </div>
 
-          {/* Two-Column Hero */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-            {/* LEFT COLUMN: Product Gallery */}
-            <div className="lg:col-span-6 min-w-0">
-              <ProductGallery images={product.gallery} productName={product.title} />
+          {/* Two-Column Hero: Left Gallery, Right Product Information */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* LEFT COLUMN: Product Hardware Image / Gallery */}
+            <div className="lg:col-span-5 flex flex-col justify-center min-w-0 w-full">
+              <ProductGallery images={product.gallery} productName={product.title} badge={product.badge || 'SMARC 2.1'} />
             </div>
 
-            {/* RIGHT COLUMN: Category, Title, Descriptions & Actions */}
-            <div className="lg:col-span-6 flex flex-col items-start min-w-0 pt-1">
+            {/* RIGHT COLUMN: Category, Title, Descriptions, Highlights & Actions */}
+            <div className="lg:col-span-7 flex flex-col items-start min-w-0">
               {/* Small Category Label */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white dark:bg-[#17264A] border border-[#C5DDF5] dark:border-[#244277] text-xs font-mono font-bold text-[#089EC2] dark:text-[#2DD4F0] uppercase tracking-wider mb-4 shadow-xs">
                 <span className="w-2 h-2 rounded-full bg-[#089EC2] dark:bg-[#2DD4F0]" />
@@ -108,9 +108,33 @@ export default function RZG2LSMARCSoM({ productSlug = 'smarc-som' }) {
               </p>
 
               {/* Detailed Introductory Paragraph */}
-              <p className="text-xs sm:text-sm lg:text-[15px] text-[#52627C] dark:text-[#AAB6D0] leading-relaxed mb-6">
+              <p className="text-xs sm:text-sm lg:text-[15px] text-[#52627C] dark:text-[#AAB6D0] leading-relaxed mb-5">
                 {product.introParagraph}
               </p>
+
+              {/* Hardware Highlights Checklist */}
+              {product.heroHighlights && product.heroHighlights.length > 0 && (
+                <div className="grid grid-cols-2 gap-2.5 sm:gap-3 w-full max-w-xl mb-6">
+                  {product.heroHighlights.map((hl) => {
+                    const Icon = hl.icon;
+                    return (
+                      <div
+                        key={hl.label}
+                        className="flex items-center gap-2.5 px-3 py-2 rounded-xl bg-white/80 dark:bg-[#17264A]/80 border border-[#DCE8F5] dark:border-[#24355A] shadow-xs backdrop-blur-xs min-w-0"
+                      >
+                        {Icon && (
+                          <div className="flex-shrink-0 w-7 h-7 rounded-lg bg-[#E2EEFB] dark:bg-[#1A2C52] border border-[#C5DDF5] dark:border-[#244277] flex items-center justify-center text-[#089EC2] dark:text-[#2DD4F0]">
+                            <Icon className="w-3.5 h-3.5" />
+                          </div>
+                        )}
+                        <span className="text-xs font-semibold text-[#14213D] dark:text-[#F8FAFC] truncate">
+                          {hl.label}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
 
               {/* Action Buttons: Request Quote + Request Evaluation */}
               <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto">
@@ -153,105 +177,32 @@ export default function RZG2LSMARCSoM({ productSlug = 'smarc-som' }) {
         aria-labelledby={`tab-${activeTab}`}
         className="scroll-mt-32 transition-opacity duration-200"
       >
-        {/* TAB 1: Unified Overview + Key Features (40:60 Two-Column Layout) */}
-        {activeTab === 'overview' && (
-          <section
-            id="overview"
-            className="py-6 sm:py-8 lg:py-10 relative bg-[#F5F8FC] dark:bg-[#0D1733] transition-colors duration-300"
-          >
-            <div className="section-container relative">
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 items-start">
-                {/* LEFT COLUMN (~40%): Overview */}
-                <div className="md:col-span-5 min-w-0">
-                  <h2 className="text-xl sm:text-2xl font-extrabold text-[#14213D] dark:text-[#F8FAFC] tracking-tight mb-3.5">
-                    Overview
-                  </h2>
-                  <div className="rounded-2xl bg-white dark:bg-[#17264A] border border-[#DBE4F0] dark:border-[#24355A] p-5 sm:p-6 shadow-xs space-y-3.5">
-                    {product.overviewSummary && (
-                      <p className="text-sm sm:text-[15px] font-medium text-[#14213D] dark:text-[#F8FAFC] leading-relaxed">
-                        {product.overviewSummary}
-                      </p>
-                    )}
-                    {product.overviewParagraphs.map((paragraph, idx) => (
-                      <p
-                        key={idx}
-                        className="text-xs sm:text-sm text-[#52627C] dark:text-[#CBD5E1] leading-relaxed"
-                      >
-                        {paragraph}
-                      </p>
-                    ))}
-                  </div>
-                </div>
-
-                {/* RIGHT COLUMN (~60%): Key Features (2-col grid on desktop, auto-scrolling carousel on mobile) */}
-                <div id="key-features" className="md:col-span-7 min-w-0">
-                  <h2 className="text-xl sm:text-2xl font-extrabold text-[#14213D] dark:text-[#F8FAFC] tracking-tight mb-3.5">
-                    Key Features
-                  </h2>
-
-                  <div className="capability-carousel-viewport overflow-x-auto no-scrollbar">
-                    <div className="capability-marquee-track">
-                      <div className="flex lg:grid lg:grid-cols-2 gap-3 sm:gap-3.5">
-                        {product.keyFeatures.map((feat) => {
-                          const Icon = feat.icon;
-                          return (
-                            <div
-                              key={feat.title}
-                              className="group w-[220px] sm:w-[235px] lg:w-auto shrink-0 whitespace-normal rounded-2xl bg-white dark:bg-[#17264A] border border-[#DBE4F0] dark:border-[#24355A] hover:border-[#089EC2]/60 dark:hover:border-[#2DD4F0]/60 p-4 flex items-start gap-3.5 shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
-                            >
-                              <div className="w-10 h-10 rounded-xl bg-[#E2EEFB] dark:bg-[#1A2C52] border border-[#C5DDF5] dark:border-[#244277] flex items-center justify-center text-[#089EC2] dark:text-[#2DD4F0] shrink-0 group-hover:scale-105 group-hover:bg-gradient-to-tr group-hover:from-[#2DD4F0] group-hover:to-[#3285FF] group-hover:text-[#0D1733] group-hover:border-transparent transition-all duration-300">
-                                <Icon className="w-5 h-5" />
-                              </div>
-                              <div className="min-w-0">
-                                <h3 className="text-xs sm:text-sm font-bold text-[#14213D] dark:text-[#F8FAFC] leading-snug group-hover:text-[#089EC2] dark:group-hover:text-[#2DD4F0] transition-colors">
-                                  {feat.title}
-                                </h3>
-                                {feat.subtitle && (
-                                  <p className="text-[11px] sm:text-xs text-[#52627C] dark:text-[#AAB6D0] leading-snug mt-0.5">
-                                    {feat.subtitle}
-                                  </p>
-                                )}
-                              </div>
-                            </div>
-                          );
-                        })}
-                      </div>
-
-                      {/* Cloned sequence for seamless mobile horizontal marquee loop */}
-                      <div className="carousel-clone-track flex gap-3 sm:gap-3.5 ml-3 sm:ml-3.5" aria-hidden="true">
-                        {product.keyFeatures.map((feat) => {
-                          const Icon = feat.icon;
-                          return (
-                            <div
-                              key={`clone-${feat.title}`}
-                              className="w-[220px] sm:w-[235px] shrink-0 whitespace-normal rounded-2xl bg-white dark:bg-[#17264A] border border-[#DBE4F0] dark:border-[#24355A] p-4 flex items-start gap-3.5 shadow-xs"
-                            >
-                              <div className="w-10 h-10 rounded-xl bg-[#E2EEFB] dark:bg-[#1A2C52] border border-[#C5DDF5] dark:border-[#244277] flex items-center justify-center text-[#089EC2] dark:text-[#2DD4F0] shrink-0">
-                                <Icon className="w-5 h-5" />
-                              </div>
-                              <div className="min-w-0">
-                                <h3 className="text-xs sm:text-sm font-bold text-[#14213D] dark:text-[#F8FAFC] leading-snug">
-                                  {feat.title}
-                                </h3>
-                                {feat.subtitle && (
-                                  <p className="text-[11px] sm:text-xs text-[#52627C] dark:text-[#AAB6D0] leading-snug mt-0.5">
-                                    {feat.subtitle}
-                                  </p>
-                                )}
-                              </div>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+        {/* TAB 1: Key Features */}
+        {activeTab === 'key-features' && (
+          <TechnicalInfoTable
+            id="key-features"
+            subheading="CORE CAPABILITIES"
+            heading={
+              <>
+                Key{' '}
+                <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
+                  Features
+                </span>
+              </>
+            }
+            description="Hardware and embedded system capabilities built for mission-critical edge applications."
+            columns={['Feature', 'Description']}
+            rows={
+              product.keyFeaturesTable ||
+              product.keyFeatures.map((feat) => ({
+                label: feat.title,
+                description: feat.subtitle || feat.description || feat.title,
+              }))
+            }
+          />
         )}
 
-        {/* TAB 3: Specifications */}
+        {/* TAB 2: Specifications */}
         {activeTab === 'specifications' && (
           <ProductSpecifications
             specifications={product.specifications}
@@ -259,7 +210,7 @@ export default function RZG2LSMARCSoM({ productSlug = 'smarc-som' }) {
           />
         )}
 
-        {/* TAB 4: Interfaces */}
+        {/* TAB 3: Interfaces */}
         {activeTab === 'interfaces' && (
           <TechnicalInfoTable
             id="interfaces"
@@ -281,7 +232,7 @@ export default function RZG2LSMARCSoM({ productSlug = 'smarc-som' }) {
           />
         )}
 
-        {/* TAB 5: Software Support */}
+        {/* TAB 4: Software Support */}
         {activeTab === 'software-support' && (
           <TechnicalInfoTable
             id="software-support"
@@ -303,9 +254,9 @@ export default function RZG2LSMARCSoM({ productSlug = 'smarc-som' }) {
           />
         )}
 
-        {/* TAB 6: Applications */}
+        {/* TAB 5: Applications */}
         {activeTab === 'applications' && (
-          <ProductApplications
+          <TypicalApplicationsCarousel
             id="applications"
             applications={RZG2L_APPLICATIONS}
             subheading="TARGET APPLICATIONS"
@@ -315,7 +266,7 @@ export default function RZG2LSMARCSoM({ productSlug = 'smarc-som' }) {
           />
         )}
 
-        {/* TAB 7: Documents */}
+        {/* TAB 6: Documents */}
         {activeTab === 'documents' && (
           <ProductDocuments
             documents={product.documents}

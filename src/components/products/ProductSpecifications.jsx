@@ -5,6 +5,8 @@ import SectionHeadingContainer from '../common/SectionHeadingContainer';
  * Technical Specifications table with subtle row separators and responsive overflow container.
  */
 export default function ProductSpecifications({ specifications = [], productName = 'RZ/G2L SMARC SoM' }) {
+  const specList = Array.isArray(specifications) ? specifications : [];
+
   return (
     <section
       id="specifications"
@@ -44,21 +46,25 @@ export default function ProductSpecifications({ specifications = [], productName
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#E2E8F0] dark:divide-[#24355A]">
-                {specifications.map((row, idx) => (
-                  <tr
-                    key={row.parameter}
-                    className={`transition-colors hover:bg-[#F8FAFD] dark:hover:bg-[#1E315E]/50 ${
-                      idx % 2 === 1 ? 'bg-[#FAFBFD] dark:bg-[#142244]/50' : ''
-                    }`}
-                  >
-                    <td className="py-3.5 px-4 sm:px-6 text-xs sm:text-sm font-bold text-[#14213D] dark:text-[#F8FAFC] align-top">
-                      {row.parameter}
-                    </td>
-                    <td className="py-3.5 px-4 sm:px-6 text-xs sm:text-sm font-medium text-[#52627C] dark:text-[#CBD5E1] align-top">
-                      {row.specification}
-                    </td>
-                  </tr>
-                ))}
+                {specList.map((row, idx) => {
+                  const param = row.parameter ?? row.param ?? row.name ?? row.label ?? '';
+                  const spec = row.specification ?? row.value ?? row.detail ?? row.description ?? '';
+                  return (
+                    <tr
+                      key={param || idx}
+                      className={`transition-colors hover:bg-[#F8FAFD] dark:hover:bg-[#1E315E]/50 ${
+                        idx % 2 === 1 ? 'bg-[#FAFBFD] dark:bg-[#142244]/50' : ''
+                      }`}
+                    >
+                      <td className="py-3.5 px-4 sm:px-6 text-xs sm:text-sm font-bold text-[#14213D] dark:text-[#F8FAFC] align-top">
+                        {param}
+                      </td>
+                      <td className="py-3.5 px-4 sm:px-6 text-xs sm:text-sm font-medium text-[#52627C] dark:text-[#CBD5E1] align-top">
+                        {spec}
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
@@ -67,4 +73,3 @@ export default function ProductSpecifications({ specifications = [], productName
     </section>
   );
 }
-

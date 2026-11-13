@@ -1,4 +1,4 @@
-﻿@import "tailwindcss";
+@import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -13,7 +13,7 @@
     --text-primary: #F8FAFC;
     --text-secondary: #AAB6D0;
     --border-color: #24355A;
-    m --accent-color: #2DD4F0;
+    --accent-color: #2DD4F0;
     --logo-wordmark-color: #F8FAFC;
 
     --color-bg-primary: #0D1733;
@@ -1070,4 +1070,38 @@ html.dark .section-heading-description {
 .no-scrollbar {
   -ms-overflow-style: none !important;
   scrollbar-width: none !important;
+}
+
+/* ==========================================================================
+   Global Typical Applications Infinite Horizontal Carousel (Right-to-Left)
+   ========================================================================== */
+
+@keyframes typicalAppsMarquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.typical-apps-marquee-track {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  white-space: nowrap !important;
+  width: max-content !important;
+  animation: typicalAppsMarquee 36s linear infinite;
+  will-change: transform;
+}
+
+.typical-apps-marquee-track:hover,
+.typical-apps-marquee-track:focus-within,
+.typical-apps-marquee-track:active {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typical-apps-marquee-track {
+    animation: none !important;
+  }
 }

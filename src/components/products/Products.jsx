@@ -290,8 +290,13 @@ export default function Products() {
                 <div className="mt-auto">
                   <button
                     onClick={() => {
-                      if (product.id === 'rz-g2l') {
-                        navigateTo('/products/rz-g2l');
+                      if (
+                        product.id === 'rz-g2l' ||
+                        product.id === 'rz-g2n' ||
+                        product.id === 'rz-v2l' ||
+                        product.id === 'rz-v2h'
+                      ) {
+                        navigateTo(`/products/${product.id}`);
                       } else {
                         setActiveDatasheet(product);
                       }

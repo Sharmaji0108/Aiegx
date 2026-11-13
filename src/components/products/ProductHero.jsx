@@ -111,7 +111,7 @@ export default function ProductHero({
 
               <div className="mt-4 pt-3.5 border-t border-[#E2E8F0] dark:border-[#24355A] flex items-center justify-between text-xs">
                 <span className="font-mono uppercase tracking-wider text-[#52627C] dark:text-[#AAB6D0]">
-                  Renesas RZ/G2L Family
+                  {hero.family || 'Renesas RZ/G2L Family'}
                 </span>
                 <span className="inline-flex items-center gap-1.5 font-semibold text-[#089EC2] dark:text-[#2DD4F0]">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#089EC2] dark:bg-[#2DD4F0]" />

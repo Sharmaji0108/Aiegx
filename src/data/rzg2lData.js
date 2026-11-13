@@ -155,7 +155,7 @@ export const RZG2L_PLATFORM_DATA = {
         'Validated Configuration',
         'Yocto Linux BSP',
       ],
-      route: '/products/rz-g2l/sbc',
+      route: '/products/rzg2l/complete-sbc/',
       featured: false,
     },
   ],
@@ -287,6 +287,16 @@ export const RZG2L_PRODUCT_DETAILS = {
       { label: 'Processor Core', value: 'Arm Cortex-A55 + M33' },
       { label: 'Memory Bandwidth', value: 'Up to 4 GB LPDDR4' },
       { label: 'Operating Temp', value: '-40°C to +85°C (opt.)' },
+    ],
+    keyFeaturesTable: [
+      { label: 'Renesas RZ/G2L', description: 'Quad Cortex-A55 (Up to 1.2 GHz)' },
+      { label: 'Memory', description: 'Up to 4 GB LPDDR4 Memory' },
+      { label: 'Storage', description: 'eMMC / QSPI Storage Options' },
+      { label: 'Form Factor', description: 'SMARC' },
+      { label: 'Display Support', description: 'HDMI, LVDS, MIPI-DSI' },
+      { label: 'Rich I/O Interfaces', description: 'Ethernet, USB, CAN, UART, I2C, SPI' },
+      { label: 'Software Support', description: 'Yocto Linux BSP and Reference Software' },
+      { label: 'Industrial Grade', description: 'Designed for industrial applications' },
     ],
     keyFeatures: [
       { title: 'Renesas RZ/G2L', subtitle: 'Quad Cortex-A55 (Up to 1.2 GHz)', icon: Cpu },
@@ -426,6 +436,16 @@ export const RZG2L_PRODUCT_DETAILS = {
       { label: 'Display Outputs', value: 'HDMI, LVDS, MIPI-DSI' },
       { label: 'Customization', value: 'Schematic & Layout Ready' },
     ],
+    keyFeaturesTable: [
+      { label: 'SMARC Socket', description: 'SMARC Compatible Socket (314-pin)' },
+      { label: 'Ethernet', description: 'Dual RJ45 Gigabit Ethernet' },
+      { label: 'Display Interfaces', description: 'HDMI, LVDS & MIPI-DSI Headers' },
+      { label: 'USB & Expansion', description: 'USB 3.0 / 2.0 & M.2 Expansion' },
+      { label: 'Industrial I/O', description: 'Isolated CAN, UART & GPIO' },
+      { label: 'Power Input', description: '12V – 24V DC Wide Power Input' },
+      { label: 'Temperature Grade', description: 'Industrial Temperature Grade (-40°C to +85°C)' },
+      { label: 'Design Files', description: 'Custom Carrier Reference Files' },
+    ],
     keyFeatures: [
       { title: 'SMARC Compatible Socket', icon: CircuitBoard },
       { title: 'Dual RJ45 Gigabit Ethernet', icon: Network },
@@ -540,7 +560,7 @@ export const RZG2L_PRODUCT_DETAILS = {
       { label: 'Home', path: '/' },
       { label: 'Products', path: '/#hardware-platforms' },
       { label: 'RZ/G2L', path: '/products/rz-g2l' },
-      { label: 'RZ/G2L SBC', path: null },
+      { label: 'Complete SBC', path: null },
     ],
     gallery: [
       {
@@ -576,6 +596,16 @@ export const RZG2L_PRODUCT_DETAILS = {
       { label: 'Processor', value: 'Renesas RZ/G2L Cortex-A55' },
       { label: 'Memory / Storage', value: 'Up to 4 GB LPDDR4 + eMMC' },
       { label: 'Readiness', value: 'Pre-Flashed Yocto BSP' },
+    ],
+    keyFeaturesTable: [
+      { label: 'System Assembly', description: 'Ready-to-Boot System Assembly' },
+      { label: 'Processor Core', description: 'Renesas RZ/G2L Cortex-A55 Core' },
+      { label: 'Memory & Storage', description: 'Up to 4 GB LPDDR4 & eMMC' },
+      { label: 'Display Support', description: 'HDMI, LVDS & MIPI-DSI Display' },
+      { label: 'Networking & USB', description: 'Dual Gigabit Ethernet & USB' },
+      { label: 'Industrial I/O', description: 'CAN, UART, GPIO, I2C, SPI' },
+      { label: 'Software Platform', description: 'Yocto Linux Reference BSP' },
+      { label: 'Reliability', description: 'Industrial Grade Reliability' },
     ],
     keyFeatures: [
       { title: 'Ready-to-Boot System Assembly', icon: CheckCircle2 },
