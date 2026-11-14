@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import SectionHeadingContainer from '../common/SectionHeadingContainer';
 import { navigateTo } from '../../utils/navigation';
+import SOM3DViewer from './SOM3DViewer';
 import RZG2L from '../../../public/images/RZG2L.png';
 import RZG2N from '../../../public/images/RZG2N.png';
 import RZV2L from '../../../public/images/RZV2L.png';
 import RZV2H from '../../../public/images/RZV2H.png';
 import {
   ArrowRight,
-  FileText,
-  Download,
-  X,
   Cpu,
   CircuitBoard,
   LayoutGrid,
@@ -67,8 +65,6 @@ const FEATURES = [
 ];
 
 export default function Products() {
-  const [activeDatasheet, setActiveDatasheet] = useState(null);
-
   const products = [
     {
       id: 'rz-g2l',
@@ -235,21 +231,29 @@ export default function Products() {
                   {product.shortDescription}
                 </p>
 
-                {/* 4. Hardware Image */}
+                {/* 4. Hardware Image / 3D Model */}
                 <div
-                  className="w-full h-36 sm:h-40 flex items-center justify-center bg-white dark:bg-[#17264A] mb-4 overflow-hidden cursor-pointer"
-                  onClick={() => setActiveDatasheet(product)}
+                  className="w-full h-36 sm:h-40 flex items-center justify-center bg-white dark:bg-[#17264A] mb-4 overflow-hidden rounded-xl cursor-pointer"
+                  onClick={(e) => navigateTo(`/products/${product.id}`, e)}
                   role="button"
                   tabIndex={0}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault();
-                      setActiveDatasheet(product);
+                      navigateTo(`/products/${product.id}`, e);
                     }
                   }}
-                  aria-label={`View ${product.name} specs`}
+                  aria-label={`View ${product.name} platform`}
                 >
-                  {product.image ? (
+                  {product.model3d ? (
+                    <div className="w-full h-full p-1 pointer-events-auto">
+                      <SOM3DViewer
+                        modelUrl={product.model3d}
+                        fallbackSrc={product.image}
+                        fallbackAlt={product.name}
+                      />
+                    </div>
+                  ) : product.image ? (
                     <img
                       src={product.image}
                       alt={product.name}
@@ -289,18 +293,7 @@ export default function Products() {
                 {/* 7. Explore Platform button */}
                 <div className="mt-auto">
                   <button
-                    onClick={() => {
-                      if (
-                        product.id === 'rz-g2l' ||
-                        product.id === 'rz-g2n' ||
-                        product.id === 'rz-v2l' ||
-                        product.id === 'rz-v2h'
-                      ) {
-                        navigateTo(`/products/${product.id}`);
-                      } else {
-                        setActiveDatasheet(product);
-                      }
-                    }}
+                    onClick={(e) => navigateTo(`/products/${product.id}`, e)}
                     className="explore-btn"
                   >
                     Explore Platform
@@ -329,79 +322,6 @@ export default function Products() {
 
       </div>
 
-      {/* ══ Datasheet Modal ══════════════════════════════════════════════════ */}
-      {activeDatasheet && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="w-full max-w-2xl bg-white dark:bg-[#17264A] border border-[#DBE4F0] dark:border-[#24355A] rounded-3xl p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto text-[#14213D] dark:text-[#F8FAFC]">
-            <button
-              onClick={() => setActiveDatasheet(null)}
-              className="absolute top-5 right-5 p-2 text-slate-400 dark:text-white/60 hover:text-slate-800 dark:hover:text-white rounded-lg hover:bg-slate-100 dark:hover:bg-white/10 transition-colors cursor-pointer"
-              aria-label="Close modal"
-            >
-              <X className="w-5 h-5" />
-            </button>
-
-            <div className="flex items-center gap-2 text-xs font-mono text-[#089EC2] dark:text-[#2DD4F0] mb-2 uppercase font-semibold">
-              <FileText className="w-4 h-4" />
-              <span>Official Hardware Technical Specification</span>
-            </div>
-
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-[#14213D] dark:text-[#F8FAFC] mb-1">
-              {activeDatasheet.name}
-            </h3>
-            <p className="text-xs sm:text-sm font-mono text-slate-500 dark:text-white/50 mb-3">
-              {activeDatasheet.fullName}
-            </p>
-            <p className="text-sm text-[#52627C] dark:text-[#AAB6D0] mb-6">
-              {activeDatasheet.headline}
-            </p>
-
-            <div className="space-y-4 text-xs">
-              <div className="p-4 rounded-xl bg-[#EDF2F7] dark:bg-[#101936] border border-[#DBE4F0] dark:border-[#24355A]">
-                <h4 className="font-bold mb-3 uppercase tracking-wider text-[11px] text-[#089EC2] dark:text-[#2DD4F0]">
-                  Key Technical Specifications
-                </h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {activeDatasheet.specs.map((spec, i) => (
-                    <div key={i} className="flex flex-col">
-                      <span className="text-[10px] font-mono uppercase text-slate-500 dark:text-white/50">{spec.label}</span>
-                      <span className="font-semibold text-slate-800 dark:text-white/90">{spec.value}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="p-4 rounded-xl bg-[#EDF2F7] dark:bg-[#101936] border border-[#DBE4F0] dark:border-[#24355A]">
-                <h4 className="font-bold mb-2 uppercase tracking-wider text-[11px] text-[#089EC2] dark:text-[#2DD4F0]">
-                  Overview & Architecture
-                </h4>
-                <p className="text-[#52627C] dark:text-[#AAB6D0] leading-relaxed">
-                  {activeDatasheet.description}
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-6 pt-4 border-t border-[#DBE4F0] dark:border-[#24355A] flex items-center justify-between">
-              <button
-                onClick={() => {
-                  alert(`Downloading technical documentation package for ${activeDatasheet.name}...`);
-                  setActiveDatasheet(null);
-                }}
-                className="px-5 py-2.5 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-[#089EC2] to-[#3285FF] hover:opacity-95 shadow-md shadow-[#089EC2]/20 flex items-center gap-2 font-mono cursor-pointer"
-              >
-                <Download className="w-3.5 h-3.5" />
-                <span>Download Spec Sheet (PDF)</span>
-              </button>
-              <button
-                onClick={() => setActiveDatasheet(null)}
-                className="text-xs text-slate-500 dark:text-white/60 hover:text-slate-800 dark:hover:text-white cursor-pointer"
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 }

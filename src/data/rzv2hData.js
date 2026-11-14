@@ -181,13 +181,8 @@ export const RZV2H_PRODUCT_DETAILS = {
     gallery: [
       {
         src: '/images/RZV2H.png',
-        alt: 'RZ/V2H SBC Development Platform View',
-        caption: 'Turnkey SBC — Pre-Assembled & Validated',
-      },
-      {
-        src: '/images/capabilities/camera-multimedia.png',
-        alt: 'RZ/V2H 10 TOPS DRP-AI Architecture',
-        caption: '2nd Gen DRP-AI Neural Engine @ 10 TOPS & Multi-Camera Vision',
+        model3d: '/models/PCB_3D_Model.glb',
+        alt: 'RZ/V2H SBC 3D Model',
       },
     ],
     heroHighlights: [

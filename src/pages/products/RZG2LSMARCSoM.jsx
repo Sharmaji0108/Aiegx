@@ -11,19 +11,160 @@ import ProductEnquiry, { ProductEnquiryModal } from '../../components/products/P
 import { RZG2L_PRODUCT_DETAILS, RZG2L_APPLICATIONS } from '../../data/rzg2lData';
 import { navigateTo } from '../../utils/navigation';
 
+const SOM_SUBTITLE = 'Up to 2 x Arm Cortex-A55, 1 x Cortex-M33';
+
+const SOM_SPECIFICATIONS = [
+  { feature: 'CPU', details: 'Renesas RZ/G2L 2x Arm® Cortex®-A55 @ Up to 1.2 GHz 1x Cortex®-M33' },
+  { feature: 'RAM', details: 'Default: 1 GB DDR4, Up to 2 GB DDR4' },
+  { feature: 'eMMC', details: 'Default: 8GB, up to 64GB' },
+  { feature: 'Ethernet', details: 'Up to 2 X 10/100/1000 Mbps phy on board' },
+  { feature: 'Wireless', details: '802.11 b/g/n/ac + BT 5.0' },
+  { feature: 'GPU', details: 'Arm Mali-G31' },
+  { feature: '3D GPU Support', details: 'OpenGL ES1.1 / 2.0 / 3.0 / 3.1 and 3.2 Supported; OpenCL 2.0 Full Profile Supported' },
+  { feature: 'USB', details: '2X USB2.0' },
+  { feature: 'I/O Interfaces', details: '3x UART, 3x I2C, 2x SPI, GPIO, PWM, 2x SD/MMC' },
+  { feature: 'CAN', details: '2x CAN FD' },
+  { feature: 'Display Interface', details: '1x MIPI DSI, RGB' },
+  { feature: 'Camera Interface', details: '1x MIPI CSI-2 support 5MP, 30 fps' },
+  { feature: 'B2B Connectors', details: '3x Hirose DF40 connectors' },
+  { feature: 'External Storage Support', details: 'SD' },
+  { feature: 'Supply Voltage', details: '5V' },
+  { feature: 'I/O Voltage', details: '3.3V' },
+  { feature: 'Power Consumption', details: '<5W' },
+  { feature: 'Temperature', details: 'Commercial: 0°C to 70°C; Industrial: -40°C to 85°C' },
+  { feature: 'Product Longevity', details: '2032' },
+  { feature: 'Supported OS', details: 'Embedded Linux (Yocto/Debian Distribution)' },
+  { feature: 'Form Factor', details: 'Mezzanine, size 47 x 30 mm' },
+];
+
+const SOM_FEATURES = [
+  'Dual core Arm Cortex A55 up to 1.2GHz + Cortex M33',
+  'MIPI-DSI interface for HMI applications',
+  'Onboard Certified Dual Band WiFi 802.11 a/b/g/n/ac with Bluetooth 5.0',
+  'Pin to Pin compatible with RZ/V2L SOM',
+  'The CIP (Civil Infrastructure Platform) Linux ensures robust, sustainable infrastructural systems',
+];
+
+const RZG2L_SBC_FEATURES = [
+  'Renesas RZ/G2L MPU with 64-bit ARM®v8.2A, ARM®v8-M & 3D-Graphics Engine with Arm®Mali™ Architecture',
+  '2GB DDR4 (Expandable)',
+  '16GB eMMC Flash (Expandable)',
+  'All Power required for the SoC generated using DA9062 PMIC',
+  '1 x Gigabit Ethernet Jack',
+  'MIPI CSI & MIPI DSI support',
+];
+
+const RZG2L_SBC_SPECIFICATIONS = [
+  {
+    feature: 'CPU',
+    details: [
+      '2 x Arm® Cortex-A55 @1.2GHz',
+      '1 x Arm® Cortex-M33 @200MHz',
+      '1 x Arm® Mali™-G31 @500MHz',
+    ],
+  },
+  {
+    feature: 'Memory & Storage',
+    details: [
+      'DDR4 – 2GB (Expandable)*',
+      'eMMC NAND Flash – 16GB (Expandable)',
+      'QSPI Flash – 256Mb / Octa-SPI Flash – 512Mb (Optional)',
+      'Micro SD slot',
+      'EEPROM – 32Kb',
+    ],
+  },
+  {
+    feature: 'Network & Communication',
+    details: [
+      'Gigabit Ethernet x 1 (Single RJ45 Mag-jack Connector)',
+      'USB 2.0 OTG (micro-AB Receptacle Connector)',
+      'USB 2.0 Header x 1',
+    ],
+  },
+  {
+    feature: 'Video Features',
+    details: [
+      'MIPI CSI Interface (4 Lane) x 1',
+      'RGB Display Interface (18-bit) x 1',
+    ],
+  },
+  {
+    feature: 'Miscellaneous Interfaces',
+    details: [
+      'Debug UART Header',
+      'RTC Connector',
+    ],
+  },
+  {
+    feature: 'Expansion Connector Features',
+    details: [
+      'RGMII x 1',
+      'UART x 2 (without flow control)',
+      'UART x 2 (with flow control)',
+      'CAN x 2',
+      'SPI x 2',
+      'I2C x 1',
+      'PWM x 1',
+      'ADC x 2',
+      'JTAG x 1',
+      'MIPI DSI (4-lane) x 1',
+      'GPIOs',
+    ],
+  },
+  {
+    feature: 'OS Support',
+    details: 'Linux 5.10.201 (or higher)',
+  },
+  {
+    feature: 'General Features',
+    details: [
+      'Power Input: 12V',
+      'Form Factor: 85mm x 56mm',
+      'Operating Temperature: -40°C to +85°C (Industrial)',
+      'Environment Specification: RoHS3 & REACH Compliant',
+    ],
+  },
+];
+
+const formatFeatureItem = (item) => {
+  if (typeof item !== 'string') return item;
+  if (item.includes('RZ/V2L SOM')) {
+    const parts = item.split('RZ/V2L SOM');
+    return (
+      <>
+        {parts[0]}
+        <span className="text-[#089EC2] dark:text-[#2DD4F0] font-semibold">RZ/V2L SOM</span>
+        {parts[1]}
+      </>
+    );
+  }
+  if (item.includes('CIP (Civil Infrastructure Platform)')) {
+    const parts = item.split('CIP (Civil Infrastructure Platform)');
+    return (
+      <>
+        {parts[0]}
+        <span className="text-[#089EC2] dark:text-[#2DD4F0] font-semibold">CIP (Civil Infrastructure Platform)</span>
+        {parts[1]}
+      </>
+    );
+  }
+  return item;
+};
+
 /**
  * Page 2 — RZ/G2L SMARC SoM Product Detail Page
  * Supports SMARC SoM (primary detail view) as well as RZ/G2L Carrier Board & SBC detail routes.
  */
 export default function RZG2LSMARCSoM({ productSlug = 'smarc-som' }) {
-  const product = RZG2L_PRODUCT_DETAILS[productSlug] || RZG2L_PRODUCT_DETAILS['smarc-som'];
+  const rawProduct = RZG2L_PRODUCT_DETAILS[productSlug] || RZG2L_PRODUCT_DETAILS['smarc-som'];
+  const product = productSlug === 'carrier-board' ? { ...rawProduct, title: 'RZ/G2L SBC' } : rawProduct;
   const [prevSlug, setPrevSlug] = useState(productSlug);
-  const [activeTab, setActiveTab] = useState('key-features');
+  const [activeTab, setActiveTab] = useState('specifications');
   const tabContentRef = useRef(null);
 
   if (productSlug !== prevSlug) {
     setPrevSlug(productSlug);
-    setActiveTab('key-features');
+    setActiveTab('specifications');
   }
 
   const handleTabChange = (nextTab) => {
@@ -98,19 +239,47 @@ export default function RZG2LSMARCSoM({ productSlug = 'smarc-som' }) {
               </div>
 
               {/* Product Title */}
-              <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold tracking-tight text-[#14213D] dark:text-[#F8FAFC] leading-[1.15] mb-3">
+              <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold tracking-tight text-[#14213D] dark:text-[#F8FAFC] leading-[1.15] mb-2 sm:mb-2.5">
                 {product.title}
               </h1>
 
-              {/* Short Product Description */}
-              <p className="text-sm sm:text-base font-semibold text-[#14213D] dark:text-[#E2E8F0] leading-relaxed mb-4">
-                {product.shortDescription}
-              </p>
+              {/* Subtitle / Core Architecture */}
+              {(product.subtitle || (productSlug === 'smarc-som' && SOM_SUBTITLE)) && (
+                <p className="text-sm sm:text-base font-semibold text-[#52627C] dark:text-[#AAB6D0] mb-4">
+                  {product.subtitle || SOM_SUBTITLE}
+                </p>
+              )}
 
-              {/* Detailed Introductory Paragraph */}
-              <p className="text-xs sm:text-sm lg:text-[15px] text-[#52627C] dark:text-[#AAB6D0] leading-relaxed mb-5">
-                {product.introParagraph}
-              </p>
+              {/* Bullet Features or Paragraph Description */}
+              {((product.featuresList && product.featuresList.length > 0) || productSlug === 'smarc-som' || productSlug === 'carrier-board' || productSlug === 'sbc') ? (
+                <ul className="space-y-2.5 sm:space-y-3 mb-6 max-w-2xl">
+                  {((product.featuresList && product.featuresList.length > 0)
+                    ? product.featuresList
+                    : (productSlug === 'smarc-som' ? SOM_FEATURES : RZG2L_SBC_FEATURES)
+                  ).map((item, idx) => (
+                    <li
+                      key={idx}
+                      className="flex items-start gap-2.5 text-xs sm:text-sm lg:text-[14.5px] font-medium text-[#14213D] dark:text-[#E2E8F0] leading-relaxed"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#089EC2] dark:bg-[#2DD4F0] mt-2 shrink-0" />
+                      <span>{formatFeatureItem(item)}</span>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <>
+                  {product.shortDescription && (
+                    <p className="text-sm sm:text-base font-semibold text-[#14213D] dark:text-[#E2E8F0] leading-relaxed mb-4">
+                      {product.shortDescription}
+                    </p>
+                  )}
+                  {product.introParagraph && (
+                    <p className="text-xs sm:text-sm lg:text-[15px] text-[#52627C] dark:text-[#AAB6D0] leading-relaxed mb-5">
+                      {product.introParagraph}
+                    </p>
+                  )}
+                </>
+              )}
 
               {/* Hardware Highlights Checklist */}
               {product.heroHighlights && product.heroHighlights.length > 0 && (
@@ -177,36 +346,19 @@ export default function RZG2LSMARCSoM({ productSlug = 'smarc-som' }) {
         aria-labelledby={`tab-${activeTab}`}
         className="scroll-mt-32 transition-opacity duration-200"
       >
-        {/* TAB 1: Key Features */}
-        {activeTab === 'key-features' && (
-          <TechnicalInfoTable
-            id="key-features"
-            subheading="CORE CAPABILITIES"
-            heading={
-              <>
-                Key{' '}
-                <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
-                  Features
-                </span>
-              </>
-            }
-            description="Hardware and embedded system capabilities built for mission-critical edge applications."
-            columns={['Feature', 'Description']}
-            rows={
-              product.keyFeaturesTable ||
-              product.keyFeatures.map((feat) => ({
-                label: feat.title,
-                description: feat.subtitle || feat.description || feat.title,
-              }))
-            }
-          />
-        )}
-
-        {/* TAB 2: Specifications */}
+        {/* TAB 1: Specifications */}
         {activeTab === 'specifications' && (
           <ProductSpecifications
-            specifications={product.specifications}
+            specifications={
+              productSlug === 'smarc-som'
+                ? (product.specifications && product.specifications.length >= 20 ? product.specifications : SOM_SPECIFICATIONS)
+                : (product.specifications && product.specifications.length === 8 && product.specifications[0]?.feature
+                    ? product.specifications
+                    : RZG2L_SBC_SPECIFICATIONS)
+            }
             productName={product.title}
+            featureHeader={productSlug === 'smarc-som' ? 'FEATURE' : 'FEATURES'}
+            detailsHeader="DETAILS"
           />
         )}
 

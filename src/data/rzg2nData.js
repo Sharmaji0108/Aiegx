@@ -182,13 +182,8 @@ export const RZG2N_PRODUCT_DETAILS = {
     gallery: [
       {
         src: '/images/RZG2N.png',
-        alt: 'RZ/G2N SBC Development Platform View',
-        caption: 'Turnkey SBC — Pre-Assembled & Validated',
-      },
-      {
-        src: '/images/capabilities/camera-multimedia.png',
-        alt: 'RZ/G2N Multimedia & 4K Video Architecture',
-        caption: 'Multimedia Engine — 4K H.265/H.264 VPU & PowerVR 3D GPU',
+        model3d: '/models/PCB_3D_Model.glb',
+        alt: 'RZ/G2N SBC 3D Model',
       },
     ],
     heroHighlights: [

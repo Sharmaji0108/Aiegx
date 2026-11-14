@@ -17,7 +17,7 @@ import { navigateTo } from '../../utils/navigation';
  */
 export default function RZV2HSBC() {
   const product = RZV2H_PRODUCT_DETAILS['sbc'];
-  const [activeTab, setActiveTab] = useState('key-features');
+  const [activeTab, setActiveTab] = useState('specifications');
   const tabContentRef = useRef(null);
   const [enquiryModal, setEnquiryModal] = useState({
     isOpen: false,
@@ -192,32 +192,7 @@ export default function RZV2HSBC() {
 
       {/* SECTION 3: Tab Content Area */}
       <div id="product-tabs-section" ref={tabContentRef} className="scroll-mt-24">
-        {/* Tab 1: Key Features (Technical Table) */}
-        {activeTab === 'key-features' && (
-          <section className="py-8 sm:py-12 bg-[#F5F8FC] dark:bg-[#0D1733] transition-colors duration-300">
-            <div className="section-container">
-              <div className="mb-6">
-                <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#089EC2] dark:text-[#2DD4F0] block mb-1">
-                  CORE PLATFORM ATTRIBUTES
-                </span>
-                <h2 className="text-xl sm:text-2xl font-extrabold text-[#14213D] dark:text-[#F8FAFC]">
-                  Key Features
-                </h2>
-                <p className="text-xs sm:text-sm text-[#52627C] dark:text-[#AAB6D0] mt-1 max-w-2xl">
-                  Essential architectural, computational, and electrical specifications of the AIEGX RZ/V2H High-Performance Single Board Computer.
-                </p>
-              </div>
-
-              <TechnicalInfoTable
-                data={product.keyFeaturesTable}
-                featureColWidth="30%"
-                descColWidth="70%"
-              />
-            </div>
-          </section>
-        )}
-
-        {/* Tab 2: Specifications */}
+        {/* Tab 1: Specifications */}
         {activeTab === 'specifications' && (
           <section className="py-8 sm:py-12 bg-[#F5F8FC] dark:bg-[#0D1733] transition-colors duration-300">
             <div className="section-container">

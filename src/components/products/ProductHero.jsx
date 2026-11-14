@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight, CheckCircle2, MessageSquare } from 'lucide-react';
 import ProductBreadcrumb from './ProductBreadcrumb';
+import SOM3DViewer from './SOM3DViewer';
 
 /**
  * Product Platform Hero section matching Aiegx homepage hero theme and layout.
@@ -95,18 +96,26 @@ export default function ProductHero({
 
           {/* Right Column: Prominent Processor / Board Visual */}
           <div className="lg:col-span-5 flex items-center justify-center">
-            <div className="w-full max-w-md lg:max-w-none rounded-2xl bg-white dark:bg-[#17264A] border border-[#DBE4F0] dark:border-[#24355A] p-5 sm:p-7 shadow-[0_12px_36px_rgba(15,23,42,0.06)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.35)] relative overflow-hidden">
-              <div className="aspect-[4/3] w-full rounded-xl bg-[#F8FAFD] dark:bg-[#101936] border border-[#E2EAF4] dark:border-[#24355A] flex items-center justify-center p-4 sm:p-6">
-                <img
-                  src={hero.image}
-                  alt={hero.imageAlt}
-                  onError={(e) => {
-                    if (hero.fallbackImage && e.currentTarget.src !== hero.fallbackImage) {
-                      e.currentTarget.src = hero.fallbackImage;
-                    }
-                  }}
-                  className="max-h-full max-w-full object-contain drop-shadow-md transition-transform duration-500 hover:scale-[1.03]"
-                />
+            <div className="w-full max-w-md lg:max-w-none rounded-2xl bg-white dark:bg-[#17264A] border border-[#DBE4F0] dark:border-[#24355A] p-4 sm:p-5 shadow-[0_12px_36px_rgba(15,23,42,0.06)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.35)] relative overflow-hidden">
+              <div className="aspect-[4/3] w-full rounded-xl bg-[#F8FAFD] dark:bg-[#101936] border border-[#E2EAF4] dark:border-[#24355A] flex items-center justify-center overflow-hidden p-1 sm:p-2">
+                {hero.model3d ? (
+                  <SOM3DViewer
+                    modelUrl={hero.model3d}
+                    fallbackSrc={hero.image}
+                    fallbackAlt={hero.imageAlt}
+                  />
+                ) : (
+                  <img
+                    src={hero.image}
+                    alt={hero.imageAlt}
+                    onError={(e) => {
+                      if (hero.fallbackImage && e.currentTarget.src !== hero.fallbackImage) {
+                        e.currentTarget.src = hero.fallbackImage;
+                      }
+                    }}
+                    className="max-h-full max-w-full object-contain drop-shadow-md transition-transform duration-500 hover:scale-[1.03]"
+                  />
+                )}
               </div>
 
               <div className="mt-4 pt-3.5 border-t border-[#E2E8F0] dark:border-[#24355A] flex items-center justify-between text-xs">

@@ -27,8 +27,10 @@ function SOMMesh({ modelUrl }) {
     return cloned;
   }, [scene]);
 
+  const isSom = Boolean(modelUrl && modelUrl.toLowerCase().includes('som'));
+
   return (
-    <group rotation={[0, 0, Math.PI]}>
+    <group rotation={isSom ? [0, 0, Math.PI] : [0, 0, 0]}>
       <primitive object={centeredScene} />
     </group>
   );

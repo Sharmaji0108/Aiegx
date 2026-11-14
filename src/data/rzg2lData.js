@@ -89,11 +89,11 @@ export const RZG2L_PLATFORM_DATA = {
     },
     {
       id: 'carrier-board',
-      title: 'Carrier Board',
+      title: 'RZ/G2L SBC',
       subtitle: 'Application Interfaces and Expansion',
       image: '/images/RZV2L.png',
       fallbackImage: '/images/rz-g2l-hd.jpg',
-      imageAlt: 'RZ/G2L Carrier Board hardware',
+      imageAlt: 'RZ/G2L SBC',
     },
     {
       id: 'complete-sbc',
@@ -115,23 +115,23 @@ export const RZG2L_PLATFORM_DATA = {
       fallbackImage: '/images/aiegx-hardware-som-hd.jpg',
       imageAlt: 'RZ/G2L SMARC SoM Embedded Module',
       features: [
-        'Renesas RZ/G2L Processor',
-        'Optimized for HMI & Display',
-        'Compact SMARC Form Factor',
-        'Yocto Linux BSP',
+        'Dual core Cortex A55 + Cortex M33',
+        'MIPI-DSI Interface for HMI',
+        'Dual Band WiFi & Bluetooth 5.0',
+        'Pin to Pin Compatible with RZ/V2L SOM',
       ],
       route: '/products/rz-g2l/smarc-som',
       featured: true,
     },
     {
       id: 'rz-g2l-carrier-board',
-      name: 'RZ/G2L Carrier Board',
+      name: 'RZ/G2L SBC',
       badge: 'Expansion Baseboard',
       description:
         'Expansion board with additional interfaces and connectivity.',
       image: '/images/RZV2L.png',
       fallbackImage: '/images/rz-g2l-hd.jpg',
-      imageAlt: 'RZ/G2L SMARC Carrier Board',
+      imageAlt: 'RZ/G2L SBC',
       features: [
         'Supports RZ/G2L SMARC SoM',
         'Rich I/O and Expansion',
@@ -236,10 +236,14 @@ export const RZG2L_PRODUCT_DETAILS = {
     slug: 'smarc-som',
     category: 'SMARC MODULE',
     title: 'RZ/G2L SMARC SoM',
-    shortDescription:
-      'Compact SMARC System-on-Module powered by the Renesas RZ/G2L processor for industrial HMI, display control, and connected edge applications.',
-    introParagraph:
-      'Designed around the Renesas RZ/G2L family, the AIEGX RZ/G2L SMARC SoM combines power-efficient 64-bit Arm Cortex-A55 compute, an integrated Cortex-M33 real-time core, and hardware-accelerated 2D/3D graphics inside a standardized 82mm × 50mm SMARC footprint. Engineered for rapid integration into custom carrier boards or off-the-shelf evaluation kits, it delivers industrial-grade reliability, dual Gigabit Ethernet, rich display outputs, and production-ready Yocto Linux BSP support.',
+    subtitle: 'Up to 2 x Arm Cortex-A55, 1 x Cortex-M33',
+    featuresList: [
+      'Dual core Arm Cortex A55 up to 1.2GHz + Cortex M33',
+      'MIPI-DSI interface for HMI applications',
+      'Onboard Certified Dual Band WiFi 802.11 a/b/g/n/ac with Bluetooth 5.0',
+      'Pin to Pin compatible with RZ/V2L SOM',
+      'The CIP (Civil Infrastructure Platform) Linux ensures robust, sustainable infrastructural systems',
+    ],
     breadcrumb: [
       { label: 'Home', path: '/' },
       { label: 'Products', path: '/#hardware-platforms' },
@@ -250,23 +254,7 @@ export const RZG2L_PRODUCT_DETAILS = {
       {
         src: '/images/SOM.png',
         model3d: '/models/SOM.glb',
-        alt: 'RZ/G2L SMARC SoM Interactive 3D Hardware View',
-        caption: 'Interactive 3D View — Compact SMARC Module',
-      },
-      {
-        src: '/images/aiegx-hardware-som-hd.jpg',
-        alt: 'RZ/G2L SMARC SoM High-Density PCB Detail',
-        caption: 'Module Detail — High-Speed Memory & Power Integrity',
-      },
-      {
-        src: '/images/rz-g2l-hd.jpg',
-        alt: 'RZ/G2L Processor & Carrier Integration View',
-        caption: 'Platform View — Processor & Embedded Architecture',
-      },
-      {
-        src: '/images/pcb-modules-transparent.png',
-        alt: 'AIEGX SMARC SoM Hardware Profile',
-        caption: 'Hardware Profile — Gold-Finger MXM 314-Pin Edge',
+        alt: 'RZ/G2L SMARC SoM 3D Hardware Model',
       },
     ],
     heroHighlights: [
@@ -309,16 +297,27 @@ export const RZG2L_PRODUCT_DETAILS = {
       { title: 'Industrial Grade', subtitle: 'Design', icon: ShieldCheck },
     ],
     specifications: [
-      { parameter: 'Processor', specification: 'Renesas RZ/G2L (Quad Cortex-A55, up to 1.2 GHz)' },
-      { parameter: 'Memory', specification: 'Up to 4 GB LPDDR4' },
-      { parameter: 'Storage', specification: 'eMMC / QSPI (configurable)' },
-      { parameter: 'Display', specification: 'HDMI, LVDS, MIPI-DSI' },
-      { parameter: 'Ethernet', specification: '2 × Gigabit Ethernet' },
-      { parameter: 'USB', specification: 'USB 3.0 / 2.0' },
-      { parameter: 'Industrial I/O', specification: 'CAN, UART, GPIO, I2C, SPI' },
-      { parameter: 'Form Factor', specification: 'SMARC' },
-      { parameter: 'Operating Temp.', specification: '-40°C to +85°C (optional)' },
-      { parameter: 'OS Support', specification: 'Yocto Linux, Reference BSP' },
+      { feature: 'CPU', details: 'Renesas RZ/G2L 2x Arm® Cortex®-A55 @ Up to 1.2 GHz 1x Cortex®-M33' },
+      { feature: 'RAM', details: 'Default: 1 GB DDR4, Up to 2 GB DDR4' },
+      { feature: 'eMMC', details: 'Default: 8GB, up to 64GB' },
+      { feature: 'Ethernet', details: 'Up to 2 X 10/100/1000 Mbps phy on board' },
+      { feature: 'Wireless', details: '802.11 b/g/n/ac + BT 5.0' },
+      { feature: 'GPU', details: 'Arm Mali-G31' },
+      { feature: '3D GPU Support', details: 'OpenGL ES1.1 / 2.0 / 3.0 / 3.1 and 3.2 Supported; OpenCL 2.0 Full Profile Supported' },
+      { feature: 'USB', details: '2X USB2.0' },
+      { feature: 'I/O Interfaces', details: '3x UART, 3x I2C, 2x SPI, GPIO, PWM, 2x SD/MMC' },
+      { feature: 'CAN', details: '2x CAN FD' },
+      { feature: 'Display Interface', details: '1x MIPI DSI, RGB' },
+      { feature: 'Camera Interface', details: '1x MIPI CSI-2 support 5MP, 30 fps' },
+      { feature: 'B2B Connectors', details: '3x Hirose DF40 connectors' },
+      { feature: 'External Storage Support', details: 'SD' },
+      { feature: 'Supply Voltage', details: '5V' },
+      { feature: 'I/O Voltage', details: '3.3V' },
+      { feature: 'Power Consumption', details: '<5W' },
+      { feature: 'Temperature', details: 'Commercial: 0°C to 70°C; Industrial: -40°C to 85°C' },
+      { feature: 'Product Longevity', details: '2032' },
+      { feature: 'Supported OS', details: 'Embedded Linux (Yocto/Debian Distribution)' },
+      { feature: 'Form Factor', details: 'Mezzanine, size 47 x 30 mm' },
     ],
     interfaces: [
       { name: 'Ethernet', detail: '2 × Gigabit Ethernet (TSN capable)', icon: Network },
@@ -390,32 +389,26 @@ export const RZG2L_PRODUCT_DETAILS = {
   'carrier-board': {
     slug: 'carrier-board',
     category: 'CARRIER BOARD',
-    title: 'RZ/G2L Carrier Board',
-    shortDescription:
-      'Industrial SMARC carrier baseboard engineered to expose full RZ/G2L I/O, display pipelines, and fieldbus expansion.',
-    introParagraph:
-      'The AIEGX RZ/G2L Carrier Board pairs directly with the RZ/G2L SMARC SoM to deliver production-grade industrial connectors, flexible display interfaces, ruggedized power input, and clean expansion headers for rapid prototyping or volume deployment.',
+    title: 'RZ/G2L SBC',
+    featuresList: [
+      'Renesas RZ/G2L MPU with 64-bit ARM®v8.2A, ARM®v8-M & 3D-Graphics Engine with Arm®Mali™ Architecture',
+      '2GB DDR4 (Expandable)',
+      '16GB eMMC Flash (Expandable)',
+      'All Power required for the SoC generated using DA9062 PMIC',
+      '1 x Gigabit Ethernet Jack',
+      'MIPI CSI & MIPI DSI support',
+    ],
     breadcrumb: [
       { label: 'Home', path: '/' },
       { label: 'Products', path: '/#hardware-platforms' },
       { label: 'RZ/G2L', path: '/products/rz-g2l' },
-      { label: 'RZ/G2L Carrier Board', path: null },
+      { label: 'RZ/G2L SBC', path: null },
     ],
     gallery: [
       {
         src: '/images/RZV2L.png',
-        alt: 'RZ/G2L Carrier Board Top View',
-        caption: 'Baseboard View — Full SMARC Expansion',
-      },
-      {
-        src: '/images/rz-g2l-hd.jpg',
-        alt: 'RZ/G2L Carrier & SoM Assembly',
-        caption: 'System Assembly — SoM Seated on Carrier',
-      },
-      {
-        src: '/images/sbc-platform-hd.jpg',
-        alt: 'RZ/G2L Industrial Connector Layout',
-        caption: 'Connectors — Dual GbE, USB & Display I/O',
+        model3d: '/models/RZG2L-RZV2L_SBC.glb',
+        alt: 'RZ/G2L SBC 3D Model',
       },
     ],
     heroHighlights: [
@@ -425,9 +418,9 @@ export const RZG2L_PRODUCT_DETAILS = {
       { label: 'Flexible Custom Designs', icon: Layers },
     ],
     overviewSummary:
-      'Engineered to unlock every peripheral of the RZ/G2L SMARC SoM, the RZ/G2L Carrier Board breaks out dual RJ45 Gigabit Ethernet ports, USB 3.0/2.0 hosts, isolated CAN interfaces, serial UART headers, and multiple display interfaces on ruggedized connectors.',
+      'Engineered to unlock every peripheral of the RZ/G2L SMARC SoM, the RZ/G2L SBC breaks out dual RJ45 Gigabit Ethernet ports, USB 3.0/2.0 hosts, isolated CAN interfaces, serial UART headers, and multiple display interfaces on ruggedized connectors.',
     overviewParagraphs: [
-      'Engineered to unlock every peripheral of the RZ/G2L SMARC SoM, the RZ/G2L Carrier Board breaks out dual RJ45 Gigabit Ethernet ports, USB 3.0/2.0 hosts, isolated CAN interfaces, serial UART headers, and multiple display interfaces on ruggedized connectors.',
+      'Engineered to unlock every peripheral of the RZ/G2L SMARC SoM, the RZ/G2L SBC breaks out dual RJ45 Gigabit Ethernet ports, USB 3.0/2.0 hosts, isolated CAN interfaces, serial UART headers, and multiple display interfaces on ruggedized connectors.',
       'Available as an off-the-shelf evaluation baseboard or as a customizable reference schematic package for custom enclosure footprints and specialized fieldbus requirements.',
     ],
     overviewMetrics: [
@@ -457,14 +450,75 @@ export const RZG2L_PRODUCT_DETAILS = {
       { title: 'Custom Carrier Reference Files', icon: Layers },
     ],
     specifications: [
-      { parameter: 'Compatibility', specification: 'AIEGX RZ/G2L SMARC SoM' },
-      { parameter: 'Ethernet', specification: '2 × RJ45 Gigabit Ethernet' },
-      { parameter: 'Display Interfaces', specification: 'HDMI, LVDS Header, MIPI-DSI' },
-      { parameter: 'USB', specification: 'USB 3.0 Host, USB 2.0 Host & OTG' },
-      { parameter: 'Industrial I/O', specification: 'CAN, RS232/RS485 UART, GPIO, I2C, SPI' },
-      { parameter: 'Storage Expansion', specification: 'MicroSD Card Slot' },
-      { parameter: 'Power Input', specification: '12V–24V DC Terminal / Barrel' },
-      { parameter: 'Operating Temperature', specification: '-40°C to +85°C (optional)' },
+      {
+        feature: 'CPU',
+        details: [
+          '2 x Arm® Cortex-A55 @1.2GHz',
+          '1 x Arm® Cortex-M33 @200MHz',
+          '1 x Arm® Mali™-G31 @500MHz',
+        ],
+      },
+      {
+        feature: 'Memory & Storage',
+        details: [
+          'DDR4 – 2GB (Expandable)*',
+          'eMMC NAND Flash – 16GB (Expandable)',
+          'QSPI Flash – 256Mb / Octa-SPI Flash – 512Mb (Optional)',
+          'Micro SD slot',
+          'EEPROM – 32Kb',
+        ],
+      },
+      {
+        feature: 'Network & Communication',
+        details: [
+          'Gigabit Ethernet x 1 (Single RJ45 Mag-jack Connector)',
+          'USB 2.0 OTG (micro-AB Receptacle Connector)',
+          'USB 2.0 Header x 1',
+        ],
+      },
+      {
+        feature: 'Video Features',
+        details: [
+          'MIPI CSI Interface (4 Lane) x 1',
+          'RGB Display Interface (18-bit) x 1',
+        ],
+      },
+      {
+        feature: 'Miscellaneous Interfaces',
+        details: [
+          'Debug UART Header',
+          'RTC Connector',
+        ],
+      },
+      {
+        feature: 'Expansion Connector Features',
+        details: [
+          'RGMII x 1',
+          'UART x 2 (without flow control)',
+          'UART x 2 (with flow control)',
+          'CAN x 2',
+          'SPI x 2',
+          'I2C x 1',
+          'PWM x 1',
+          'ADC x 2',
+          'JTAG x 1',
+          'MIPI DSI (4-lane) x 1',
+          'GPIOs',
+        ],
+      },
+      {
+        feature: 'OS Support',
+        details: 'Linux 5.10.201 (or higher)',
+      },
+      {
+        feature: 'General Features',
+        details: [
+          'Power Input: 12V',
+          'Form Factor: 85mm x 56mm',
+          'Operating Temperature: -40°C to +85°C (Industrial)',
+          'Environment Specification: RoHS3 & REACH Compliant',
+        ],
+      },
     ],
     interfaces: [
       { name: 'Ethernet', detail: '2 × RJ45 Gigabit Ethernet', icon: Network },
@@ -552,10 +606,14 @@ export const RZG2L_PRODUCT_DETAILS = {
     slug: 'sbc',
     category: 'DEVELOPMENT PLATFORM / SBC',
     title: 'RZ/G2L SBC (Development Platform)',
-    shortDescription:
-      'Complete ready-to-use single-board computer combining the RZ/G2L SMARC SoM and industrial carrier board for rapid prototyping and production.',
-    introParagraph:
-      'The AIEGX RZ/G2L SBC integrates the pre-validated RZ/G2L SMARC SoM onto the industrial carrier board as an out-of-the-box development and deployment platform. Teams can immediately boot Yocto Linux, test HMI displays, validate industrial peripherals, and transition cleanly to mass production.',
+    featuresList: [
+      'Renesas RZ/G2L MPU with 64-bit ARM®v8.2A, ARM®v8-M & 3D-Graphics Engine with Arm®Mali™ Architecture',
+      '2GB DDR4 (Expandable)',
+      '16GB eMMC Flash (Expandable)',
+      'All Power required for the SoC generated using DA9062 PMIC',
+      '1 x Gigabit Ethernet Jack',
+      'MIPI CSI & MIPI DSI support',
+    ],
     breadcrumb: [
       { label: 'Home', path: '/' },
       { label: 'Products', path: '/#hardware-platforms' },
@@ -565,18 +623,8 @@ export const RZG2L_PRODUCT_DETAILS = {
     gallery: [
       {
         src: '/images/sbc-platform-hd.jpg',
-        alt: 'RZ/G2L SBC Complete Platform View',
-        caption: 'Turnkey SBC — Pre-Assembled & Validated',
-      },
-      {
-        src: '/images/RZG2L.png',
-        alt: 'Integrated RZ/G2L SoM Core',
-        caption: 'Core Compute — RZ/G2L SMARC SoM',
-      },
-      {
-        src: '/images/rz-g2l-hd.jpg',
-        alt: 'RZ/G2L Development Platform Interfaces',
-        caption: 'Platform Connectivity — HMI & Industrial I/O',
+        model3d: '/models/RZG2L-RZV2L_SBC.glb',
+        alt: 'RZ/G2L SBC 3D Model',
       },
     ],
     heroHighlights: [
@@ -618,16 +666,75 @@ export const RZG2L_PRODUCT_DETAILS = {
       { title: 'Industrial Grade Reliability', icon: ShieldCheck },
     ],
     specifications: [
-      { parameter: 'Processor', specification: 'Renesas RZ/G2L Quad Cortex-A55' },
-      { parameter: 'Memory', specification: 'Up to 4 GB LPDDR4' },
-      { parameter: 'Storage', specification: 'eMMC / QSPI + MicroSD' },
-      { parameter: 'Display', specification: 'HDMI, LVDS, MIPI-DSI' },
-      { parameter: 'Ethernet', specification: '2 × Gigabit Ethernet' },
-      { parameter: 'USB', specification: 'USB 3.0 / 2.0' },
-      { parameter: 'Industrial I/O', specification: 'CAN, UART, GPIO, I2C, SPI' },
-      { parameter: 'Architecture', specification: 'Complete SBC (SMARC SoM + Carrier)' },
-      { parameter: 'Operating Temperature', specification: '-40°C to +85°C (optional)' },
-      { parameter: 'OS Support', specification: 'Yocto Linux, Reference BSP' },
+      {
+        feature: 'CPU',
+        details: [
+          '2 x Arm® Cortex-A55 @1.2GHz',
+          '1 x Arm® Cortex-M33 @200MHz',
+          '1 x Arm® Mali™-G31 @500MHz',
+        ],
+      },
+      {
+        feature: 'Memory & Storage',
+        details: [
+          'DDR4 – 2GB (Expandable)*',
+          'eMMC NAND Flash – 16GB (Expandable)',
+          'QSPI Flash – 256Mb / Octa-SPI Flash – 512Mb (Optional)',
+          'Micro SD slot',
+          'EEPROM – 32Kb',
+        ],
+      },
+      {
+        feature: 'Network & Communication',
+        details: [
+          'Gigabit Ethernet x 1 (Single RJ45 Mag-jack Connector)',
+          'USB 2.0 OTG (micro-AB Receptacle Connector)',
+          'USB 2.0 Header x 1',
+        ],
+      },
+      {
+        feature: 'Video Features',
+        details: [
+          'MIPI CSI Interface (4 Lane) x 1',
+          'RGB Display Interface (18-bit) x 1',
+        ],
+      },
+      {
+        feature: 'Miscellaneous Interfaces',
+        details: [
+          'Debug UART Header',
+          'RTC Connector',
+        ],
+      },
+      {
+        feature: 'Expansion Connector Features',
+        details: [
+          'RGMII x 1',
+          'UART x 2 (without flow control)',
+          'UART x 2 (with flow control)',
+          'CAN x 2',
+          'SPI x 2',
+          'I2C x 1',
+          'PWM x 1',
+          'ADC x 2',
+          'JTAG x 1',
+          'MIPI DSI (4-lane) x 1',
+          'GPIOs',
+        ],
+      },
+      {
+        feature: 'OS Support',
+        details: 'Linux 5.10.201 (or higher)',
+      },
+      {
+        feature: 'General Features',
+        details: [
+          'Power Input: 12V',
+          'Form Factor: 85mm x 56mm',
+          'Operating Temperature: -40°C to +85°C (Industrial)',
+          'Environment Specification: RoHS3 & REACH Compliant',
+        ],
+      },
     ],
     interfaces: [
       { name: 'Ethernet', detail: '2 × Gigabit Ethernet', icon: Network },

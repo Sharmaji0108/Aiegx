@@ -86,8 +86,8 @@ export const RZV2L_PLATFORM_DATA = {
       badge: 'System on Module',
       description:
         'Compact computing module based on the Renesas RZ/V2L platform.',
-      image: '/images/rz-v2l-hd.jpg',
-      fallbackImage: '/images/rz-v2l.png',
+      image: '/images/SOM.png',
+      fallbackImage: '/images/SOM.png',
       imageAlt: 'RZ/V2L SMARC System on Module',
       features: [
         'Renesas RZ/V2L (Dual A55 @ 1.2GHz + M33)',
@@ -213,6 +213,14 @@ export const RZV2L_PRODUCT_DETAILS = {
     category: 'SMARC 2.1 SYSTEM ON MODULE',
     title: 'RZ/V2L SoM',
     badge: 'System on Module',
+    featuresList: [
+      'RZ/V2L MPU with 64-bit Arm® v8.2A & v8-M Architecture',
+      'Dual Arm Cortex-A55 and Single core Cortex-M33',
+      'DRP-AI for accelerating AI processing',
+      'DDR4 – 2GB (Expandable), 16GB eMMC (Expandable)',
+      'QSPI Flash, Octal SPI Flash (Optional) & Micro SD Slot (Optional)',
+      'Multiple options for display: MIPI DSI, LVDS, HDMI, RGB',
+    ],
     shortDescription:
       'Compact computing module based on the Renesas RZ/V2L platform with dedicated DRP-AI neural core in a standard SMARC 2.1 form factor.',
     introParagraph:
@@ -225,19 +233,8 @@ export const RZV2L_PRODUCT_DETAILS = {
     ],
     gallery: [
       {
-        src: '/images/rz-v2l-hd.jpg',
-        alt: 'RZ/V2L SMARC System on Module Hardware View',
-        caption: 'RZ/V2L SMARC SoM — Renesas MPU, DRP-AI & LPDDR4 Core',
-      },
-      {
-        src: '/images/rz-v2l.png',
-        alt: 'RZ/V2L SoM SMARC Edge Connector',
-        caption: 'SMARC 2.1 Interface — 314-Pin Gold Finger Edge',
-      },
-      {
-        src: '/images/capabilities/camera-multimedia.png',
-        alt: 'RZ/V2L Vision AI & DRP-AI Architecture',
-        caption: 'Vision AI Engine — Renesas DRP-AI & 4-Lane MIPI CSI-2 with ISP',
+        src: '/images/SOM.png',
+        alt: 'RZ/V2L SoM Hardware View',
       },
     ],
     heroHighlights: [
@@ -361,6 +358,14 @@ export const RZV2L_PRODUCT_DETAILS = {
     category: 'SINGLE BOARD COMPUTER',
     title: 'RZ/V2L SBC',
     badge: 'Single Board Computer',
+    featuresList: [
+      'Renesas RZ/V2L MPU with 64-bit ARM®v8.2A, ARM®v8-M & 3D-Graphics Engine with Arm®Mali™ Architecture',
+      'Supports dual Cortex-A55 & Single Cortex-M33',
+      'Supports original DRP-AI for accelerating AI processing',
+      'Up to 2GB DDR4 Memory',
+      'Supports 1 × 1Gb Ethernet',
+      '16GB eMMC Flash (Expandable)',
+    ],
     shortDescription:
       'Integrated single-board computing platform based on the Renesas RZ/V2L processor for edge vision AI and smart camera systems.',
     introParagraph:
@@ -374,18 +379,8 @@ export const RZV2L_PRODUCT_DETAILS = {
     gallery: [
       {
         src: '/images/RZV2L.png',
-        alt: 'RZ/V2L SBC Development Platform View',
-        caption: 'Turnkey SBC — Integrated Board & Industrial I/O',
-      },
-      {
-        src: '/images/sbc-front-transparent.png',
-        alt: 'RZ/V2L Board Top View',
-        caption: 'Top Layout — Dual Ethernet, USB & Camera Ports',
-      },
-      {
-        src: '/images/capabilities/camera-multimedia.png',
-        alt: 'RZ/V2L Vision AI & DRP-AI Architecture',
-        caption: 'Vision AI Engine — Renesas DRP-AI & 4-Lane MIPI CSI-2 with ISP',
+        model3d: '/models/RZG2L-RZV2L_SBC.glb',
+        alt: 'RZ/V2L SBC 3D Model',
       },
     ],
     heroHighlights: [
@@ -427,21 +422,77 @@ export const RZV2L_PRODUCT_DETAILS = {
       { title: 'Industrial Grade Reliability', icon: ShieldCheck },
     ],
     specifications: [
-      { parameter: 'Processor', specification: 'Renesas RZ/V2L (Dual Arm Cortex-A55 @ 1.2 GHz, Cortex-M33 @ 200 MHz)' },
-      { parameter: 'AI Engine', specification: 'Renesas DRP-AI (Dynamically Reconfigurable Processor + AI Engine @ 0.5 TOPS/W)' },
-      { parameter: 'Memory', specification: 'Up to 4 GB LPDDR4-3200 (with In-line ECC support)' },
-      { parameter: 'Storage', specification: '16 GB / 32 GB eMMC 5.1 Flash, QSPI NOR Flash, MicroSD Slot' },
-      { parameter: 'Camera Input', specification: '1 × 4-lane MIPI CSI-2 with Built-in Hardware ISP (Color correction, HDR)' },
-      { parameter: 'Video Codec', specification: 'H.264 Video Encoder/Decoder (up to 1080p @ 60 fps)' },
-      { parameter: '3D Graphics', specification: 'Arm Mali-G31 3D GPU (OpenGL ES 3.2, Vulkan 1.1)' },
-      { parameter: 'Display Outputs', specification: '1 × HDMI (up to 1080p60), 1 × 4-lane MIPI-DSI' },
-      { parameter: 'Networking', specification: '2 × 10/100/1000 Mbps Gigabit Ethernet (RJ45)' },
-      { parameter: 'USB Ports', specification: '1 × USB 2.0 Host Type-A, 1 × USB 2.0 OTG Micro-AB' },
-      { parameter: 'Industrial Fieldbus', specification: '2 × CAN / CAN-FD, 4 × UART, 2 × I2C, 2 × SPI' },
-      { parameter: 'Audio', specification: 'I2S Audio Interface / Headphone Audio Jack' },
-      { parameter: 'Power Envelope', specification: 'Sub-4W Typical TDP (Passive Fanless Cooling)' },
-      { parameter: 'Operating Temp', specification: '-40°C to +85°C Industrial Grade (opt. -20°C to +70°C)' },
-      { parameter: 'OS Support', specification: 'Verified Linux Package (VLP), Yocto Project LTS, CIP Linux SLTS' },
+      {
+        feature: 'CPU',
+        details: [
+          '**RZ/V2L:**',
+          '- 2 x Arm® Cortex-A55 @1.2GHz',
+          '- 1 x Arm® Cortex-M33 @200MHz',
+          '- 1 x Arm® Mali™-G31 @500MHz',
+          '- DRP-AI Accelerator',
+        ],
+      },
+      {
+        feature: 'Memory & Storage',
+        details: [
+          'DDR4 – 2GB (Expandable)',
+          'eMMC NAND Flash – 16GB (Expandable)',
+          'QSPI Flash – 256Mb / Octa-SPI Flash – 512Mb (Optional)',
+          'Micro SD slot',
+          'EEPROM – 32Kb',
+        ],
+      },
+      {
+        feature: 'Network & Communication',
+        details: [
+          'Gigabit Ethernet x 1 (Single RJ45 Mag-jack Connector)',
+          'USB 2.0 OTG (micro-AB Receptacle Connector)',
+          'USB 2.0 Header x 1',
+        ],
+      },
+      {
+        feature: 'Video Features',
+        details: [
+          'MIPI CSI Interface (4 Lane) x 1',
+          'RGB Display Interface (18-bit) x 1',
+        ],
+      },
+      {
+        feature: 'Miscellaneous Interfaces',
+        details: [
+          'Debug UART Connector',
+          'RTC Connector',
+        ],
+      },
+      {
+        feature: 'Expansion Connector Features',
+        details: [
+          'RGMII x 1',
+          'UART x 2 (without flow control)',
+          'UART x 2 (with flow control)',
+          'CAN x 2',
+          'SPI x 2',
+          'I2C x 1',
+          'PWM x 1',
+          'ADC x 2',
+          'JTAG x 1',
+          'MIPI DSI (4-lane) x 1',
+          'GPIOs',
+        ],
+      },
+      {
+        feature: 'OS Support',
+        details: 'Linux 5.10.201 (or higher)',
+      },
+      {
+        feature: 'General Features',
+        details: [
+          'Power Input: 12V',
+          'Form Factor: 85mm x 56mm',
+          'Operating Temperature: -40°C to +85°C (Industrial)',
+          'Environment Specification: RoHS3 & REACH Compliant',
+        ],
+      },
     ],
     interfaces: [
       { label: 'Ethernet', description: '2 × 10/100/1000 Mbps Gigabit Ethernet (RJ45)' },

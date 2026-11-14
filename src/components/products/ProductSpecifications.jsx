@@ -4,7 +4,47 @@ import SectionHeadingContainer from '../common/SectionHeadingContainer';
 /**
  * Technical Specifications table with subtle row separators and responsive overflow container.
  */
-export default function ProductSpecifications({ specifications = [], productName = 'RZ/G2L SMARC SoM' }) {
+const renderCellContent = (content) => {
+  if (Array.isArray(content)) {
+    return (
+      <div className="space-y-1 sm:space-y-1.5 text-left">
+        {content.map((line, i) => (
+          <div key={i} className="leading-relaxed">
+            {renderCellContent(line)}
+          </div>
+        ))}
+      </div>
+    );
+  }
+  if (typeof content === 'string') {
+    if (content.includes('\n')) {
+      return (
+        <div className="space-y-1 sm:space-y-1.5 text-left">
+          {content.split('\n').map((line, i) => (
+            <div key={i} className="leading-relaxed">
+              {renderCellContent(line)}
+            </div>
+          ))}
+        </div>
+      );
+    }
+    if (content.startsWith('**') && content.endsWith('**')) {
+      return (
+        <span className="font-bold text-[#14213D] dark:text-[#F8FAFC]">
+          {content.slice(2, -2)}
+        </span>
+      );
+    }
+  }
+  return content;
+};
+
+export default function ProductSpecifications({
+  specifications = [],
+  productName = 'RZ/G2L SMARC SoM',
+  featureHeader = 'FEATURES',
+  detailsHeader = 'DETAILS',
+}) {
   const specList = Array.isArray(specifications) ? specifications : [];
 
   return (
@@ -35,20 +75,20 @@ export default function ProductSpecifications({ specifications = [], productName
                     scope="col"
                     className="py-3.5 px-4 sm:px-6 text-xs font-mono font-bold uppercase tracking-wider text-[#089EC2] dark:text-[#2DD4F0] w-2/5 sm:w-1/3"
                   >
-                    Parameter
+                    {featureHeader}
                   </th>
                   <th
                     scope="col"
                     className="py-3.5 px-4 sm:px-6 text-xs font-mono font-bold uppercase tracking-wider text-[#089EC2] dark:text-[#2DD4F0]"
                   >
-                    Specification
+                    {detailsHeader}
                   </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#E2E8F0] dark:divide-[#24355A]">
                 {specList.map((row, idx) => {
-                  const param = row.parameter ?? row.param ?? row.name ?? row.label ?? '';
-                  const spec = row.specification ?? row.value ?? row.detail ?? row.description ?? '';
+                  const param = row.feature ?? row.parameter ?? row.param ?? row.name ?? row.label ?? '';
+                  const spec = row.details ?? row.specification ?? row.value ?? row.detail ?? row.description ?? '';
                   return (
                     <tr
                       key={param || idx}
@@ -56,11 +96,11 @@ export default function ProductSpecifications({ specifications = [], productName
                         idx % 2 === 1 ? 'bg-[#FAFBFD] dark:bg-[#142244]/50' : ''
                       }`}
                     >
-                      <td className="py-3.5 px-4 sm:px-6 text-xs sm:text-sm font-bold text-[#14213D] dark:text-[#F8FAFC] align-top">
+                      <td className="py-3.5 px-4 sm:px-6 text-xs sm:text-sm font-bold text-[#14213D] dark:text-[#F8FAFC] align-middle">
                         {param}
                       </td>
-                      <td className="py-3.5 px-4 sm:px-6 text-xs sm:text-sm font-medium text-[#52627C] dark:text-[#CBD5E1] align-top">
-                        {spec}
+                      <td className="py-3.5 px-4 sm:px-6 text-xs sm:text-sm font-medium text-[#52627C] dark:text-[#CBD5E1] align-middle text-left">
+                        {renderCellContent(spec)}
                       </td>
                     </tr>
                   );

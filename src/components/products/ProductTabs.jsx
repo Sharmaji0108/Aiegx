@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 const DETAIL_TABS = [
-  { id: 'key-features', label: 'Key Features' },
   { id: 'specifications', label: 'Specifications' },
   { id: 'interfaces', label: 'Interfaces' },
   { id: 'software-support', label: 'Software Support' },
@@ -18,7 +17,7 @@ export default function ProductTabs({
   activeTab: controlledActiveTab,
   onTabChange,
 }) {
-  const [internalActiveTab, setInternalActiveTab] = useState(tabs[0]?.id || 'key-features');
+  const [internalActiveTab, setInternalActiveTab] = useState(tabs[0]?.id || 'specifications');
   const activeTab = controlledActiveTab ?? internalActiveTab;
 
   const handleTabClick = (tabId) => {

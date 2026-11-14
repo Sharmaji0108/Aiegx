@@ -17,7 +17,7 @@ import { navigateTo } from '../../utils/navigation';
  */
 export default function RZG2NSBC() {
   const product = RZG2N_PRODUCT_DETAILS['sbc'];
-  const [activeTab, setActiveTab] = useState('key-features');
+  const [activeTab, setActiveTab] = useState('specifications');
   const tabContentRef = useRef(null);
   const [enquiryModal, setEnquiryModal] = useState({
     isOpen: false,
@@ -174,26 +174,7 @@ export default function RZG2NSBC() {
         aria-labelledby={`tab-${activeTab}`}
         className="scroll-mt-32 transition-opacity duration-200"
       >
-        {/* TAB 1: Key Features */}
-        {activeTab === 'key-features' && (
-          <TechnicalInfoTable
-            id="key-features"
-            subheading="CORE CAPABILITIES"
-            heading={
-              <>
-                Key{' '}
-                <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
-                  Features
-                </span>
-              </>
-            }
-            description="Hardware, multimedia, and embedded system capabilities built for mission-critical edge applications."
-            columns={['Feature', 'Description']}
-            rows={product.keyFeaturesTable}
-          />
-        )}
-
-        {/* TAB 2: Specifications */}
+        {/* TAB 1: Specifications */}
         {activeTab === 'specifications' && (
           <ProductSpecifications
             specifications={product.specifications}

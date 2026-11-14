@@ -57,7 +57,7 @@ export default function AvailableHardware({
                   {product.badge}
                 </span>
                 <h3 className="text-lg sm:text-xl font-extrabold text-[#14213D] dark:text-[#F8FAFC] tracking-tight leading-snug md:min-h-[5.25rem] lg:min-h-[3.5rem] xl:min-h-[1.75rem]">
-                  {product.name}
+                  {product.id === 'rz-g2l-carrier-board' ? 'RZ/G2L SBC' : product.name}
                 </h3>
                 <p className="text-xs sm:text-[13px] leading-relaxed text-[#52627C] dark:text-[#AAB6D0] mt-1 md:min-h-[5.5rem] lg:min-h-[4.25rem] xl:min-h-[2.75rem]">
                   {product.description}

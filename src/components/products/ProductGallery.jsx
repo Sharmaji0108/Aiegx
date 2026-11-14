@@ -1,10 +1,11 @@
 import React, { useState, useRef } from 'react';
-import { ChevronLeft, ChevronRight, Box } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import SOM3DViewer from './SOM3DViewer';
 
 /**
- * Interactive Product Image Gallery with thumbnail switcher,
- * prev/next controls, caption and status information, and touch swipe support.
+ * Interactive Product Image Gallery / 3D Viewer.
+ * When displaying a 3D model, renders strictly the clean interactive 3D model canvas.
+ * For standard multi-image products, provides thumbnail switcher, prev/next controls, and captions.
  */
 export default function ProductGallery({ images = [], productName = 'Product', badge = null }) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -55,12 +56,14 @@ export default function ProductGallery({ images = [], productName = 'Product', b
 
   return (
     <div className="w-full flex flex-col gap-3 select-none">
-      {/* Main Large Product Image Container */}
+      {/* Main Large Product Container */}
       <div
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
-        className="relative w-full rounded-2xl bg-white dark:bg-[#17264A] border border-[#DBE4F0] dark:border-[#24355A] p-4 sm:p-5 shadow-[0_12px_36px_rgba(15,23,42,0.06)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.35)]"
+        className={`relative w-full rounded-2xl bg-white dark:bg-[#17264A] border border-[#DBE4F0] dark:border-[#24355A] shadow-[0_12px_36px_rgba(15,23,42,0.06)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.35)] ${
+          is3DView || !current.caption ? 'p-3 sm:p-4' : 'p-4 sm:p-5'
+        }`}
       >
         <div
           className={`relative aspect-[4/3] w-full rounded-xl bg-[#F8FAFD] dark:bg-[#101936] border border-[#E2EAF4] dark:border-[#24355A] flex items-center justify-center overflow-hidden ${
@@ -81,16 +84,8 @@ export default function ProductGallery({ images = [], productName = 'Product', b
             />
           )}
 
-          {/* Interactive 3D indicator badge if active */}
-          {is3DView && (
-            <div className="absolute top-3 left-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#0D1733]/80 backdrop-blur-xs border border-[#2DD4F0]/40 text-[11px] font-mono text-[#2DD4F0] pointer-events-none">
-              <Box className="w-3 h-3 text-[#2DD4F0]" />
-              <span>Interactive 3D</span>
-            </div>
-          )}
-
-          {/* Prev / Next navigation arrows if multi-image */}
-          {images.length > 1 && (
+          {/* Prev / Next navigation arrows if multi-image and not 3D model */}
+          {!is3DView && images.length > 1 && (
             <>
               <button
                 type="button"
@@ -112,20 +107,22 @@ export default function ProductGallery({ images = [], productName = 'Product', b
           )}
         </div>
 
-        {/* Caption & Status Information Bar */}
-        <div className="mt-3.5 pt-3 border-t border-[#E2E8F0] dark:border-[#24355A] flex items-center justify-between text-xs gap-3">
-          <span className="font-medium text-[#52627C] dark:text-[#AAB6D0] truncate">
-            {current.caption || current.alt || productName}
-          </span>
-          <span className="inline-flex items-center gap-1.5 font-semibold text-[#089EC2] dark:text-[#2DD4F0] shrink-0">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#089EC2] dark:bg-[#2DD4F0]" />
-            {badge || 'Production Ready'}
-          </span>
-        </div>
+        {/* Caption & Status Information Bar (Hidden if no caption or 3D view) */}
+        {!is3DView && current.caption && (
+          <div className="mt-3.5 pt-3 border-t border-[#E2E8F0] dark:border-[#24355A] flex items-center justify-between text-xs gap-3">
+            <span className="font-medium text-[#52627C] dark:text-[#AAB6D0] truncate">
+              {current.caption}
+            </span>
+            <span className="inline-flex items-center gap-1.5 font-semibold text-[#089EC2] dark:text-[#2DD4F0] shrink-0">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#089EC2] dark:bg-[#2DD4F0]" />
+              {badge || 'Production Ready'}
+            </span>
+          </div>
+        )}
       </div>
 
-      {/* Thumbnails row if multiple images */}
-      {images.length > 1 && (
+      {/* Thumbnails row if multiple images and not 3D model */}
+      {!is3DView && images.length > 1 && (
         <div className="flex items-center gap-2 overflow-x-auto py-1 px-0.5 no-scrollbar">
           {images.map((img, idx) => {
             const isActive = idx === activeIndex;
