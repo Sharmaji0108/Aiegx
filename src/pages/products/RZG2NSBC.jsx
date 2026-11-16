@@ -160,6 +160,12 @@ export default function RZG2NSBC() {
       {/* SECTION 2: Sticky Tab Navigation Bar */}
       <div id="product-tabs-section">
         <ProductTabs
+          tabs={[
+            { id: 'specifications', label: 'Specifications' },
+            { id: 'interfaces', label: 'Interfaces' },
+            { id: 'software-support', label: 'Software Support' },
+            { id: 'documents', label: 'Documents' },
+          ]}
           activeTab={activeTab}
           onTabChange={handleTabChange}
         />
@@ -220,19 +226,7 @@ export default function RZG2NSBC() {
           />
         )}
 
-        {/* TAB 5: Applications */}
-        {activeTab === 'applications' && (
-          <TypicalApplicationsCarousel
-            id="applications"
-            applications={RZG2N_APPLICATIONS}
-            subheading="APPLICATION WORKLOADS"
-            headingPrefix="Target"
-            headingHighlight="Applications"
-            description="Representative deployment profiles spanning multimedia, video surveillance, and edge gateways."
-          />
-        )}
-
-        {/* TAB 6: Documents */}
+        {/* TAB 5: Documents */}
         {activeTab === 'documents' && (
           <ProductDocuments
             documents={product.documents}

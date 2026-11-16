@@ -4,6 +4,7 @@ import SectionHeadingContainer from '../../components/common/SectionHeadingConta
 import ProductHero from '../../components/products/ProductHero';
 import PlatformFeatures from '../../components/products/PlatformFeatures';
 import HardwareArchitecture from '../../components/products/HardwareArchitecture';
+import PlatformCapabilitiesAndArchitecture from '../../components/products/PlatformCapabilitiesAndArchitecture';
 import AvailableHardware from '../../components/products/AvailableHardware';
 import TypicalApplicationsCarousel from '../../components/products/TypicalApplicationsCarousel';
 import ProductEnquiry, { ProductEnquiryModal } from '../../components/products/ProductEnquiry';
@@ -38,28 +39,39 @@ export default function RZG2LPlatform() {
         }
       />
 
-      {/* Section C: Key Platform Capabilities (5 compact items in a horizontal row) */}
-      <section className="py-6 sm:py-8 relative bg-[#F5F8FC] dark:bg-[#0D1733] transition-colors duration-300">
-        <div className="section-container relative">
-          <SectionHeadingContainer
-            subheading="KEY PLATFORM CAPABILITIES"
-            heading={
-              <>
-                Platform{' '}
-                <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
-                  Capabilities
-                </span>
-              </>
-            }
-            description="Balanced 64-bit Arm performance, 3D graphics, industrial I/O, and long-term Yocto Linux support."
-          />
+      {/* Desktop Web Application Only: Side-by-Side 55:45 Layout (hidden on mobile, visible on lg+) */}
+      <div className="hidden lg:block">
+        <PlatformCapabilitiesAndArchitecture
+          capabilities={RZG2L_PLATFORM_DATA.capabilities}
+          architectureBlocks={RZG2L_PLATFORM_DATA.architecture}
+        />
+      </div>
 
-          <PlatformFeatures items={RZG2L_PLATFORM_DATA.capabilities} columns={5} />
-        </div>
-      </section>
+      {/* Mobile Web Application: Original Standalone Stacked Sections (visible on mobile, hidden on lg+) */}
+      <div className="block lg:hidden">
+        {/* Section C: Key Platform Capabilities */}
+        <section className="py-6 sm:py-8 relative bg-[#F5F8FC] dark:bg-[#0D1733] transition-colors duration-300">
+          <div className="section-container relative">
+            <SectionHeadingContainer
+              subheading="KEY PLATFORM CAPABILITIES"
+              heading={
+                <>
+                  Platform{' '}
+                  <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
+                    Capabilities
+                  </span>
+                </>
+              }
+              description="Balanced 64-bit Arm performance, 3D graphics, industrial I/O, and long-term Yocto Linux support."
+            />
 
-      {/* Section D: Hardware Architecture (SMARC SoM + Carrier Board -> Complete SBC) */}
-      <HardwareArchitecture blocks={RZG2L_PLATFORM_DATA.architecture} />
+            <PlatformFeatures items={RZG2L_PLATFORM_DATA.capabilities} columns={5} />
+          </div>
+        </section>
+
+        {/* Section D: Hardware Architecture (SMARC SoM + Carrier Board -> Complete SBC) */}
+        <HardwareArchitecture blocks={RZG2L_PLATFORM_DATA.architecture} />
+      </div>
 
       {/* Section E: Available Hardware (3 Product Cards) */}
       <AvailableHardware products={RZG2L_PLATFORM_DATA.availableHardware} />

@@ -4,6 +4,7 @@ import SectionHeadingContainer from '../../components/common/SectionHeadingConta
 import ProductHero from '../../components/products/ProductHero';
 import PlatformFeatures from '../../components/products/PlatformFeatures';
 import HardwareArchitecture from '../../components/products/HardwareArchitecture';
+import PlatformCapabilitiesAndArchitecture from '../../components/products/PlatformCapabilitiesAndArchitecture';
 import AvailableHardware from '../../components/products/AvailableHardware';
 import TypicalApplicationsCarousel from '../../components/products/TypicalApplicationsCarousel';
 import ProductEnquiry, { ProductEnquiryModal } from '../../components/products/ProductEnquiry';
@@ -38,32 +39,47 @@ export default function RZV2HPlatform() {
         }
       />
 
-      {/* Section C: Key Platform Capabilities (5 compact items in a horizontal row) */}
-      <section className="py-6 sm:py-8 relative bg-[#F5F8FC] dark:bg-[#0D1733] transition-colors duration-300">
-        <div className="section-container relative">
-          <SectionHeadingContainer
-            subheading="KEY PLATFORM CAPABILITIES"
-            heading={
-              <>
-                Platform{' '}
-                <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
-                  Capabilities
-                </span>
-              </>
-            }
-            description="2nd Gen DRP-AI delivering 10 TOPS, quad Cortex-A55 plus dual Cortex-R8 real-time cores, multi-camera streams, and LPDDR5."
-          />
+      {/* Desktop Web Application Only: Side-by-Side 55:45 Layout (hidden on mobile, visible on lg+) */}
+      <div className="hidden lg:block">
+        <PlatformCapabilitiesAndArchitecture
+          capabilities={RZV2H_PLATFORM_DATA.capabilities}
+          capabilitiesDescription="2nd Gen DRP-AI delivering 10 TOPS, quad Cortex-A55 plus dual Cortex-R8 real-time cores, multi-camera streams, and LPDDR5."
+          title={RZV2H_PLATFORM_DATA.architecture.title}
+          titleGradient={RZV2H_PLATFORM_DATA.architecture.titleGradient}
+          statement={RZV2H_PLATFORM_DATA.architecture.statement}
+          architectureDescription={RZV2H_PLATFORM_DATA.architecture.description}
+        />
+      </div>
 
-          <PlatformFeatures items={RZV2H_PLATFORM_DATA.capabilities} columns={5} />
-        </div>
-      </section>
+      {/* Mobile Web Application: Original Standalone Stacked Sections (visible on mobile, hidden on lg+) */}
+      <div className="block lg:hidden">
+        {/* Section C: Key Platform Capabilities */}
+        <section className="py-6 sm:py-8 relative bg-[#F5F8FC] dark:bg-[#0D1733] transition-colors duration-300">
+          <div className="section-container relative">
+            <SectionHeadingContainer
+              subheading="KEY PLATFORM CAPABILITIES"
+              heading={
+                <>
+                  Platform{' '}
+                  <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
+                    Capabilities
+                  </span>
+                </>
+              }
+              description="2nd Gen DRP-AI delivering 10 TOPS, quad Cortex-A55 plus dual Cortex-R8 real-time cores, multi-camera streams, and LPDDR5."
+            />
 
-      {/* Section D: Hardware Architecture */}
-      <HardwareArchitecture
-        title={RZV2H_PLATFORM_DATA.architecture.title}
-        titleGradient={RZV2H_PLATFORM_DATA.architecture.titleGradient}
-        statement={RZV2H_PLATFORM_DATA.architecture.statement}
-      />
+            <PlatformFeatures items={RZV2H_PLATFORM_DATA.capabilities} columns={5} />
+          </div>
+        </section>
+
+        {/* Section D: Hardware Architecture */}
+        <HardwareArchitecture
+          title={RZV2H_PLATFORM_DATA.architecture.title}
+          titleGradient={RZV2H_PLATFORM_DATA.architecture.titleGradient}
+          statement={RZV2H_PLATFORM_DATA.architecture.statement}
+        />
+      </div>
 
       {/* Section E: Available Hardware (Single Elegant SBC Card) */}
       <AvailableHardware

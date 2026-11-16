@@ -34,9 +34,7 @@ const HW_TAGS = {
     { label: 'Carrier Board', icon: Layers },
   ],
   'rz-v2h': [
-    { label: 'SMARC SoM', icon: CircuitBoard },
     { label: 'SBC', icon: LayoutGrid },
-    { label: 'Carrier Board', icon: Layers },
   ],
 };
 

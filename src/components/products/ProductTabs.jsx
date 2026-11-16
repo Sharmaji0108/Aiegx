@@ -4,7 +4,6 @@ const DETAIL_TABS = [
   { id: 'specifications', label: 'Specifications' },
   { id: 'interfaces', label: 'Interfaces' },
   { id: 'software-support', label: 'Software Support' },
-  { id: 'applications', label: 'Applications' },
   { id: 'documents', label: 'Documents' },
 ];
 

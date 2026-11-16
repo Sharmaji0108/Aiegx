@@ -182,7 +182,7 @@ export const RZG2N_PRODUCT_DETAILS = {
     gallery: [
       {
         src: '/images/RZG2N.png',
-        model3d: '/models/PCB_3D_Model.glb',
+        model3d: '/models/RZG2N.glb',
         alt: 'RZ/G2N SBC 3D Model',
       },
     ],

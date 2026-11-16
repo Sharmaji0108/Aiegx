@@ -21,7 +21,7 @@ export default function ProductDocuments({ documents = [], onRequestDocument, on
   return (
     <section
       id="documents"
-      className="py-6 sm:py-8 lg:py-10 relative bg-[#F5F8FC] dark:bg-[#0D1733] scroll-mt-32 transition-colors duration-300"
+      className="py-4 sm:py-6 relative bg-[#F5F8FC] dark:bg-[#0D1733] scroll-mt-32 transition-colors duration-300"
     >
       <div className="section-container relative">
         <SectionHeadingContainer

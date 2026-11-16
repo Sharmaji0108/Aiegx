@@ -130,7 +130,16 @@ export default function RZV2HProduct({ productSlug = 'sbc' }) {
       </section>
 
       {/* SECTION 2: Tabs */}
-      <ProductTabs activeTab={activeTab} onTabChange={handleTabChange} />
+      <ProductTabs
+        tabs={[
+          { id: 'specifications', label: 'Specifications' },
+          { id: 'interfaces', label: 'Interfaces' },
+          { id: 'software-support', label: 'Software Support' },
+          { id: 'documents', label: 'Documents' },
+        ]}
+        activeTab={activeTab}
+        onTabChange={handleTabChange}
+      />
 
       {/* SECTION 3: Tab Content */}
       <div id="product-tabs-section" ref={tabContentRef} className="scroll-mt-24">
@@ -140,9 +149,6 @@ export default function RZV2HProduct({ productSlug = 'sbc' }) {
               <TechnicalInfoTable data={product.technicalInfo} />
             </div>
           </section>
-        )}
-        {activeTab === 'applications' && (
-          <TypicalApplicationsCarousel applications={RZV2H_APPLICATIONS} description={product.applicationsDescription} />
         )}
         {activeTab === 'documents' && (
           <ProductDocuments documents={product.documents} openModal={openModal} />

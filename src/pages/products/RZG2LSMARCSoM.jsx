@@ -157,7 +157,7 @@ const formatFeatureItem = (item) => {
  */
 export default function RZG2LSMARCSoM({ productSlug = 'smarc-som' }) {
   const rawProduct = RZG2L_PRODUCT_DETAILS[productSlug] || RZG2L_PRODUCT_DETAILS['smarc-som'];
-  const product = productSlug === 'carrier-board' ? { ...rawProduct, title: 'RZ/G2L SBC' } : rawProduct;
+  const product = productSlug === 'carrier-board' ? { ...rawProduct, title: 'RZ/G2L Carrier Board' } : rawProduct;
   const [prevSlug, setPrevSlug] = useState(productSlug);
   const [activeTab, setActiveTab] = useState('specifications');
   const tabContentRef = useRef(null);
@@ -333,7 +333,16 @@ export default function RZG2LSMARCSoM({ productSlug = 'smarc-som' }) {
       {/* =====================================================================
           Section C: Sticky Product Navigation Tabs
          ===================================================================== */}
-      <ProductTabs activeTab={activeTab} onTabChange={handleTabChange} />
+      <ProductTabs
+        tabs={[
+          { id: 'specifications', label: 'Specifications' },
+          { id: 'interfaces', label: 'Interfaces' },
+          { id: 'software-support', label: 'Software Support' },
+          { id: 'documents', label: 'Documents' },
+        ]}
+        activeTab={activeTab}
+        onTabChange={handleTabChange}
+      />
 
       {/* =====================================================================
           Exclusive Tab Panel Content (Displays only the active tab)
@@ -406,19 +415,7 @@ export default function RZG2LSMARCSoM({ productSlug = 'smarc-som' }) {
           />
         )}
 
-        {/* TAB 5: Applications */}
-        {activeTab === 'applications' && (
-          <TypicalApplicationsCarousel
-            id="applications"
-            applications={RZG2L_APPLICATIONS}
-            subheading="TARGET APPLICATIONS"
-            headingPrefix="Target"
-            headingHighlight="Applications"
-            description={`Real-world industrial, transportation, and embedded deployments enabled by the ${product.title}.`}
-          />
-        )}
-
-        {/* TAB 6: Documents */}
+        {/* TAB 5: Documents */}
         {activeTab === 'documents' && (
           <ProductDocuments
             documents={product.documents}

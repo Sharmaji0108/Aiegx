@@ -89,11 +89,11 @@ export const RZG2L_PLATFORM_DATA = {
     },
     {
       id: 'carrier-board',
-      title: 'RZ/G2L SBC',
+      title: 'RZ/G2L Carrier Board',
       subtitle: 'Application Interfaces and Expansion',
       image: '/images/RZV2L.png',
       fallbackImage: '/images/rz-g2l-hd.jpg',
-      imageAlt: 'RZ/G2L SBC',
+      imageAlt: 'RZ/G2L Carrier Board',
     },
     {
       id: 'complete-sbc',
@@ -125,13 +125,13 @@ export const RZG2L_PLATFORM_DATA = {
     },
     {
       id: 'rz-g2l-carrier-board',
-      name: 'RZ/G2L SBC',
+      name: 'RZ/G2L Carrier Board',
       badge: 'Expansion Baseboard',
       description:
         'Expansion board with additional interfaces and connectivity.',
       image: '/images/RZV2L.png',
       fallbackImage: '/images/rz-g2l-hd.jpg',
-      imageAlt: 'RZ/G2L SBC',
+      imageAlt: 'RZ/G2L Carrier Board',
       features: [
         'Supports RZ/G2L SMARC SoM',
         'Rich I/O and Expansion',
@@ -389,7 +389,7 @@ export const RZG2L_PRODUCT_DETAILS = {
   'carrier-board': {
     slug: 'carrier-board',
     category: 'CARRIER BOARD',
-    title: 'RZ/G2L SBC',
+    title: 'RZ/G2L Carrier Board',
     featuresList: [
       'Renesas RZ/G2L MPU with 64-bit ARM®v8.2A, ARM®v8-M & 3D-Graphics Engine with Arm®Mali™ Architecture',
       '2GB DDR4 (Expandable)',
@@ -402,13 +402,13 @@ export const RZG2L_PRODUCT_DETAILS = {
       { label: 'Home', path: '/' },
       { label: 'Products', path: '/#hardware-platforms' },
       { label: 'RZ/G2L', path: '/products/rz-g2l' },
-      { label: 'RZ/G2L SBC', path: null },
+      { label: 'RZ/G2L Carrier Board', path: null },
     ],
     gallery: [
       {
         src: '/images/RZV2L.png',
-        model3d: '/models/RZG2L-RZV2L_SBC.glb',
-        alt: 'RZ/G2L SBC 3D Model',
+        model3d: '/models/RZG2L-RZV2L_Carrier Board.glb',
+        alt: 'RZ/G2L Carrier Board 3D Model',
       },
     ],
     heroHighlights: [
@@ -418,9 +418,9 @@ export const RZG2L_PRODUCT_DETAILS = {
       { label: 'Flexible Custom Designs', icon: Layers },
     ],
     overviewSummary:
-      'Engineered to unlock every peripheral of the RZ/G2L SMARC SoM, the RZ/G2L SBC breaks out dual RJ45 Gigabit Ethernet ports, USB 3.0/2.0 hosts, isolated CAN interfaces, serial UART headers, and multiple display interfaces on ruggedized connectors.',
+      'Engineered to unlock every peripheral of the RZ/G2L SMARC SoM, the RZ/G2L Carrier Board breaks out dual RJ45 Gigabit Ethernet ports, USB 3.0/2.0 hosts, isolated CAN interfaces, serial UART headers, and multiple display interfaces on ruggedized connectors.',
     overviewParagraphs: [
-      'Engineered to unlock every peripheral of the RZ/G2L SMARC SoM, the RZ/G2L SBC breaks out dual RJ45 Gigabit Ethernet ports, USB 3.0/2.0 hosts, isolated CAN interfaces, serial UART headers, and multiple display interfaces on ruggedized connectors.',
+      'Engineered to unlock every peripheral of the RZ/G2L SMARC SoM, the RZ/G2L Carrier Board breaks out dual RJ45 Gigabit Ethernet ports, USB 3.0/2.0 hosts, isolated CAN interfaces, serial UART headers, and multiple display interfaces on ruggedized connectors.',
       'Available as an off-the-shelf evaluation baseboard or as a customizable reference schematic package for custom enclosure footprints and specialized fieldbus requirements.',
     ],
     overviewMetrics: [
@@ -623,7 +623,7 @@ export const RZG2L_PRODUCT_DETAILS = {
     gallery: [
       {
         src: '/images/sbc-platform-hd.jpg',
-        model3d: '/models/RZG2L-RZV2L_SBC.glb',
+        model3d: '/models/RZG2L-RZV2L_Carrier Board.glb',
         alt: 'RZ/G2L SBC 3D Model',
       },
     ],

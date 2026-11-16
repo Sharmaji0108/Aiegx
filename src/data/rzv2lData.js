@@ -100,15 +100,15 @@ export const RZV2L_PLATFORM_DATA = {
     },
     {
       id: 'rz-v2l-sbc',
-      name: 'RZ/V2L SBC',
-      badge: 'Single Board Computer',
+      name: 'RZ/V2L Carrier Board',
+      badge: 'Carrier Board',
       description:
-        'Integrated single-board computing platform based on the Renesas RZ/V2L processor.',
+        'Integrated carrier board based on the Renesas RZ/V2L processor.',
       image: '/images/RZV2L.png',
       fallbackImage: '/images/sbc-front-transparent.png',
-      imageAlt: 'RZ/V2L Single Board Computer',
+      imageAlt: 'RZ/V2L Carrier Board',
       features: [
-        'Turnkey Single Board Computer',
+        'Turnkey Carrier Board',
         'Dual Gigabit Ethernet & Dual USB 2.0',
         '4-Lane MIPI CSI-2 with Built-in ISP',
         'Sub-4W Fanless Power Profile',
@@ -355,9 +355,9 @@ export const RZV2L_PRODUCT_DETAILS = {
   },
   sbc: {
     slug: 'sbc',
-    category: 'SINGLE BOARD COMPUTER',
-    title: 'RZ/V2L SBC',
-    badge: 'Single Board Computer',
+    category: 'CARRIER BOARD',
+    title: 'RZ/V2L Carrier Board',
+    badge: 'Carrier Board',
     featuresList: [
       'Renesas RZ/V2L MPU with 64-bit ARM®v8.2A, ARM®v8-M & 3D-Graphics Engine with Arm®Mali™ Architecture',
       'Supports dual Cortex-A55 & Single Cortex-M33',
@@ -367,20 +367,20 @@ export const RZV2L_PRODUCT_DETAILS = {
       '16GB eMMC Flash (Expandable)',
     ],
     shortDescription:
-      'Integrated single-board computing platform based on the Renesas RZ/V2L processor for edge vision AI and smart camera systems.',
+      'Integrated carrier board platform based on the Renesas RZ/V2L processor for edge vision AI and smart camera systems.',
     introParagraph:
-      'The AIEGX RZ/V2L SBC is a production-ready single-board computer powered by the Renesas RZ/V2L processor. Featuring dual 64-bit Arm Cortex-A55 cores clocked at 1.2 GHz, a 200 MHz Cortex-M33 real-time core, and Renesas proprietary DRP-AI neural engine with 0.5 TOPS/W power efficiency, it enables real-time edge vision processing under 4 Watts. Complete with 4-lane MIPI CSI-2 camera interface with built-in ISP, dual Gigabit Ethernet, HDMI display output, and industrial fieldbuses, it delivers a turnkey platform ready for immediate software engineering and industrial deployment.',
+      'The AIEGX RZ/V2L Carrier Board is a production-ready carrier board powered by the Renesas RZ/V2L processor. Featuring dual 64-bit Arm Cortex-A55 cores clocked at 1.2 GHz, a 200 MHz Cortex-M33 real-time core, and Renesas proprietary DRP-AI neural engine with 0.5 TOPS/W power efficiency, it enables real-time edge vision processing under 4 Watts. Complete with 4-lane MIPI CSI-2 camera interface with built-in ISP, dual Gigabit Ethernet, HDMI display output, and industrial fieldbuses, it delivers a turnkey platform ready for immediate software engineering and industrial deployment.',
     breadcrumb: [
       { label: 'Home', path: '/' },
       { label: 'Products', path: '/#hardware-platforms' },
       { label: 'RZ/V2L', path: '/products/rzv2l' },
-      { label: 'RZ/V2L SBC', path: null },
+      { label: 'RZ/V2L Carrier Board', path: null },
     ],
     gallery: [
       {
         src: '/images/RZV2L.png',
-        model3d: '/models/RZG2L-RZV2L_SBC.glb',
-        alt: 'RZ/V2L SBC 3D Model',
+        model3d: '/models/RZG2L-RZV2L_Carrier Board.glb',
+        alt: 'RZ/V2L Carrier Board 3D Model',
       },
     ],
     heroHighlights: [
@@ -390,9 +390,9 @@ export const RZV2L_PRODUCT_DETAILS = {
       { label: 'Sub-4W Fanless TDP', icon: Activity },
     ],
     overviewSummary:
-      'Engineered for power-constrained vision AI applications, the RZ/V2L SBC delivers a turnkey, fully validated hardware and software platform ready for rapid prototyping and production rollout.',
+      'Engineered for power-constrained vision AI applications, the RZ/V2L Carrier Board delivers a turnkey, fully validated hardware and software platform ready for rapid prototyping and production rollout.',
     overviewParagraphs: [
-      'Engineered for power-constrained vision AI applications, the RZ/V2L SBC delivers a turnkey, fully validated hardware and software platform ready for rapid prototyping and production rollout.',
+      'Engineered for power-constrained vision AI applications, the RZ/V2L Carrier Board delivers a turnkey, fully validated hardware and software platform ready for rapid prototyping and production rollout.',
       'Pre-loaded with verified Yocto Linux images featuring DRP-AI Translator tools, OpenCV acceleration, and industrial driver stacks, it enables immediate edge analytics without extensive hardware bring-up overhead.',
     ],
     overviewMetrics: [
@@ -543,7 +543,7 @@ export const RZV2L_PRODUCT_DETAILS = {
         id: 'datasheet',
         title: 'Datasheet',
         category: 'Hardware Reference',
-        description: 'Complete RZ/V2L SBC platform technical specifications and electrical parameters.',
+        description: 'Complete RZ/V2L Carrier Board platform technical specifications and electrical parameters.',
         fileUrl: null,
       },
       {
