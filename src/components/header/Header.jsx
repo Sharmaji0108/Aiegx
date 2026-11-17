@@ -8,11 +8,68 @@ import AboutUsMegaMenu from './AboutUsMegaMenu';
 import {
   Menu,
   X,
-  ChevronRight
+  ChevronRight,
+  ChevronDown,
+  Layers,
+  Cpu,
+  Server,
+  Zap
 } from 'lucide-react';
+
+const mobileProductCategories = [
+  {
+    id: 'som',
+    name: 'System on Modules',
+    icon: Cpu,
+    items: [
+      { name: 'RZ/G2L', href: '/products/rz-g2l' },
+      { name: 'RZ/G2N', href: '/products/rz-g2n' },
+      { name: 'RZ/V2L', href: '/products/rz-v2l' },
+      { name: 'RZ/V2H', href: '/products/rz-v2h' },
+    ],
+  },
+  {
+    id: 'sbc',
+    name: 'Single Board Computers',
+    icon: Server,
+    items: [
+      { name: 'RZ/G2L SBC (Development Platform)', href: '/products/rzg2l/complete-sbc/' },
+      { name: 'RZ/G2N SBC (Development Platform)', href: '/products/rz-g2n/sbc' },
+      { name: 'RZ/V2L SBC (Development Platform)', href: '/products/rzv2l/complete-sbc/' },
+      { name: 'RZ/V2H SBC (Development Platform)', href: '/products/rzv2h/complete-sbc/' },
+    ],
+  },
+  {
+    id: 'solutions',
+    name: 'Embedded Solutions',
+    icon: Zap,
+    items: [
+      { name: 'Vehicle & Mobility Solutions', href: '#integrated-solutions' },
+      { name: 'Video & Surveillance Solutions', href: '#integrated-solutions' },
+      { name: 'Industrial & Machine Vision Solutions', href: '#integrated-solutions' },
+      { name: 'Defence & Advanced Vision Solutions', href: '#integrated-solutions' },
+      { name: 'Autonomous Robotics & SLAM Solutions', href: '#integrated-solutions' },
+    ],
+  },
+  {
+    id: 'software',
+    name: 'Software',
+    icon: Layers,
+    items: [
+      { name: 'Linux BSP & Yocto', href: '#developers' },
+      { name: 'Real-Time OS (RTOS)', href: '#developers' },
+      { name: 'AI Model Zoo & Neural SDK', href: '#developers' },
+      { name: 'Fleet Ops & OTA Updates', href: '#developers' },
+      { name: 'Developer Tools & IDE Extensions', href: '#developers' },
+    ],
+  },
+];
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
+  const [mobileCategoryOpen, setMobileCategoryOpen] = useState('som');
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [megaMenuOpen, setMegaMenuOpen] = useState(false);
   const [applicationsMenuOpen, setApplicationsMenuOpen] = useState(false);
@@ -84,10 +141,23 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        if (mobileMenuOpen) setMobileMenuOpen(false);
+        closeAllMenus();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [mobileMenuOpen]);
+
   const hoverTimeoutRef = useRef(null);
   const appsHoverTimeoutRef = useRef(null);
   const solutionsHoverTimeoutRef = useRef(null);
   const aboutHoverTimeoutRef = useRef(null);
+
+  const CLOSE_DELAY_MS = 220;
 
   const clearAllTimeouts = () => {
     if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
@@ -95,6 +165,10 @@ export default function Header() {
     if (solutionsHoverTimeoutRef.current) clearTimeout(solutionsHoverTimeoutRef.current);
     if (aboutHoverTimeoutRef.current) clearTimeout(aboutHoverTimeoutRef.current);
   };
+
+  useEffect(() => {
+    return () => clearAllTimeouts();
+  }, []);
 
   const closeOtherMenus = (current) => {
     if (current !== 'products') setMegaMenuOpen(false);
@@ -104,10 +178,42 @@ export default function Header() {
   };
 
   const closeAllMenus = () => {
+    clearAllTimeouts();
     setMegaMenuOpen(false);
     setApplicationsMenuOpen(false);
     setSolutionsMenuOpen(false);
     setAboutMenuOpen(false);
+  };
+
+  // Mobile Navigation Action Handler
+  const handleMobileNavigate = (href) => {
+    setMobileMenuOpen(false);
+    closeAllMenus();
+
+    if (!href) return;
+
+    if (href.startsWith('/')) {
+      window.dispatchEvent(new CustomEvent('aiegx-navigate', { detail: href }));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (href.startsWith('#')) {
+      const targetId = href.replace('#', '');
+      const currentPath = window.location.pathname.toLowerCase().replace(/\/+$/, '') || '/';
+
+      if (currentPath === '/' || currentPath === '') {
+        const el = document.getElementById(targetId) || document.getElementById(targetId === 'integrated-solutions' ? 'solutions' : targetId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        window.dispatchEvent(new CustomEvent('aiegx-navigate', { detail: '/' }));
+        setTimeout(() => {
+          const el = document.getElementById(targetId) || document.getElementById(targetId === 'integrated-solutions' ? 'solutions' : targetId);
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 150);
+      }
+    }
   };
 
   // Hover handlers for Products
@@ -118,19 +224,21 @@ export default function Header() {
   };
 
   const handleProductsMouseLeave = () => {
+    clearAllTimeouts();
     hoverTimeoutRef.current = setTimeout(() => {
       setMegaMenuOpen(false);
-    }, 280);
+    }, CLOSE_DELAY_MS);
   };
 
   const handleMegaMenuMouseEnter = () => {
-    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+    clearAllTimeouts();
   };
 
   const handleMegaMenuMouseLeave = () => {
+    clearAllTimeouts();
     hoverTimeoutRef.current = setTimeout(() => {
       setMegaMenuOpen(false);
-    }, 280);
+    }, CLOSE_DELAY_MS);
   };
 
   // Hover handlers for Industries (mapped to Applications Mega Menu)
@@ -141,19 +249,21 @@ export default function Header() {
   };
 
   const handleAppsMouseLeave = () => {
+    clearAllTimeouts();
     appsHoverTimeoutRef.current = setTimeout(() => {
       setApplicationsMenuOpen(false);
-    }, 280);
+    }, CLOSE_DELAY_MS);
   };
 
   const handleAppsMegaMenuMouseEnter = () => {
-    if (appsHoverTimeoutRef.current) clearTimeout(appsHoverTimeoutRef.current);
+    clearAllTimeouts();
   };
 
   const handleAppsMegaMenuMouseLeave = () => {
+    clearAllTimeouts();
     appsHoverTimeoutRef.current = setTimeout(() => {
       setApplicationsMenuOpen(false);
-    }, 280);
+    }, CLOSE_DELAY_MS);
   };
 
   // Hover handlers for Solutions
@@ -164,19 +274,21 @@ export default function Header() {
   };
 
   const handleSolutionsMouseLeave = () => {
+    clearAllTimeouts();
     solutionsHoverTimeoutRef.current = setTimeout(() => {
       setSolutionsMenuOpen(false);
-    }, 280);
+    }, CLOSE_DELAY_MS);
   };
 
   const handleSolutionsMegaMenuMouseEnter = () => {
-    if (solutionsHoverTimeoutRef.current) clearTimeout(solutionsHoverTimeoutRef.current);
+    clearAllTimeouts();
   };
 
   const handleSolutionsMegaMenuMouseLeave = () => {
+    clearAllTimeouts();
     solutionsHoverTimeoutRef.current = setTimeout(() => {
       setSolutionsMenuOpen(false);
-    }, 280);
+    }, CLOSE_DELAY_MS);
   };
 
   // Hover handlers for Company (mapped to About Us Mega Menu)
@@ -187,43 +299,46 @@ export default function Header() {
   };
 
   const handleAboutMouseLeave = () => {
+    clearAllTimeouts();
     aboutHoverTimeoutRef.current = setTimeout(() => {
       setAboutMenuOpen(false);
-    }, 280);
+    }, CLOSE_DELAY_MS);
   };
 
   const handleAboutMegaMenuMouseEnter = () => {
-    if (aboutHoverTimeoutRef.current) clearTimeout(aboutHoverTimeoutRef.current);
+    clearAllTimeouts();
   };
 
   const handleAboutMegaMenuMouseLeave = () => {
+    clearAllTimeouts();
     aboutHoverTimeoutRef.current = setTimeout(() => {
       setAboutMenuOpen(false);
-    }, 280);
+    }, CLOSE_DELAY_MS);
   };
 
   return (
     <>
-      {/* Navbar Container: Edge-to-edge layout with small 16-24px padding (no max-w-7xl auto-centering constraint) */}
+      {/* Navbar Container */}
       <header
         ref={headerRef}
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-2.5 pt-2 sm:px-4 sm:pt-2.5 md:p-0 pointer-events-none md:pointer-events-auto"
       >
         <div className="w-full transition-all duration-300 flex items-center justify-between gap-2 sm:gap-4 pointer-events-auto bg-white/95 dark:bg-[#0D1733]/95 backdrop-blur-md border border-slate-200/90 dark:border-[#24355A]/90 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] px-3 py-2 sm:px-4 sm:py-2.5 md:max-w-none md:rounded-none md:border-x-0 md:border-t-0 md:border-b md:border-slate-200/80 dark:md:border-[#24355A]/80 md:shadow-xs md:px-6 lg:px-8 xl:px-12 md:py-2.5 lg:py-3">
 
-          {/* Extreme Left: Larger 64-72px Logo Icon, Brand Name & Tagline */}
+          {/* Extreme Left: Logo Icon, Brand Name & Tagline */}
           <div className="flex-shrink-0 flex items-center">
-
             <Logo showTagline={true} tagline="EMBEDDED & EDGE AI" />
           </div>
 
-          {/* Right: Clean Horizontal Navigation Row (6 items matching sketch) */}
+          {/* Right: Clean Horizontal Navigation Row (Desktop) */}
           <nav
             className="hidden md:flex flex-1 items-center justify-end gap-1.5 md:gap-2 lg:gap-2.5 xl:gap-3 bg-transparent shadow-none border-none"
             aria-label="Main Navigation"
           >
             {/* 1. Home */}
             <button
+              type="button"
+              onMouseEnter={closeAllMenus}
               onClick={() => {
                 closeAllMenus();
                 window.dispatchEvent(new CustomEvent('aiegx-navigate', { detail: '/' }));
@@ -233,7 +348,7 @@ export default function Header() {
                 ? 'active text-[#089EC2] dark:text-[#2DD4F0] font-semibold'
                 : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] font-medium'
                 }`}
-              title="AIEGX Homepage"
+              title="Return to AIEGX Homepage"
             >
               <span>Home</span>
             </button>
@@ -245,6 +360,7 @@ export default function Header() {
               onMouseLeave={handleProductsMouseLeave}
             >
               <button
+                type="button"
                 id="navbar-products-toggle"
                 onClick={() => {
                   closeOtherMenus('products');
@@ -256,7 +372,7 @@ export default function Header() {
                   }`}
                 aria-expanded={megaMenuOpen}
                 aria-haspopup="true"
-                title="Browse Product Architecture & Hardware Platforms"
+                title="Browse System on Modules & Single Board Computers"
               >
                 <span>Products</span>
               </button>
@@ -269,6 +385,7 @@ export default function Header() {
               onMouseLeave={handleSolutionsMouseLeave}
             >
               <button
+                type="button"
                 id="navbar-solutions-toggle"
                 onClick={() => {
                   closeOtherMenus('solutions');
@@ -293,6 +410,7 @@ export default function Header() {
               onMouseLeave={handleAppsMouseLeave}
             >
               <button
+                type="button"
                 id="navbar-applications-toggle"
                 onClick={() => {
                   closeOtherMenus('apps');
@@ -317,6 +435,7 @@ export default function Header() {
               onMouseLeave={handleAboutMouseLeave}
             >
               <button
+                type="button"
                 id="navbar-about-toggle"
                 onClick={() => {
                   closeOtherMenus('about');
@@ -337,6 +456,7 @@ export default function Header() {
             {/* 6. Contact Link */}
             <a
               href="#contact"
+              onMouseEnter={closeAllMenus}
               onClick={closeAllMenus}
               className={`nav-link inline-flex items-center justify-center rounded-lg px-2.5 py-1.5 md:px-3 md:py-2 text-sm lg:text-base tracking-normal transition-all duration-200 cursor-pointer ${activeNav === 'contact'
                 ? 'active text-[#089EC2] dark:text-[#2DD4F0] font-semibold'
@@ -348,15 +468,16 @@ export default function Header() {
             </a>
           </nav>
 
-          {/* Mobile Right Controls: Center-Right Theme Toggle & Extreme-Right Hamburger */}
+          {/* Mobile Right Controls: Compact Pill Theme Toggle & Hamburger */}
           <div className="flex items-center gap-2 sm:gap-3 md:hidden ml-auto shrink-0 flex-nowrap">
             {/* Center-Right: Compact Pill Theme Toggle */}
             <ThemeToggle variant="navbar" />
 
-            {/* Extreme-Right: Dark 3-line Hamburger Menu Button */}
+            {/* Extreme-Right: Hamburger Menu Button */}
             <button
+              type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 sm:p-2.5 text-slate-800 dark:text-white hover:text-[#089EC2] dark:hover:text-[#2DD4F0] rounded-xl bg-slate-100 hover:bg-slate-200/80 dark:bg-[#17264A] dark:hover:bg-[#1E3360] border border-slate-200 dark:border-[#24355A] focus:outline-none focus:ring-2 focus:ring-[#089EC2] dark:focus:ring-[#2DD4F0] cursor-pointer transition-colors flex items-center justify-center shrink-0"
+              className="p-2 sm:p-2.5 text-slate-800 dark:text-white hover:text-[#089EC2] dark:hover:text-[#2DD4F0] rounded-xl bg-slate-100 hover:bg-slate-200/80 dark:bg-[#17264A] dark:hover:bg-[#1E3360] border border-slate-200 dark:border-[#24355A] focus:outline-none focus:ring-2 focus:ring-[#089EC2] dark:focus:ring-[#2DD4F0] cursor-pointer transition-colors flex items-center justify-center shrink-0 touch-manipulation"
               aria-label="Toggle navigation menu"
               aria-expanded={mobileMenuOpen}
             >
@@ -372,111 +493,160 @@ export default function Header() {
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="md:hidden mt-2 w-full max-h-[calc(100vh-90px)] overflow-y-auto p-3 sm:p-4 rounded-2xl bg-white/98 dark:bg-[#0D1733]/98 backdrop-blur-2xl border border-slate-200 dark:border-[#24355A] shadow-2xl text-slate-800 dark:text-white animate-in fade-in slide-in-from-top-2 duration-200">
-            {/* 6 Mobile Navigation Links in exact order */}
-            <div className="flex flex-col space-y-2">
-              {/* 1. Home */}
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  closeAllMenus();
-                  window.dispatchEvent(new CustomEvent('aiegx-navigate', { detail: '/' }));
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
-                className={`px-4 py-3 rounded-xl text-sm font-semibold transition-colors flex items-center justify-between text-left ${activeNav === 'home'
-                  ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-blue-50 dark:bg-[#17264A] border border-[#089EC2]/40 dark:border-[#2DD4F0]/40'
-                  : 'text-slate-700 dark:text-[#AAB6D0] bg-slate-50 dark:bg-[#17264A]/60 hover:bg-slate-100 dark:hover:bg-[#17264A] border border-slate-200 dark:border-[#24355A]'
-                  }`}
-              >
-                <span>Home</span>
-                <ChevronRight className="w-4 h-4 text-[#089EC2] dark:text-[#2DD4F0]" />
-              </button>
+          <>
+            {/* Mobile Backdrop Overlay to close drawer when tapping outside */}
+            <div
+              className="fixed inset-0 z-[-1] bg-black/40 backdrop-blur-xs pointer-events-auto md:hidden"
+              onClick={() => setMobileMenuOpen(false)}
+              aria-hidden="true"
+            />
 
-              {/* 2. Products */}
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  closeOtherMenus('products');
-                  setMegaMenuOpen(true);
-                }}
-                className={`px-4 py-3 rounded-xl text-sm font-semibold transition-colors flex items-center justify-between text-left ${activeNav === 'products'
-                  ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-blue-50 dark:bg-[#17264A] border border-[#089EC2]/40 dark:border-[#2DD4F0]/40'
-                  : 'text-slate-700 dark:text-[#AAB6D0] bg-slate-50 dark:bg-[#17264A]/60 hover:bg-slate-100 dark:hover:bg-[#17264A] border border-slate-200 dark:border-[#24355A]'
-                  }`}
-              >
-                <span>Products & Hardware Platforms</span>
-                <ChevronRight className="w-4 h-4 text-[#089EC2] dark:text-[#2DD4F0]" />
-              </button>
+            <div className="md:hidden mt-2 w-full max-h-[calc(100vh-90px)] overflow-y-auto p-3 sm:p-4 rounded-2xl bg-white/98 dark:bg-[#0D1733]/98 backdrop-blur-2xl border border-slate-200 dark:border-[#24355A] shadow-2xl text-slate-800 dark:text-white animate-in fade-in slide-in-from-top-2 duration-200 pointer-events-auto relative z-10 touch-manipulation">
+              {/* Mobile Navigation Links */}
+              <div className="flex flex-col space-y-2">
+                {/* 1. Home */}
+                <button
+                  type="button"
+                  onClick={() => handleMobileNavigate('/')}
+                  className={`w-full px-4 py-3 rounded-xl text-sm font-semibold transition-colors flex items-center justify-between text-left cursor-pointer ${activeNav === 'home'
+                    ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-blue-50 dark:bg-[#17264A] border border-[#089EC2]/40 dark:border-[#2DD4F0]/40'
+                    : 'text-slate-700 dark:text-[#AAB6D0] bg-slate-50 dark:bg-[#17264A]/60 hover:bg-slate-100 dark:hover:bg-[#17264A] border border-slate-200 dark:border-[#24355A]'
+                    }`}
+                >
+                  <span>Home</span>
+                  <ChevronRight className="w-4 h-4 text-[#089EC2] dark:text-[#2DD4F0]" />
+                </button>
 
-              {/* 3. Solutions */}
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  closeOtherMenus('solutions');
-                  setSolutionsMenuOpen(true);
-                }}
-                className={`px-4 py-3 rounded-xl text-sm font-semibold transition-colors flex items-center justify-between text-left ${activeNav === 'solutions'
-                  ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-blue-50 dark:bg-[#17264A] border border-[#089EC2]/40 dark:border-[#2DD4F0]/40'
-                  : 'text-slate-700 dark:text-[#AAB6D0] bg-slate-50 dark:bg-[#17264A]/60 hover:bg-slate-100 dark:hover:bg-[#17264A] border border-slate-200 dark:border-[#24355A]'
-                  }`}
-              >
-                <span>Solutions</span>
-                <ChevronRight className="w-4 h-4 text-[#089EC2] dark:text-[#2DD4F0]" />
-              </button>
+                {/* 2. Products & Hardware Platforms Accordion */}
+                <div className="flex flex-col">
+                  <button
+                    type="button"
+                    onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
+                    className={`w-full px-4 py-3 rounded-xl text-sm font-semibold transition-all flex items-center justify-between text-left cursor-pointer ${
+                      mobileProductsOpen || activeNav === 'products'
+                        ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-blue-50/80 dark:bg-[#17264A] border border-[#089EC2]/40 dark:border-[#2DD4F0]/40'
+                        : 'text-slate-700 dark:text-[#AAB6D0] bg-slate-50 dark:bg-[#17264A]/60 hover:bg-slate-100 dark:hover:bg-[#17264A] border border-slate-200 dark:border-[#24355A]'
+                    }`}
+                    aria-expanded={mobileProductsOpen}
+                  >
+                    <span>Products & Hardware Platforms</span>
+                    <ChevronDown
+                      className={`w-4 h-4 transition-transform duration-200 ${
+                        mobileProductsOpen ? 'rotate-180 text-[#089EC2] dark:text-[#2DD4F0]' : 'text-slate-400 dark:text-slate-500'
+                      }`}
+                    />
+                  </button>
 
-              {/* 4. Industries */}
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  closeOtherMenus('apps');
-                  setApplicationsMenuOpen(true);
-                }}
-                className={`px-4 py-3 rounded-xl text-sm font-semibold transition-colors flex items-center justify-between text-left ${activeNav === 'industries'
-                  ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-blue-50 dark:bg-[#17264A] border border-[#089EC2]/40 dark:border-[#2DD4F0]/40'
-                  : 'text-slate-700 dark:text-[#AAB6D0] bg-slate-50 dark:bg-[#17264A]/60 hover:bg-slate-100 dark:hover:bg-[#17264A] border border-slate-200 dark:border-[#24355A]'
-                  }`}
-              >
-                <span>Industries We Serve</span>
-                <ChevronRight className="w-4 h-4 text-[#089EC2] dark:text-[#2DD4F0]" />
-              </button>
+                  {/* Expandable Product Categories */}
+                  {mobileProductsOpen && (
+                    <div className="mt-2 ml-1 mr-1 flex flex-col space-y-1.5 pl-2 border-l-2 border-[#089EC2]/30 dark:border-[#2DD4F0]/30 animate-in fade-in duration-150">
+                      {mobileProductCategories.map((cat) => {
+                        const isCatOpen = mobileCategoryOpen === cat.id;
+                        const CatIcon = cat.icon;
+                        return (
+                          <div key={cat.id} className="flex flex-col">
+                            {/* Category Header Button */}
+                            <button
+                              type="button"
+                              onClick={() => setMobileCategoryOpen(isCatOpen ? null : cat.id)}
+                              className={`w-full px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center justify-between text-left cursor-pointer ${
+                                isCatOpen
+                                  ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-[#089EC2]/10 dark:bg-[#2DD4F0]/10 border border-[#089EC2]/30 dark:border-[#2DD4F0]/30'
+                                  : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] hover:bg-slate-100/70 dark:hover:bg-[#17264A]/50 border border-transparent'
+                              }`}
+                            >
+                              <div className="flex items-center gap-2">
+                                <CatIcon className="w-3.5 h-3.5 text-[#089EC2] dark:text-[#2DD4F0]" />
+                                <span>{cat.name}</span>
+                              </div>
+                              <ChevronDown
+                                className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                                  isCatOpen ? 'rotate-180 text-[#089EC2] dark:text-[#2DD4F0]' : 'text-slate-400'
+                                }`}
+                              />
+                            </button>
 
-              {/* 5. Company */}
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  closeOtherMenus('about');
-                  setAboutMenuOpen(true);
-                }}
-                className={`px-4 py-3 rounded-xl text-sm font-semibold transition-colors flex items-center justify-between text-left ${activeNav === 'company'
-                  ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-blue-50 dark:bg-[#17264A] border border-[#089EC2]/40 dark:border-[#2DD4F0]/40'
-                  : 'text-slate-700 dark:text-[#AAB6D0] bg-slate-50 dark:bg-[#17264A]/60 hover:bg-slate-100 dark:hover:bg-[#17264A] border border-slate-200 dark:border-[#24355A]'
-                  }`}
-              >
-                <span>Company & Capabilities</span>
-                <ChevronRight className="w-4 h-4 text-[#089EC2] dark:text-[#2DD4F0]" />
-              </button>
+                            {/* Submenu Links under Category */}
+                            {isCatOpen && (
+                              <div className="ml-5 pl-2 py-1 my-1 flex flex-col space-y-1 border-l border-slate-200 dark:border-[#24355A] animate-in fade-in duration-150">
+                                {cat.items.map((item, idx) => (
+                                  <button
+                                    key={idx}
+                                    type="button"
+                                    onClick={() => handleMobileNavigate(item.href)}
+                                    className="px-2.5 py-1.5 rounded-md text-xs sm:text-[13px] text-slate-600 dark:text-slate-300 hover:text-[#089EC2] dark:hover:text-[#2DD4F0] hover:bg-slate-100/60 dark:hover:bg-[#1E3360]/40 transition-colors flex items-center justify-between text-left group cursor-pointer"
+                                  >
+                                    <span>{item.name}</span>
+                                    <ChevronRight className="w-3.5 h-3.5 opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 text-[#089EC2] dark:text-[#2DD4F0] transition-all" />
+                                  </button>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
 
-              {/* 6. Contact */}
-              <a
-                href="#contact"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  closeAllMenus();
-                }}
-                className={`px-4 py-3 rounded-xl text-sm font-semibold transition-colors flex items-center justify-between ${activeNav === 'contact'
-                  ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-blue-50 dark:bg-[#17264A] border border-[#089EC2]/40 dark:border-[#2DD4F0]/40'
-                  : 'text-slate-700 dark:text-[#AAB6D0] bg-slate-50 dark:bg-[#17264A]/60 hover:bg-slate-100 dark:hover:bg-[#17264A] border border-slate-200 dark:border-[#24355A]'
-                  }`}
-              >
-                <span>Contact Us</span>
-                <ChevronRight className="w-4 h-4 text-[#089EC2] dark:text-[#2DD4F0]" />
-              </a>
+                {/* 3. Solutions */}
+                <button
+                  type="button"
+                  onClick={() => handleMobileNavigate('#integrated-solutions')}
+                  className={`w-full px-4 py-3 rounded-xl text-sm font-semibold transition-colors flex items-center justify-between text-left cursor-pointer ${activeNav === 'solutions'
+                    ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-blue-50 dark:bg-[#17264A] border border-[#089EC2]/40 dark:border-[#2DD4F0]/40'
+                    : 'text-slate-700 dark:text-[#AAB6D0] bg-slate-50 dark:bg-[#17264A]/60 hover:bg-slate-100 dark:hover:bg-[#17264A] border border-slate-200 dark:border-[#24355A]'
+                    }`}
+                >
+                  <span>Solutions</span>
+                  <ChevronRight className="w-4 h-4 text-[#089EC2] dark:text-[#2DD4F0]" />
+                </button>
+
+                {/* 4. Industries */}
+                <button
+                  type="button"
+                  onClick={() => handleMobileNavigate('#industries')}
+                  className={`w-full px-4 py-3 rounded-xl text-sm font-semibold transition-colors flex items-center justify-between text-left cursor-pointer ${activeNav === 'industries'
+                    ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-blue-50 dark:bg-[#17264A] border border-[#089EC2]/40 dark:border-[#2DD4F0]/40'
+                    : 'text-slate-700 dark:text-[#AAB6D0] bg-slate-50 dark:bg-[#17264A]/60 hover:bg-slate-100 dark:hover:bg-[#17264A] border border-slate-200 dark:border-[#24355A]'
+                    }`}
+                >
+                  <span>Industries We Serve</span>
+                  <ChevronRight className="w-4 h-4 text-[#089EC2] dark:text-[#2DD4F0]" />
+                </button>
+
+                {/* 5. Company */}
+                <button
+                  type="button"
+                  onClick={() => handleMobileNavigate('#engineering-capabilities')}
+                  className={`w-full px-4 py-3 rounded-xl text-sm font-semibold transition-colors flex items-center justify-between text-left cursor-pointer ${activeNav === 'company'
+                    ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-blue-50 dark:bg-[#17264A] border border-[#089EC2]/40 dark:border-[#2DD4F0]/40'
+                    : 'text-slate-700 dark:text-[#AAB6D0] bg-slate-50 dark:bg-[#17264A]/60 hover:bg-slate-100 dark:hover:bg-[#17264A] border border-slate-200 dark:border-[#24355A]'
+                    }`}
+                >
+                  <span>Company & Capabilities</span>
+                  <ChevronRight className="w-4 h-4 text-[#089EC2] dark:text-[#2DD4F0]" />
+                </button>
+
+                {/* 6. Contact */}
+                <button
+                  type="button"
+                  onClick={() => handleMobileNavigate('#contact')}
+                  className={`w-full px-4 py-3 rounded-xl text-sm font-semibold transition-colors flex items-center justify-between text-left cursor-pointer ${activeNav === 'contact'
+                    ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-blue-50 dark:bg-[#17264A] border border-[#089EC2]/40 dark:border-[#2DD4F0]/40'
+                    : 'text-slate-700 dark:text-[#AAB6D0] bg-slate-50 dark:bg-[#17264A]/60 hover:bg-slate-100 dark:hover:bg-[#17264A] border border-slate-200 dark:border-[#24355A]'
+                    }`}
+                >
+                  <span>Contact Us</span>
+                  <ChevronRight className="w-4 h-4 text-[#089EC2] dark:text-[#2DD4F0]" />
+                </button>
+              </div>
             </div>
-          </div>
+          </>
         )}
       </header>
 
-      {/* Products Mega Menu Component */}
+      {/* Products Mega Menu Component (Desktop) */}
       <ProductsMegaMenu
         isOpen={megaMenuOpen}
         onClose={() => setMegaMenuOpen(false)}
@@ -484,7 +654,7 @@ export default function Header() {
         onMouseLeave={handleMegaMenuMouseLeave}
       />
 
-      {/* Applications (Industries) Mega Menu Component */}
+      {/* Applications (Industries) Mega Menu Component (Desktop) */}
       <ApplicationsMegaMenu
         isOpen={applicationsMenuOpen}
         onClose={() => setApplicationsMenuOpen(false)}
@@ -492,7 +662,7 @@ export default function Header() {
         onMouseLeave={handleAppsMegaMenuMouseLeave}
       />
 
-      {/* Solutions Mega Menu Component */}
+      {/* Solutions Mega Menu Component (Desktop) */}
       <SolutionsMegaMenu
         isOpen={solutionsMenuOpen}
         onClose={() => setSolutionsMenuOpen(false)}
@@ -500,7 +670,7 @@ export default function Header() {
         onMouseLeave={handleSolutionsMegaMenuMouseLeave}
       />
 
-      {/* About Us (Company) Mega Menu Component */}
+      {/* About Us (Company) Mega Menu Component (Desktop) */}
       <AboutUsMegaMenu
         isOpen={aboutMenuOpen}
         onClose={() => setAboutMenuOpen(false)}

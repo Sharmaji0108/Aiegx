@@ -269,7 +269,7 @@ export default function RZV2LSBC({ productSlug = 'sbc' }) {
 
         <div className="section-container relative">
           {/* Breadcrumb Navigation */}
-          <div className="flex items-center justify-between gap-4 mb-4">
+          <div className="hidden md:flex items-center justify-between gap-4 mb-4">
             <ProductBreadcrumb items={product.breadcrumb} />
             <button
               type="button"
@@ -283,12 +283,12 @@ export default function RZV2LSBC({ productSlug = 'sbc' }) {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Left Column: Product Hardware Image / Gallery */}
-            <div className="lg:col-span-5 flex flex-col justify-center min-w-0 w-full">
+            <div className="order-1 lg:order-1 lg:col-span-5 flex flex-col justify-center min-w-0 w-full">
               <ProductGallery images={product.gallery} badge={product.badge || 'Hardware'} productName={product.title} />
             </div>
 
             {/* Right Column: Product Information & CTAs */}
-            <div className="lg:col-span-7 flex flex-col items-start min-w-0">
+            <div className="order-2 lg:order-2 lg:col-span-7 flex flex-col items-start min-w-0">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-[#17264A] border border-[#DBE4F0] dark:border-[#24355A] text-xs font-mono text-[#089EC2] dark:text-[#2DD4F0] uppercase tracking-wider mb-3.5 shadow-xs">
                 <span className="w-2 h-2 rounded-full bg-[#089EC2] dark:bg-[#2DD4F0]" />
                 <span>{product.category}</span>

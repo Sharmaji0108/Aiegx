@@ -53,7 +53,7 @@ const solutionsData = [
   }
 ];
 
-export default function SolutionsMegaMenu({ isOpen, onClose }) {
+export default function SolutionsMegaMenu({ isOpen, onClose, onMouseEnter, onMouseLeave }) {
   const menuRef = useRef(null);
 
   useEffect(() => {
@@ -94,6 +94,8 @@ export default function SolutionsMegaMenu({ isOpen, onClose }) {
         className="mega-menu-dropdown-wrapper animate-in fade-in slide-in-from-top-2 duration-200"
         role="dialog"
         aria-label="Solutions Mega Menu"
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
       >
         <div className="mega-menu-dropdown-card bg-white/95 dark:bg-[#101936]/98 backdrop-blur-2xl border border-[#DCE6F3] dark:border-white/10 rounded-2xl shadow-2xl shadow-slate-900/10 dark:shadow-black/80 text-slate-900 dark:text-white p-6 sm:p-7">
           

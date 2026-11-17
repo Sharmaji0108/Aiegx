@@ -427,7 +427,7 @@ const categoryList = [
   { id: 'signage', name: 'Digital Signage & Entertainment' }
 ];
 
-export default function ApplicationsMegaMenu({ isOpen, onClose }) {
+export default function ApplicationsMegaMenu({ isOpen, onClose, onMouseEnter, onMouseLeave }) {
   const [selectedCategory, setSelectedCategory] = useState('industrial');
   const [mobileStep, setMobileStep] = useState(1); // 1 = Categories, 2 = Customer Stories, 3 = Tech & Products
   const menuRef = useRef(null);
@@ -479,6 +479,8 @@ export default function ApplicationsMegaMenu({ isOpen, onClose }) {
         className="mega-menu-dropdown-wrapper animate-in fade-in slide-in-from-top-2 duration-200"
         role="dialog"
         aria-label="Applications Mega Menu"
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
       >
         <div className="mega-menu-dropdown-card bg-white/95 dark:bg-[#101936]/98 backdrop-blur-2xl border border-[#DCE6F3] dark:border-white/10 rounded-2xl shadow-2xl shadow-slate-900/10 dark:shadow-black/80 text-slate-900 dark:text-white lg:min-h-[380px]">
           

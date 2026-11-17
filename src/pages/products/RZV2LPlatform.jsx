@@ -44,10 +44,7 @@ export default function RZV2LPlatform() {
         <PlatformCapabilitiesAndArchitecture
           capabilities={RZV2L_PLATFORM_DATA.capabilities}
           capabilitiesDescription="Dedicated DRP-AI neural accelerator, dual Cortex-A55 cores, on-chip ISP, sub-4W fanless operation, and long-term Linux support."
-          title={RZV2L_PLATFORM_DATA.architecture.title}
-          titleGradient={RZV2L_PLATFORM_DATA.architecture.titleGradient}
-          statement={RZV2L_PLATFORM_DATA.architecture.statement}
-          architectureDescription={RZV2L_PLATFORM_DATA.architecture.description}
+          architectureBlocks={RZV2L_PLATFORM_DATA.architecture}
         />
       </div>
 
@@ -75,9 +72,12 @@ export default function RZV2LPlatform() {
 
         {/* Section D: Hardware Architecture */}
         <HardwareArchitecture
-          title={RZV2L_PLATFORM_DATA.architecture.title}
-          titleGradient={RZV2L_PLATFORM_DATA.architecture.titleGradient}
-          statement={RZV2L_PLATFORM_DATA.architecture.statement}
+          blocks={RZV2L_PLATFORM_DATA.architecture}
+          subheading="MODULAR ARCHITECTURE"
+          title="Hardware"
+          titleGradient="Architecture"
+          description="The RZ/V2L platform supports a modular architecture. SoM provides the core computing module, Carrier Board provides application interfaces, and together they form a complete SBC / Development Platform."
+          stackOnMobile={true}
         />
       </div>
 

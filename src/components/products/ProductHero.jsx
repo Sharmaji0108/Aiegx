@@ -42,7 +42,7 @@ export default function ProductHero({
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Left Column: Platform Heading, Subtitle, Description, Highlights & CTAs */}
-          <div className="lg:col-span-7 flex flex-col items-start min-w-0">
+          <div className="order-2 lg:order-1 lg:col-span-7 flex flex-col items-start min-w-0">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white dark:bg-[#17264A] border border-[#DBE4F0] dark:border-[#24355A] text-xs font-mono text-[#089EC2] dark:text-[#2DD4F0] uppercase tracking-wider mb-4 shadow-xs">
               <span className="w-2 h-2 rounded-full bg-[#089EC2] dark:bg-[#2DD4F0]" />
               <span>{hero.tag}</span>
@@ -95,7 +95,7 @@ export default function ProductHero({
           </div>
 
           {/* Right Column: Prominent Processor / Board Visual */}
-          <div className="lg:col-span-5 flex items-center justify-center">
+          <div className="order-1 lg:order-2 lg:col-span-5 flex items-center justify-center">
             <div className="w-full max-w-md lg:max-w-none rounded-2xl bg-white dark:bg-[#17264A] border border-[#DBE4F0] dark:border-[#24355A] p-4 sm:p-5 shadow-[0_12px_36px_rgba(15,23,42,0.06)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.35)] relative overflow-hidden">
               <div className="aspect-[4/3] w-full rounded-xl bg-[#F8FAFD] dark:bg-[#101936] border border-[#E2EAF4] dark:border-[#24355A] flex items-center justify-center overflow-hidden p-1 sm:p-2">
                 {hero.model3d ? (

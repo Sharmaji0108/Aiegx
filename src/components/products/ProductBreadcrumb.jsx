@@ -5,9 +5,11 @@ import { navigateTo } from '../../utils/navigation';
 /**
  * Reusable Breadcrumb navigation consistent with Aiegx page hierarchy.
  */
-export default function ProductBreadcrumb({ items = [] }) {
+export default function ProductBreadcrumb({ items = [], className = '' }) {
+  if (!items || items.length === 0) return null;
+
   return (
-    <nav aria-label="Breadcrumb" className="mb-6 sm:mb-8">
+    <nav aria-label="Breadcrumb" className={`hidden md:block mb-6 sm:mb-8 ${className}`}>
       <ol className="flex items-center flex-wrap gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-[#52627C] dark:text-[#AAB6D0]">
         {items.map((item, idx) => {
           const isLast = idx === items.length - 1;

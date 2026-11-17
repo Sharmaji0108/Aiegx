@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
-import { MessageSquare, FlaskConical, ArrowLeft } from 'lucide-react';
+import { MessageSquare, FlaskConical, ArrowLeft, ExternalLink } from 'lucide-react';
+import SectionHeadingContainer from '../../components/common/SectionHeadingContainer';
 import ProductBreadcrumb from '../../components/products/ProductBreadcrumb';
 import ProductGallery from '../../components/products/ProductGallery';
 import ProductTabs from '../../components/products/ProductTabs';
@@ -43,6 +44,43 @@ const SOM_FEATURES = [
   'Onboard Certified Dual Band WiFi 802.11 a/b/g/n/ac with Bluetooth 5.0',
   'Pin to Pin compatible with RZ/V2L SOM',
   'The CIP (Civil Infrastructure Platform) Linux ensures robust, sustainable infrastructural systems',
+];
+
+const RZG2L_SBC_TABS = [
+  { id: 'features', label: 'Features' },
+  { id: 'specifications', label: 'Specifications' },
+  { id: 'interfaces', label: 'Interfaces' },
+  { id: 'software-support', label: 'Software Support' },
+  { id: 'applications', label: 'Applications' },
+  { id: 'documents', label: 'Documents' },
+];
+
+const RZG2L_DEFAULT_TABS = [
+  { id: 'specifications', label: 'Specifications' },
+  { id: 'interfaces', label: 'Interfaces' },
+  { id: 'software-support', label: 'Software Support' },
+  { id: 'documents', label: 'Documents' },
+];
+
+const G2L_FEATURES = [
+  { text: 'Cortex-A55 (dual or single)' },
+  { text: 'Cortex-M33' },
+  { text: '3D graphics engine (Arm Mali-G31)' },
+  { text: 'Video codec (H.264)' },
+  { text: 'Camera interface (MIPI-CSI or Parallel-IF)' },
+  { text: 'Display interface (MIPI-DSI or Parallel-IF)' },
+  { text: 'USB 2.0 interface 2ch, SD interface 2ch' },
+  { text: 'CAN interface (CAN FD)' },
+  { text: 'Gigabit Ethernet 2ch' },
+  { text: 'Memory error detection/correction (ECC)' },
+  { text: 'DDR4 or DDR3L memory interface' },
+  { text: 'BGA package (15mm x 15mm, 21mm x 21mm)' },
+  {
+    isLink: true,
+    prefix: 'Explore Renesas-validated',
+    linkText: 'DRAM Compatibility List',
+    linkUrl: 'https://www.renesas.com/products/rzg2l',
+  },
 ];
 
 const RZG2L_SBC_FEATURES = [
@@ -158,13 +196,15 @@ const formatFeatureItem = (item) => {
 export default function RZG2LSMARCSoM({ productSlug = 'smarc-som' }) {
   const rawProduct = RZG2L_PRODUCT_DETAILS[productSlug] || RZG2L_PRODUCT_DETAILS['smarc-som'];
   const product = productSlug === 'carrier-board' ? { ...rawProduct, title: 'RZ/G2L Carrier Board' } : rawProduct;
+  const isSbc = productSlug === 'sbc';
+  const tabs = isSbc ? RZG2L_SBC_TABS : RZG2L_DEFAULT_TABS;
   const [prevSlug, setPrevSlug] = useState(productSlug);
-  const [activeTab, setActiveTab] = useState('specifications');
+  const [activeTab, setActiveTab] = useState(isSbc ? 'features' : 'specifications');
   const tabContentRef = useRef(null);
 
   if (productSlug !== prevSlug) {
     setPrevSlug(productSlug);
-    setActiveTab('specifications');
+    setActiveTab(productSlug === 'sbc' ? 'features' : 'specifications');
   }
 
   const handleTabChange = (nextTab) => {
@@ -210,7 +250,7 @@ export default function RZG2LSMARCSoM({ productSlug = 'smarc-som' }) {
         <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[500px] h-[320px] sm:h-[400px] bg-gradient-to-tr from-[#3285FF]/12 via-[#2DD4F0]/10 to-transparent rounded-full blur-[120px] pointer-events-none -z-10" />
 
         <div className="section-container relative">
-          <div className="flex flex-wrap items-center justify-between gap-2">
+          <div className="hidden md:flex flex-wrap items-center justify-between gap-2">
             <ProductBreadcrumb items={product.breadcrumb} />
 
             <a
@@ -226,12 +266,12 @@ export default function RZG2LSMARCSoM({ productSlug = 'smarc-som' }) {
           {/* Two-Column Hero: Left Gallery, Right Product Information */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* LEFT COLUMN: Product Hardware Image / Gallery */}
-            <div className="lg:col-span-5 flex flex-col justify-center min-w-0 w-full">
+            <div className="order-1 lg:order-1 lg:col-span-5 flex flex-col justify-center min-w-0 w-full">
               <ProductGallery images={product.gallery} productName={product.title} badge={product.badge || 'SMARC 2.1'} />
             </div>
 
             {/* RIGHT COLUMN: Category, Title, Descriptions, Highlights & Actions */}
-            <div className="lg:col-span-7 flex flex-col items-start min-w-0">
+            <div className="order-2 lg:order-2 lg:col-span-7 flex flex-col items-start min-w-0">
               {/* Small Category Label */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white dark:bg-[#17264A] border border-[#C5DDF5] dark:border-[#244277] text-xs font-mono font-bold text-[#089EC2] dark:text-[#2DD4F0] uppercase tracking-wider mb-4 shadow-xs">
                 <span className="w-2 h-2 rounded-full bg-[#089EC2] dark:bg-[#2DD4F0]" />
@@ -334,12 +374,7 @@ export default function RZG2LSMARCSoM({ productSlug = 'smarc-som' }) {
           Section C: Sticky Product Navigation Tabs
          ===================================================================== */}
       <ProductTabs
-        tabs={[
-          { id: 'specifications', label: 'Specifications' },
-          { id: 'interfaces', label: 'Interfaces' },
-          { id: 'software-support', label: 'Software Support' },
-          { id: 'documents', label: 'Documents' },
-        ]}
+        tabs={tabs}
         activeTab={activeTab}
         onTabChange={handleTabChange}
       />
@@ -355,6 +390,75 @@ export default function RZG2LSMARCSoM({ productSlug = 'smarc-som' }) {
         aria-labelledby={`tab-${activeTab}`}
         className="scroll-mt-32 transition-opacity duration-200"
       >
+        {/* TAB 0: Features (RZ/G2L SBC) */}
+        {activeTab === 'features' && (
+          <section
+            id="features"
+            className="py-4 sm:py-6 lg:py-8 relative bg-[#F5F8FC] dark:bg-[#0D1733] scroll-mt-32 transition-colors duration-300"
+          >
+            <div className="section-container relative">
+              <SectionHeadingContainer
+                subheading="KEY PLATFORM CAPABILITIES"
+                heading={
+                  <>
+                    Technical{' '}
+                    <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
+                      Features
+                    </span>
+                  </>
+                }
+                description="Dual Cortex-A55 compute, real-time Cortex-M33 core, Arm Mali-G31 3D graphics engine, and industrial HMI interfaces."
+              />
+
+              <div className="rounded-2xl bg-white dark:bg-[#17264A] border border-[#DBE4F0] dark:border-[#24355A] shadow-xs overflow-hidden">
+                <div className="w-full overflow-x-auto">
+                  <table className="w-full text-left border-collapse">
+                    <thead>
+                      <tr className="bg-[#EDF2F7] dark:bg-[#101936] border-b border-[#DBE4F0] dark:border-[#24355A]">
+                        <th
+                          scope="col"
+                          className="py-3.5 px-4 sm:px-6 text-xs font-mono font-bold uppercase tracking-wider text-[#089EC2] dark:text-[#2DD4F0]"
+                        >
+                          DETAILS
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-[#E2E8F0] dark:divide-[#24355A]">
+                      {G2L_FEATURES.map((item, idx) => (
+                        <tr
+                          key={idx}
+                          className={`transition-colors hover:bg-[#F8FAFD] dark:hover:bg-[#1E315E]/50 ${
+                            idx % 2 === 1 ? 'bg-[#FAFBFD] dark:bg-[#142244]/50' : 'bg-transparent'
+                          }`}
+                        >
+                          <td className="py-3.5 px-4 sm:px-6 text-xs sm:text-sm font-normal text-[#14213D] dark:text-[#CBD5E1] leading-relaxed">
+                            {item.isLink ? (
+                              <span>
+                                {item.prefix}{' '}
+                                <a
+                                  href={item.linkUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="font-semibold text-[#089EC2] dark:text-[#2DD4F0] underline hover:text-[#067A97] dark:hover:text-[#67E8F9] transition-colors inline-flex items-center gap-1"
+                                >
+                                  <span>{item.linkText}</span>
+                                  <ExternalLink className="w-3.5 h-3.5 inline shrink-0" />
+                                </a>
+                              </span>
+                            ) : (
+                              item.text
+                            )}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* TAB 1: Specifications */}
         {activeTab === 'specifications' && (
           <ProductSpecifications
@@ -415,7 +519,18 @@ export default function RZG2LSMARCSoM({ productSlug = 'smarc-som' }) {
           />
         )}
 
-        {/* TAB 5: Documents */}
+        {/* TAB 5: Applications */}
+        {activeTab === 'applications' && (
+          <TypicalApplicationsCarousel
+            applications={RZG2L_APPLICATIONS}
+            subheading="TARGET APPLICATIONS"
+            headingPrefix="Typical"
+            headingHighlight="Applications"
+            description="Designed for graphical HMI, industrial telemetry controllers, medical diagnostics, and connected IoT gateways."
+          />
+        )}
+
+        {/* TAB 6: Documents */}
         {activeTab === 'documents' && (
           <ProductDocuments
             documents={product.documents}

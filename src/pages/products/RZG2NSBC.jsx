@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
-import { MessageSquare, FlaskConical, ArrowLeft } from 'lucide-react';
+import { MessageSquare, FlaskConical, ArrowLeft, ExternalLink } from 'lucide-react';
+import SectionHeadingContainer from '../../components/common/SectionHeadingContainer';
 import ProductBreadcrumb from '../../components/products/ProductBreadcrumb';
 import ProductGallery from '../../components/products/ProductGallery';
 import ProductTabs from '../../components/products/ProductTabs';
@@ -11,13 +12,43 @@ import ProductEnquiry, { ProductEnquiryModal } from '../../components/products/P
 import { RZG2N_PRODUCT_DETAILS, RZG2N_APPLICATIONS } from '../../data/rzg2nData';
 import { navigateTo } from '../../utils/navigation';
 
+const RZG2N_TABS = [
+  { id: 'features', label: 'Features' },
+  { id: 'specifications', label: 'Specifications' },
+  { id: 'interfaces', label: 'Interfaces' },
+  { id: 'software-support', label: 'Software Support' },
+  { id: 'documents', label: 'Documents' },
+];
+
+const G2N_FEATURES = [
+  {
+    text: 'Highest level of computing performance',
+    subText: 'Calculation performance of about 12.3 thousand DMIPS',
+  },
+  {
+    text: "ECC function indispensable for the system's high reliability",
+    subText: 'ECC support for both L1/L2cache, DDR/IF',
+  },
+  { text: '384KB System RAM' },
+  { text: 'Built-in high-speed interface (USB 3.0, PCIe, Gbit-Ether)' },
+  { text: '4K compatible H.265 decoder, H.264 decoder/encoder installed' },
+  { text: 'Equipped with 3DGfx engine Power VR ideal for embedded devices' },
+  { text: 'Security function for communication, data, and program protection' },
+  {
+    isLink: true,
+    prefix: 'Explore Renesas-validated',
+    linkText: 'DRAM Compatibility List',
+    linkUrl: 'https://www.renesas.com/products/rzg2n',
+  },
+];
+
 /**
  * RZ/G2N SBC (Development Platform) Product Detail Page
  * Matching the exact visual design language, structure, and tabular technical layout of RZ/G2L.
  */
 export default function RZG2NSBC() {
   const product = RZG2N_PRODUCT_DETAILS['sbc'];
-  const [activeTab, setActiveTab] = useState('specifications');
+  const [activeTab, setActiveTab] = useState('features');
   const tabContentRef = useRef(null);
   const [enquiryModal, setEnquiryModal] = useState({
     isOpen: false,
@@ -63,7 +94,7 @@ export default function RZG2NSBC() {
 
         <div className="section-container relative">
           {/* Breadcrumb Navigation */}
-          <div className="flex items-center justify-between gap-4 mb-4">
+          <div className="hidden md:flex items-center justify-between gap-4 mb-4">
             <ProductBreadcrumb items={product.breadcrumb} />
             <button
               type="button"
@@ -77,7 +108,7 @@ export default function RZG2NSBC() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Left Column: Product Hardware Image / Gallery */}
-            <div className="lg:col-span-5 flex flex-col justify-center min-w-0 w-full">
+            <div className="order-1 lg:order-1 lg:col-span-5 flex flex-col justify-center min-w-0 w-full">
               <ProductGallery
                 images={product.gallery}
                 productName={product.title}
@@ -86,7 +117,7 @@ export default function RZG2NSBC() {
             </div>
 
             {/* Right Column: Product Information & CTAs */}
-            <div className="lg:col-span-7 flex flex-col items-start min-w-0">
+            <div className="order-2 lg:order-2 lg:col-span-7 flex flex-col items-start min-w-0">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-[#17264A] border border-[#DBE4F0] dark:border-[#24355A] text-xs font-mono text-[#089EC2] dark:text-[#2DD4F0] uppercase tracking-wider mb-3.5 shadow-xs">
                 <span className="w-2 h-2 rounded-full bg-[#089EC2] dark:bg-[#2DD4F0]" />
                 <span>{product.category}</span>
@@ -160,12 +191,7 @@ export default function RZG2NSBC() {
       {/* SECTION 2: Sticky Tab Navigation Bar */}
       <div id="product-tabs-section">
         <ProductTabs
-          tabs={[
-            { id: 'specifications', label: 'Specifications' },
-            { id: 'interfaces', label: 'Interfaces' },
-            { id: 'software-support', label: 'Software Support' },
-            { id: 'documents', label: 'Documents' },
-          ]}
+          tabs={RZG2N_TABS}
           activeTab={activeTab}
           onTabChange={handleTabChange}
         />
@@ -180,6 +206,83 @@ export default function RZG2NSBC() {
         aria-labelledby={`tab-${activeTab}`}
         className="scroll-mt-32 transition-opacity duration-200"
       >
+        {/* TAB 0: Features (RZ/G2N SBC) */}
+        {activeTab === 'features' && (
+          <section
+            id="features"
+            className="py-4 sm:py-6 lg:py-8 relative bg-[#F5F8FC] dark:bg-[#0D1733] scroll-mt-32 transition-colors duration-300"
+          >
+            <div className="section-container relative">
+              <SectionHeadingContainer
+                subheading="KEY PLATFORM CAPABILITIES"
+                heading={
+                  <>
+                    Technical{' '}
+                    <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
+                      Features
+                    </span>
+                  </>
+                }
+                description="High-performance dual Cortex-A57 compute, PowerVR 3D graphics, 4K video engine, and high-speed industrial interfaces."
+              />
+
+              <div className="rounded-2xl bg-white dark:bg-[#17264A] border border-[#DBE4F0] dark:border-[#24355A] shadow-xs overflow-hidden">
+                <div className="w-full overflow-x-auto">
+                  <table className="w-full text-left border-collapse">
+                    <thead>
+                      <tr className="bg-[#EDF2F7] dark:bg-[#101936] border-b border-[#DBE4F0] dark:border-[#24355A]">
+                        <th
+                          scope="col"
+                          className="py-3.5 px-4 sm:px-6 text-xs font-mono font-bold uppercase tracking-wider text-[#089EC2] dark:text-[#2DD4F0]"
+                        >
+                          DETAILS
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-[#E2E8F0] dark:divide-[#24355A]">
+                      {G2N_FEATURES.map((item, idx) => (
+                        <tr
+                          key={idx}
+                          className={`transition-colors hover:bg-[#F8FAFD] dark:hover:bg-[#1E315E]/50 ${
+                            idx % 2 === 1 ? 'bg-[#FAFBFD] dark:bg-[#142244]/50' : 'bg-transparent'
+                          }`}
+                        >
+                          <td className="py-3.5 px-4 sm:px-6 text-xs sm:text-sm font-normal text-[#14213D] dark:text-[#CBD5E1] leading-relaxed">
+                            {item.isLink ? (
+                              <span>
+                                {item.prefix}{' '}
+                                <a
+                                  href={item.linkUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="font-semibold text-[#089EC2] dark:text-[#2DD4F0] underline hover:text-[#067A97] dark:hover:text-[#67E8F9] transition-colors inline-flex items-center gap-1"
+                                >
+                                  <span>{item.linkText}</span>
+                                  <ExternalLink className="w-3.5 h-3.5 inline shrink-0" />
+                                </a>
+                              </span>
+                            ) : (
+                              <div>
+                                <div>{item.text}</div>
+                                {item.subText && (
+                                  <div className="mt-1.5 ml-4 sm:ml-5 flex items-start gap-2 text-xs sm:text-[13px] text-[#52627C] dark:text-[#94A3B8]">
+                                    <span className="w-1.5 h-1.5 rounded-full border border-[#089EC2] dark:border-[#2DD4F0] bg-transparent mt-1.5 shrink-0" />
+                                    <span>{item.subText}</span>
+                                  </div>
+                                )}
+                              </div>
+                            )}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* TAB 1: Specifications */}
         {activeTab === 'specifications' && (
           <ProductSpecifications

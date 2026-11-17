@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export const heroSlides = [
   {
@@ -277,34 +277,14 @@ export default function Hero() {
         className="absolute top-1/3 right-0 sm:right-10 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-gradient-to-bl from-[#2DD4F0]/20 via-[#3285FF]/15 to-transparent rounded-full blur-[100px] sm:blur-[140px] pointer-events-none -z-10 max-w-full overflow-hidden" 
       />
 
-      {/* Previous Slide Arrow Button */}
-      <button
-        type="button"
-        onClick={goToPrevSlide}
-        className="absolute left-1.5 sm:left-6 lg:left-8 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-3.5 rounded-full bg-white/90 dark:bg-[#17264A]/90 hover:bg-white dark:hover:bg-[#1E3360] border border-slate-200 dark:border-[#24355A] hover:border-[#089EC2] dark:hover:border-[#2DD4F0] text-slate-700 dark:text-white/80 hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-all duration-200 shadow-md hover:shadow-lg hover:shadow-[#2DD4F0]/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2DD4F0] cursor-pointer"
-        aria-label="Previous slide"
-        title="Previous slide"
-      >
-        <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
-      </button>
 
-      {/* Next Slide Arrow Button */}
-      <button
-        type="button"
-        onClick={goToNextSlide}
-        className="absolute right-1.5 sm:right-6 lg:right-8 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-3.5 rounded-full bg-white/90 dark:bg-[#17264A]/90 hover:bg-white dark:hover:bg-[#1E3360] border border-slate-200 dark:border-[#24355A] hover:border-[#089EC2] dark:hover:border-[#2DD4F0] text-slate-700 dark:text-white/80 hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-all duration-200 shadow-md hover:shadow-lg hover:shadow-[#2DD4F0]/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2DD4F0] cursor-pointer"
-        aria-label="Next slide"
-        title="Next slide"
-      >
-        <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
-      </button>
 
       <div className="section-container relative">
         {/* Main Two-Column Hero Grid: Left Column Text, Right Column Hardware Image */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center min-h-[420px] lg:min-h-[460px] w-full max-w-full min-w-0 px-2 sm:px-6 lg:px-8">
           
           {/* Left Column: Heading, Description, and CTA Button (7 cols) */}
-          <div className="lg:col-span-7 flex flex-col items-start z-10 w-full max-w-full min-w-0">
+          <div className="order-2 lg:order-1 lg:col-span-7 flex flex-col items-start z-10 w-full max-w-full min-w-0 pb-14 lg:pb-0">
             
             {/* Sliding Hero Text Container with Stable Dimensions */}
             <div 
@@ -349,7 +329,7 @@ export default function Hero() {
 
           {/* Right Column: Large Hardware Product Image (5 cols) */}
           {/* Frameless presentation, cleanly floating with soft under-glow and horizontal transition */}
-          <div className="lg:col-span-5 relative flex items-center justify-center min-h-[280px] sm:min-h-[380px] lg:min-h-[480px] w-full max-w-full min-w-0 overflow-hidden">
+          <div className="order-1 lg:order-2 lg:col-span-5 relative flex items-center justify-center min-h-[280px] sm:min-h-[380px] lg:min-h-[480px] w-full max-w-full min-w-0 overflow-hidden">
             
             {/* Ambient Radial Backlight Glow specifically positioned behind hardware */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none -z-10">

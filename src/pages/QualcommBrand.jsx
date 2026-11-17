@@ -76,7 +76,7 @@ export default function QualcommBrand() {
         <div className="section-container relative">
           
           {/* Breadcrumb Navigation: Home > Brands > Qualcomm */}
-          <nav aria-label="Breadcrumb" className="mb-8 sm:mb-12">
+          <nav aria-label="Breadcrumb" className="hidden md:block mb-8 sm:mb-12">
             <ol className="flex items-center flex-wrap gap-2 text-xs sm:text-sm font-medium text-white/60">
               <li>
                 <a 

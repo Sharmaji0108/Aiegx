@@ -74,11 +74,32 @@ export const RZV2L_PLATFORM_DATA = {
       icon: Clock,
     },
   ],
-  architecture: {
-    title: 'Hardware',
-    titleGradient: 'Architecture',
-    statement: 'Processor is mounted directly on the main PCB.',
-  },
+  architecture: [
+    {
+      id: 'rz-v2l-som',
+      title: 'SoM',
+      subtitle: 'Processor, Memory, Core Interfaces',
+      image: '/images/SOM.png',
+      fallbackImage: '/images/SOM.png',
+      imageAlt: 'RZ/V2L SoM',
+    },
+    {
+      id: 'rz-v2l-carrier-board',
+      title: 'RZ/V2L Carrier Board',
+      subtitle: 'Application Interfaces and Expansion',
+      image: '/images/RZV2L-Carrier_Board.png',
+      fallbackImage: '/images/RZV2L-Carrier_Board.png',
+      imageAlt: 'RZ/V2L Carrier Board',
+    },
+    {
+      id: 'rz-v2l-complete-sbc',
+      title: 'Complete SBC / Development Platform',
+      subtitle: 'SoM + Carrier Board',
+      image: '/images/RZV2L-SBC.png',
+      fallbackImage: '/images/RZV2L-SBC.png',
+      imageAlt: 'RZ/V2L Complete SBC / Development Platform',
+    },
+  ],
   availableHardware: [
     {
       id: 'rz-v2l-som',
@@ -104,8 +125,8 @@ export const RZV2L_PLATFORM_DATA = {
       badge: 'Carrier Board',
       description:
         'Integrated carrier board based on the Renesas RZ/V2L processor.',
-      image: '/images/RZV2L.png',
-      fallbackImage: '/images/sbc-front-transparent.png',
+      image: '/images/RZV2L-Carrier_Board.png',
+      fallbackImage: '/images/RZV2L-Carrier_Board.png',
       imageAlt: 'RZ/V2L Carrier Board',
       features: [
         'Turnkey Carrier Board',
@@ -122,8 +143,8 @@ export const RZV2L_PLATFORM_DATA = {
       badge: 'Development Platform',
       description:
         'Complete development solution for evaluating and developing RZ/V2L-based embedded and AI applications.',
-      image: '/images/sbc-front-transparent.png',
-      fallbackImage: '/images/RZV2L.png',
+      image: '/images/RZV2L-SBC.png',
+      fallbackImage: '/images/RZV2L-SBC.png',
       imageAlt: 'RZ/V2L Development Kit Evaluation Platform',
       features: [
         'Complete Evaluation & Dev Solution',
@@ -378,8 +399,8 @@ export const RZV2L_PRODUCT_DETAILS = {
     ],
     gallery: [
       {
-        src: '/images/RZV2L.png',
-        model3d: '/models/RZG2L-RZV2L_Carrier Board.glb',
+        src: '/images/RZV2L-Carrier_Board.png',
+        model3d: '/models/Carrier_Board.glb',
         alt: 'RZ/V2L Carrier Board 3D Model',
       },
     ],
@@ -572,7 +593,8 @@ export const RZV2L_PRODUCT_DETAILS = {
     ],
     gallery: [
       {
-        src: '/images/sbc-front-transparent.png',
+        src: '/images/RZV2L-SBC.png',
+        model3d: '/models/G2L-V2L_SBC.glb',
         alt: 'RZ/V2L Development Kit Evaluation Platform',
         caption: 'Development Kit — Carrier Baseboard & Compute Core',
       },

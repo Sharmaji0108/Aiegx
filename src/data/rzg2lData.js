@@ -37,8 +37,8 @@ export const RZG2L_PLATFORM_DATA = {
     subtitle: 'Embedded Control & HMI Platform',
     description:
       'Power-efficient 64-bit Arm Cortex-A55 embedded computing platform engineered for industrial Human-Machine Interfaces (HMI), real-time deterministic control, multi-display visualization, and long-lifecycle connected embedded systems.',
-    image: '/images/RZG2L.png',
-    fallbackImage: '/images/rz-g2l-hd.jpg',
+    image: '/images/RZV2L-SBC.png',
+    fallbackImage: '/images/RZV2L-SBC.png',
     imageAlt: 'AIEGX RZ/G2L Embedded Control & HMI Hardware Module',
     highlights: [
       'Dual / Quad-class Arm Cortex-A55 + Real-Time Cortex-M33',
@@ -91,16 +91,16 @@ export const RZG2L_PLATFORM_DATA = {
       id: 'carrier-board',
       title: 'RZ/G2L Carrier Board',
       subtitle: 'Application Interfaces and Expansion',
-      image: '/images/RZV2L.png',
-      fallbackImage: '/images/rz-g2l-hd.jpg',
+      image: '/images/RZG2L-Carrier_Board.png',
+      fallbackImage: '/images/RZG2L-Carrier_Board.png',
       imageAlt: 'RZ/G2L Carrier Board',
     },
     {
       id: 'complete-sbc',
       title: 'Complete SBC / Development Platform',
       subtitle: 'SMARC SoM + Carrier Board',
-      image: '/images/sbc-platform-hd.jpg',
-      fallbackImage: '/images/rz-g2l-hd.jpg',
+      image: '/images/RZV2L-SBC.png',
+      fallbackImage: '/images/RZV2L-SBC.png',
       imageAlt: 'RZ/G2L Complete SBC Development Platform',
     },
   ],
@@ -129,8 +129,8 @@ export const RZG2L_PLATFORM_DATA = {
       badge: 'Expansion Baseboard',
       description:
         'Expansion board with additional interfaces and connectivity.',
-      image: '/images/RZV2L.png',
-      fallbackImage: '/images/rz-g2l-hd.jpg',
+      image: '/images/RZG2L-Carrier_Board.png',
+      fallbackImage: '/images/RZG2L-Carrier_Board.png',
       imageAlt: 'RZ/G2L Carrier Board',
       features: [
         'Supports RZ/G2L SMARC SoM',
@@ -146,8 +146,8 @@ export const RZG2L_PLATFORM_DATA = {
       name: 'RZ/G2L SBC (Development Platform)',
       badge: 'Complete Kit',
       description: 'Complete ready-to-use single-board computer.',
-      image: '/images/sbc-platform-hd.jpg',
-      fallbackImage: '/images/rz-g2l-hd.jpg',
+      image: '/images/RZV2L-SBC.png',
+      fallbackImage: '/images/RZV2L-SBC.png',
       imageAlt: 'RZ/G2L Single Board Computer Development Platform',
       features: [
         'All Required Interfaces',
@@ -406,8 +406,8 @@ export const RZG2L_PRODUCT_DETAILS = {
     ],
     gallery: [
       {
-        src: '/images/RZV2L.png',
-        model3d: '/models/RZG2L-RZV2L_Carrier Board.glb',
+        src: '/images/RZG2L-Carrier_Board.png',
+        model3d: '/models/Carrier_Board.glb',
         alt: 'RZ/G2L Carrier Board 3D Model',
       },
     ],
@@ -622,8 +622,8 @@ export const RZG2L_PRODUCT_DETAILS = {
     ],
     gallery: [
       {
-        src: '/images/sbc-platform-hd.jpg',
-        model3d: '/models/RZG2L-RZV2L_Carrier Board.glb',
+        src: '/images/RZV2L-SBC.png',
+        model3d: '/models/G2L-V2L_SBC.glb',
         alt: 'RZ/G2L SBC 3D Model',
       },
     ],

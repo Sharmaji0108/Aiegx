@@ -513,6 +513,19 @@ html.light .text-gradient-silver {
   box-sizing: border-box !important;
 }
 
+/* Invisible hover bridge spanning between navbar bottom and mega menu dropdown card */
+.mega-menu-dropdown-wrapper::before {
+  content: "";
+  position: absolute;
+  top: -14px;
+  left: 0;
+  right: 0;
+  height: 16px;
+  background: transparent;
+  pointer-events: auto;
+  z-index: 50;
+}
+
 @media (min-width: 640px) {
   .mega-menu-dropdown-wrapper {
     width: calc(100% - 36px) !important;
