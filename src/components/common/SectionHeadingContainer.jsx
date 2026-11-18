@@ -59,11 +59,13 @@ export default function SectionHeadingContainer({
   const displaySubheading = subheading || label;
   const rawHeading = heading || title;
   const displayHeading = formatHeading(rawHeading);
+  const hasCustomMargin = className.split(' ').some((cls) => cls.startsWith('mb-'));
+  const marginClass = hasCustomMargin ? '' : 'mb-3.5 sm:mb-4';
 
   return (
     <div
       id={id}
-      className={`section-heading-container relative w-full mb-4 sm:mb-5 px-4 py-4 sm:px-6 sm:py-5 lg:px-7 overflow-hidden rounded-2xl border border-[#DCE6F3] dark:border-[#24355A] shadow-[0_4px_20px_rgba(50,133,255,0.06)] dark:shadow-[0_4px_20px_rgba(45,212,240,0.08)] ${className}`}
+      className={`section-heading-container relative w-full ${marginClass} px-4 py-4 sm:px-6 sm:py-5 lg:px-7 overflow-hidden rounded-2xl border border-[#DCE6F3] dark:border-[#24355A] shadow-[0_4px_20px_rgba(50,133,255,0.06)] dark:shadow-[0_4px_20px_rgba(45,212,240,0.08)] ${className}`}
     >
       {/* ── Futuristic Technology Fluid Wave Graphic on the RIGHT ── */}
       <svg

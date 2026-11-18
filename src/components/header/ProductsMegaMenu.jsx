@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { 
-  X, 
-  ChevronRight, 
-  Layers, 
-  Cpu, 
-  Server, 
-  Zap 
+import {
+  X,
+  ChevronRight,
+  Layers,
+  Cpu,
+  Server,
+  Zap
 } from 'lucide-react';
 
 const categories = [
@@ -160,9 +160,8 @@ export default function ProductsMegaMenu({ isOpen, onClose, onMouseEnter, onMous
           <div className="flex flex-col lg:flex-row flex-1 overflow-hidden min-h-0">
 
             {/* COLUMN 1 — Main Categories (Left Sidebar) */}
-            <div className={`lg:w-[280px] xl:w-[300px] flex-shrink-0 bg-[#F1F6FC] dark:bg-[#0e1630] border-b lg:border-b-0 lg:border-r border-[#DCE6F3] dark:border-white/10 flex flex-col p-4 sm:p-5 min-h-0 overflow-y-auto mega-menu-scroll ${
-              mobileStep !== 1 ? 'hidden lg:flex' : 'flex'
-            }`}>
+            <div className={`lg:w-[280px] xl:w-[300px] flex-shrink-0 bg-[#F1F6FC] dark:bg-[#0e1630] border-b lg:border-b-0 lg:border-r border-[#DCE6F3] dark:border-white/10 flex flex-col p-4 sm:p-5 min-h-0 overflow-y-auto mega-menu-scroll ${mobileStep !== 1 ? 'hidden lg:flex' : 'flex'
+              }`}>
               {/* Column 1 Header with Close Icon & PRODUCTS heading */}
               <div className="hidden lg:flex items-center justify-between pb-3.5 mb-4 border-b border-[#DCE6F3] dark:border-white/10">
                 <span className="text-xs font-mono font-bold tracking-widest text-[#089EC2] dark:text-[#2DD4F0] uppercase">
@@ -191,19 +190,17 @@ export default function ProductsMegaMenu({ isOpen, onClose, onMouseEnter, onMous
                         setMobileStep(2);
                       }}
                       onMouseEnter={() => setSelectedCategory(cat.id)}
-                      className={`w-full text-left px-3.5 py-3 rounded-xl text-xs sm:text-sm font-medium flex items-center justify-between transition-all duration-150 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#089EC2] dark:focus-visible:ring-[#2DD4F0] cursor-pointer ${
-                        isSelected 
-                          ? 'bg-white dark:bg-[#17264D] text-[#089EC2] dark:text-[#2DD4F0] font-bold shadow-xs border-l-3 border-[#089EC2] dark:border-[#2DD4F0]' 
-                          : 'text-[#14213D] dark:text-[#E2E8F0] hover:bg-white/60 dark:hover:bg-[#17264D]/50 hover:text-[#089EC2] dark:hover:text-[#2DD4F0]'
-                      }`}
+                      className={`w-full text-left px-3.5 py-3 rounded-xl text-xs sm:text-sm font-medium flex items-center justify-between transition-all duration-150 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#089EC2] dark:focus-visible:ring-[#2DD4F0] cursor-pointer ${isSelected
+                        ? 'bg-white dark:bg-[#17264D] text-[#089EC2] dark:text-[#2DD4F0] font-bold shadow-xs border-l-3 border-[#089EC2] dark:border-[#2DD4F0]'
+                        : 'text-[#14213D] dark:text-[#E2E8F0] hover:bg-white/60 dark:hover:bg-[#17264D]/50 hover:text-[#089EC2] dark:hover:text-[#2DD4F0]'
+                        }`}
                     >
                       <div className="flex items-center gap-3">
                         <Icon className={`w-4 h-4 ${isSelected ? 'text-[#089EC2] dark:text-[#2DD4F0]' : 'text-slate-500 dark:text-slate-400'}`} />
                         <span>{cat.name}</span>
                       </div>
-                      <ChevronRight className={`w-3.5 h-3.5 transition-transform ${
-                        isSelected ? 'text-[#089EC2] dark:text-[#2DD4F0] translate-x-0.5' : 'text-slate-400 dark:text-white/30'
-                      }`} />
+                      <ChevronRight className={`w-3.5 h-3.5 transition-transform ${isSelected ? 'text-[#089EC2] dark:text-[#2DD4F0] translate-x-0.5' : 'text-slate-400 dark:text-white/30'
+                        }`} />
                     </button>
                   );
                 })}
@@ -211,10 +208,9 @@ export default function ProductsMegaMenu({ isOpen, onClose, onMouseEnter, onMous
             </div>
 
             {/* COLUMN 2 — Headings Only (Simple Clean Links) */}
-            <div className={`flex-1 bg-white dark:bg-[#101936] p-5 sm:p-6 lg:p-7 flex flex-col min-h-0 overflow-y-auto mega-menu-scroll ${
-              mobileStep !== 2 ? 'hidden lg:flex' : 'flex'
-            }`}>
-              
+            <div className={`flex-1 bg-white dark:bg-[#101936] p-5 sm:p-6 lg:p-7 flex flex-col min-h-0 overflow-y-auto mega-menu-scroll ${mobileStep !== 2 ? 'hidden lg:flex' : 'flex'
+              }`}>
+
               {/* Category Heading Header */}
               <div className="pb-3.5 mb-4 border-b border-[#DCE6F3] dark:border-white/10 flex items-center justify-between">
                 <h3 className="text-sm font-mono font-bold tracking-wider text-[#14213D] dark:text-[#F8FAFC] uppercase">

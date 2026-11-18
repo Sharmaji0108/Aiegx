@@ -1,49 +1,75 @@
 import React, { useEffect, useRef } from 'react';
-import { 
-  X, 
-  ChevronRight, 
-  ArrowRight, 
-  Building2, 
-  ShieldCheck, 
-  Users 
+import {
+  X,
+  ChevronRight,
+  ArrowRight,
+  Building2,
+  Sparkles,
+  Cpu,
+  Target,
+  ShieldCheck,
+  Clock,
+  Users,
+  Headphones
 } from 'lucide-react';
 
-const aboutUsData = [
+const aboutUsColumns = [
   {
-    category: 'Why Aiegx & Technology',
-    icon: Building2,
+    title: 'COMPANY',
     items: [
-      { name: 'Why Build with Aiegx', href: '#why-aiegx' },
-      { name: '10+ Year Longevity Supply Guarantee', href: '#why-aiegx' },
-      { name: 'Pin-Compatible System-on-Modules', href: '#products' },
-      { name: 'Pre-Certified Linux & RTOS Stacks', href: '#developers' }
-    ]
+      {
+        name: 'Company Overview',
+        href: '#engineering-capabilities',
+        icon: Building2,
+      },
+      {
+        name: 'Why AIEGX',
+        href: '#why-aiegx',
+        icon: Sparkles,
+      },
+      {
+        name: 'Our Expertise',
+        href: '#expertise',
+        icon: Cpu,
+      },
+      {
+        name: 'Our Approach',
+        href: '#our-approach',
+        icon: Target,
+      },
+    ],
   },
   {
-    category: 'Quality & Reliability',
-    icon: ShieldCheck,
+    title: 'TRUST & SUPPORT',
     items: [
-      { name: 'Industrial Quality Standards (ISO 9001)', href: '#why-aiegx' },
-      { name: 'Extended Temperature Testing (-40°C to +85°C)', href: '#why-aiegx' },
-      { name: 'HALT / HASS Reliability Data', href: '#why-aiegx' },
-      { name: 'Lifecycle & Longevity Roadmap', href: '#why-aiegx' }
-    ]
+      {
+        name: 'Quality & Reliability',
+        href: '#quality-reliability',
+        icon: ShieldCheck,
+      },
+      {
+        name: 'Product Longevity',
+        href: '#product-longevity',
+        icon: Clock,
+      },
+      {
+        name: 'Ecosystem & Partners',
+        href: '#ecosystem-partners',
+        icon: Users,
+      },
+      {
+        name: 'Technical Support',
+        href: '#contact',
+        icon: Headphones,
+      },
+    ],
   },
-  {
-    category: 'Ecosystem & Support',
-    icon: Users,
-    items: [
-      { name: 'Global Certified Partner Network', href: '#solutions' },
-      { name: 'Carrier Board Engineering Services', href: '#developers' },
-      { name: 'Technical Support & Datasheet Library', href: '#developers' },
-      { name: 'Connect with Hardware Specialist', href: '#why-aiegx' }
-    ]
-  }
 ];
 
 export default function AboutUsMegaMenu({ isOpen, onClose, onMouseEnter, onMouseLeave }) {
   const menuRef = useRef(null);
 
+  // Close on Escape key
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape' && isOpen) onClose();
@@ -52,6 +78,7 @@ export default function AboutUsMegaMenu({ isOpen, onClose, onMouseEnter, onMouse
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
 
+  // Close on click outside
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
@@ -68,38 +95,60 @@ export default function AboutUsMegaMenu({ isOpen, onClose, onMouseEnter, onMouse
 
   if (!isOpen) return null;
 
+  const handleLinkClick = (href, e) => {
+    onClose();
+    if (href.startsWith('/')) {
+      if (e && typeof e.preventDefault === 'function') e.preventDefault();
+      window.dispatchEvent(new CustomEvent('aiegx-navigate', { detail: href }));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (href.startsWith('#')) {
+      const targetId = href.replace('#', '');
+      if (window.location.pathname !== '/') {
+        if (e && typeof e.preventDefault === 'function') e.preventDefault();
+        window.dispatchEvent(new CustomEvent('aiegx-navigate', { detail: `/${href}` }));
+        setTimeout(() => {
+          const el = document.getElementById(targetId) || document.getElementById('engineering-capabilities');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 150);
+      } else {
+        const el = document.getElementById(targetId) || document.getElementById('engineering-capabilities');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
   return (
     <>
-      <div 
-        className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity duration-200" 
+      {/* Dark Ambient Backdrop Overlay */}
+      <div
+        className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity duration-200"
         onClick={onClose}
         aria-hidden="true"
       />
 
-      <div 
+      {/* Main Two-Column Mega Menu Panel (~900px width, centered) */}
+      <div
         ref={menuRef}
         id="about-mega-menu"
-        className="mega-menu-dropdown-wrapper animate-in fade-in slide-in-from-top-2 duration-200"
+        className="mega-menu-dropdown-wrapper !max-w-[900px] animate-in fade-in slide-in-from-top-2 duration-200"
         role="dialog"
         aria-label="About Us Mega Menu"
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
       >
-        <div className="mega-menu-dropdown-card bg-white/95 dark:bg-[#101936]/98 backdrop-blur-2xl border border-[#DCE6F3] dark:border-white/10 rounded-2xl shadow-2xl shadow-slate-900/10 dark:shadow-black/80 text-slate-900 dark:text-white p-6 sm:p-7">
+        <div className="mega-menu-dropdown-card bg-white/95 dark:bg-[#101936]/98 backdrop-blur-2xl border border-[#DCE6F3] dark:border-white/10 rounded-2xl shadow-2xl shadow-slate-900/10 dark:shadow-black/80 text-slate-900 dark:text-white p-5 sm:p-6 lg:p-7">
           
           {/* Header */}
-          <div className="flex items-center justify-between pb-4 mb-6 border-b border-[#DCE6F3] dark:border-white/10">
+          <div className="flex items-center justify-between pb-3.5 mb-5 border-b border-[#DCE6F3] dark:border-white/10">
             <div className="flex items-center gap-2.5">
-              <div className="p-1.5 rounded-lg bg-blue-50 dark:bg-[#17264D] border border-[#DCE6F3] dark:border-white/10 text-[#0284C7] dark:text-[#42D9F5]">
-                <Building2 className="w-4 h-4" />
-              </div>
-              <h2 className="text-xs font-mono font-bold tracking-widest text-slate-900 dark:text-white uppercase">
+              <span className="text-xs font-mono font-bold tracking-widest text-[#079BD4] dark:text-[#2DD4F0] uppercase">
                 ABOUT US
-              </h2>
+              </span>
             </div>
-            <button 
+            <button
+              type="button"
               onClick={onClose}
-              className="p-1 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-200/60 dark:text-white/60 dark:hover:text-white dark:hover:bg-white/5 transition-colors focus:outline-none focus:ring-1 focus:ring-[#0284C7] dark:focus:ring-[#42D9F5]"
+              className="p-1 rounded-lg text-slate-500 hover:text-slate-900 dark:text-white/60 dark:hover:text-white transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-[#079BD4] dark:focus-visible:ring-[#2DD4F0] cursor-pointer"
               aria-label="Close menu"
               title="Close Menu (Esc)"
             >
@@ -107,69 +156,62 @@ export default function AboutUsMegaMenu({ isOpen, onClose, onMouseEnter, onMouse
             </button>
           </div>
 
-          {/* About Us Navigation Categories Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 overflow-y-auto mega-menu-scroll pr-1 flex-1 min-h-0">
-            {aboutUsData.map((sec, sIdx) => {
-              const Icon = sec.icon;
-              return (
-                <div key={sIdx} className="space-y-3">
-                  <div className="flex items-center gap-2 pb-2 border-b border-[#DCE6F3] dark:border-white/10">
-                    <Icon className="w-4 h-4 text-[#0284C7] dark:text-[#42D9F5]" />
-                    <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider font-mono">
-                      {sec.category}
-                    </h3>
-                  </div>
+          {/* Clean Compact Two-Column Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-8">
+            {aboutUsColumns.map((col, cIdx) => (
+              <div key={cIdx} className="space-y-3">
+                {/* Column Heading */}
+                <div className="pb-2.5 border-b border-[#DCE6F3] dark:border-white/10">
+                  <h3 className="text-xs font-mono font-bold tracking-wider text-[#14213D] dark:text-[#F8FAFC] uppercase">
+                    {col.title}
+                  </h3>
+                </div>
 
-                  <div className="space-y-1.5">
-                    {sec.items.map((item, iIdx) => (
+                {/* Column Items */}
+                <div className="space-y-2">
+                  {col.items.map((item, iIdx) => {
+                    const Icon = item.icon;
+                    return (
                       <a
                         key={iIdx}
                         href={item.href}
-                        onClick={(e) => {
-                          onClose();
-                          if (item.href && item.href.startsWith('#') && window.location.pathname !== '/') {
-                            e.preventDefault();
-                            window.dispatchEvent(new CustomEvent('aiegx-navigate', { detail: `/${item.href}` }));
-                            setTimeout(() => {
-                              const el = document.getElementById(item.href.replace('#', ''));
-                              if (el) el.scrollIntoView({ behavior: 'smooth' });
-                            }, 120);
-                          }
-                        }}
-                        className="flex items-center justify-between px-3 py-2.5 rounded-lg text-xs font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-100 dark:text-white/80 dark:hover:text-white dark:hover:bg-white/5 group transition-all duration-150"
+                        onClick={(e) => handleLinkClick(item.href, e)}
+                        className="group flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-[#F8FAFD] dark:bg-[#142347]/50 hover:bg-[#F0F7FF] dark:hover:bg-[#1E3360] border border-slate-200/80 dark:border-white/10 hover:border-[#C5DDF5] dark:hover:border-[#244277] shadow-xs hover:shadow-sm transition-all duration-150 cursor-pointer"
                       >
-                        <span className="group-hover:text-[#0284C7] dark:group-hover:text-[#42D9F5] transition-colors leading-snug">{item.name}</span>
-                        <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#0284C7] dark:text-white/20 dark:group-hover:text-[#42D9F5] group-hover:translate-x-0.5 transition-all flex-shrink-0" />
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 rounded-lg bg-[#EBF6FC] dark:bg-[#17264D] text-[#079BD4] dark:text-[#2DD4F0] border border-[#D0E7F7] dark:border-white/10 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:bg-[#079BD4] group-hover:text-white dark:group-hover:bg-[#2DD4F0] dark:group-hover:text-[#0D1733] transition-all duration-150">
+                            <Icon className="w-4 h-4" />
+                          </div>
+                          <span className="text-sm font-semibold text-[#14213D] dark:text-[#E2E8F0] group-hover:text-[#079BD4] dark:group-hover:text-[#2DD4F0] group-hover:translate-x-0.5 transition-all duration-150">
+                            {item.name}
+                          </span>
+                        </div>
+                        <ChevronRight className="w-4 h-4 text-slate-400 dark:text-white/40 group-hover:text-[#079BD4] dark:group-hover:text-[#2DD4F0] group-hover:translate-x-1 transition-all duration-150 shrink-0" />
                       </a>
-                    ))}
-                  </div>
+                    );
+                  })}
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
 
-          {/* Bottom Bar */}
-          <div className="mt-7 pt-4 border-t border-[#DCE6F3] dark:border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs">
-            <span className="text-slate-600 dark:text-white/60">
-              Pioneering high-reliability embedded compute, edge AI silicon, and carrier board solutions.
-            </span>
+          {/* Bottom Section */}
+          <div className="mt-6 pt-4 border-t border-[#DCE6F3] dark:border-white/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div>
+              <p className="text-xs sm:text-sm font-semibold text-[#14213D] dark:text-white">
+                Building reliable embedded technology.
+              </p>
+              <p className="text-xs text-slate-500 dark:text-[#94A3B8]">
+                Discover our company, engineering capabilities and commitment.
+              </p>
+            </div>
             <a
-              href="#why-aiegx"
-              onClick={(e) => {
-                onClose();
-                if (window.location.pathname !== '/') {
-                  e.preventDefault();
-                  window.dispatchEvent(new CustomEvent('aiegx-navigate', { detail: '/#why-aiegx' }));
-                  setTimeout(() => {
-                    const el = document.getElementById('why-aiegx') || document.getElementById('engineering-capabilities');
-                    if (el) el.scrollIntoView({ behavior: 'smooth' });
-                  }, 120);
-                }
-              }}
-              className="font-mono text-[#0284C7] dark:text-[#42D9F5] hover:underline flex items-center gap-1.5 font-semibold"
+              href="#engineering-capabilities"
+              onClick={(e) => handleLinkClick('#engineering-capabilities', e)}
+              className="inline-flex items-center gap-1.5 font-semibold text-xs sm:text-sm text-[#079BD4] dark:text-[#2DD4F0] hover:text-[#067fae] dark:hover:text-[#5ce1f7] hover:underline group shrink-0 cursor-pointer"
             >
-              <span>Learn More About Aiegx</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <span>Explore AIEGX</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
           </div>
 

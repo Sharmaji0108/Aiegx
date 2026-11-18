@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import Logo from '../common/Logo';
 import ThemeToggle from '../common/ThemeToggle';
 import ProductsMegaMenu from './ProductsMegaMenu';
-import ApplicationsMegaMenu from './ApplicationsMegaMenu';
 import SolutionsMegaMenu from './SolutionsMegaMenu';
 import AboutUsMegaMenu from './AboutUsMegaMenu';
 import {
@@ -10,11 +9,19 @@ import {
   X,
   ChevronRight,
   ChevronDown,
+  ArrowRight,
+  Building2,
+  ShieldCheck,
   Layers,
   Cpu,
   Server,
-  Zap
+  Zap,
+  Monitor,
+  Eye,
+  Factory,
+  Bot
 } from 'lucide-react';
+import { SOLUTIONS_CATEGORIES } from '../../data/solutionsData';
 
 const mobileProductCategories = [
   {
@@ -65,14 +72,44 @@ const mobileProductCategories = [
   },
 ];
 
+const mobileAboutCategories = [
+  {
+    id: 'company',
+    name: 'Company',
+    icon: Building2,
+    items: [
+      { name: 'Company Overview', href: '#engineering-capabilities' },
+      { name: 'Why AIEGX', href: '#why-aiegx' },
+      { name: 'Our Expertise', href: '#expertise' },
+      { name: 'Our Approach', href: '#our-approach' },
+    ],
+  },
+  {
+    id: 'trust-support',
+    name: 'Trust & Support',
+    icon: ShieldCheck,
+    items: [
+      { name: 'Quality & Reliability', href: '#quality-reliability' },
+      { name: 'Product Longevity', href: '#product-longevity' },
+      { name: 'Ecosystem & Partners', href: '#ecosystem-partners' },
+      { name: 'Technical Support', href: '#contact' },
+    ],
+  },
+];
+
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const [mobileCategoryOpen, setMobileCategoryOpen] = useState('som');
 
+  const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false);
+  const [mobileSolutionsCategoryOpen, setMobileSolutionsCategoryOpen] = useState('vehicle-mobility');
+
+  const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
+  const [mobileAboutCategoryOpen, setMobileAboutCategoryOpen] = useState('company');
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [megaMenuOpen, setMegaMenuOpen] = useState(false);
-  const [applicationsMenuOpen, setApplicationsMenuOpen] = useState(false);
   const [solutionsMenuOpen, setSolutionsMenuOpen] = useState(false);
   const [aboutMenuOpen, setAboutMenuOpen] = useState(false);
 
@@ -106,7 +143,12 @@ export default function Header() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      if (window.location.pathname !== '/') {
+      const path = window.location.pathname.toLowerCase();
+      if (path.startsWith('/solutions')) {
+        setActiveNav('solutions');
+        return;
+      }
+      if (path !== '/') {
         setActiveNav('products');
         return;
       }
@@ -114,7 +156,6 @@ export default function Header() {
       const sections = [
         { id: 'contact', name: 'contact' },
         { id: 'engineering-capabilities', name: 'company' },
-        { id: 'industries', name: 'industries' },
         { id: 'integrated-solutions', name: 'solutions' },
         { id: 'hardware-platforms', name: 'products' },
       ];
@@ -153,7 +194,6 @@ export default function Header() {
   }, [mobileMenuOpen]);
 
   const hoverTimeoutRef = useRef(null);
-  const appsHoverTimeoutRef = useRef(null);
   const solutionsHoverTimeoutRef = useRef(null);
   const aboutHoverTimeoutRef = useRef(null);
 
@@ -161,7 +201,6 @@ export default function Header() {
 
   const clearAllTimeouts = () => {
     if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
-    if (appsHoverTimeoutRef.current) clearTimeout(appsHoverTimeoutRef.current);
     if (solutionsHoverTimeoutRef.current) clearTimeout(solutionsHoverTimeoutRef.current);
     if (aboutHoverTimeoutRef.current) clearTimeout(aboutHoverTimeoutRef.current);
   };
@@ -172,7 +211,6 @@ export default function Header() {
 
   const closeOtherMenus = (current) => {
     if (current !== 'products') setMegaMenuOpen(false);
-    if (current !== 'apps') setApplicationsMenuOpen(false);
     if (current !== 'solutions') setSolutionsMenuOpen(false);
     if (current !== 'about') setAboutMenuOpen(false);
   };
@@ -180,7 +218,6 @@ export default function Header() {
   const closeAllMenus = () => {
     clearAllTimeouts();
     setMegaMenuOpen(false);
-    setApplicationsMenuOpen(false);
     setSolutionsMenuOpen(false);
     setAboutMenuOpen(false);
   };
@@ -238,31 +275,6 @@ export default function Header() {
     clearAllTimeouts();
     hoverTimeoutRef.current = setTimeout(() => {
       setMegaMenuOpen(false);
-    }, CLOSE_DELAY_MS);
-  };
-
-  // Hover handlers for Industries (mapped to Applications Mega Menu)
-  const handleAppsMouseEnter = () => {
-    clearAllTimeouts();
-    closeOtherMenus('apps');
-    setApplicationsMenuOpen(true);
-  };
-
-  const handleAppsMouseLeave = () => {
-    clearAllTimeouts();
-    appsHoverTimeoutRef.current = setTimeout(() => {
-      setApplicationsMenuOpen(false);
-    }, CLOSE_DELAY_MS);
-  };
-
-  const handleAppsMegaMenuMouseEnter = () => {
-    clearAllTimeouts();
-  };
-
-  const handleAppsMegaMenuMouseLeave = () => {
-    clearAllTimeouts();
-    appsHoverTimeoutRef.current = setTimeout(() => {
-      setApplicationsMenuOpen(false);
     }, CLOSE_DELAY_MS);
   };
 
@@ -403,32 +415,7 @@ export default function Header() {
               </button>
             </div>
 
-            {/* 4. Industries Dropdown Trigger */}
-            <div
-              className="relative bg-transparent"
-              onMouseEnter={handleAppsMouseEnter}
-              onMouseLeave={handleAppsMouseLeave}
-            >
-              <button
-                type="button"
-                id="navbar-applications-toggle"
-                onClick={() => {
-                  closeOtherMenus('apps');
-                  setApplicationsMenuOpen(!applicationsMenuOpen);
-                }}
-                className={`nav-link inline-flex items-center justify-center rounded-lg px-2.5 py-1.5 md:px-3 md:py-2 text-sm lg:text-base tracking-normal transition-all duration-200 cursor-pointer ${applicationsMenuOpen || activeNav === 'industries'
-                  ? 'active text-[#089EC2] dark:text-[#2DD4F0] font-semibold'
-                  : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] font-medium'
-                  }`}
-                aria-expanded={applicationsMenuOpen}
-                aria-haspopup="true"
-                title="Browse Industries We Serve"
-              >
-                <span>Industries</span>
-              </button>
-            </div>
-
-            {/* 5. Company Dropdown Trigger */}
+            {/* 4. About Us Dropdown Trigger */}
             <div
               className="relative bg-transparent"
               onMouseEnter={handleAboutMouseEnter}
@@ -441,7 +428,7 @@ export default function Header() {
                   closeOtherMenus('about');
                   setAboutMenuOpen(!aboutMenuOpen);
                 }}
-                className={`nav-link inline-flex items-center justify-center rounded-lg px-2.5 py-1.5 md:px-3 md:py-2 text-sm lg:text-base tracking-normal transition-all duration-200 cursor-pointer ${aboutMenuOpen || activeNav === 'company'
+                className={`nav-link inline-flex items-center justify-center rounded-lg px-2.5 py-1.5 md:px-3 md:py-2 text-sm lg:text-base tracking-normal transition-all duration-200 cursor-pointer ${aboutMenuOpen || activeNav === 'company' || activeNav === 'about'
                   ? 'active text-[#089EC2] dark:text-[#2DD4F0] font-semibold'
                   : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] font-medium'
                   }`}
@@ -449,11 +436,11 @@ export default function Header() {
                 aria-haspopup="true"
                 title="Learn About AIEGX Company & Engineering"
               >
-                <span>Company</span>
+                <span>About Us</span>
               </button>
             </div>
 
-            {/* 6. Contact Link */}
+            {/* 5. Contact Link */}
             <a
               href="#contact"
               onMouseEnter={closeAllMenus}
@@ -576,7 +563,18 @@ export default function Header() {
                                     onClick={() => handleMobileNavigate(item.href)}
                                     className="px-2.5 py-1.5 rounded-md text-xs sm:text-[13px] text-slate-600 dark:text-slate-300 hover:text-[#089EC2] dark:hover:text-[#2DD4F0] hover:bg-slate-100/60 dark:hover:bg-[#1E3360]/40 transition-colors flex items-center justify-between text-left group cursor-pointer"
                                   >
-                                    <span>{item.name}</span>
+                                    <div className="flex items-center gap-2">
+                                      <span>{item.name}</span>
+                                      {item.badge && (
+                                        <span className={`inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-mono font-bold tracking-wider ${
+                                          item.badge === 'In Development'
+                                            ? 'bg-blue-50 text-[#089EC2] dark:bg-[#17264D] dark:text-[#2DD4F0]'
+                                            : 'bg-slate-100 text-slate-600 dark:bg-[#17264D] dark:text-slate-300'
+                                        }`}>
+                                          {item.badge}
+                                        </span>
+                                      )}
+                                    </div>
                                     <ChevronRight className="w-3.5 h-3.5 opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 text-[#089EC2] dark:text-[#2DD4F0] transition-all" />
                                   </button>
                                 ))}
@@ -589,46 +587,183 @@ export default function Header() {
                   )}
                 </div>
 
-                {/* 3. Solutions */}
-                <button
-                  type="button"
-                  onClick={() => handleMobileNavigate('#integrated-solutions')}
-                  className={`w-full px-4 py-3 rounded-xl text-sm font-semibold transition-colors flex items-center justify-between text-left cursor-pointer ${activeNav === 'solutions'
-                    ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-blue-50 dark:bg-[#17264A] border border-[#089EC2]/40 dark:border-[#2DD4F0]/40'
-                    : 'text-slate-700 dark:text-[#AAB6D0] bg-slate-50 dark:bg-[#17264A]/60 hover:bg-slate-100 dark:hover:bg-[#17264A] border border-slate-200 dark:border-[#24355A]'
+                {/* 3. Solutions Accordion */}
+                <div className="flex flex-col">
+                  <button
+                    type="button"
+                    onClick={() => setMobileSolutionsOpen(!mobileSolutionsOpen)}
+                    className={`w-full px-4 py-3 rounded-xl text-sm font-semibold transition-all flex items-center justify-between text-left cursor-pointer ${
+                      mobileSolutionsOpen || activeNav === 'solutions'
+                        ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-blue-50/80 dark:bg-[#17264A] border border-[#089EC2]/40 dark:border-[#2DD4F0]/40'
+                        : 'text-slate-700 dark:text-[#AAB6D0] bg-slate-50 dark:bg-[#17264A]/60 hover:bg-slate-100 dark:hover:bg-[#17264A] border border-slate-200 dark:border-[#24355A]'
                     }`}
-                >
-                  <span>Solutions</span>
-                  <ChevronRight className="w-4 h-4 text-[#089EC2] dark:text-[#2DD4F0]" />
-                </button>
+                    aria-expanded={mobileSolutionsOpen}
+                  >
+                    <span>Solutions</span>
+                    <ChevronDown
+                      className={`w-4 h-4 transition-transform duration-200 ${
+                        mobileSolutionsOpen ? 'rotate-180 text-[#089EC2] dark:text-[#2DD4F0]' : 'text-slate-400 dark:text-slate-500'
+                      }`}
+                    />
+                  </button>
 
-                {/* 4. Industries */}
-                <button
-                  type="button"
-                  onClick={() => handleMobileNavigate('#industries')}
-                  className={`w-full px-4 py-3 rounded-xl text-sm font-semibold transition-colors flex items-center justify-between text-left cursor-pointer ${activeNav === 'industries'
-                    ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-blue-50 dark:bg-[#17264A] border border-[#089EC2]/40 dark:border-[#2DD4F0]/40'
-                    : 'text-slate-700 dark:text-[#AAB6D0] bg-slate-50 dark:bg-[#17264A]/60 hover:bg-slate-100 dark:hover:bg-[#17264A] border border-slate-200 dark:border-[#24355A]'
+                  {/* Expandable Solutions Categories */}
+                  {mobileSolutionsOpen && (
+                    <div className="mt-2 ml-1 mr-1 flex flex-col space-y-1.5 pl-2 border-l-2 border-[#089EC2]/30 dark:border-[#2DD4F0]/30 animate-in fade-in duration-150">
+                      {SOLUTIONS_CATEGORIES.map((cat) => {
+                        const isCatOpen = mobileSolutionsCategoryOpen === cat.id;
+                        const CatIcon = cat.icon;
+                        return (
+                          <div key={cat.id} className="flex flex-col">
+                            {/* Category Header Button */}
+                            <button
+                              type="button"
+                              onClick={() => setMobileSolutionsCategoryOpen(isCatOpen ? null : cat.id)}
+                              className={`w-full px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center justify-between text-left cursor-pointer ${
+                                isCatOpen
+                                  ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-[#089EC2]/10 dark:bg-[#2DD4F0]/10 border border-[#089EC2]/30 dark:border-[#2DD4F0]/30'
+                                  : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] hover:bg-slate-100/70 dark:hover:bg-[#17264A]/50 border border-transparent'
+                              }`}
+                            >
+                              <div className="flex items-center gap-2">
+                                <CatIcon className="w-3.5 h-3.5 text-[#089EC2] dark:text-[#2DD4F0]" />
+                                <span>{cat.name}</span>
+                              </div>
+                              <ChevronDown
+                                className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                                  isCatOpen ? 'rotate-180 text-[#089EC2] dark:text-[#2DD4F0]' : 'text-slate-400'
+                                }`}
+                              />
+                            </button>
+
+                            {/* Submenu Links under Category */}
+                            {isCatOpen && (
+                              <div className="ml-5 pl-2 py-1 my-1 flex flex-col space-y-1 border-l border-slate-200 dark:border-[#24355A] animate-in fade-in duration-150">
+                                {cat.items.map((item, idx) => (
+                                  <button
+                                    key={idx}
+                                    type="button"
+                                    onClick={() => handleMobileNavigate(item.href)}
+                                    className="px-2.5 py-1.5 rounded-md text-xs sm:text-[13px] text-slate-600 dark:text-slate-300 hover:text-[#089EC2] dark:hover:text-[#2DD4F0] hover:bg-slate-100/60 dark:hover:bg-[#1E3360]/40 transition-colors flex items-center justify-between text-left group cursor-pointer"
+                                  >
+                                    <div className="flex items-center gap-2">
+                                      <span>{item.name}</span>
+                                      {item.badge && (
+                                        <span className={`inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-mono font-bold tracking-wider ${
+                                          item.badge === 'In Development'
+                                            ? 'bg-blue-50 text-[#089EC2] dark:bg-[#17264D] dark:text-[#2DD4F0]'
+                                            : 'bg-slate-100 text-slate-600 dark:bg-[#17264D] dark:text-slate-300'
+                                        }`}>
+                                          {item.badge}
+                                        </span>
+                                      )}
+                                    </div>
+                                    <ChevronRight className="w-3.5 h-3.5 opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 text-[#089EC2] dark:text-[#2DD4F0] transition-all" />
+                                  </button>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+
+                {/* 4. About Us Accordion */}
+                <div className="flex flex-col">
+                  <button
+                    type="button"
+                    onClick={() => setMobileAboutOpen(!mobileAboutOpen)}
+                    className={`w-full px-4 py-3 rounded-xl text-sm font-semibold transition-all flex items-center justify-between text-left cursor-pointer ${
+                      mobileAboutOpen || activeNav === 'company' || activeNav === 'about'
+                        ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-blue-50/80 dark:bg-[#17264A] border border-[#089EC2]/40 dark:border-[#2DD4F0]/40'
+                        : 'text-slate-700 dark:text-[#AAB6D0] bg-slate-50 dark:bg-[#17264A]/60 hover:bg-slate-100 dark:hover:bg-[#17264A] border border-slate-200 dark:border-[#24355A]'
                     }`}
-                >
-                  <span>Industries We Serve</span>
-                  <ChevronRight className="w-4 h-4 text-[#089EC2] dark:text-[#2DD4F0]" />
-                </button>
+                    aria-expanded={mobileAboutOpen}
+                  >
+                    <span>About Us</span>
+                    <ChevronDown
+                      className={`w-4 h-4 transition-transform duration-200 ${
+                        mobileAboutOpen ? 'rotate-180 text-[#089EC2] dark:text-[#2DD4F0]' : 'text-slate-400 dark:text-slate-500'
+                      }`}
+                    />
+                  </button>
 
-                {/* 5. Company */}
-                <button
-                  type="button"
-                  onClick={() => handleMobileNavigate('#engineering-capabilities')}
-                  className={`w-full px-4 py-3 rounded-xl text-sm font-semibold transition-colors flex items-center justify-between text-left cursor-pointer ${activeNav === 'company'
-                    ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-blue-50 dark:bg-[#17264A] border border-[#089EC2]/40 dark:border-[#2DD4F0]/40'
-                    : 'text-slate-700 dark:text-[#AAB6D0] bg-slate-50 dark:bg-[#17264A]/60 hover:bg-slate-100 dark:hover:bg-[#17264A] border border-slate-200 dark:border-[#24355A]'
-                    }`}
-                >
-                  <span>Company & Capabilities</span>
-                  <ChevronRight className="w-4 h-4 text-[#089EC2] dark:text-[#2DD4F0]" />
-                </button>
+                  {/* Expandable About Us Categories */}
+                  {mobileAboutOpen && (
+                    <div className="mt-2 ml-1 mr-1 flex flex-col space-y-1.5 pl-2 border-l-2 border-[#089EC2]/30 dark:border-[#2DD4F0]/30 animate-in fade-in duration-150">
+                      {mobileAboutCategories.map((cat) => {
+                        const isCatOpen = mobileAboutCategoryOpen === cat.id;
+                        const CatIcon = cat.icon;
+                        return (
+                          <div key={cat.id} className="flex flex-col">
+                            {/* Category Header Button */}
+                            <button
+                              type="button"
+                              onClick={() => setMobileAboutCategoryOpen(isCatOpen ? null : cat.id)}
+                              className={`w-full px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center justify-between text-left cursor-pointer ${
+                                isCatOpen
+                                  ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-[#089EC2]/10 dark:bg-[#2DD4F0]/10 border border-[#089EC2]/30 dark:border-[#2DD4F0]/30'
+                                  : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] hover:bg-slate-100/70 dark:hover:bg-[#17264A]/50 border border-transparent'
+                              }`}
+                            >
+                              <div className="flex items-center gap-2">
+                                <CatIcon className="w-3.5 h-3.5 text-[#089EC2] dark:text-[#2DD4F0]" />
+                                <span>{cat.name}</span>
+                              </div>
+                              <ChevronDown
+                                className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                                  isCatOpen ? 'rotate-180 text-[#089EC2] dark:text-[#2DD4F0]' : 'text-slate-400'
+                                }`}
+                              />
+                            </button>
 
-                {/* 6. Contact */}
+                            {/* Submenu Links under Category */}
+                            {isCatOpen && (
+                              <div className="ml-5 pl-2 py-1 my-1 flex flex-col space-y-1 border-l border-slate-200 dark:border-[#24355A] animate-in fade-in duration-150">
+                                {cat.items.map((item, idx) => (
+                                  <button
+                                    key={idx}
+                                    type="button"
+                                    onClick={() => handleMobileNavigate(item.href)}
+                                    className="px-2.5 py-1.5 rounded-md text-xs sm:text-[13px] text-slate-600 dark:text-slate-300 hover:text-[#089EC2] dark:hover:text-[#2DD4F0] hover:bg-slate-100/60 dark:hover:bg-[#1E3360]/40 transition-colors flex items-center justify-between text-left group cursor-pointer"
+                                  >
+                                    <div className="flex items-center gap-2">
+                                      <span>{item.name}</span>
+                                      {item.badge && (
+                                        <span className={`inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-mono font-bold tracking-wider ${
+                                          item.badge === 'In Development'
+                                            ? 'bg-blue-50 text-[#089EC2] dark:bg-[#17264D] dark:text-[#2DD4F0]'
+                                            : 'bg-slate-100 text-slate-600 dark:bg-[#17264D] dark:text-slate-300'
+                                        }`}>
+                                          {item.badge}
+                                        </span>
+                                      )}
+                                    </div>
+                                    <ChevronRight className="w-3.5 h-3.5 opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 text-[#089EC2] dark:text-[#2DD4F0] transition-all" />
+                                  </button>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+
+                      {/* Explore AIEGX Bottom link on mobile */}
+                      <button
+                        type="button"
+                        onClick={() => handleMobileNavigate('#engineering-capabilities')}
+                        className="mt-1 px-3 py-2 rounded-lg text-xs font-semibold text-[#089EC2] dark:text-[#2DD4F0] hover:bg-blue-50/50 dark:hover:bg-[#17264A]/50 flex items-center justify-between text-left cursor-pointer"
+                      >
+                        <span>Explore AIEGX</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  )}
+                </div>
+
+                {/* 5. Contact */}
                 <button
                   type="button"
                   onClick={() => handleMobileNavigate('#contact')}
@@ -652,14 +787,6 @@ export default function Header() {
         onClose={() => setMegaMenuOpen(false)}
         onMouseEnter={handleMegaMenuMouseEnter}
         onMouseLeave={handleMegaMenuMouseLeave}
-      />
-
-      {/* Applications (Industries) Mega Menu Component (Desktop) */}
-      <ApplicationsMegaMenu
-        isOpen={applicationsMenuOpen}
-        onClose={() => setApplicationsMenuOpen(false)}
-        onMouseEnter={handleAppsMegaMenuMouseEnter}
-        onMouseLeave={handleAppsMegaMenuMouseLeave}
       />
 
       {/* Solutions Mega Menu Component (Desktop) */}

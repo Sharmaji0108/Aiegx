@@ -14,6 +14,7 @@ import RZV2LSBC from './pages/products/RZV2LSBC';
 import RZV2HPlatform from './pages/products/RZV2HPlatform';
 import RZV2HSBC from './pages/products/RZV2HSBC';
 import RZV2HProduct from './pages/products/RZV2HProduct';
+import SolutionDetail from './pages/solutions/SolutionDetail';
 import Footer from './components/common/Footer';
 import ThemeToggle from './components/common/ThemeToggle';
 
@@ -116,8 +117,13 @@ export default function App() {
   const isQualcommPage = cleanPath === '/brands/qualcomm';
   const isNxpPage = cleanPath === '/brands/nxp' || cleanPath === '/brands/nxp-imx';
   const isTiPage = cleanPath === '/brands/ti' || cleanPath === '/brands/ti-am6x';
+  const isSolutionsPage = cleanPath.startsWith('/solutions');
+  const solutionSlug = isSolutionsPage
+    ? cleanPath.replace(/^\/solutions\/?/, '').split('/')[0]
+    : '';
 
   const renderContent = () => {
+    if (isSolutionsPage) return <SolutionDetail slug={solutionSlug} />;
     if (isRzg2lPlatformPage) return <RZG2LPlatform />;
     if (isRzg2lSmarcSomPage) return <RZG2LSMARCSoM productSlug="smarc-som" />;
     if (isRzg2lCarrierPage) return <RZG2LSMARCSoM productSlug="carrier-board" />;

@@ -1,69 +1,31 @@
-import React, { useEffect, useRef } from 'react';
-import { 
-  X, 
-  ChevronRight, 
-  ArrowRight, 
-  Cpu, 
-  Bot, 
-  Eye, 
-  ShieldCheck, 
-  Layers 
+import React, { useState, useEffect, useRef } from 'react';
+import {
+  X,
+  ChevronRight,
+  Monitor,
+  Eye,
+  Factory,
+  Bot
 } from 'lucide-react';
-
-const solutionsData = [
-  {
-    category: 'Edge AI & Neural Compute',
-    icon: Cpu,
-    items: [
-      { name: 'Intelligent Edge AI Inferencing', href: '#solutions' },
-      { name: 'Hardware Neural Acceleration', href: '#solutions' },
-      { name: 'Deep Learning Model Zoo & Quantizer', href: '#solutions' },
-      { name: 'Sub-millisecond Inferencing Pipeline', href: '#solutions' }
-    ]
-  },
-  {
-    category: 'Robotics & Autonomous Systems',
-    icon: Bot,
-    items: [
-      { name: 'Autonomous Embedded Robotics', href: '#solutions' },
-      { name: 'Deterministic Sensor Fusion & SLAM', href: '#solutions' },
-      { name: 'Dual CAN-FD Motor Control Loops', href: '#solutions' },
-      { name: 'ROS 2 Micro-Node Framework', href: '#solutions' }
-    ]
-  },
-  {
-    category: 'Vision & Optical Inspection',
-    icon: Eye,
-    items: [
-      { name: 'Real-Time Embedded Computer Vision', href: '#solutions' },
-      { name: 'High-Speed Conveyor Defect Sorter', href: '#solutions' },
-      { name: 'Multi-Camera Perception Pipeline', href: '#solutions' },
-      { name: 'Custom On-Die Neural ISP', href: '#solutions' }
-    ]
-  },
-  {
-    category: 'Industrial IoT & Security',
-    icon: ShieldCheck,
-    items: [
-      { name: 'Secure Fleet Management & Zero-Trust OTA', href: '#solutions' },
-      { name: 'Synapse Protocol Gateway', href: '#solutions' },
-      { name: 'Hardware Root-of-Trust (PUF & TPM 2.0)', href: '#solutions' },
-      { name: 'Predictive Maintenance Telemetry', href: '#solutions' }
-    ]
-  }
-];
+import { SOLUTIONS_CATEGORIES } from '../../data/solutionsData';
 
 export default function SolutionsMegaMenu({ isOpen, onClose, onMouseEnter, onMouseLeave }) {
+  const [selectedCategory, setSelectedCategory] = useState('vehicle-mobility');
+  const [mobileStep, setMobileStep] = useState(1); // 1 = Categories, 2 = Items
   const menuRef = useRef(null);
 
+  // Close on Escape key
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === 'Escape' && isOpen) onClose();
+      if (e.key === 'Escape' && isOpen) {
+        onClose();
+      }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
 
+  // Close on click outside
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
@@ -80,111 +42,199 @@ export default function SolutionsMegaMenu({ isOpen, onClose, onMouseEnter, onMou
 
   if (!isOpen) return null;
 
+  const currentCategory =
+    SOLUTIONS_CATEGORIES.find((c) => c.id === selectedCategory) || SOLUTIONS_CATEGORIES[0];
+
+  const handleLinkClick = (href, e) => {
+    if (e && typeof e.preventDefault === 'function') e.preventDefault();
+    onClose();
+    if (!href) return;
+    if (href.startsWith('/')) {
+      window.dispatchEvent(new CustomEvent('aiegx-navigate', { detail: href }));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (href.startsWith('#')) {
+      if (window.location.pathname !== '/') {
+        window.dispatchEvent(new CustomEvent('aiegx-navigate', { detail: `/${href}` }));
+      } else {
+        const id = href.replace('#', '');
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }
+  };
+
   return (
     <>
-      <div 
-        className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity duration-200" 
+      {/* Dark Ambient Backdrop Overlay */}
+      <div
+        className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity duration-200"
         onClick={onClose}
         aria-hidden="true"
       />
 
-      <div 
+      {/* Main Two-Column Mega Menu Panel */}
+      <div
         ref={menuRef}
         id="solutions-mega-menu"
-        className="mega-menu-dropdown-wrapper animate-in fade-in slide-in-from-top-2 duration-200"
+        className="mega-menu-dropdown-wrapper !max-w-4xl animate-in fade-in slide-in-from-top-2 duration-200"
         role="dialog"
         aria-label="Solutions Mega Menu"
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
       >
-        <div className="mega-menu-dropdown-card bg-white/95 dark:bg-[#101936]/98 backdrop-blur-2xl border border-[#DCE6F3] dark:border-white/10 rounded-2xl shadow-2xl shadow-slate-900/10 dark:shadow-black/80 text-slate-900 dark:text-white p-6 sm:p-7">
-          
-          {/* Header */}
-          <div className="flex items-center justify-between pb-4 mb-6 border-b border-[#DCE6F3] dark:border-white/10">
-            <div className="flex items-center gap-2.5">
-              <div className="p-1.5 rounded-lg bg-blue-50 dark:bg-[#17264D] border border-[#DCE6F3] dark:border-white/10 text-[#0284C7] dark:text-[#42D9F5]">
-                <Layers className="w-4 h-4" />
-              </div>
-              <h2 className="text-xs font-mono font-bold tracking-widest text-slate-900 dark:text-white uppercase">
-                SOLUTIONS
-              </h2>
+        <div className="mega-menu-dropdown-card bg-white/95 dark:bg-[#101936]/98 backdrop-blur-2xl border border-[#DCE6F3] dark:border-white/10 rounded-2xl shadow-2xl shadow-slate-900/10 dark:shadow-black/80 text-slate-900 dark:text-white min-h-[340px]">
+
+          {/* Mobile Drill-Down Bar (Shown on small screens) */}
+          <div className="lg:hidden flex items-center justify-between p-3.5 bg-[#F1F6FC] dark:bg-[#0b1226] border-b border-[#DCE6F3] dark:border-white/10">
+            <div className="flex items-center gap-2">
+              {mobileStep > 1 && (
+                <button
+                  type="button"
+                  onClick={() => setMobileStep(1)}
+                  className="px-2.5 py-1 text-xs text-[#089EC2] dark:text-[#2DD4F0] bg-white dark:bg-[#17264D] rounded-lg border border-[#DCE6F3] dark:border-white/10 flex items-center gap-1 font-mono font-semibold cursor-pointer"
+                >
+                  &larr; Back
+                </button>
+              )}
+              <span className="text-xs font-mono font-bold uppercase text-slate-900 dark:text-white tracking-wider">
+                {mobileStep === 1 ? 'Solutions' : currentCategory.name}
+              </span>
             </div>
-            <button 
+            <button
+              type="button"
               onClick={onClose}
-              className="p-1 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-200/60 dark:text-white/60 dark:hover:text-white dark:hover:bg-white/5 transition-colors focus:outline-none focus:ring-1 focus:ring-[#0284C7] dark:focus:ring-[#42D9F5]"
+              className="p-1 rounded-lg text-slate-500 hover:text-slate-900 dark:text-white/60 dark:hover:text-white cursor-pointer"
               aria-label="Close menu"
-              title="Close Menu (Esc)"
             >
               <X className="w-4 h-4" />
             </button>
           </div>
 
-          {/* Solutions Categories Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 overflow-y-auto mega-menu-scroll pr-1 flex-1 min-h-0">
-            {solutionsData.map((sec, sIdx) => {
-              const Icon = sec.icon;
-              return (
-                <div key={sIdx} className="space-y-3">
-                  <div className="flex items-center gap-2 pb-2 border-b border-[#DCE6F3] dark:border-white/10">
-                    <Icon className="w-4 h-4 text-[#0284C7] dark:text-[#42D9F5]" />
-                    <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider font-mono">
-                      {sec.category}
-                    </h3>
-                  </div>
+          {/* Two-Column Layout */}
+          <div className="flex flex-col lg:flex-row flex-1 overflow-hidden min-h-0">
 
-                  <div className="space-y-1.5">
-                    {sec.items.map((item, iIdx) => (
-                      <a
-                        key={iIdx}
-                        href={item.href}
-                        onClick={(e) => {
-                          onClose();
-                          if (item.href && item.href.startsWith('#') && window.location.pathname !== '/') {
-                            e.preventDefault();
-                            window.dispatchEvent(new CustomEvent('aiegx-navigate', { detail: `/${item.href}` }));
-                            setTimeout(() => {
-                              const el = document.getElementById(item.href.replace('#', ''));
-                              if (el) el.scrollIntoView({ behavior: 'smooth' });
-                            }, 120);
-                          }
-                        }}
-                        className="flex items-center justify-between px-3 py-2.5 rounded-lg text-xs font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-100 dark:text-white/80 dark:hover:text-white dark:hover:bg-white/5 group transition-all duration-150"
-                      >
-                        <span className="group-hover:text-[#0284C7] dark:group-hover:text-[#42D9F5] transition-colors leading-snug">{item.name}</span>
-                        <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#0284C7] dark:text-white/20 dark:group-hover:text-[#42D9F5] group-hover:translate-x-0.5 transition-all flex-shrink-0" />
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Bottom Bar */}
-          <div className="mt-7 pt-4 border-t border-[#DCE6F3] dark:border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs">
-            <span className="text-slate-600 dark:text-white/60">
-              Field-proven system architectures for edge intelligence, robotics, and industrial automation.
-            </span>
-            <a
-              href="#solutions"
-              onClick={(e) => {
-                onClose();
-                if (window.location.pathname !== '/') {
-                  e.preventDefault();
-                  window.dispatchEvent(new CustomEvent('aiegx-navigate', { detail: '/#solutions' }));
-                  setTimeout(() => {
-                    const el = document.getElementById('integrated-solutions') || document.getElementById('solutions');
-                    if (el) el.scrollIntoView({ behavior: 'smooth' });
-                  }, 120);
-                }
-              }}
-              className="font-mono text-[#0284C7] dark:text-[#42D9F5] hover:underline flex items-center gap-1.5 font-semibold"
+            {/* COLUMN 1 — Main Categories (Left Sidebar, approx 34% width: 280-300px) */}
+            <div
+              className={`lg:w-[280px] xl:w-[300px] flex-shrink-0 bg-[#F1F6FC] dark:bg-[#0e1630] border-b lg:border-b-0 lg:border-r border-[#DCE6F3] dark:border-white/10 flex flex-col p-4 sm:p-5 min-h-0 overflow-y-auto mega-menu-scroll ${
+                mobileStep !== 1 ? 'hidden lg:flex' : 'flex'
+              }`}
             >
-              <span>Explore All Solutions</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </a>
-          </div>
+              {/* Column 1 Header with Close Icon & SOLUTIONS heading */}
+              <div className="hidden lg:flex items-center justify-between pb-3.5 mb-4 border-b border-[#DCE6F3] dark:border-white/10">
+                <span className="text-xs font-mono font-bold tracking-widest text-[#089EC2] dark:text-[#2DD4F0] uppercase">
+                  SOLUTIONS
+                </span>
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="p-1 rounded-lg text-slate-500 hover:text-slate-900 dark:text-white/60 dark:hover:text-white transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-[#089EC2] dark:focus-visible:ring-[#2DD4F0] cursor-pointer"
+                  aria-label="Close menu"
+                  title="Close Menu (Esc)"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
 
+              {/* Categories Navigation Cards */}
+              <nav className="space-y-2" aria-label="Solutions Categories">
+                {SOLUTIONS_CATEGORIES.map((cat) => {
+                  const isSelected = selectedCategory === cat.id;
+                  const Icon = cat.icon;
+                  return (
+                    <button
+                      key={cat.id}
+                      type="button"
+                      onClick={(e) => {
+                        setSelectedCategory(cat.id);
+                        if (window.innerWidth < 1024) {
+                          setMobileStep(2);
+                        } else if (cat.items && cat.items[0]) {
+                          handleLinkClick(cat.items[0].href, e);
+                        }
+                      }}
+                      onMouseEnter={() => setSelectedCategory(cat.id)}
+                      className={`w-full text-left px-3.5 py-3 rounded-xl text-xs sm:text-sm font-medium flex items-center justify-between transition-all duration-150 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#089EC2] dark:focus-visible:ring-[#2DD4F0] cursor-pointer ${
+                        isSelected
+                          ? 'bg-white dark:bg-[#17264D] text-[#089EC2] dark:text-[#2DD4F0] font-bold shadow-xs border-l-3 border-[#089EC2] dark:border-[#2DD4F0]'
+                          : 'text-[#14213D] dark:text-[#E2E8F0] hover:bg-white/60 dark:hover:bg-[#17264D]/50 hover:text-[#089EC2] dark:hover:text-[#2DD4F0]'
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <Icon
+                          className={`w-4 h-4 ${
+                            isSelected
+                              ? 'text-[#089EC2] dark:text-[#2DD4F0]'
+                              : 'text-slate-500 dark:text-slate-400'
+                          }`}
+                        />
+                        <span>{cat.name}</span>
+                      </div>
+                      <ChevronRight
+                        className={`w-3.5 h-3.5 transition-transform ${
+                          isSelected
+                            ? 'text-[#089EC2] dark:text-[#2DD4F0] translate-x-0.5'
+                            : 'text-slate-400 dark:text-white/30'
+                        }`}
+                      />
+                    </button>
+                  );
+                })}
+              </nav>
+            </div>
+
+            {/* COLUMN 2 — Subcategories (Right Panel, approx 66% width) */}
+            <div
+              className={`flex-1 bg-white dark:bg-[#101936] p-5 sm:p-6 lg:p-7 flex flex-col min-h-0 overflow-y-auto mega-menu-scroll ${
+                mobileStep !== 2 ? 'hidden lg:flex' : 'flex'
+              }`}
+            >
+              {/* Category Heading Header */}
+              <div className="pb-3.5 mb-4 border-b border-[#DCE6F3] dark:border-white/10 flex items-center justify-between">
+                <a
+                  href={currentCategory.items[0]?.href}
+                  onClick={(e) => handleLinkClick(currentCategory.items[0]?.href, e)}
+                  className="text-sm font-mono font-bold tracking-wider text-[#14213D] dark:text-[#F8FAFC] uppercase hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors flex items-center gap-1.5 group cursor-pointer"
+                >
+                  <span>{currentCategory.name}</span>
+                  <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#089EC2] dark:group-hover:text-[#2DD4F0] group-hover:translate-x-1 transition-all" />
+                </a>
+              </div>
+
+              {/* Subcategories List: Individual white rounded cards with right-facing chevrons */}
+              <div className="space-y-2 sm:space-y-2.5">
+                {currentCategory.items.map((item, idx) => (
+                  <a
+                    key={idx}
+                    href={item.href}
+                    onClick={(e) => handleLinkClick(item.href, e)}
+                    className="group w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-[#14213D] dark:text-[#E2E8F0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] bg-white dark:bg-[#17264D]/60 hover:bg-[#F0F7FF] dark:hover:bg-[#1E3360] border border-slate-200/80 dark:border-white/10 hover:border-[#C5DDF5] dark:hover:border-[#244277] shadow-xs hover:shadow-sm transition-all duration-200 cursor-pointer"
+                  >
+                    <div className="flex items-center gap-2.5 min-w-0 pr-2">
+                      <span className="group-hover:translate-x-1 transition-transform duration-200">
+                        {item.name}
+                      </span>
+                      {item.badge && (
+                        <span
+                          className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-mono font-bold tracking-wider shrink-0 ${
+                            item.badge === 'In Development'
+                              ? 'bg-blue-50 text-[#089EC2] border border-[#089EC2]/30 dark:bg-[#17264D] dark:text-[#2DD4F0] dark:border-[#2DD4F0]/30'
+                              : 'bg-slate-100 text-slate-600 border border-slate-200 dark:bg-[#17264D]/60 dark:text-slate-300 dark:border-white/10'
+                          }`}
+                        >
+                          {item.badge}
+                        </span>
+                      )}
+                    </div>
+                    <ChevronRight className="w-4 h-4 text-slate-400 dark:text-white/40 group-hover:text-[#089EC2] dark:group-hover:text-[#2DD4F0] group-hover:translate-x-1 transition-all duration-200 shrink-0" />
+                  </a>
+                ))}
+              </div>
+
+            </div>
+
+          </div>
         </div>
       </div>
     </>

@@ -104,8 +104,17 @@ export default function FinalCTA() {
       id="engineering-capabilities" 
       className="py-4 sm:py-5 lg:py-6 relative bg-[#F5F8FC] dark:bg-[#0D1733] scroll-mt-20 transition-colors duration-300 overflow-hidden"
     >
-      {/* Anchor alias for backwards-compatible capability links */}
+      {/* Anchor alias for backwards-compatible capability & About Us links */}
       <div id="capabilities" className="sr-only" />
+      <div id="about" className="sr-only" />
+      <div id="why-aiegx" className="sr-only" />
+      <div id="company-overview" className="sr-only" />
+      <div id="expertise" className="sr-only" />
+      <div id="our-approach" className="sr-only" />
+      <div id="quality-reliability" className="sr-only" />
+      <div id="product-longevity" className="sr-only" />
+      <div id="ecosystem-partners" className="sr-only" />
+      <div id="technical-support" className="sr-only" />
 
       {/* Ambient Background Lighting Glow */}
       <div className="absolute top-1/3 left-1/4 w-[600px] h-[500px] bg-gradient-to-tr from-[#3285FF]/10 via-[#2DD4F0]/10 to-transparent rounded-full blur-[140px] pointer-events-none -z-10" />

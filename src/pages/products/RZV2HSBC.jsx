@@ -377,12 +377,13 @@ export default function RZV2HSBC() {
                   </>
                 }
                 description="Integrated high-speed PCIe Gen3, multi-camera MIPI CSI-2, USB 3.2 Gen2, and real-time motion I/O interfaces."
+                className="mb-2 sm:mb-2.5"
               />
 
               <TechnicalInfoTable
                 data={product.interfaces}
-                featureHeader="Interface"
-                descriptionHeader="Details & Pinout Specification"
+                featureHeader="Item"
+                descriptionHeader="Description"
                 featureColWidth="28%"
                 descColWidth="72%"
               />
@@ -405,6 +406,7 @@ export default function RZV2HSBC() {
                   </>
                 }
                 description="Production-grade Linux BSP, 2nd Gen DRP-AI compiler toolkit, ROS 2 Humble runtime, and dual Cortex-R8 real-time stack."
+                className="mb-2 sm:mb-2.5"
               />
 
               <TechnicalInfoTable
