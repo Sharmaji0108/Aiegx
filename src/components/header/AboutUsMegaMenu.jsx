@@ -13,22 +13,22 @@ import { navigateTo } from '../../utils/navigation';
 const aboutUsItems = [
   {
     name: 'Company Overview',
-    href: '#engineering-capabilities',
+    href: '/about-us#engineering-capabilities',
     icon: Building2,
   },
   {
     name: 'Why AIEGX',
-    href: '#why-aiegx',
+    href: '/about-us#why-aiegx',
     icon: Sparkles,
   },
   {
     name: 'Our Expertise',
-    href: '#expertise',
+    href: '/about-us#expertise',
     icon: Cpu,
   },
   {
     name: 'Our Approach',
-    href: '#our-approach',
+    href: '/about-us#our-approach',
     icon: Target,
   },
 ];
@@ -64,9 +64,10 @@ export default function AboutUsMegaMenu({ isOpen, onClose, onMouseEnter, onMouse
 
   const handleLinkClick = (href, e) => {
     if (e && typeof e.preventDefault === 'function') e.preventDefault();
+    if (href) {
+      navigateTo(href, e);
+    }
     onClose();
-    if (!href) return;
-    navigateTo(href, e);
   };
 
   return (

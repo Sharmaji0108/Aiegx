@@ -8,7 +8,8 @@ export function navigateTo(targetPath, e) {
   if (!targetPath || typeof window === 'undefined') return;
 
   const [pathPart, hashPart] = targetPath.split('#');
-  const nextPath = pathPart || '/';
+  const currentPath = window.location.pathname.toLowerCase().replace(/\/+$/, '') || '/';
+  const nextPath = pathPart || currentPath || '/';
 
   window.dispatchEvent(new CustomEvent('aiegx-navigate', { detail: nextPath }));
 
@@ -18,7 +19,9 @@ export function navigateTo(targetPath, e) {
       if (el) {
         el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
-    }, 80);
+    }, 100);
+  } else {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
 

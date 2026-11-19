@@ -19,7 +19,9 @@ import {
   Monitor,
   Eye,
   Factory,
-  Bot
+  Bot,
+  Sparkles,
+  Target
 } from 'lucide-react';
 import { SOLUTIONS_CATEGORIES } from '../../data/solutionsData';
 
@@ -71,19 +73,11 @@ const mobileProductCategories = [
   },
 ];
 
-const mobileAboutCategories = [
-  {
-    id: 'company',
-    name: 'About Us',
-    icon: Building2,
-    href: '/about-us',
-    items: [
-      { name: 'Company Overview', href: '#engineering-capabilities' },
-      { name: 'Why AIEGX', href: '#why-aiegx' },
-      { name: 'Our Expertise', href: '#expertise' },
-      { name: 'Our Approach', href: '#our-approach' },
-    ],
-  },
+const mobileAboutItems = [
+  { name: 'Company Overview', href: '/about-us#engineering-capabilities', icon: Building2 },
+  { name: 'Why AIEGX', href: '/about-us#why-aiegx', icon: Sparkles },
+  { name: 'Our Expertise', href: '/about-us#expertise', icon: Cpu },
+  { name: 'Our Approach', href: '/about-us#our-approach', icon: Target },
 ];
 
 export default function Header() {
@@ -95,7 +89,6 @@ export default function Header() {
   const [mobileSolutionsCategoryOpen, setMobileSolutionsCategoryOpen] = useState('vehicle-mobility');
 
   const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
-  const [mobileAboutCategoryOpen, setMobileAboutCategoryOpen] = useState('company');
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [megaMenuOpen, setMegaMenuOpen] = useState(false);
@@ -223,8 +216,18 @@ export default function Header() {
     if (!href) return;
 
     if (href.startsWith('/')) {
-      window.dispatchEvent(new CustomEvent('aiegx-navigate', { detail: href }));
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      const [pathPart, hashPart] = href.split('#');
+      window.dispatchEvent(new CustomEvent('aiegx-navigate', { detail: pathPart }));
+      if (hashPart) {
+        setTimeout(() => {
+          const el = document.getElementById(hashPart);
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 120);
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     } else if (href.startsWith('#')) {
       const targetId = href.replace('#', '');
       const currentPath = window.location.pathname.toLowerCase().replace(/\/+$/, '') || '/';
@@ -655,83 +658,80 @@ export default function Header() {
 
                 {/* 4. About Us Accordion */}
                 <div className="flex flex-col">
-                  <button
-                    type="button"
-                    onClick={() => setMobileAboutOpen(!mobileAboutOpen)}
-                    className={`w-full px-4 py-3 rounded-xl text-sm font-semibold transition-all flex items-center justify-between text-left cursor-pointer ${mobileAboutOpen || activeNav === 'company' || activeNav === 'about'
-                      ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-blue-50/80 dark:bg-[#17264A] border border-[#089EC2]/40 dark:border-[#2DD4F0]/40'
-                      : 'text-slate-700 dark:text-[#AAB6D0] bg-slate-50 dark:bg-[#17264A]/60 hover:bg-slate-100 dark:hover:bg-[#17264A] border border-slate-200 dark:border-[#24355A]'
-                      }`}
-                    aria-expanded={mobileAboutOpen}
-                  >
-                    <span>About Us</span>
-                    <ChevronDown
-                      className={`w-4 h-4 transition-transform duration-200 ${mobileAboutOpen ? 'rotate-180 text-[#089EC2] dark:text-[#2DD4F0]' : 'text-slate-400 dark:text-slate-500'
-                        }`}
-                    />
-                  </button>
+                  <div className={`w-full rounded-xl transition-all flex items-center justify-between ${mobileAboutOpen || activeNav === 'company' || activeNav === 'about'
+                    ? 'bg-blue-50/80 dark:bg-[#17264A] border border-[#089EC2]/40 dark:border-[#2DD4F0]/40'
+                    : 'bg-slate-50 dark:bg-[#17264A]/60 border border-slate-200 dark:border-[#24355A]'
+                    }`}>
+                    <button
+                      type="button"
+                      onClick={() => handleMobileNavigate('/about-us')}
+                      className="flex-1 px-4 py-3 text-sm font-semibold transition-colors flex items-center justify-between text-left cursor-pointer group"
+                      title="Navigate to About Us Overview"
+                    >
+                      <span className={mobileAboutOpen || activeNav === 'company' || activeNav === 'about'
+                        ? 'text-[#089EC2] dark:text-[#2DD4F0]'
+                        : 'text-slate-700 dark:text-[#AAB6D0] group-hover:text-[#089EC2] dark:group-hover:text-[#2DD4F0]'
+                        }>
+                        About Us
+                      </span>
+                      <ChevronRight className="w-4 h-4 text-[#089EC2] dark:text-[#2DD4F0] opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all mr-1" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setMobileAboutOpen(!mobileAboutOpen)}
+                      className="p-3 text-slate-400 dark:text-slate-500 hover:text-[#089EC2] dark:hover:text-[#2DD4F0] cursor-pointer transition-colors border-l border-slate-200/60 dark:border-white/10"
+                      aria-label="Toggle About Us submenu items"
+                      aria-expanded={mobileAboutOpen}
+                    >
+                      <ChevronDown
+                        className={`w-4 h-4 transition-transform duration-200 ${mobileAboutOpen ? 'rotate-180 text-[#089EC2] dark:text-[#2DD4F0]' : ''
+                          }`}
+                      />
+                    </button>
+                  </div>
 
-                  {/* Expandable About Us Categories */}
+                  {/* Expandable About Us Links */}
                   {mobileAboutOpen && (
                     <div className="mt-2 ml-1 mr-1 flex flex-col space-y-1.5 pl-2 border-l-2 border-[#089EC2]/30 dark:border-[#2DD4F0]/30 animate-in fade-in duration-150">
-                      {mobileAboutCategories.map((cat) => {
-                        const isCatOpen = mobileAboutCategoryOpen === cat.id;
-                        const CatIcon = cat.icon;
-                        return (
-                          <div key={cat.id} className="flex flex-col">
-                            {/* Category Header Button */}
+                      {/* Top-level clickable ABOUT US link in mobile dropdown */}
+                      <button
+                        type="button"
+                        onClick={() => handleMobileNavigate('/about-us')}
+                        className="w-full px-3 py-2 rounded-lg text-xs font-mono font-bold tracking-widest uppercase text-[#089EC2] dark:text-[#2DD4F0] hover:bg-blue-50/60 dark:hover:bg-[#17264A]/60 flex items-center justify-between text-left group cursor-pointer"
+                        title="Navigate to About Us Overview"
+                      >
+                        <div className="flex items-center gap-2">
+                          <Building2 className="w-3.5 h-3.5 text-[#089EC2] dark:text-[#2DD4F0]" />
+                          <span>ABOUT US</span>
+                        </div>
+                        <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                      </button>
+
+                      {/* 4 Submenu Links */}
+                      <div className="flex flex-col space-y-1 my-1">
+                        {mobileAboutItems.map((item, idx) => {
+                          const ItemIcon = item.icon;
+                          return (
                             <button
+                              key={idx}
                               type="button"
-                              onClick={() => setMobileAboutCategoryOpen(isCatOpen ? null : cat.id)}
-                              className={`w-full px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center justify-between text-left cursor-pointer ${isCatOpen
-                                ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-[#089EC2]/10 dark:bg-[#2DD4F0]/10 border border-[#089EC2]/30 dark:border-[#2DD4F0]/30'
-                                : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] hover:bg-slate-100/70 dark:hover:bg-[#17264A]/50 border border-transparent'
-                                }`}
+                              onClick={() => handleMobileNavigate(item.href)}
+                              className="px-2.5 py-1.5 rounded-md text-xs sm:text-[13px] text-slate-600 dark:text-slate-300 hover:text-[#089EC2] dark:hover:text-[#2DD4F0] hover:bg-slate-100/60 dark:hover:bg-[#1E3360]/40 transition-colors flex items-center justify-between text-left group cursor-pointer"
                             >
                               <div className="flex items-center gap-2">
-                                <CatIcon className="w-3.5 h-3.5 text-[#089EC2] dark:text-[#2DD4F0]" />
-                                <span>{cat.name}</span>
+                                <ItemIcon className="w-3.5 h-3.5 text-[#089EC2] dark:text-[#2DD4F0]" />
+                                <span>{item.name}</span>
                               </div>
-                              <ChevronDown
-                                className={`w-3.5 h-3.5 transition-transform duration-200 ${isCatOpen ? 'rotate-180 text-[#089EC2] dark:text-[#2DD4F0]' : 'text-slate-400'
-                                  }`}
-                              />
+                              <ChevronRight className="w-3.5 h-3.5 opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 text-[#089EC2] dark:text-[#2DD4F0] transition-all" />
                             </button>
-
-                            {/* Submenu Links under Category */}
-                            {isCatOpen && (
-                              <div className="ml-5 pl-2 py-1 my-1 flex flex-col space-y-1 border-l border-slate-200 dark:border-[#24355A] animate-in fade-in duration-150">
-                                {cat.items.map((item, idx) => (
-                                  <button
-                                    key={idx}
-                                    type="button"
-                                    onClick={() => handleMobileNavigate(item.href)}
-                                    className="px-2.5 py-1.5 rounded-md text-xs sm:text-[13px] text-slate-600 dark:text-slate-300 hover:text-[#089EC2] dark:hover:text-[#2DD4F0] hover:bg-slate-100/60 dark:hover:bg-[#1E3360]/40 transition-colors flex items-center justify-between text-left group cursor-pointer"
-                                  >
-                                    <div className="flex items-center gap-2">
-                                      <span>{item.name}</span>
-                                      {item.badge && (
-                                        <span className={`inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-mono font-bold tracking-wider ${item.badge === 'In Development'
-                                          ? 'bg-blue-50 text-[#089EC2] dark:bg-[#17264D] dark:text-[#2DD4F0]'
-                                          : 'bg-slate-100 text-slate-600 dark:bg-[#17264D] dark:text-slate-300'
-                                          }`}>
-                                          {item.badge}
-                                        </span>
-                                      )}
-                                    </div>
-                                    <ChevronRight className="w-3.5 h-3.5 opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 text-[#089EC2] dark:text-[#2DD4F0] transition-all" />
-                                  </button>
-                                ))}
-                              </div>
-                            )}
-                          </div>
-                        );
-                      })}
+                          );
+                        })}
+                      </div>
 
                       {/* Explore AIEGX Bottom link on mobile */}
                       <button
                         type="button"
-                        onClick={() => handleMobileNavigate('#engineering-capabilities')}
+                        onClick={() => handleMobileNavigate('/about-us')}
                         className="mt-1 px-3 py-2 rounded-lg text-xs font-semibold text-[#089EC2] dark:text-[#2DD4F0] hover:bg-blue-50/50 dark:hover:bg-[#17264A]/50 flex items-center justify-between text-left cursor-pointer"
                       >
                         <span>Explore AIEGX</span>
