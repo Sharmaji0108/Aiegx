@@ -6,63 +6,30 @@ import {
   Building2,
   Sparkles,
   Cpu,
-  Target,
-  ShieldCheck,
-  Clock,
-  Users,
-  Headphones
+  Target
 } from 'lucide-react';
+import { navigateTo } from '../../utils/navigation';
 
-const aboutUsColumns = [
+const aboutUsItems = [
   {
-    title: 'COMPANY',
-    items: [
-      {
-        name: 'Company Overview',
-        href: '#engineering-capabilities',
-        icon: Building2,
-      },
-      {
-        name: 'Why AIEGX',
-        href: '#why-aiegx',
-        icon: Sparkles,
-      },
-      {
-        name: 'Our Expertise',
-        href: '#expertise',
-        icon: Cpu,
-      },
-      {
-        name: 'Our Approach',
-        href: '#our-approach',
-        icon: Target,
-      },
-    ],
+    name: 'Company Overview',
+    href: '#engineering-capabilities',
+    icon: Building2,
   },
   {
-    title: 'TRUST & SUPPORT',
-    items: [
-      {
-        name: 'Quality & Reliability',
-        href: '#quality-reliability',
-        icon: ShieldCheck,
-      },
-      {
-        name: 'Product Longevity',
-        href: '#product-longevity',
-        icon: Clock,
-      },
-      {
-        name: 'Ecosystem & Partners',
-        href: '#ecosystem-partners',
-        icon: Users,
-      },
-      {
-        name: 'Technical Support',
-        href: '#contact',
-        icon: Headphones,
-      },
-    ],
+    name: 'Why AIEGX',
+    href: '#why-aiegx',
+    icon: Sparkles,
+  },
+  {
+    name: 'Our Expertise',
+    href: '#expertise',
+    icon: Cpu,
+  },
+  {
+    name: 'Our Approach',
+    href: '#our-approach',
+    icon: Target,
   },
 ];
 
@@ -96,25 +63,10 @@ export default function AboutUsMegaMenu({ isOpen, onClose, onMouseEnter, onMouse
   if (!isOpen) return null;
 
   const handleLinkClick = (href, e) => {
+    if (e && typeof e.preventDefault === 'function') e.preventDefault();
     onClose();
-    if (href.startsWith('/')) {
-      if (e && typeof e.preventDefault === 'function') e.preventDefault();
-      window.dispatchEvent(new CustomEvent('aiegx-navigate', { detail: href }));
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else if (href.startsWith('#')) {
-      const targetId = href.replace('#', '');
-      if (window.location.pathname !== '/') {
-        if (e && typeof e.preventDefault === 'function') e.preventDefault();
-        window.dispatchEvent(new CustomEvent('aiegx-navigate', { detail: `/${href}` }));
-        setTimeout(() => {
-          const el = document.getElementById(targetId) || document.getElementById('engineering-capabilities');
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
-        }, 150);
-      } else {
-        const el = document.getElementById(targetId) || document.getElementById('engineering-capabilities');
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
+    if (!href) return;
+    navigateTo(href, e);
   };
 
   return (
@@ -126,11 +78,11 @@ export default function AboutUsMegaMenu({ isOpen, onClose, onMouseEnter, onMouse
         aria-hidden="true"
       />
 
-      {/* Main Two-Column Mega Menu Panel (~900px width, centered) */}
+      {/* Main Single-Column Mega Menu Panel */}
       <div
         ref={menuRef}
         id="about-mega-menu"
-        className="mega-menu-dropdown-wrapper !max-w-[900px] animate-in fade-in slide-in-from-top-2 duration-200"
+        className="mega-menu-dropdown-wrapper !max-w-[580px] animate-in fade-in slide-in-from-top-2 duration-200"
         role="dialog"
         aria-label="About Us Mega Menu"
         onMouseEnter={onMouseEnter}
@@ -140,11 +92,16 @@ export default function AboutUsMegaMenu({ isOpen, onClose, onMouseEnter, onMouse
           
           {/* Header */}
           <div className="flex items-center justify-between pb-3.5 mb-5 border-b border-[#DCE6F3] dark:border-white/10">
-            <div className="flex items-center gap-2.5">
-              <span className="text-xs font-mono font-bold tracking-widest text-[#079BD4] dark:text-[#2DD4F0] uppercase">
-                ABOUT US
-              </span>
-            </div>
+            <a
+              href="/about-us"
+              onClick={(e) => handleLinkClick('/about-us', e)}
+              className="group inline-flex items-center gap-2 py-1.5 px-2.5 -ml-2.5 rounded-xl text-xs font-mono font-bold tracking-widest text-[#079BD4] dark:text-[#2DD4F0] uppercase hover:bg-[#EBF6FC] dark:hover:bg-[#17264D]/60 hover:text-[#0582b3] dark:hover:text-[#5ce1f7] transition-all cursor-pointer select-none"
+              title="Navigate to About Us Overview"
+              aria-label="Navigate to About Us overview page"
+            >
+              <span>ABOUT US</span>
+              <ChevronRight className="w-4 h-4 text-[#079BD4] dark:text-[#2DD4F0] transition-transform group-hover:translate-x-1" />
+            </a>
             <button
               type="button"
               onClick={onClose}
@@ -156,44 +113,30 @@ export default function AboutUsMegaMenu({ isOpen, onClose, onMouseEnter, onMouse
             </button>
           </div>
 
-          {/* Clean Compact Two-Column Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-8">
-            {aboutUsColumns.map((col, cIdx) => (
-              <div key={cIdx} className="space-y-3">
-                {/* Column Heading */}
-                <div className="pb-2.5 border-b border-[#DCE6F3] dark:border-white/10">
-                  <h3 className="text-xs font-mono font-bold tracking-wider text-[#14213D] dark:text-[#F8FAFC] uppercase">
-                    {col.title}
-                  </h3>
-                </div>
-
-                {/* Column Items */}
-                <div className="space-y-2">
-                  {col.items.map((item, iIdx) => {
-                    const Icon = item.icon;
-                    return (
-                      <a
-                        key={iIdx}
-                        href={item.href}
-                        onClick={(e) => handleLinkClick(item.href, e)}
-                        className="group flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-[#F8FAFD] dark:bg-[#142347]/50 hover:bg-[#F0F7FF] dark:hover:bg-[#1E3360] border border-slate-200/80 dark:border-white/10 hover:border-[#C5DDF5] dark:hover:border-[#244277] shadow-xs hover:shadow-sm transition-all duration-150 cursor-pointer"
-                      >
-                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-lg bg-[#EBF6FC] dark:bg-[#17264D] text-[#079BD4] dark:text-[#2DD4F0] border border-[#D0E7F7] dark:border-white/10 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:bg-[#079BD4] group-hover:text-white dark:group-hover:bg-[#2DD4F0] dark:group-hover:text-[#0D1733] transition-all duration-150">
-                            <Icon className="w-4 h-4" />
-                          </div>
-                          <span className="text-sm font-semibold text-[#14213D] dark:text-[#E2E8F0] group-hover:text-[#079BD4] dark:group-hover:text-[#2DD4F0] group-hover:translate-x-0.5 transition-all duration-150">
-                            {item.name}
-                          </span>
-                        </div>
-                        <ChevronRight className="w-4 h-4 text-slate-400 dark:text-white/40 group-hover:text-[#079BD4] dark:group-hover:text-[#2DD4F0] group-hover:translate-x-1 transition-all duration-150 shrink-0" />
-                      </a>
-                    );
-                  })}
-                </div>
-              </div>
-            ))}
-          </div>
+          {/* Single-Column Layout: Expanded to available width */}
+          <div className="space-y-2">
+            {aboutUsItems.map((item, iIdx) => {
+                const Icon = item.icon;
+                return (
+                  <a
+                    key={iIdx}
+                    href={item.href}
+                    onClick={(e) => handleLinkClick(item.href, e)}
+                    className="group flex items-center justify-between px-4 py-3 rounded-xl bg-[#F8FAFD] dark:bg-[#142347]/50 hover:bg-[#F0F7FF] dark:hover:bg-[#1E3360] border border-slate-200/80 dark:border-white/10 hover:border-[#C5DDF5] dark:hover:border-[#244277] shadow-xs hover:shadow-sm transition-all duration-150 cursor-pointer"
+                  >
+                    <div className="flex items-center gap-3.5">
+                      <div className="w-8 h-8 rounded-lg bg-[#EBF6FC] dark:bg-[#17264D] text-[#079BD4] dark:text-[#2DD4F0] border border-[#D0E7F7] dark:border-white/10 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:bg-[#079BD4] group-hover:text-white dark:group-hover:bg-[#2DD4F0] dark:group-hover:text-[#0D1733] transition-all duration-150">
+                        <Icon className="w-4 h-4" />
+                      </div>
+                      <span className="text-sm font-semibold text-[#14213D] dark:text-[#E2E8F0] group-hover:text-[#079BD4] dark:group-hover:text-[#2DD4F0] group-hover:translate-x-0.5 transition-all duration-150">
+                        {item.name}
+                      </span>
+                    </div>
+                    <ChevronRight className="w-4 h-4 text-slate-400 dark:text-white/40 group-hover:text-[#079BD4] dark:group-hover:text-[#2DD4F0] group-hover:translate-x-1 transition-all duration-150 shrink-0" />
+                  </a>
+                );
+              })}
+            </div>
 
           {/* Bottom Section */}
           <div className="mt-6 pt-4 border-t border-[#DCE6F3] dark:border-white/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
@@ -206,8 +149,8 @@ export default function AboutUsMegaMenu({ isOpen, onClose, onMouseEnter, onMouse
               </p>
             </div>
             <a
-              href="#engineering-capabilities"
-              onClick={(e) => handleLinkClick('#engineering-capabilities', e)}
+              href="/about-us"
+              onClick={(e) => handleLinkClick('/about-us', e)}
               className="inline-flex items-center gap-1.5 font-semibold text-xs sm:text-sm text-[#079BD4] dark:text-[#2DD4F0] hover:text-[#067fae] dark:hover:text-[#5ce1f7] hover:underline group shrink-0 cursor-pointer"
             >
               <span>Explore AIEGX</span>

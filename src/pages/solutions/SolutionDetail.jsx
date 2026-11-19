@@ -27,14 +27,14 @@ export default function SolutionDetail({ slug }) {
   const solution = SOLUTIONS_MAP[slug] || Object.values(SOLUTIONS_MAP)[0];
 
   const categoryPathMap = {
-    'Vehicle & Mobility Solutions': '/solutions/driver-monitoring-system',
-    'Video & Surveillance Solutions': '/solutions/nvr-systems',
-    'Industrial & Machine Vision Solutions': '/solutions/industrial-railway-hmi',
-    'Defence & Advanced Vision Solutions': '/solutions/seeker-systems',
-    'Embedded Computing & HMI': '/solutions/industrial-railway-hmi',
-    'Edge AI & Smart Vision': '/solutions/ai-video-analytics',
-    'Industrial Vision & Automation': '/solutions/ai-visual-inspection',
-    'Robotics & Autonomous Systems': '/solutions/vehicle-detection-camera',
+    'Vehicle & Mobility Solutions': '/vehicle-mobility',
+    'Video & Surveillance Solutions': '/solutions/video-surveillance',
+    'Industrial & Machine Vision Solutions': '/solutions/industrial-machine-vision',
+    'Defence & Advanced Vision Solutions': '/solutions/defence-advanced-vision',
+    'Embedded Computing & HMI': '/solutions/industrial-machine-vision',
+    'Edge AI & Smart Vision': '/solutions/video-surveillance',
+    'Industrial Vision & Automation': '/solutions/industrial-machine-vision',
+    'Robotics & Autonomous Systems': '/vehicle-mobility',
   };
 
   const breadcrumbItems = [

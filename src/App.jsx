@@ -15,6 +15,11 @@ import RZV2HPlatform from './pages/products/RZV2HPlatform';
 import RZV2HSBC from './pages/products/RZV2HSBC';
 import RZV2HProduct from './pages/products/RZV2HProduct';
 import SolutionDetail from './pages/solutions/SolutionDetail';
+import VehicleMobilityPage from './pages/solutions/VehicleMobilityPage';
+import VideoSurveillancePage from './pages/solutions/VideoSurveillancePage';
+import IndustrialVisionPage from './pages/solutions/IndustrialVisionPage';
+import DefenceVisionPage from './pages/solutions/DefenceVisionPage';
+import AboutUsPage from './pages/AboutUsPage';
 import Footer from './components/common/Footer';
 import ThemeToggle from './components/common/ThemeToggle';
 
@@ -117,12 +122,31 @@ export default function App() {
   const isQualcommPage = cleanPath === '/brands/qualcomm';
   const isNxpPage = cleanPath === '/brands/nxp' || cleanPath === '/brands/nxp-imx';
   const isTiPage = cleanPath === '/brands/ti' || cleanPath === '/brands/ti-am6x';
+  const isVehicleMobilityPage =
+    cleanPath === '/vehicle-mobility' || cleanPath === '/solutions/vehicle-mobility';
+  const isVideoSurveillancePage =
+    cleanPath === '/solutions/video-surveillance' || cleanPath === '/video-surveillance';
+  const isIndustrialVisionPage =
+    cleanPath === '/solutions/industrial-machine-vision' ||
+    cleanPath === '/solutions/industrial-vision' ||
+    cleanPath === '/industrial-machine-vision';
+  const isDefenceVisionPage =
+    cleanPath === '/solutions/defence-advanced-vision' ||
+    cleanPath === '/solutions/defence-advanced' ||
+    cleanPath === '/defence-advanced-vision';
+  const isAboutUsPage = cleanPath === '/about-us' || cleanPath === '/about';
   const isSolutionsPage = cleanPath.startsWith('/solutions');
   const solutionSlug = isSolutionsPage
     ? cleanPath.replace(/^\/solutions\/?/, '').split('/')[0]
     : '';
 
   const renderContent = () => {
+    if (isAboutUsPage) return <AboutUsPage />;
+    if (isVehicleMobilityPage) return <VehicleMobilityPage />;
+    if (isVideoSurveillancePage) return <VideoSurveillancePage />;
+    if (isIndustrialVisionPage) return <IndustrialVisionPage />;
+    if (isDefenceVisionPage) return <DefenceVisionPage />;
+    if (cleanPath === '/solutions') return <VehicleMobilityPage />;
     if (isSolutionsPage) return <SolutionDetail slug={solutionSlug} />;
     if (isRzg2lPlatformPage) return <RZG2LPlatform />;
     if (isRzg2lSmarcSomPage) return <RZG2LSMARCSoM productSlug="smarc-som" />;

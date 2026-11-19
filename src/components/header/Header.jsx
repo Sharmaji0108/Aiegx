@@ -51,11 +51,10 @@ const mobileProductCategories = [
     name: 'Embedded Solutions',
     icon: Zap,
     items: [
-      { name: 'Vehicle & Mobility Solutions', href: '#integrated-solutions' },
-      { name: 'Video & Surveillance Solutions', href: '#integrated-solutions' },
-      { name: 'Industrial & Machine Vision Solutions', href: '#integrated-solutions' },
-      { name: 'Defence & Advanced Vision Solutions', href: '#integrated-solutions' },
-      { name: 'Autonomous Robotics & SLAM Solutions', href: '#integrated-solutions' },
+      { name: 'Vehicle & Mobility Solutions', href: '/vehicle-mobility' },
+      { name: 'Video & Surveillance Solutions', href: '/solutions/video-surveillance' },
+      { name: 'Industrial & Machine Vision Solutions', href: '/solutions/industrial-machine-vision' },
+      { name: 'Defence & Advanced Vision Solutions', href: '/solutions/defence-advanced-vision' },
     ],
   },
   {
@@ -75,24 +74,14 @@ const mobileProductCategories = [
 const mobileAboutCategories = [
   {
     id: 'company',
-    name: 'Company',
+    name: 'About Us',
     icon: Building2,
+    href: '/about-us',
     items: [
       { name: 'Company Overview', href: '#engineering-capabilities' },
       { name: 'Why AIEGX', href: '#why-aiegx' },
       { name: 'Our Expertise', href: '#expertise' },
       { name: 'Our Approach', href: '#our-approach' },
-    ],
-  },
-  {
-    id: 'trust-support',
-    name: 'Trust & Support',
-    icon: ShieldCheck,
-    items: [
-      { name: 'Quality & Reliability', href: '#quality-reliability' },
-      { name: 'Product Longevity', href: '#product-longevity' },
-      { name: 'Ecosystem & Partners', href: '#ecosystem-partners' },
-      { name: 'Technical Support', href: '#contact' },
     ],
   },
 ];
@@ -144,7 +133,11 @@ export default function Header() {
       setIsScrolled(window.scrollY > 20);
 
       const path = window.location.pathname.toLowerCase();
-      if (path.startsWith('/solutions')) {
+      if (path.startsWith('/about-us') || path === '/about') {
+        setActiveNav('company');
+        return;
+      }
+      if (path.startsWith('/solutions') || path === '/vehicle-mobility') {
         setActiveNav('solutions');
         return;
       }
@@ -509,18 +502,16 @@ export default function Header() {
                   <button
                     type="button"
                     onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
-                    className={`w-full px-4 py-3 rounded-xl text-sm font-semibold transition-all flex items-center justify-between text-left cursor-pointer ${
-                      mobileProductsOpen || activeNav === 'products'
-                        ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-blue-50/80 dark:bg-[#17264A] border border-[#089EC2]/40 dark:border-[#2DD4F0]/40'
-                        : 'text-slate-700 dark:text-[#AAB6D0] bg-slate-50 dark:bg-[#17264A]/60 hover:bg-slate-100 dark:hover:bg-[#17264A] border border-slate-200 dark:border-[#24355A]'
-                    }`}
+                    className={`w-full px-4 py-3 rounded-xl text-sm font-semibold transition-all flex items-center justify-between text-left cursor-pointer ${mobileProductsOpen || activeNav === 'products'
+                      ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-blue-50/80 dark:bg-[#17264A] border border-[#089EC2]/40 dark:border-[#2DD4F0]/40'
+                      : 'text-slate-700 dark:text-[#AAB6D0] bg-slate-50 dark:bg-[#17264A]/60 hover:bg-slate-100 dark:hover:bg-[#17264A] border border-slate-200 dark:border-[#24355A]'
+                      }`}
                     aria-expanded={mobileProductsOpen}
                   >
                     <span>Products & Hardware Platforms</span>
                     <ChevronDown
-                      className={`w-4 h-4 transition-transform duration-200 ${
-                        mobileProductsOpen ? 'rotate-180 text-[#089EC2] dark:text-[#2DD4F0]' : 'text-slate-400 dark:text-slate-500'
-                      }`}
+                      className={`w-4 h-4 transition-transform duration-200 ${mobileProductsOpen ? 'rotate-180 text-[#089EC2] dark:text-[#2DD4F0]' : 'text-slate-400 dark:text-slate-500'
+                        }`}
                     />
                   </button>
 
@@ -536,20 +527,18 @@ export default function Header() {
                             <button
                               type="button"
                               onClick={() => setMobileCategoryOpen(isCatOpen ? null : cat.id)}
-                              className={`w-full px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center justify-between text-left cursor-pointer ${
-                                isCatOpen
-                                  ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-[#089EC2]/10 dark:bg-[#2DD4F0]/10 border border-[#089EC2]/30 dark:border-[#2DD4F0]/30'
-                                  : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] hover:bg-slate-100/70 dark:hover:bg-[#17264A]/50 border border-transparent'
-                              }`}
+                              className={`w-full px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center justify-between text-left cursor-pointer ${isCatOpen
+                                ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-[#089EC2]/10 dark:bg-[#2DD4F0]/10 border border-[#089EC2]/30 dark:border-[#2DD4F0]/30'
+                                : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] hover:bg-slate-100/70 dark:hover:bg-[#17264A]/50 border border-transparent'
+                                }`}
                             >
                               <div className="flex items-center gap-2">
                                 <CatIcon className="w-3.5 h-3.5 text-[#089EC2] dark:text-[#2DD4F0]" />
                                 <span>{cat.name}</span>
                               </div>
                               <ChevronDown
-                                className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                                  isCatOpen ? 'rotate-180 text-[#089EC2] dark:text-[#2DD4F0]' : 'text-slate-400'
-                                }`}
+                                className={`w-3.5 h-3.5 transition-transform duration-200 ${isCatOpen ? 'rotate-180 text-[#089EC2] dark:text-[#2DD4F0]' : 'text-slate-400'
+                                  }`}
                               />
                             </button>
 
@@ -566,11 +555,10 @@ export default function Header() {
                                     <div className="flex items-center gap-2">
                                       <span>{item.name}</span>
                                       {item.badge && (
-                                        <span className={`inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-mono font-bold tracking-wider ${
-                                          item.badge === 'In Development'
-                                            ? 'bg-blue-50 text-[#089EC2] dark:bg-[#17264D] dark:text-[#2DD4F0]'
-                                            : 'bg-slate-100 text-slate-600 dark:bg-[#17264D] dark:text-slate-300'
-                                        }`}>
+                                        <span className={`inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-mono font-bold tracking-wider ${item.badge === 'In Development'
+                                          ? 'bg-blue-50 text-[#089EC2] dark:bg-[#17264D] dark:text-[#2DD4F0]'
+                                          : 'bg-slate-100 text-slate-600 dark:bg-[#17264D] dark:text-slate-300'
+                                          }`}>
                                           {item.badge}
                                         </span>
                                       )}
@@ -592,18 +580,16 @@ export default function Header() {
                   <button
                     type="button"
                     onClick={() => setMobileSolutionsOpen(!mobileSolutionsOpen)}
-                    className={`w-full px-4 py-3 rounded-xl text-sm font-semibold transition-all flex items-center justify-between text-left cursor-pointer ${
-                      mobileSolutionsOpen || activeNav === 'solutions'
-                        ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-blue-50/80 dark:bg-[#17264A] border border-[#089EC2]/40 dark:border-[#2DD4F0]/40'
-                        : 'text-slate-700 dark:text-[#AAB6D0] bg-slate-50 dark:bg-[#17264A]/60 hover:bg-slate-100 dark:hover:bg-[#17264A] border border-slate-200 dark:border-[#24355A]'
-                    }`}
+                    className={`w-full px-4 py-3 rounded-xl text-sm font-semibold transition-all flex items-center justify-between text-left cursor-pointer ${mobileSolutionsOpen || activeNav === 'solutions'
+                      ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-blue-50/80 dark:bg-[#17264A] border border-[#089EC2]/40 dark:border-[#2DD4F0]/40'
+                      : 'text-slate-700 dark:text-[#AAB6D0] bg-slate-50 dark:bg-[#17264A]/60 hover:bg-slate-100 dark:hover:bg-[#17264A] border border-slate-200 dark:border-[#24355A]'
+                      }`}
                     aria-expanded={mobileSolutionsOpen}
                   >
                     <span>Solutions</span>
                     <ChevronDown
-                      className={`w-4 h-4 transition-transform duration-200 ${
-                        mobileSolutionsOpen ? 'rotate-180 text-[#089EC2] dark:text-[#2DD4F0]' : 'text-slate-400 dark:text-slate-500'
-                      }`}
+                      className={`w-4 h-4 transition-transform duration-200 ${mobileSolutionsOpen ? 'rotate-180 text-[#089EC2] dark:text-[#2DD4F0]' : 'text-slate-400 dark:text-slate-500'
+                        }`}
                     />
                   </button>
 
@@ -619,20 +605,18 @@ export default function Header() {
                             <button
                               type="button"
                               onClick={() => setMobileSolutionsCategoryOpen(isCatOpen ? null : cat.id)}
-                              className={`w-full px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center justify-between text-left cursor-pointer ${
-                                isCatOpen
-                                  ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-[#089EC2]/10 dark:bg-[#2DD4F0]/10 border border-[#089EC2]/30 dark:border-[#2DD4F0]/30'
-                                  : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] hover:bg-slate-100/70 dark:hover:bg-[#17264A]/50 border border-transparent'
-                              }`}
+                              className={`w-full px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center justify-between text-left cursor-pointer ${isCatOpen
+                                ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-[#089EC2]/10 dark:bg-[#2DD4F0]/10 border border-[#089EC2]/30 dark:border-[#2DD4F0]/30'
+                                : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] hover:bg-slate-100/70 dark:hover:bg-[#17264A]/50 border border-transparent'
+                                }`}
                             >
                               <div className="flex items-center gap-2">
                                 <CatIcon className="w-3.5 h-3.5 text-[#089EC2] dark:text-[#2DD4F0]" />
                                 <span>{cat.name}</span>
                               </div>
                               <ChevronDown
-                                className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                                  isCatOpen ? 'rotate-180 text-[#089EC2] dark:text-[#2DD4F0]' : 'text-slate-400'
-                                }`}
+                                className={`w-3.5 h-3.5 transition-transform duration-200 ${isCatOpen ? 'rotate-180 text-[#089EC2] dark:text-[#2DD4F0]' : 'text-slate-400'
+                                  }`}
                               />
                             </button>
 
@@ -649,11 +633,10 @@ export default function Header() {
                                     <div className="flex items-center gap-2">
                                       <span>{item.name}</span>
                                       {item.badge && (
-                                        <span className={`inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-mono font-bold tracking-wider ${
-                                          item.badge === 'In Development'
-                                            ? 'bg-blue-50 text-[#089EC2] dark:bg-[#17264D] dark:text-[#2DD4F0]'
-                                            : 'bg-slate-100 text-slate-600 dark:bg-[#17264D] dark:text-slate-300'
-                                        }`}>
+                                        <span className={`inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-mono font-bold tracking-wider ${item.badge === 'In Development'
+                                          ? 'bg-blue-50 text-[#089EC2] dark:bg-[#17264D] dark:text-[#2DD4F0]'
+                                          : 'bg-slate-100 text-slate-600 dark:bg-[#17264D] dark:text-slate-300'
+                                          }`}>
                                           {item.badge}
                                         </span>
                                       )}
@@ -675,18 +658,16 @@ export default function Header() {
                   <button
                     type="button"
                     onClick={() => setMobileAboutOpen(!mobileAboutOpen)}
-                    className={`w-full px-4 py-3 rounded-xl text-sm font-semibold transition-all flex items-center justify-between text-left cursor-pointer ${
-                      mobileAboutOpen || activeNav === 'company' || activeNav === 'about'
-                        ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-blue-50/80 dark:bg-[#17264A] border border-[#089EC2]/40 dark:border-[#2DD4F0]/40'
-                        : 'text-slate-700 dark:text-[#AAB6D0] bg-slate-50 dark:bg-[#17264A]/60 hover:bg-slate-100 dark:hover:bg-[#17264A] border border-slate-200 dark:border-[#24355A]'
-                    }`}
+                    className={`w-full px-4 py-3 rounded-xl text-sm font-semibold transition-all flex items-center justify-between text-left cursor-pointer ${mobileAboutOpen || activeNav === 'company' || activeNav === 'about'
+                      ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-blue-50/80 dark:bg-[#17264A] border border-[#089EC2]/40 dark:border-[#2DD4F0]/40'
+                      : 'text-slate-700 dark:text-[#AAB6D0] bg-slate-50 dark:bg-[#17264A]/60 hover:bg-slate-100 dark:hover:bg-[#17264A] border border-slate-200 dark:border-[#24355A]'
+                      }`}
                     aria-expanded={mobileAboutOpen}
                   >
                     <span>About Us</span>
                     <ChevronDown
-                      className={`w-4 h-4 transition-transform duration-200 ${
-                        mobileAboutOpen ? 'rotate-180 text-[#089EC2] dark:text-[#2DD4F0]' : 'text-slate-400 dark:text-slate-500'
-                      }`}
+                      className={`w-4 h-4 transition-transform duration-200 ${mobileAboutOpen ? 'rotate-180 text-[#089EC2] dark:text-[#2DD4F0]' : 'text-slate-400 dark:text-slate-500'
+                        }`}
                     />
                   </button>
 
@@ -702,20 +683,18 @@ export default function Header() {
                             <button
                               type="button"
                               onClick={() => setMobileAboutCategoryOpen(isCatOpen ? null : cat.id)}
-                              className={`w-full px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center justify-between text-left cursor-pointer ${
-                                isCatOpen
-                                  ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-[#089EC2]/10 dark:bg-[#2DD4F0]/10 border border-[#089EC2]/30 dark:border-[#2DD4F0]/30'
-                                  : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] hover:bg-slate-100/70 dark:hover:bg-[#17264A]/50 border border-transparent'
-                              }`}
+                              className={`w-full px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center justify-between text-left cursor-pointer ${isCatOpen
+                                ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-[#089EC2]/10 dark:bg-[#2DD4F0]/10 border border-[#089EC2]/30 dark:border-[#2DD4F0]/30'
+                                : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] hover:bg-slate-100/70 dark:hover:bg-[#17264A]/50 border border-transparent'
+                                }`}
                             >
                               <div className="flex items-center gap-2">
                                 <CatIcon className="w-3.5 h-3.5 text-[#089EC2] dark:text-[#2DD4F0]" />
                                 <span>{cat.name}</span>
                               </div>
                               <ChevronDown
-                                className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                                  isCatOpen ? 'rotate-180 text-[#089EC2] dark:text-[#2DD4F0]' : 'text-slate-400'
-                                }`}
+                                className={`w-3.5 h-3.5 transition-transform duration-200 ${isCatOpen ? 'rotate-180 text-[#089EC2] dark:text-[#2DD4F0]' : 'text-slate-400'
+                                  }`}
                               />
                             </button>
 
@@ -732,11 +711,10 @@ export default function Header() {
                                     <div className="flex items-center gap-2">
                                       <span>{item.name}</span>
                                       {item.badge && (
-                                        <span className={`inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-mono font-bold tracking-wider ${
-                                          item.badge === 'In Development'
-                                            ? 'bg-blue-50 text-[#089EC2] dark:bg-[#17264D] dark:text-[#2DD4F0]'
-                                            : 'bg-slate-100 text-slate-600 dark:bg-[#17264D] dark:text-slate-300'
-                                        }`}>
+                                        <span className={`inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-mono font-bold tracking-wider ${item.badge === 'In Development'
+                                          ? 'bg-blue-50 text-[#089EC2] dark:bg-[#17264D] dark:text-[#2DD4F0]'
+                                          : 'bg-slate-100 text-slate-600 dark:bg-[#17264D] dark:text-slate-300'
+                                          }`}>
                                           {item.badge}
                                         </span>
                                       )}

@@ -24,6 +24,7 @@ export const SOLUTIONS_CATEGORIES = [
   {
     id: 'vehicle-mobility',
     name: 'Vehicle & Mobility Solutions',
+    href: '/vehicle-mobility',
     icon: Car,
     items: [
       { name: 'Driver Monitoring System (DMS)', href: '/solutions/driver-monitoring-system', slug: 'driver-monitoring-system' },
@@ -35,6 +36,7 @@ export const SOLUTIONS_CATEGORIES = [
   {
     id: 'video-surveillance',
     name: 'Video & Surveillance Solutions',
+    href: '/solutions/video-surveillance',
     icon: Video,
     items: [
       { name: 'Network Video Recorder (NVR)', href: '/solutions/nvr-systems', slug: 'nvr-systems' },
@@ -47,6 +49,7 @@ export const SOLUTIONS_CATEGORIES = [
   {
     id: 'industrial-vision',
     name: 'Industrial & Machine Vision Solutions',
+    href: '/solutions/industrial-machine-vision',
     icon: Factory,
     items: [
       { name: 'Industrial / Railway HMI', href: '/solutions/industrial-railway-hmi', slug: 'industrial-railway-hmi' },
@@ -59,6 +62,7 @@ export const SOLUTIONS_CATEGORIES = [
   {
     id: 'defence-advanced',
     name: 'Defence & Advanced Vision Solutions',
+    href: '/solutions/defence-advanced-vision',
     icon: Shield,
     items: [
       { name: 'Seeker', href: '/solutions/seeker-systems', slug: 'seeker-systems', badge: 'In Development' },

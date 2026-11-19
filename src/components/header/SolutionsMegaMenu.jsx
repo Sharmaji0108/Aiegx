@@ -117,9 +117,8 @@ export default function SolutionsMegaMenu({ isOpen, onClose, onMouseEnter, onMou
 
             {/* COLUMN 1 — Main Categories (Left Sidebar, approx 34% width: 280-300px) */}
             <div
-              className={`lg:w-[280px] xl:w-[300px] flex-shrink-0 bg-[#F1F6FC] dark:bg-[#0e1630] border-b lg:border-b-0 lg:border-r border-[#DCE6F3] dark:border-white/10 flex flex-col p-4 sm:p-5 min-h-0 overflow-y-auto mega-menu-scroll ${
-                mobileStep !== 1 ? 'hidden lg:flex' : 'flex'
-              }`}
+              className={`lg:w-[280px] xl:w-[300px] flex-shrink-0 bg-[#F1F6FC] dark:bg-[#0e1630] border-b lg:border-b-0 lg:border-r border-[#DCE6F3] dark:border-white/10 flex flex-col p-4 sm:p-5 min-h-0 overflow-y-auto mega-menu-scroll ${mobileStep !== 1 ? 'hidden lg:flex' : 'flex'
+                }`}
             >
               {/* Column 1 Header with Close Icon & SOLUTIONS heading */}
               <div className="hidden lg:flex items-center justify-between pb-3.5 mb-4 border-b border-[#DCE6F3] dark:border-white/10">
@@ -150,33 +149,30 @@ export default function SolutionsMegaMenu({ isOpen, onClose, onMouseEnter, onMou
                         setSelectedCategory(cat.id);
                         if (window.innerWidth < 1024) {
                           setMobileStep(2);
-                        } else if (cat.items && cat.items[0]) {
-                          handleLinkClick(cat.items[0].href, e);
+                        } else {
+                          handleLinkClick(cat.href, e);
                         }
                       }}
                       onMouseEnter={() => setSelectedCategory(cat.id)}
-                      className={`w-full text-left px-3.5 py-3 rounded-xl text-xs sm:text-sm font-medium flex items-center justify-between transition-all duration-150 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#089EC2] dark:focus-visible:ring-[#2DD4F0] cursor-pointer ${
-                        isSelected
-                          ? 'bg-white dark:bg-[#17264D] text-[#089EC2] dark:text-[#2DD4F0] font-bold shadow-xs border-l-3 border-[#089EC2] dark:border-[#2DD4F0]'
-                          : 'text-[#14213D] dark:text-[#E2E8F0] hover:bg-white/60 dark:hover:bg-[#17264D]/50 hover:text-[#089EC2] dark:hover:text-[#2DD4F0]'
-                      }`}
+                      className={`w-full text-left px-3.5 py-3 rounded-xl text-xs sm:text-sm font-medium flex items-center justify-between transition-all duration-150 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#089EC2] dark:focus-visible:ring-[#2DD4F0] cursor-pointer ${isSelected
+                        ? 'bg-white dark:bg-[#17264D] text-[#089EC2] dark:text-[#2DD4F0] font-bold shadow-xs border-l-3 border-[#089EC2] dark:border-[#2DD4F0]'
+                        : 'text-[#14213D] dark:text-[#E2E8F0] hover:bg-white/60 dark:hover:bg-[#17264D]/50 hover:text-[#089EC2] dark:hover:text-[#2DD4F0]'
+                        }`}
                     >
                       <div className="flex items-center gap-3">
                         <Icon
-                          className={`w-4 h-4 ${
-                            isSelected
-                              ? 'text-[#089EC2] dark:text-[#2DD4F0]'
-                              : 'text-slate-500 dark:text-slate-400'
-                          }`}
+                          className={`w-4 h-4 ${isSelected
+                            ? 'text-[#089EC2] dark:text-[#2DD4F0]'
+                            : 'text-slate-500 dark:text-slate-400'
+                            }`}
                         />
                         <span>{cat.name}</span>
                       </div>
                       <ChevronRight
-                        className={`w-3.5 h-3.5 transition-transform ${
-                          isSelected
-                            ? 'text-[#089EC2] dark:text-[#2DD4F0] translate-x-0.5'
-                            : 'text-slate-400 dark:text-white/30'
-                        }`}
+                        className={`w-3.5 h-3.5 transition-transform ${isSelected
+                          ? 'text-[#089EC2] dark:text-[#2DD4F0] translate-x-0.5'
+                          : 'text-slate-400 dark:text-white/30'
+                          }`}
                       />
                     </button>
                   );
@@ -186,15 +182,14 @@ export default function SolutionsMegaMenu({ isOpen, onClose, onMouseEnter, onMou
 
             {/* COLUMN 2 — Subcategories (Right Panel, approx 66% width) */}
             <div
-              className={`flex-1 bg-white dark:bg-[#101936] p-5 sm:p-6 lg:p-7 flex flex-col min-h-0 overflow-y-auto mega-menu-scroll ${
-                mobileStep !== 2 ? 'hidden lg:flex' : 'flex'
-              }`}
+              className={`flex-1 bg-white dark:bg-[#101936] p-5 sm:p-6 lg:p-7 flex flex-col min-h-0 overflow-y-auto mega-menu-scroll ${mobileStep !== 2 ? 'hidden lg:flex' : 'flex'
+                }`}
             >
               {/* Category Heading Header */}
               <div className="pb-3.5 mb-4 border-b border-[#DCE6F3] dark:border-white/10 flex items-center justify-between">
                 <a
-                  href={currentCategory.items[0]?.href}
-                  onClick={(e) => handleLinkClick(currentCategory.items[0]?.href, e)}
+                  href={currentCategory.href || currentCategory.items[0]?.href}
+                  onClick={(e) => handleLinkClick(currentCategory.href || currentCategory.items[0]?.href, e)}
                   className="text-sm font-mono font-bold tracking-wider text-[#14213D] dark:text-[#F8FAFC] uppercase hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors flex items-center gap-1.5 group cursor-pointer"
                 >
                   <span>{currentCategory.name}</span>
@@ -217,11 +212,10 @@ export default function SolutionsMegaMenu({ isOpen, onClose, onMouseEnter, onMou
                       </span>
                       {item.badge && (
                         <span
-                          className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-mono font-bold tracking-wider shrink-0 ${
-                            item.badge === 'In Development'
-                              ? 'bg-blue-50 text-[#089EC2] border border-[#089EC2]/30 dark:bg-[#17264D] dark:text-[#2DD4F0] dark:border-[#2DD4F0]/30'
-                              : 'bg-slate-100 text-slate-600 border border-slate-200 dark:bg-[#17264D]/60 dark:text-slate-300 dark:border-white/10'
-                          }`}
+                          className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-mono font-bold tracking-wider shrink-0 ${item.badge === 'In Development'
+                            ? 'bg-blue-50 text-[#089EC2] border border-[#089EC2]/30 dark:bg-[#17264D] dark:text-[#2DD4F0] dark:border-[#2DD4F0]/30'
+                            : 'bg-slate-100 text-slate-600 border border-slate-200 dark:bg-[#17264D]/60 dark:text-slate-300 dark:border-white/10'
+                            }`}
                         >
                           {item.badge}
                         </span>

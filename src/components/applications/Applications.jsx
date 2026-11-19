@@ -22,6 +22,7 @@ import {
   RadioTower,
   ArrowRight,
 } from 'lucide-react';
+import { navigateTo } from '../../utils/navigation';
 
 /* ─── Data ─────────────────────────────────────────────────────────────── */
 const solutions = [
@@ -34,13 +35,13 @@ const solutions = [
     image: '/images/AI Traffic Surveillance with Plate Detection.png',
     imageAlt: 'AI Traffic Surveillance with Plate Detection',
     features: [
-      { icon: Eye,          label: 'Driver Monitoring System (DMS)',             status: null },
-      { icon: ScanLine,     label: 'Automatic Number Plate Recognition (ANPR)',  status: null },
-      { icon: Camera,       label: 'Vehicle Detection Camera',                   status: null },
-      { icon: ParkingCircle,label: 'Smart Parking',                              status: 'Planned' },
+      { icon: Eye, label: 'Driver Monitoring System (DMS)', status: null, href: '/solutions/driver-monitoring-system' },
+      { icon: ScanLine, label: 'Automatic Number Plate Recognition (ANPR)', status: null, href: '/solutions/anpr-systems' },
+      { icon: Camera, label: 'Vehicle Detection Camera', status: null, href: '/solutions/vehicle-detection-camera' },
+      { icon: ParkingCircle, label: 'Smart Parking', status: 'Planned', href: '/solutions/smart-parking' },
     ],
     ctaGradient: true,
-    href: '#integrated-solutions',
+    href: '/vehicle-mobility',
   },
   {
     id: 'surveillance',
@@ -51,14 +52,14 @@ const solutions = [
     image: '/images/AI Security Surveillance at Modern Entrance.png',
     imageAlt: 'AI Security Surveillance at Modern Entrance',
     features: [
-      { icon: HardDrive, label: 'Network Video Recorder (NVR)',        status: null },
-      { icon: Monitor,   label: 'CCTV Monitoring System',             status: null },
-      { icon: Settings,  label: 'AI Video Analytics',                 status: null },
-      { icon: Users,     label: 'People Counting',                    status: 'Planned' },
-      { icon: BarChart2, label: 'Multi-Camera Video Analytics',       status: 'Planned' },
+      { icon: HardDrive, label: 'Network Video Recorder (NVR)', status: null, href: '/solutions/nvr-systems' },
+      { icon: Monitor, label: 'CCTV Monitoring System', status: null, href: '/solutions/cctv-monitoring' },
+      { icon: Settings, label: 'AI Video Analytics', status: null, href: '/solutions/ai-video-analytics' },
+      { icon: Users, label: 'People Counting', status: 'Planned', href: '/solutions/people-counting' },
+      { icon: BarChart2, label: 'Multi-Camera Video Analytics', status: 'Planned', href: '/solutions/multi-camera-analytics' },
     ],
     ctaGradient: false,
-    href: '#integrated-solutions',
+    href: '/solutions/video-surveillance',
   },
   {
     id: 'industrial',
@@ -69,14 +70,14 @@ const solutions = [
     image: '/images/Automated Gear Inspection Line.png',
     imageAlt: 'Automated Gear Inspection Line',
     features: [
-      { icon: Monitor, label: 'Industrial / Railway HMI',            status: null },
-      { icon: Layers,  label: 'Display / Video Controller',          status: null },
-      { icon: Search,  label: 'AI Visual Inspection',                status: null },
-      { icon: Camera,  label: 'Smart Vision AI Camera',              status: null },
-      { icon: Server,  label: 'Infrastructure Control Systems',      status: 'Planned' },
+      { icon: Monitor, label: 'Industrial / Railway HMI', status: null, href: '/solutions/industrial-railway-hmi' },
+      { icon: Layers, label: 'Display / Video Controller', status: null, href: '/solutions/display-video-controller' },
+      { icon: Search, label: 'AI Visual Inspection', status: null, href: '/solutions/ai-visual-inspection' },
+      { icon: Camera, label: 'Smart Vision AI Camera', status: null, href: '/solutions/smart-vision-ai-camera' },
+      { icon: Server, label: 'Infrastructure Control Systems', status: 'Planned', href: '/solutions/infrastructure-control' },
     ],
     ctaGradient: false,
-    href: '#integrated-solutions',
+    href: '/solutions/industrial-machine-vision',
   },
   {
     id: 'defence',
@@ -87,13 +88,13 @@ const solutions = [
     image: '/images/Futuristic Mountain Surveillance HUD.png',
     imageAlt: 'Futuristic Mountain Surveillance HUD',
     features: [
-      { icon: Target,     label: 'Seeker',                          status: 'In Development' },
-      { icon: RadioTower, label: 'Surveillance Vision System',       status: 'Planned' },
-      { icon: Eye,        label: 'Target Tracking & Recognition',    status: 'Planned' },
-      { icon: Cpu,        label: 'Rugged AI Embedded System',        status: 'Planned' },
+      { icon: Target, label: 'Seeker', status: 'In Development', href: '/solutions/seeker-systems' },
+      { icon: RadioTower, label: 'Surveillance Vision System', status: 'Planned', href: '/solutions/surveillance-vision' },
+      { icon: Eye, label: 'Target Tracking & Recognition', status: 'Planned', href: '/solutions/target-tracking-recognition' },
+      { icon: Cpu, label: 'Rugged AI Embedded System', status: 'Planned', href: '/solutions/rugged-ai-embedded' },
     ],
     ctaGradient: false,
-    href: '#integrated-solutions',
+    href: '/solutions/defence-advanced-vision',
   },
 ];
 
@@ -103,11 +104,10 @@ function StatusBadge({ status }) {
   const isDev = status === 'In Development';
   return (
     <span
-      className={`inline-flex items-center ml-2 px-2 py-0.5 rounded-full text-[10px] font-semibold whitespace-nowrap ${
-        isDev
-          ? 'bg-amber-100 text-amber-700 border border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-700/40'
-          : 'bg-[#E2EEFB] text-[#089EC2] border border-[#C5DDF5] dark:bg-[#1A2C52] dark:text-[#2DD4F0] dark:border-[#244277]'
-      }`}
+      className={`inline-flex items-center ml-2 px-2 py-0.5 rounded-full text-[10px] font-semibold whitespace-nowrap ${isDev
+        ? 'bg-amber-100 text-amber-700 border border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-700/40'
+        : 'bg-[#E2EEFB] text-[#089EC2] border border-[#C5DDF5] dark:bg-[#1A2C52] dark:text-[#2DD4F0] dark:border-[#244277]'
+        }`}
     >
       {status}
     </span>
@@ -125,12 +125,22 @@ function SolutionCard({ solution }) {
       <div className="p-5 pb-4">
         <div className="flex items-start gap-3 mb-3">
           {/* Icon circle */}
-          <div className="flex-shrink-0 w-11 h-11 rounded-full bg-[#E8F4FD] dark:bg-[#1A2C52] border border-[#C5DDF5] dark:border-[#244277] flex items-center justify-center">
+          <a
+            href={solution.href}
+            onClick={(e) => navigateTo(solution.href, e)}
+            className="flex-shrink-0 w-11 h-11 rounded-full bg-[#E8F4FD] dark:bg-[#1A2C52] border border-[#C5DDF5] dark:border-[#244277] flex items-center justify-center hover:scale-105 transition-transform"
+          >
             <CardIcon className="w-5 h-5 text-[#089EC2] dark:text-[#2DD4F0]" />
-          </div>
+          </a>
           {/* Title */}
           <h3 className="text-base font-bold leading-snug text-[#14213D] dark:text-[#F8FAFC] pt-0.5">
-            {solution.title}
+            <a
+              href={solution.href}
+              onClick={(e) => navigateTo(solution.href, e)}
+              className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors"
+            >
+              {solution.title}
+            </a>
           </h3>
         </div>
         {/* Description */}
@@ -140,29 +150,38 @@ function SolutionCard({ solution }) {
       </div>
 
       {/* ── Image ── */}
-      <div className="mx-5 rounded-xl overflow-hidden border border-[#DCE8F5] dark:border-[#24355A] flex-shrink-0 h-44">
+      <a
+        href={solution.href}
+        onClick={(e) => navigateTo(solution.href, e)}
+        className="mx-5 rounded-xl overflow-hidden border border-[#DCE8F5] dark:border-[#24355A] flex-shrink-0 h-44 block group/img"
+      >
         <img
           src={solution.image}
           alt={solution.imageAlt}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-300"
           loading="lazy"
         />
-      </div>
+      </a>
 
       {/* ── Feature List ── */}
       <div className="flex-1 px-5 pt-4 pb-4 space-y-2.5">
         {solution.features.map((feat, i) => {
           const FeatIcon = feat.icon;
           return (
-            <div key={i} className="flex items-center gap-2.5">
-              <div className="flex-shrink-0 w-6 h-6 rounded-md bg-[#E8F4FD] dark:bg-[#1A2C52] flex items-center justify-center">
+            <a
+              key={i}
+              href={feat.href}
+              onClick={(e) => navigateTo(feat.href, e)}
+              className="flex items-center gap-2.5 group/feat hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors cursor-pointer"
+            >
+              <div className="flex-shrink-0 w-6 h-6 rounded-md bg-[#E8F4FD] dark:bg-[#1A2C52] group-hover/feat:bg-[#089EC2]/20 dark:group-hover/feat:bg-[#2DD4F0]/20 flex items-center justify-center transition-colors">
                 <FeatIcon className="w-3.5 h-3.5 text-[#089EC2] dark:text-[#2DD4F0]" />
               </div>
-              <span className="text-xs text-[#14213D] dark:text-[#D4E3F5] font-medium leading-tight">
+              <span className="text-xs text-[#14213D] dark:text-[#D4E3F5] group-hover/feat:text-[#089EC2] dark:group-hover/feat:text-[#2DD4F0] font-medium leading-tight transition-colors">
                 {feat.label}
               </span>
               <StatusBadge status={feat.status} />
-            </div>
+            </a>
           );
         })}
       </div>
@@ -171,11 +190,7 @@ function SolutionCard({ solution }) {
       <div className="px-5 pb-5 mt-auto">
         <a
           href={solution.href}
-          onClick={(e) => {
-            e.preventDefault();
-            const el = document.getElementById('integrated-solutions');
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-          }}
+          onClick={(e) => navigateTo(solution.href, e)}
           className="explore-btn"
         >
           Explore Solutions
