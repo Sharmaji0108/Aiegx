@@ -13,7 +13,7 @@ import { navigateTo } from '../../utils/navigation';
 const aboutUsItems = [
   {
     name: 'Company Overview',
-    href: '/about-us#who-we-are',
+    href: '/about-us#company-overview',
     icon: Building2,
   },
   {
@@ -23,12 +23,12 @@ const aboutUsItems = [
   },
   {
     name: 'Our Expertise',
-    href: '/about-us#what-we-do',
+    href: '/about-us#our-expertise',
     icon: Cpu,
   },
   {
     name: 'Our Approach',
-    href: '/about-us#engineering-capabilities',
+    href: '/about-us#our-approach',
     icon: Target,
   },
 ];

@@ -16,14 +16,12 @@ import {
   Server,
   BrainCircuit,
   Award,
-  Globe2,
-  Eye,
-  Camera,
-  Car,
-  Factory,
-  Shield,
-  Sliders,
-  Check
+  Search,
+  PenTool,
+  Code2,
+  Check,
+  ChevronRight,
+  Sliders
 } from 'lucide-react';
 import ProductBreadcrumb from '../components/products/ProductBreadcrumb';
 import SectionHeadingContainer from '../components/common/SectionHeadingContainer';
@@ -34,8 +32,31 @@ export default function AboutUsPage() {
   const [enquiryModalOpen, setEnquiryModalOpen] = useState(false);
   const [enquiryContext, setEnquiryContext] = useState('');
 
+  // Handle direct hash scroll on initial mount and when hash changes
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const scrollToHash = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        const targetId = hash.replace('#', '');
+        const el = document.getElementById(targetId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          return;
+        }
+      }
+      if (!window.location.hash) {
+        window.scrollTo(0, 0);
+      }
+    };
+
+    // Delay slightly to ensure complete DOM rendering
+    const timer = setTimeout(scrollToHash, 120);
+
+    window.addEventListener('hashchange', scrollToHash);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('hashchange', scrollToHash);
+    };
   }, []);
 
   const breadcrumbItems = [
@@ -52,81 +73,16 @@ export default function AboutUsPage() {
     if (e && typeof e.preventDefault === 'function') e.preventDefault();
     const el = document.getElementById(id);
     if (el) {
+      window.history.pushState({}, '', `/about-us#${id}`);
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
-  // 1. What We Do cards data
-  const whatWeDoItems = [
-    {
-      title: 'Embedded Computing Platforms',
-      desc: 'Ruggedized, application-specific embedded computing architectures engineered for continuous 24/7 industrial, automotive, and outdoor deployments.',
-      icon: Cpu,
-    },
-    {
-      title: 'System on Modules (SoM)',
-      desc: 'Modular, high-density computing modules adhering to industry-standard SMARC and proprietary form factors with 10+ year guaranteed supply lifecycles.',
-      icon: CircuitBoard,
-    },
-    {
-      title: 'Single Board Computers (SBC)',
-      desc: 'Production-ready, turn-key single-board computers featuring rich peripheral I/O, display interfaces, dual Gigabit Ethernet, and camera inputs.',
-      icon: Server,
-    },
-    {
-      title: 'Industrial Edge AI',
-      desc: 'Hardware-accelerated neural inferencing platforms with dedicated neural co-processors (DRP-AI) for real-time on-device computer vision.',
-      icon: BrainCircuit,
-    },
-    {
-      title: 'Embedded Software & Integration',
-      desc: 'Custom Yocto Linux BSPs, CIP Super Long Term Support (SLTS) kernels, real-time PREEMPT_RT patches, peripheral drivers, and camera ISP tuning.',
-      icon: Terminal,
-    },
-    {
-      title: 'Custom Hardware Solutions',
-      desc: 'Tailored carrier board layout, thermal conduction engineering, high-speed PCB impedance matching, and rapid prototyping for volume manufacturing.',
-      icon: Layers,
-    },
-  ];
-
-  // 2. Industries We Serve data
-  const industries = [
-    {
-      title: 'Automotive & Mobility',
-      category: 'Mobility & Transit',
-      desc: 'In-vehicle driver monitoring systems (DMS), commercial fleet telematics, smart transit controllers, and automated number plate recognition (ANPR).',
-      image: '/images/industries/electric-bus.png',
-      href: '/vehicle-mobility',
-    },
-    {
-      title: 'Industrial Automation',
-      category: 'Smart Manufacturing',
-      desc: 'Automated optical inspection (AOI), robotic control systems, machine vision sorting lines, and ruggedized industrial display controllers.',
-      image: '/images/Automated Gear Inspection Line.png',
-      href: '/solutions/industrial-machine-vision',
-    },
-    {
-      title: 'Video Surveillance',
-      category: 'Security & Monitoring',
-      desc: 'Edge network video recorders (NVR), perimeter surveillance, real-time multi-camera video analytics, and smart city infrastructure.',
-      image: '/images/industries/ai-surveillance-camera.png',
-      href: '/solutions/video-surveillance',
-    },
-    {
-      title: 'Advanced Vision & Defense',
-      category: 'Mission-Critical Systems',
-      desc: 'Ruggedized unmanned ground vehicles (UGV), high-reliability electro-optical seeker systems, and tactical edge situational awareness.',
-      image: '/images/industries/ugv-defense.png',
-      href: '/solutions/defence-advanced-vision',
-    },
-  ];
-
-  // 3. Why Choose AIEGX key strengths
+  // 1. Why AIEGX Data (6 key strengths)
   const whyChoosePoints = [
     {
       title: 'Reliable Embedded Platforms',
-      desc: 'Architected for harsh operating envelopes, wide thermal ranges (-40°C to +85°C/+105°C), high vibration, and continuous 24/7 industrial uptime.',
+      desc: 'Architected for rigorous operating envelopes, wide thermal ranges (-40°C to +85°C/+105°C), high vibration, and continuous 24/7 industrial uptime.',
       icon: ShieldCheck,
     },
     {
@@ -135,14 +91,14 @@ export default function AboutUsPage() {
       icon: CheckCircle2,
     },
     {
+      title: 'Engineering Expertise',
+      desc: 'Direct collaboration with embedded hardware designers, Linux kernel maintainers, and camera sensor tuning engineers from concept to volume production.',
+      icon: Award,
+    },
+    {
       title: 'Long-Term Product Support',
       desc: 'Guaranteed 10+ year availability roadmaps backed by long-term silicon commitments, protecting your hardware investments against premature obsolescence.',
       icon: Clock,
-    },
-    {
-      title: 'Engineering Expertise',
-      desc: 'Direct access to embedded hardware designers, Linux kernel maintainers, and camera sensor tuning engineers from concept through deployment.',
-      icon: Award,
     },
     {
       title: 'Scalable Computing Solutions',
@@ -156,37 +112,71 @@ export default function AboutUsPage() {
     },
   ];
 
-  // 4. Engineering & Technology capabilities
-  const engineeringCapabilities = [
+  // 2. Our Expertise Data (6 technical capabilities)
+  const expertiseItems = [
     {
-      number: '01',
-      title: 'Hardware Design & Integration',
+      title: 'Embedded Hardware Design',
       desc: 'High-speed multi-layer PCB layout, controlled impedance routing, power sequencing, rugged thermal dissipation, and industrial EMC/EMI compliance.',
       icon: CircuitBoard,
     },
     {
-      number: '02',
+      title: 'System on Modules (SoM)',
+      desc: 'Compact, high-density computing modules adhering to industry-standard SMARC and proprietary form factors with 10+ year guaranteed supply lifecycles.',
+      icon: Cpu,
+    },
+    {
+      title: 'Single Board Computers (SBC)',
+      desc: 'Production-ready, turn-key single-board computers featuring rich peripheral I/O, display interfaces, dual Gigabit Ethernet, and camera inputs.',
+      icon: Server,
+    },
+    {
       title: 'Embedded Linux & BSP Development',
-      desc: 'Board Support Package tailoring, CIP Super Long Term Support (SLTS) Linux kernels, real-time PREEMPT_RT patches, and custom peripheral drivers.',
+      desc: 'Custom Yocto Project recipes, CIP Super Long Term Support (SLTS) kernels, real-time PREEMPT_RT patches, peripheral drivers, and camera ISP tuning.',
       icon: Terminal,
     },
     {
-      number: '03',
-      title: 'System Integration',
-      desc: 'Custom carrier board layout, industrial I/O expansion, MIPI CSI-2 / GMSL2 multi-camera deserializers, and display interface bring-up.',
+      title: 'Hardware and Software Integration',
+      desc: 'Seamless co-design uniting carrier boards, sensor interfaces (MIPI CSI-2, GMSL2), hardware ISP pipelines, and industrial communication protocols.',
       icon: Layers,
     },
     {
-      number: '04',
       title: 'Edge AI Implementation',
-      desc: 'Neural network pruning, INT8/FP16 quantization, DRP-AI Translator compiler pipeline optimization, and zero-copy memory inference architectures.',
+      desc: 'Hardware-accelerated neural inferencing platforms with dedicated neural co-processors (DRP-AI) for real-time on-device computer vision.',
       icon: BrainCircuit,
     },
+  ];
+
+  // 3. Our Approach Data (5 development stages)
+  const approachStages = [
     {
-      number: '05',
-      title: 'Product Development & Optimization',
-      desc: 'Design for Manufacturing (DFM), environmental stress testing, lifecycle obsolescence management, and volume production support.',
-      icon: Sliders,
+      step: '01',
+      title: 'Understand Requirements',
+      desc: 'Deep-dive architectural consultation analyzing compute throughput, neural network models, thermal envelopes, I/O interfaces, and longevity goals.',
+      icon: Search,
+    },
+    {
+      step: '02',
+      title: 'Engineering & Design',
+      desc: 'Schematic capture, high-speed multi-layer PCB layout, thermal simulation modeling, power sequencing, and preliminary BSP planning.',
+      icon: PenTool,
+    },
+    {
+      step: '03',
+      title: 'Development & Integration',
+      desc: 'Rapid prototyping, carrier board bring-up, custom Yocto Linux image tailoring, camera ISP sensor tuning, and neural network compilation.',
+      icon: Code2,
+    },
+    {
+      step: '04',
+      title: 'Testing & Validation',
+      desc: 'Signal integrity verification, thermal shock chamber stress testing, industrial EMI/EMC pre-compliance, and 24/7 continuous operational benchmarking.',
+      icon: ShieldCheck,
+    },
+    {
+      step: '05',
+      title: 'Deployment & Support',
+      desc: 'Seamless transition to certified volume manufacturing, hardware revision control, CIP Linux security updates, and dedicated engineering support.',
+      icon: CheckCircle2,
     },
   ];
 
@@ -194,7 +184,7 @@ export default function AboutUsPage() {
     <div className="flex flex-col w-full max-w-full min-w-0 overflow-x-hidden bg-[#F5F8FC] dark:bg-[#0D1733] text-[#14213D] dark:text-[#F8FAFC] transition-colors duration-300">
 
       {/* ──────────────────────────────────────────────────────────
-          1. Hero Section
+          Hero Section
       ────────────────────────────────────────────────────────── */}
       <section className="relative pt-[96px] pb-12 sm:pt-[108px] sm:pb-16 lg:pt-[124px] lg:pb-20 overflow-hidden border-b border-slate-200/80 dark:border-white/10 isolate">
         {/* Subtle Ambient Background Gradients */}
@@ -205,7 +195,7 @@ export default function AboutUsPage() {
           <ProductBreadcrumb items={breadcrumbItems} />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center mt-3">
-            {/* Left Content */}
+            {/* Left Column */}
             <div className="lg:col-span-7 flex flex-col space-y-5">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-[#17264A] border border-[#089EC2]/30 dark:border-[#2DD4F0]/30 w-fit shadow-xs">
                 <span className="w-2 h-2 rounded-full bg-[#089EC2] dark:bg-[#2DD4F0] animate-pulse" />
@@ -229,7 +219,7 @@ export default function AboutUsPage() {
               <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
                 <button
                   type="button"
-                  onClick={(e) => scrollToSection('what-we-do', e)}
+                  onClick={(e) => scrollToSection('our-expertise', e)}
                   className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-sm text-white bg-gradient-to-r from-[#089EC2] to-[#0284C7] hover:from-[#0aa8cf] hover:to-[#0394de] shadow-lg shadow-[#089EC2]/25 dark:shadow-cyan-950/40 transition-all duration-200 cursor-pointer active:scale-[0.98]"
                 >
                   <span>Explore Our Capabilities</span>
@@ -238,7 +228,7 @@ export default function AboutUsPage() {
 
                 <button
                   type="button"
-                  onClick={() => handleOpenEnquiry('About Us Consultation')}
+                  onClick={() => handleOpenEnquiry('Hero Consultation')}
                   className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-[#17264D] hover:bg-slate-50 dark:hover:bg-[#1E3360] border border-slate-200 dark:border-white/10 shadow-xs transition-all duration-200 cursor-pointer group"
                 >
                   <MessageSquare className="w-4 h-4 text-[#089EC2] dark:text-[#2DD4F0]" />
@@ -269,7 +259,7 @@ export default function AboutUsPage() {
                 <div className="relative rounded-xl overflow-hidden aspect-[4/3] bg-slate-100 dark:bg-[#0b1226]">
                   <img
                     src="/images/aiegx-hardware-som-hd.jpg"
-                    alt="AIEGX Embedded Computing Hardware Platform"
+                    alt="AIEGX Embedded Computing Platform"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="eager"
                   />
@@ -290,36 +280,39 @@ export default function AboutUsPage() {
       </section>
 
       {/* ──────────────────────────────────────────────────────────
-          2. Who We Are Section
+          Section 1: Company Overview
       ────────────────────────────────────────────────────────── */}
-      <section id="who-we-are" className="py-12 sm:py-16 bg-white dark:bg-[#0e1630] border-b border-slate-200/80 dark:border-white/10 scroll-mt-20 transition-colors duration-300">
-        <div id="company-overview" className="sr-only" />
+      <section
+        id="company-overview"
+        className="py-12 sm:py-16 bg-white dark:bg-[#0e1630] border-b border-slate-200/80 dark:border-white/10 scroll-mt-24 sm:scroll-mt-28 transition-colors duration-300"
+      >
+        <div id="who-we-are" className="sr-only" />
         <div className="section-container">
           <SectionHeadingContainer
-            subheading="COMPANY OVERVIEW"
-            heading="Who We Are"
-            description="Dedicated to engineering precision, long-term stability, and transformative edge intelligence."
+            subheading="ABOUT AIEGX"
+            heading="Company Overview"
+            description="Specialized engineering in embedded computing platforms, System on Modules, and deterministic Edge AI."
           />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center mt-10">
             {/* Left: Company Description */}
             <div className="lg:col-span-7 flex flex-col space-y-4 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
               <p>
-                <strong className="text-[#14213D] dark:text-white font-semibold">AIEGX</strong> is an advanced embedded technology company dedicated to the design, engineering, and manufacturing of high-performance computing hardware and intelligent edge systems. We bridge the critical gap between complex semiconductor silicon and deployment-ready industrial appliances.
+                <strong className="text-[#14213D] dark:text-white font-semibold">AIEGX</strong> is an advanced embedded technology company dedicated to engineering high-performance embedded computing hardware, System on Modules (SoM), and industrial Edge AI solutions. We bridge the critical gap between complex semiconductor architectures and deployment-ready industrial systems.
               </p>
               <p>
-                Our multidisciplinary engineering teams specialize in high-density System on Modules (SoM), custom carrier platforms, single-board computers (SBC), and neural processing acceleration. By pairing carrier-grade board layout with hardened Linux and real-time software integration, we enable OEMs and engineering teams worldwide to transition seamlessly from rapid prototyping to certified volume production.
+                Our core engineering focus spans modular System on Modules, turn-key Single Board Computers (SBC), ruggedized industrial computing platforms, and hardware-accelerated Edge AI inferencing. By uniting high-speed carrier design with hardened Linux board support packages (BSP), AIEGX empowers technology innovators across industrial automation, intelligent mobility, smart surveillance, and defense.
               </p>
 
-              {/* Key Bullet Highlights */}
+              {/* Key Focus Badges */}
               <div className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-50 dark:bg-[#152144]/60 border border-slate-200/80 dark:border-white/10">
                   <div className="w-5 h-5 rounded-md bg-[#089EC2]/10 dark:bg-[#2DD4F0]/10 text-[#089EC2] dark:text-[#2DD4F0] flex items-center justify-center shrink-0 mt-0.5">
                     <Check className="w-3.5 h-3.5" />
                   </div>
                   <div>
-                    <h4 className="text-xs font-bold text-[#14213D] dark:text-white">Silicon Architecture Mastery</h4>
-                    <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Deep Renesas RZ Series expertise with on-chip DRP-AI neural co-processors.</p>
+                    <h4 className="text-xs font-bold text-[#14213D] dark:text-white">Embedded Hardware &amp; SoMs</h4>
+                    <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Modular, long-lifecycle System on Modules and verified carrier platforms.</p>
                   </div>
                 </div>
 
@@ -328,30 +321,30 @@ export default function AboutUsPage() {
                     <Check className="w-3.5 h-3.5" />
                   </div>
                   <div>
-                    <h4 className="text-xs font-bold text-[#14213D] dark:text-white">Hardware &amp; BSP Co-Design</h4>
-                    <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Yocto Project recipes, CIP SLTS Linux kernels, and camera ISP tuning.</p>
+                    <h4 className="text-xs font-bold text-[#14213D] dark:text-white">Industrial Computing &amp; Edge AI</h4>
+                    <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Hardware DRP-AI inferencing and deterministic real-time Linux execution.</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Right: Hardware Image */}
+            {/* Right: Company Hardware Visual */}
             <div className="lg:col-span-5 flex justify-center">
               <div className="relative w-full max-w-md rounded-2xl overflow-hidden border border-slate-200/90 dark:border-white/15 bg-slate-50 dark:bg-[#101936] shadow-xl p-2.5 sm:p-3 group">
                 <div className="relative rounded-xl overflow-hidden aspect-[4/3] bg-slate-100 dark:bg-[#0b1226]">
                   <img
                     src="/images/industrial-computing-hd.jpg"
-                    alt="Industrial Electronics & Embedded Systems"
+                    alt="AIEGX Industrial Embedded Computing"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent pointer-events-none" />
                   <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white">
                     <span className="text-[11px] font-mono tracking-wider uppercase bg-[#089EC2]/90 px-2.5 py-1 rounded text-white font-semibold">
-                      Industrial Electronics
+                      Industrial Hardware
                     </span>
                     <span className="text-[11px] font-mono text-white/80 bg-black/40 px-2 py-0.5 rounded">
-                      24/7 Reliability
+                      Production Grade
                     </span>
                   </div>
                 </div>
@@ -362,90 +355,66 @@ export default function AboutUsPage() {
       </section>
 
       {/* ──────────────────────────────────────────────────────────
-          3. Our Mission & Vision Section
+          Section 2: Why AIEGX
       ────────────────────────────────────────────────────────── */}
-      <section id="mission-vision" className="py-12 sm:py-16 bg-[#F5F8FC] dark:bg-[#0D1733] border-b border-slate-200/80 dark:border-white/10 scroll-mt-20 transition-colors duration-300">
+      <section
+        id="why-aiegx"
+        className="py-12 sm:py-16 bg-[#F5F8FC] dark:bg-[#0D1733] border-b border-slate-200/80 dark:border-white/10 scroll-mt-24 sm:scroll-mt-28 transition-colors duration-300"
+      >
         <div className="section-container">
           <SectionHeadingContainer
-            subheading="PURPOSE & DIRECTION"
-            heading="Our Mission & Vision"
-            description="Guiding our technology roadmap, engineering standards, and long-term customer partnerships."
+            subheading="OUR VALUE PROPOSITION"
+            heading="Why AIEGX"
+            description="Why leading technology companies and system integrators choose AIEGX as their embedded hardware partner."
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mt-10">
-            {/* Mission Card */}
-            <div className="bg-white dark:bg-[#101936] rounded-2xl p-6 sm:p-8 border border-slate-200/90 dark:border-white/10 shadow-xs hover:shadow-md hover:border-[#089EC2]/50 dark:hover:border-[#2DD4F0]/50 transition-all duration-200 flex flex-col justify-between relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#089EC2]/5 dark:bg-[#2DD4F0]/5 rounded-bl-full pointer-events-none" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 mt-10">
+            {whyChoosePoints.map((point, pIdx) => {
+              const Icon = point.icon;
+              return (
+                <div
+                  key={pIdx}
+                  className="bg-white dark:bg-[#101936] rounded-2xl p-6 border border-slate-200/90 dark:border-white/10 shadow-xs hover:shadow-md hover:border-[#089EC2]/40 dark:hover:border-[#2DD4F0]/40 transition-all duration-200 flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-[#17264D] text-[#089EC2] dark:text-[#2DD4F0] border border-blue-200/60 dark:border-white/10 flex items-center justify-center mb-4">
+                      <Icon className="w-5 h-5" />
+                    </div>
 
-              <div>
-                <div className="w-12 h-12 rounded-xl bg-[#E8F4FD] dark:bg-[#17264D] text-[#089EC2] dark:text-[#2DD4F0] border border-[#C5DDF5] dark:border-white/10 flex items-center justify-center mb-5">
-                  <Target className="w-6 h-6" />
+                    <h3 className="text-base font-bold text-[#14213D] dark:text-white mb-2">
+                      {point.title}
+                    </h3>
+
+                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                      {point.desc}
+                    </p>
+                  </div>
                 </div>
-
-                <div className="inline-flex items-center gap-1.5 text-xs font-mono font-bold tracking-wider uppercase text-[#089EC2] dark:text-[#2DD4F0] mb-2">
-                  <span>CORE PURPOSE</span>
-                </div>
-
-                <h3 className="text-xl sm:text-2xl font-bold text-[#14213D] dark:text-white tracking-tight mb-4">
-                  Our Mission
-                </h3>
-
-                <p className="text-base text-slate-700 dark:text-slate-200 font-medium leading-relaxed mb-6">
-                  To develop reliable, scalable, and production-ready embedded computing solutions that help businesses transform innovative ideas into real-world products.
-                </p>
-              </div>
-
-              <div className="pt-4 border-t border-slate-100 dark:border-white/10 flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
-                <CheckCircle2 className="w-4 h-4 text-[#089EC2] dark:text-[#2DD4F0] shrink-0" />
-                <span>Shortening design cycles with verified reference architectures</span>
-              </div>
-            </div>
-
-            {/* Vision Card */}
-            <div className="bg-white dark:bg-[#101936] rounded-2xl p-6 sm:p-8 border border-slate-200/90 dark:border-white/10 shadow-xs hover:shadow-md hover:border-[#3285FF]/50 dark:hover:border-[#3285FF]/50 transition-all duration-200 flex flex-col justify-between relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 dark:bg-blue-600/5 rounded-bl-full pointer-events-none" />
-
-              <div>
-                <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-[#17264D] text-[#3285FF] dark:text-[#2DD4F0] border border-blue-200/70 dark:border-white/10 flex items-center justify-center mb-5">
-                  <Eye className="w-6 h-6" />
-                </div>
-
-                <div className="inline-flex items-center gap-1.5 text-xs font-mono font-bold tracking-wider uppercase text-[#3285FF] dark:text-[#2DD4F0] mb-2">
-                  <span>STRATEGIC VISION</span>
-                </div>
-
-                <h3 className="text-xl sm:text-2xl font-bold text-[#14213D] dark:text-white tracking-tight mb-4">
-                  Our Vision
-                </h3>
-
-                <p className="text-base text-slate-700 dark:text-slate-200 font-medium leading-relaxed mb-6">
-                  To become a trusted technology partner in embedded computing and edge intelligence, enabling smarter and more connected industries.
-                </p>
-              </div>
-
-              <div className="pt-4 border-t border-slate-100 dark:border-white/10 flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
-                <CheckCircle2 className="w-4 h-4 text-[#3285FF] dark:text-[#2DD4F0] shrink-0" />
-                <span>Advancing on-device deterministic intelligence globally</span>
-              </div>
-            </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* ──────────────────────────────────────────────────────────
-          4. What We Do Section
+          Section 3: Our Expertise
       ────────────────────────────────────────────────────────── */}
-      <section id="what-we-do" className="py-12 sm:py-16 bg-white dark:bg-[#0e1630] border-b border-slate-200/80 dark:border-white/10 scroll-mt-20 transition-colors duration-300">
+      <section
+        id="our-expertise"
+        className="py-12 sm:py-16 bg-white dark:bg-[#0e1630] border-b border-slate-200/80 dark:border-white/10 scroll-mt-24 sm:scroll-mt-28 transition-colors duration-300"
+      >
+        <div id="what-we-do" className="sr-only" />
         <div id="expertise" className="sr-only" />
         <div className="section-container">
           <SectionHeadingContainer
-            subheading="CORE AREAS OF EXPERTISE"
-            heading="What We Do"
-            description="Delivering comprehensive embedded computing hardware, system-level integration, and edge intelligence platforms."
+            subheading="TECHNICAL CAPABILITIES"
+            heading="Our Expertise"
+            description="End-to-end technical capabilities across silicon architecture, carrier hardware, embedded Linux, and real-time AI."
           />
 
+          {/* 6 Capabilities Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 mt-10">
-            {whatWeDoItems.map((item, idx) => {
+            {expertiseItems.map((item, idx) => {
               const Icon = item.icon;
               return (
                 <div
@@ -469,192 +438,125 @@ export default function AboutUsPage() {
               );
             })}
           </div>
-        </div>
-      </section>
 
-      {/* ──────────────────────────────────────────────────────────
-          5. Industries We Serve Section
-      ────────────────────────────────────────────────────────── */}
-      <section id="industries" className="py-12 sm:py-16 bg-[#F5F8FC] dark:bg-[#0D1733] border-b border-slate-200/80 dark:border-white/10 scroll-mt-20 transition-colors duration-300">
-        <div className="section-container">
-          <SectionHeadingContainer
-            subheading="SECTORS & DEPLOYMENTS"
-            heading="Industries We Serve"
-            description="Empowering mission-critical systems where reliability, deterministic timing, and edge intelligence are essential."
-          />
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 mt-10">
-            {industries.map((ind, iIdx) => (
-              <a
-                key={iIdx}
-                href={ind.href}
-                onClick={(e) => navigateTo(ind.href, e)}
-                className="group flex flex-col bg-white dark:bg-[#101936] rounded-2xl overflow-hidden border border-slate-200/90 dark:border-white/10 shadow-xs hover:shadow-lg hover:border-[#089EC2]/50 dark:hover:border-[#2DD4F0]/50 transition-all duration-200 cursor-pointer"
+          {/* Hardware & Technology Visual Showcase */}
+          <div className="mt-8 p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-blue-50/70 to-slate-50 dark:from-[#132042] dark:to-[#101936] border border-slate-200/90 dark:border-white/10 flex flex-col lg:flex-row items-center justify-between gap-6">
+            <div className="flex-1 space-y-2">
+              <span className="text-xs font-mono font-bold tracking-wider uppercase text-[#089EC2] dark:text-[#2DD4F0]">
+                HARDWARE INTEGRATION STANDARDS
+              </span>
+              <h4 className="text-base sm:text-lg font-bold text-[#14213D] dark:text-white">
+                Engineered for High-Density Signal Integrity &amp; Extended Lifecycles
+              </h4>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl">
+                Our board layouts undergo rigorous simulation for impedance matching, thermal dissipation, and industrial EMC/EMI compliance to guarantee continuous field reliability.
+              </p>
+            </div>
+            <div className="flex items-center gap-3 shrink-0">
+              <button
+                type="button"
+                onClick={() => handleOpenEnquiry('Expertise Architecture Consultation')}
+                className="px-5 py-2.5 rounded-xl text-xs font-semibold text-white bg-[#089EC2] hover:bg-[#0aa8cf] shadow-sm transition-colors cursor-pointer"
               >
-                {/* Image Container with Consistent Aspect Ratio */}
-                <div className="relative aspect-[16/10] overflow-hidden bg-slate-100 dark:bg-[#0b1226]">
-                  <img
-                    src={ind.image}
-                    alt={ind.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent pointer-events-none" />
-                  <span className="absolute bottom-2.5 left-3 text-[10px] font-mono tracking-wider uppercase font-semibold bg-[#089EC2]/90 text-white px-2 py-0.5 rounded">
-                    {ind.category}
-                  </span>
-                </div>
-
-                {/* Card Content */}
-                <div className="p-5 flex flex-col flex-1 justify-between space-y-3">
-                  <div>
-                    <h3 className="text-base font-bold text-[#14213D] dark:text-white group-hover:text-[#089EC2] dark:group-hover:text-[#2DD4F0] transition-colors flex items-center justify-between">
-                      <span>{ind.title}</span>
-                      <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-[#089EC2] dark:text-[#2DD4F0]" />
-                    </h3>
-                    <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mt-2">
-                      {ind.desc}
-                    </p>
-                  </div>
-
-                  <span className="inline-flex items-center text-xs font-semibold text-[#089EC2] dark:text-[#2DD4F0] group-hover:underline pt-2 border-t border-slate-100 dark:border-white/5">
-                    Explore Solutions &rarr;
-                  </span>
-                </div>
-              </a>
-            ))}
+                Discuss Technical Specs
+              </button>
+            </div>
           </div>
         </div>
       </section>
 
       {/* ──────────────────────────────────────────────────────────
-          6. Why Choose AIEGX Section
+          Section 4: Our Approach
       ────────────────────────────────────────────────────────── */}
-      <section id="why-aiegx" className="py-12 sm:py-16 bg-white dark:bg-[#0e1630] border-b border-slate-200/80 dark:border-white/10 scroll-mt-20 transition-colors duration-300">
+      <section
+        id="our-approach"
+        className="py-12 sm:py-16 bg-[#F5F8FC] dark:bg-[#0D1733] border-b border-slate-200/80 dark:border-white/10 scroll-mt-24 sm:scroll-mt-28 transition-colors duration-300"
+      >
+        <div id="engineering-capabilities" className="sr-only" />
         <div className="section-container">
           <SectionHeadingContainer
-            subheading="OUR VALUE PROPOSITION"
-            heading="Why Choose AIEGX"
-            description="Built on engineering rigor, long-term supply stability, and dedicated customer collaboration."
+            subheading="DEVELOPMENT WORKFLOW"
+            heading="Our Approach"
+            description="A structured, agile development process guiding your embedded project from initial concept to certified volume production."
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 mt-10">
-            {whyChoosePoints.map((point, pIdx) => {
-              const Icon = point.icon;
-              return (
-                <div
-                  key={pIdx}
-                  className="bg-slate-50 dark:bg-[#152144]/60 rounded-2xl p-6 border border-slate-200/80 dark:border-white/10 shadow-xs hover:shadow-md hover:border-[#089EC2]/40 dark:hover:border-[#2DD4F0]/40 transition-all duration-200 flex flex-col justify-between"
-                >
-                  <div>
-                    <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-[#17264D] text-[#089EC2] dark:text-[#2DD4F0] border border-blue-200/60 dark:border-white/10 flex items-center justify-center mb-4">
-                      <Icon className="w-5 h-5" />
-                    </div>
+          {/* Desktop Timeline (Horizontal Process) */}
+          <div className="hidden md:block mt-12 relative">
+            {/* Connecting Horizontal Line across steps */}
+            <div className="absolute top-10 left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-[#089EC2]/30 via-[#3285FF]/40 to-[#089EC2]/30 dark:from-[#2DD4F0]/20 dark:via-[#3285FF]/30 dark:to-[#2DD4F0]/20 pointer-events-none" />
 
-                    <h3 className="text-base font-bold text-[#14213D] dark:text-white mb-2">
-                      {point.title}
-                    </h3>
-
-                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                      {point.desc}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ──────────────────────────────────────────────────────────
-          7. Engineering & Technology Section
-      ────────────────────────────────────────────────────────── */}
-      <section id="engineering-capabilities" className="py-12 sm:py-16 bg-[#F5F8FC] dark:bg-[#0D1733] border-b border-slate-200/80 dark:border-white/10 scroll-mt-20 transition-colors duration-300">
-        <div id="our-approach" className="sr-only" />
-        <div className="section-container">
-          <SectionHeadingContainer
-            subheading="TECHNICAL EXCELLENCE"
-            heading="Engineering & Technology"
-            description="End-to-end engineering from high-speed schematic design through production BSP optimization and edge AI deployment."
-          />
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center mt-10">
-            {/* Left Column: 5 Capabilities Steps */}
-            <div className="lg:col-span-7 space-y-3.5">
-              {engineeringCapabilities.map((cap, cIdx) => {
-                const Icon = cap.icon;
+            <div className="grid grid-cols-5 gap-4 relative z-10">
+              {approachStages.map((stage, sIdx) => {
+                const Icon = stage.icon;
                 return (
-                  <div
-                    key={cIdx}
-                    className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-[#101936] border border-slate-200/90 dark:border-white/10 shadow-xs hover:border-[#089EC2]/40 dark:hover:border-[#2DD4F0]/40 transition-all duration-200 flex items-start gap-4"
-                  >
-                    <div className="w-9 h-9 rounded-xl bg-[#089EC2]/10 dark:bg-[#2DD4F0]/10 text-[#089EC2] dark:text-[#2DD4F0] flex items-center justify-center shrink-0 text-xs font-mono font-bold mt-0.5">
-                      {cap.number}
+                  <div key={sIdx} className="flex flex-col items-center text-center group">
+                    {/* Circle Node with Step Badge */}
+                    <div className="relative mb-5">
+                      <div className="w-16 h-16 rounded-2xl bg-white dark:bg-[#101936] border-2 border-slate-200 dark:border-white/15 shadow-sm group-hover:border-[#089EC2] dark:group-hover:border-[#2DD4F0] flex items-center justify-center transition-all duration-200 group-hover:scale-105">
+                        <Icon className="w-6 h-6 text-[#089EC2] dark:text-[#2DD4F0]" />
+                      </div>
+                      <span className="absolute -top-2 -right-2 px-1.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-[#089EC2] text-white shadow-xs">
+                        {stage.step}
+                      </span>
                     </div>
 
-                    <div className="flex-1">
-                      <h4 className="text-sm sm:text-base font-bold text-[#14213D] dark:text-white mb-1">
-                        {cap.title}
+                    {/* Step Content */}
+                    <div className="p-4 rounded-xl bg-white/70 dark:bg-[#101936]/70 border border-slate-200/80 dark:border-white/10 flex-1 w-full flex flex-col justify-start shadow-xs">
+                      <h4 className="text-sm font-bold text-[#14213D] dark:text-white mb-1.5 group-hover:text-[#089EC2] dark:group-hover:text-[#2DD4F0] transition-colors">
+                        {stage.title}
                       </h4>
-                      <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                        {cap.desc}
+                      <p className="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">
+                        {stage.desc}
                       </p>
                     </div>
                   </div>
                 );
               })}
             </div>
+          </div>
 
-            {/* Right Column: Technology Visual & Specs */}
-            <div className="lg:col-span-5 flex flex-col space-y-4">
-              <div className="relative w-full rounded-2xl overflow-hidden border border-slate-200/90 dark:border-white/15 bg-white dark:bg-[#101936] shadow-xl p-3">
-                <div className="relative rounded-xl overflow-hidden aspect-[4/3] bg-slate-100 dark:bg-[#0b1226]">
-                  <img
-                    src="/images/capabilities/hardware-design.png"
-                    alt="Hardware Design & PCB Engineering"
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent pointer-events-none" />
-                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white">
-                    <span className="text-[11px] font-mono tracking-wider uppercase bg-[#089EC2]/90 px-2.5 py-1 rounded text-white font-semibold">
-                      Full-Stack Engineering
-                    </span>
-                    <span className="text-[11px] font-mono text-white/80 bg-black/40 px-2 py-0.5 rounded">
-                      DFM Validated
-                    </span>
+          {/* Mobile Timeline (Vertical Process) */}
+          <div className="md:hidden mt-8 relative pl-6">
+            {/* Connecting Vertical Line */}
+            <div className="absolute left-3 top-3 bottom-3 w-0.5 bg-gradient-to-b from-[#089EC2] via-[#3285FF] to-[#089EC2]/40" />
+
+            <div className="space-y-6">
+              {approachStages.map((stage, sIdx) => {
+                const Icon = stage.icon;
+                return (
+                  <div key={sIdx} className="relative flex items-start gap-4">
+                    {/* Node Dot / Badge */}
+                    <div className="absolute -left-[23px] top-1 w-7 h-7 rounded-full bg-white dark:bg-[#101936] border-2 border-[#089EC2] dark:border-[#2DD4F0] flex items-center justify-center text-[10px] font-mono font-bold text-[#089EC2] dark:text-[#2DD4F0] shadow-xs">
+                      {stage.step}
+                    </div>
+
+                    {/* Card Content */}
+                    <div className="flex-1 p-4 rounded-xl bg-white dark:bg-[#101936] border border-slate-200 dark:border-white/10 shadow-xs">
+                      <div className="flex items-center gap-2 mb-1.5">
+                        <Icon className="w-4 h-4 text-[#089EC2] dark:text-[#2DD4F0]" />
+                        <h4 className="text-sm font-bold text-[#14213D] dark:text-white">
+                          {stage.title}
+                        </h4>
+                      </div>
+                      <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                        {stage.desc}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </div>
-
-              {/* Technical Spec Quick Badges */}
-              <div className="p-4 rounded-xl bg-white dark:bg-[#101936] border border-slate-200/90 dark:border-white/10 shadow-xs grid grid-cols-2 gap-2 text-xs">
-                <div className="flex items-center gap-2 text-slate-600 dark:text-slate-300">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-[#089EC2] dark:text-[#2DD4F0]" />
-                  <span>High-Speed PCB Design</span>
-                </div>
-                <div className="flex items-center gap-2 text-slate-600 dark:text-slate-300">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-[#089EC2] dark:text-[#2DD4F0]" />
-                  <span>Yocto Linux &amp; RTOS</span>
-                </div>
-                <div className="flex items-center gap-2 text-slate-600 dark:text-slate-300">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-[#089EC2] dark:text-[#2DD4F0]" />
-                  <span>MIPI CSI-2 &amp; GMSL2</span>
-                </div>
-                <div className="flex items-center gap-2 text-slate-600 dark:text-slate-300">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-[#089EC2] dark:text-[#2DD4F0]" />
-                  <span>DRP-AI Model Pruning</span>
-                </div>
-              </div>
+                );
+              })}
             </div>
           </div>
         </div>
       </section>
 
       {/* ──────────────────────────────────────────────────────────
-          8. Final CTA Section
+          Final CTA Section
       ────────────────────────────────────────────────────────── */}
-      <section id="contact" className="py-14 sm:py-20 relative bg-gradient-to-b from-white to-blue-50/60 dark:from-[#0e1630] dark:to-[#081026] text-center border-t border-slate-200/80 dark:border-white/10">
+      <section
+        id="contact"
+        className="py-14 sm:py-20 relative bg-gradient-to-b from-white to-blue-50/60 dark:from-[#0e1630] dark:to-[#081026] text-center border-t border-slate-200/80 dark:border-white/10 scroll-mt-24 sm:scroll-mt-28"
+      >
         <div className="section-container max-w-3xl mx-auto flex flex-col items-center">
           <div className="w-12 h-12 rounded-2xl bg-blue-100 dark:bg-[#17264D] text-[#089EC2] dark:text-[#2DD4F0] flex items-center justify-center mb-4 shadow-sm border border-blue-200/60 dark:border-white/10">
             <Sparkles className="w-6 h-6" />
@@ -671,18 +573,18 @@ export default function AboutUsPage() {
           <div className="mt-6 flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
             <button
               type="button"
-              onClick={() => handleOpenEnquiry('Final CTA Inquiry')}
+              onClick={() => handleOpenEnquiry('Final CTA Contact')}
               className="w-full sm:w-auto px-8 py-3.5 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-[#089EC2] to-[#0284C7] hover:from-[#0aa8cf] hover:to-[#0394de] shadow-lg shadow-[#089EC2]/25 dark:shadow-cyan-950/40 cursor-pointer active:scale-95 transition-all"
             >
               Contact Us
             </button>
-            <a
-              href="#who-we-are"
-              onClick={(e) => scrollToSection('who-we-are', e)}
+            <button
+              type="button"
+              onClick={(e) => scrollToSection('company-overview', e)}
               className="w-full sm:w-auto px-6 py-3.5 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-[#17264D] hover:bg-slate-50 dark:hover:bg-[#1E3360] border border-slate-200 dark:border-white/10 cursor-pointer transition-colors"
             >
-              Learn More About AIEGX
-            </a>
+              Back to Overview
+            </button>
           </div>
         </div>
       </section>

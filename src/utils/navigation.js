@@ -9,19 +9,32 @@ export function navigateTo(targetPath, e) {
 
   const [pathPart, hashPart] = targetPath.split('#');
   const currentPath = window.location.pathname.toLowerCase().replace(/\/+$/, '') || '/';
-  const nextPath = pathPart || currentPath || '/';
+  const targetCleanPath = (pathPart || currentPath).toLowerCase().replace(/\/+$/, '') || '/';
+  const fullTarget = hashPart ? `${targetCleanPath}#${hashPart}` : targetCleanPath;
 
-  window.dispatchEvent(new CustomEvent('aiegx-navigate', { detail: nextPath }));
+  const isSamePage = targetCleanPath === currentPath;
 
-  if (hashPart) {
-    setTimeout(() => {
+  if (isSamePage) {
+    if (hashPart) {
+      window.history.pushState({}, '', fullTarget);
       const el = document.getElementById(hashPart);
       if (el) {
         el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
-    }, 100);
+    } else {
+      window.history.pushState({}, '', fullTarget);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   } else {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Navigating from another page to targetCleanPath#hashPart
+    window.dispatchEvent(new CustomEvent('aiegx-navigate', { detail: fullTarget }));
+    if (hashPart) {
+      setTimeout(() => {
+        const el = document.getElementById(hashPart);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 200);
+    }
   }
 }
-

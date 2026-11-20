@@ -24,6 +24,7 @@ import {
   Target
 } from 'lucide-react';
 import { SOLUTIONS_CATEGORIES } from '../../data/solutionsData';
+import { navigateTo } from '../../utils/navigation';
 
 const mobileProductCategories = [
   {
@@ -74,10 +75,10 @@ const mobileProductCategories = [
 ];
 
 const mobileAboutItems = [
-  { name: 'Company Overview', href: '/about-us#who-we-are', icon: Building2 },
+  { name: 'Company Overview', href: '/about-us#company-overview', icon: Building2 },
   { name: 'Why AIEGX', href: '/about-us#why-aiegx', icon: Sparkles },
-  { name: 'Our Expertise', href: '/about-us#what-we-do', icon: Cpu },
-  { name: 'Our Approach', href: '/about-us#engineering-capabilities', icon: Target },
+  { name: 'Our Expertise', href: '/about-us#our-expertise', icon: Cpu },
+  { name: 'Our Approach', href: '/about-us#our-approach', icon: Target },
 ];
 
 export default function Header() {
@@ -215,37 +216,8 @@ export default function Header() {
 
     if (!href) return;
 
-    if (href.startsWith('/')) {
-      const [pathPart, hashPart] = href.split('#');
-      window.dispatchEvent(new CustomEvent('aiegx-navigate', { detail: pathPart }));
-      if (hashPart) {
-        setTimeout(() => {
-          const el = document.getElementById(hashPart);
-          if (el) {
-            el.scrollIntoView({ behavior: 'smooth' });
-          }
-        }, 120);
-      } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    } else if (href.startsWith('#')) {
-      const targetId = href.replace('#', '');
-      const currentPath = window.location.pathname.toLowerCase().replace(/\/+$/, '') || '/';
-
-      if (currentPath === '/' || currentPath === '') {
-        const el = document.getElementById(targetId) || document.getElementById(targetId === 'integrated-solutions' ? 'solutions' : targetId);
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth' });
-        }
-      } else {
-        window.dispatchEvent(new CustomEvent('aiegx-navigate', { detail: '/' }));
-        setTimeout(() => {
-          const el = document.getElementById(targetId) || document.getElementById(targetId === 'integrated-solutions' ? 'solutions' : targetId);
-          if (el) {
-            el.scrollIntoView({ behavior: 'smooth' });
-          }
-        }, 150);
-      }
+    if (href.startsWith('/') || href.startsWith('#')) {
+      navigateTo(href);
     }
   };
 

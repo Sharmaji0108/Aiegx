@@ -62,7 +62,9 @@ export default function App() {
         }
         window.history.pushState({}, '', targetPath);
         setCurrentPath(targetPath);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (!targetPath.includes('#')) {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
       }
     };
 
