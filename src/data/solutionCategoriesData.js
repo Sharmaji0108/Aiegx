@@ -22,6 +22,8 @@ export const VEHICLE_MOBILITY_DATA = {
   route: '/vehicle-mobility',
   title: 'Vehicle & Mobility Solutions',
   badge: 'AUTOMOTIVE & INTELLIGENT MOBILITY',
+  solutionsSubtitle:
+    'Explore intelligent embedded vision and edge AI solutions designed to improve vehicle safety, identification, detection and smart transportation.',
   description:
     'High-reliability in-cabin and exterior automotive edge vision platforms powered by Renesas RZ/V2L and RZ/V2H neural MPUs, enabling real-time driver safety, automated plate recognition, and smart parking automation.',
   heroImage: '/images/AI Traffic Surveillance with Plate Detection.png',
@@ -67,7 +69,7 @@ export const VEHICLE_MOBILITY_DATA = {
       status: null,
       image: '/images/Electric Bus at Smart City Stop.png',
       shortDescription:
-        'In-cabin vision system tracking driver attention, drowsiness, and eye gaze in real time to satisfy safety standards.',
+        'Real-time driver monitoring for fatigue detection, attention tracking and enhanced road safety.',
       keyFeatures: [
         'Sub-15ms pupil and facial landmark tracking',
         'Pulsed 940nm NIR illumination for nighttime vision'
@@ -79,7 +81,7 @@ export const VEHICLE_MOBILITY_DATA = {
       status: null,
       image: '/images/AI Traffic Surveillance with Plate Detection.png',
       shortDescription:
-        'High-speed multi-lane license plate capture and vehicle classification at speeds exceeding 160 km/h.',
+        'Intelligent number plate recognition for automated vehicle identification and access management.',
       keyFeatures: [
         'High-speed plate recognition with HDR anti-glare',
         'Vehicle make, model, and color classification'
@@ -91,7 +93,7 @@ export const VEHICLE_MOBILITY_DATA = {
       status: null,
       image: '/images/Electric Bus at Smart City Stop.png',
       shortDescription:
-        'Roadside edge vision sensor delivering real-time vehicle counting, queue tracking, and incident warnings.',
+        'AI-powered vehicle detection, classification and counting for intelligent traffic monitoring.',
       keyFeatures: [
         'Multi-class vehicle and pedestrian detection',
         'Continuous queue measurement for signal control'
@@ -103,7 +105,7 @@ export const VEHICLE_MOBILITY_DATA = {
       status: 'Planned',
       image: '/images/Smart City.png',
       shortDescription:
-        'Multi-space optical parking occupancy monitoring and dynamic guidance with automated EV stall enforcement.',
+        'Automated parking detection, occupancy monitoring and smart parking management.',
       keyFeatures: [
         'Multi-bay optical occupancy tracking',
         'Automated detection of unauthorized EV bay parking'
@@ -135,6 +137,8 @@ export const VIDEO_SURVEILLANCE_DATA = {
   route: '/solutions/video-surveillance',
   title: 'Video & Surveillance Solutions',
   badge: 'INTELLIGENT VISION & PERIMETER SECURITY',
+  solutionsSubtitle:
+    'Explore intelligent edge video recording, perimeter monitoring, and real-time AI vision analytics engineered for high-security environments.',
   description:
     'Scalable edge video recording, perimeter intrusion detection, and deep learning video analytics powered by Renesas RZ Series microprocessors with multi-stream hardware decoding.',
   heroImage: '/images/AI Security Surveillance at Modern Entrance.png',
@@ -260,6 +264,8 @@ export const INDUSTRIAL_VISION_DATA = {
   route: '/solutions/industrial-machine-vision',
   title: 'Industrial & Machine Vision Solutions',
   badge: 'FACTORY AUTOMATION & MACHINE VISION',
+  solutionsSubtitle:
+    'Explore automated optical inspection, industrial control HMIs, and edge vision systems engineered for zero-defect manufacturing.',
   description:
     'Sub-millimeter automated optical inspection, rugged railway HMIs, multi-display video controllers, and smart AI cameras engineered for deterministic industrial throughput.',
   heroImage: '/images/Automated Gear Inspection Line.png',
@@ -385,6 +391,8 @@ export const DEFENCE_VISION_DATA = {
   route: '/solutions/defence-advanced-vision',
   title: 'Defence & Advanced Vision Solutions',
   badge: 'STRATEGIC & DEFENCE TECHNOLOGIES',
+  solutionsSubtitle:
+    'Explore mission-critical electro-optical guidance, tactical target tracking, and ruggedized edge computing systems.',
   description:
     'SWaP-C optimized electro-optical seeker guidance, dual-spectrum surveillance, multi-target tracking, and MIL-STD-810H rugged embedded AI systems.',
   heroImage: '/images/Futuristic Mountain Surveillance HUD.png',
