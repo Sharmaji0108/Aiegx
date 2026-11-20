@@ -15,7 +15,7 @@ export default function KeyCapabilities({ capabilities = [] }) {
   if (!capabilities || capabilities.length === 0) return null;
 
   return (
-    <section className="py-10 sm:py-12 bg-white dark:bg-[#0e1630] border-b border-slate-200/80 dark:border-white/10 transition-colors duration-300">
+    <section className="py-10 sm:py-12 bg-transparent border-b border-slate-200/80 dark:border-white/10 transition-colors duration-300">
       <div className="section-container">
         {/* Section Heading Container */}
         <SectionHeadingContainer
@@ -24,8 +24,8 @@ export default function KeyCapabilities({ capabilities = [] }) {
           description="Core functional capabilities engineered into this platform architecture for demanding real-time operational environments."
         />
 
-        {/* Key Capabilities Panel */}
-        <div className="mt-6 sm:mt-8 rounded-2xl border border-[#D0E3F7] dark:border-white/10 bg-slate-50/80 dark:bg-[#152144]/60 shadow-xs overflow-hidden">
+        {/* Key Capabilities Panel (Transparent Background) */}
+        <div className="mt-6 sm:mt-8 rounded-2xl border border-[#D0E3F7] dark:border-white/10 bg-transparent shadow-xs overflow-hidden">
           {/* Desktop & Tablet: Single Horizontal Row with Thin Vertical Separators */}
           <div className="hidden sm:grid sm:grid-cols-5 divide-x divide-[#D0E3F7] dark:divide-white/10">
             {capabilities.map((cap, idx) => {
