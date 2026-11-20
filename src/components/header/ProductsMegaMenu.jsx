@@ -2,10 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import {
   X,
   ChevronRight,
-  Layers,
   Cpu,
-  Server,
-  Zap
+  Server
 } from 'lucide-react';
 
 const categories = [
@@ -29,30 +27,6 @@ const categories = [
       { name: 'RZ/G2N SBC (Development Platform)', href: '/products/rz-g2n/sbc' },
       { name: 'RZ/V2L SBC (Development Platform)', href: '/products/rzv2l/complete-sbc/' },
       { name: 'RZ/V2H SBC (Development Platform)', href: '/products/rzv2h/complete-sbc/' },
-    ],
-  },
-  {
-    id: 'solutions',
-    name: 'Embedded Solutions',
-    icon: Zap,
-    items: [
-      { name: 'Vehicle & Mobility Solutions', href: '#integrated-solutions' },
-      { name: 'Video & Surveillance Solutions', href: '#integrated-solutions' },
-      { name: 'Industrial & Machine Vision Solutions', href: '#integrated-solutions' },
-      { name: 'Defence & Advanced Vision Solutions', href: '#integrated-solutions' },
-      { name: 'Autonomous Robotics & SLAM Solutions', href: '#integrated-solutions' },
-    ],
-  },
-  {
-    id: 'software',
-    name: 'Software',
-    icon: Layers,
-    items: [
-      { name: 'Linux BSP & Yocto', href: '#developers' },
-      { name: 'Real-Time OS (RTOS)', href: '#developers' },
-      { name: 'AI Model Zoo & Neural SDK', href: '#developers' },
-      { name: 'Fleet Ops & OTA Updates', href: '#developers' },
-      { name: 'Developer Tools & IDE Extensions', href: '#developers' },
     ],
   },
 ];
