@@ -33,10 +33,10 @@ export default function KeyCapabilities({ capabilities = [] }) {
               return (
                 <div
                   key={idx}
-                  className="flex flex-col items-center justify-center text-center px-3 py-6 lg:py-7 group transition-all"
+                  className="flex flex-col items-center justify-center text-center px-3 py-6 lg:py-7"
                 >
                   {/* Prominent Blue/Cyan Icon Badge */}
-                  <div className="w-12 h-12 lg:w-14 lg:h-14 rounded-2xl bg-white dark:bg-[#17264D] text-[#089EC2] dark:text-[#2DD4F0] border border-[#CDE1F5] dark:border-white/10 shadow-xs flex items-center justify-center mb-3.5 group-hover:scale-110 group-hover:bg-[#089EC2] group-hover:text-white dark:group-hover:bg-[#2DD4F0] dark:group-hover:text-[#0D1733] transition-all duration-200 shrink-0">
+                  <div className="w-12 h-12 lg:w-14 lg:h-14 rounded-2xl bg-white dark:bg-[#17264D] text-[#089EC2] dark:text-[#2DD4F0] border border-[#CDE1F5] dark:border-white/10 shadow-xs flex items-center justify-center mb-3.5 shrink-0">
                     {Icon ? <Icon className="w-6 h-6 lg:w-7 lg:h-7" /> : null}
                   </div>
 
