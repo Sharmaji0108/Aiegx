@@ -1,3 +1,22 @@
+import {
+  Eye,
+  Scan,
+  Car,
+  SquareParking,
+  BrainCircuit,
+  Video,
+  Users,
+  Layers,
+  HardDrive,
+  AlertTriangle,
+  Monitor,
+  Cpu,
+  Gauge,
+  Target,
+  Radar,
+  Zap
+} from 'lucide-react';
+
 export const VEHICLE_MOBILITY_DATA = {
   id: 'vehicle-mobility',
   route: '/vehicle-mobility',
@@ -10,6 +29,13 @@ export const VEHICLE_MOBILITY_DATA = {
     'AEC-Q100 Automotive Ready',
     'Sub-15ms Neural Inferencing',
     '10+ Year Supply Longevity'
+  ],
+  keyCapabilities: [
+    { name: 'Driver Safety & Monitoring', icon: Eye },
+    { name: 'Vehicle Identification (ANPR)', icon: Scan },
+    { name: 'Vehicle Detection', icon: Car },
+    { name: 'Smart Parking', icon: SquareParking },
+    { name: 'Edge AI Processing', icon: BrainCircuit }
   ],
   overview: [
     'Deterministic, low-latency edge vision computing engineered for automotive, commercial fleets, and intelligent transit systems.',
@@ -116,6 +142,13 @@ export const VIDEO_SURVEILLANCE_DATA = {
     'Multi-Stream 4K Codecs',
     'Low-Power DRP-AI Inference',
     '24/7 Fanless Operation'
+  ],
+  keyCapabilities: [
+    { name: 'Real-Time Video Monitoring', icon: Video },
+    { name: 'Intelligent Video Analytics', icon: BrainCircuit },
+    { name: 'People Detection & Counting', icon: Users },
+    { name: 'Multi-Camera Processing', icon: Layers },
+    { name: 'Smart Recording Systems', icon: HardDrive }
   ],
   overview: [
     'Proactive edge video intelligence transforming conventional CCTV streams into real-time threat detection networks.',
@@ -235,6 +268,13 @@ export const INDUSTRIAL_VISION_DATA = {
     'Deterministic Real-Time OS',
     'EN 50155 Transit Certified'
   ],
+  keyCapabilities: [
+    { name: 'Automated Visual Inspection', icon: Scan },
+    { name: 'Defect Detection', icon: AlertTriangle },
+    { name: 'Industrial HMI', icon: Monitor },
+    { name: 'Real-Time Image Processing', icon: Cpu },
+    { name: 'Machine Monitoring', icon: Gauge }
+  ],
   overview: [
     'Deterministic edge computing and deep learning defect inspection deployed directly into factories, robotic cells, and rolling stock.',
     'Renesas RZ/V2H & RZ/G2L processors with 10 TOPS DRP-AI, real-time Cortex-M33/R8 cores, and sub-millisecond control loops.',
@@ -352,6 +392,13 @@ export const DEFENCE_VISION_DATA = {
     'MIL-STD-810H & SWaP-C',
     '120 FPS Target Tracking',
     'GPS-Denied Autonomy'
+  ],
+  keyCapabilities: [
+    { name: 'Target Detection & Recognition', icon: Target },
+    { name: 'Object Tracking', icon: Radar },
+    { name: 'Advanced Image Processing', icon: Eye },
+    { name: 'Embedded Edge AI', icon: Cpu },
+    { name: 'Real-Time Vision Processing', icon: Zap }
   ],
   overview: [
     'SWaP-C optimized electro-optical guidance, dual-spectrum surveillance, and tactical neural situational awareness.',

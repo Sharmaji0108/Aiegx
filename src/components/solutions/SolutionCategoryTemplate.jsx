@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import ProductBreadcrumb from '../products/ProductBreadcrumb';
 import SectionHeadingContainer from '../common/SectionHeadingContainer';
+import KeyCapabilities from './KeyCapabilities';
 import { ProductEnquiryModal } from '../products/ProductEnquiry';
 import { navigateTo } from '../../utils/navigation';
 
@@ -138,66 +139,8 @@ export default function SolutionCategoryTemplate({ data }) {
         </div>
       </section>
 
-      {/* ── 2. Solution Overview Section ── */}
-      <section className="py-12 sm:py-16 bg-white dark:bg-[#0e1630] border-b border-slate-200/80 dark:border-white/10 transition-colors duration-300">
-        <div className="section-container">
-          <SectionHeadingContainer
-            subheading="SYSTEM OVERVIEW & CAPABILITIES"
-            heading={
-              <>
-                Application{' '}
-                <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
-                  Engineering & Design
-                </span>
-              </>
-            }
-            description="Deep technical integration of Renesas RZ Series microprocessors, deterministic Linux kernels, and industrial-grade edge carrier modules."
-          />
-
-          {/* Horizontal Overview Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 mb-10 items-stretch">
-            {data.overview.map((paragraph, pIdx) => (
-              <div
-                key={pIdx}
-                className="bg-slate-50/80 dark:bg-[#152144]/60 p-5 rounded-xl border border-slate-200/80 dark:border-white/10 shadow-xs hover:shadow-md hover:border-[#089EC2]/40 dark:hover:border-[#2DD4F0]/40 transition-all duration-200 flex flex-col justify-between"
-              >
-                <div className="flex items-start gap-3">
-                  <span className="w-6 h-6 rounded-md bg-[#089EC2]/10 dark:bg-[#2DD4F0]/10 text-[#089EC2] dark:text-[#2DD4F0] flex items-center justify-center text-xs font-mono font-bold shrink-0 mt-0.5">
-                    0{pIdx + 1}
-                  </span>
-                  <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
-                    {paragraph}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Core Pillars / Highlights */}
-          {data.pillars && data.pillars.length > 0 && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-6">
-              {data.pillars.map((pillar, pilIdx) => (
-                <div
-                  key={pilIdx}
-                  className="bg-slate-50 dark:bg-[#152144]/60 rounded-xl p-5 border border-slate-200/80 dark:border-white/10 shadow-xs flex flex-col justify-between"
-                >
-                  <div>
-                    <div className="w-9 h-9 rounded-lg bg-blue-50 dark:bg-[#17264D] text-[#089EC2] dark:text-[#2DD4F0] flex items-center justify-center mb-3">
-                      <CheckCircle2 className="w-4 h-4" />
-                    </div>
-                    <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-1.5">
-                      {pillar.title}
-                    </h4>
-                    <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                      {pillar.desc}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
+      {/* ── 2. Key Capabilities Section ── */}
+      <KeyCapabilities capabilities={data.keyCapabilities} />
 
       {/* ── 3. Subtopics Section (Clean Responsive Card Layout) ── */}
       <section
