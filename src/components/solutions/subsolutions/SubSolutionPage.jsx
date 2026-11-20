@@ -17,6 +17,7 @@ import { SUBSOLUTIONS_DATA } from '../../../data/subSolutionsData';
 import { navigateTo } from '../../../utils/navigation';
 
 export default function SubSolutionPage({ slug, data: propData }) {
+  const [activeTab, setActiveTab] = useState('overview');
   const [enquiryModalOpen, setEnquiryModalOpen] = useState(false);
 
   // Resolve sub-solution data from props or centralized configuration
@@ -76,17 +77,17 @@ export default function SubSolutionPage({ slug, data: propData }) {
                   <span>Request Solution Architecture</span>
                 </button>
 
-                <a
-                  href="#overview"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document.getElementById('overview')?.scrollIntoView({ behavior: 'smooth' });
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveTab('system-architecture');
+                    document.getElementById('subsolution-tab-content')?.scrollIntoView({ behavior: 'smooth' });
                   }}
                   className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-[#17264D] hover:bg-slate-50 dark:hover:bg-[#1E3360] border border-slate-200 dark:border-white/10 shadow-xs transition-all duration-200 cursor-pointer"
                 >
                   <Layers className="w-4 h-4 text-[#089EC2] dark:text-[#2DD4F0]" />
                   <span>Explore Architecture</span>
-                </a>
+                </button>
               </div>
 
               {/* Quick Spec Highlights */}
@@ -130,27 +131,40 @@ export default function SubSolutionPage({ slug, data: propData }) {
         </div>
       </section>
 
-      {/* ── Top Navigation Tabs ── */}
-      <SubSolutionTabs />
+      {/* ── Top Navigation Tabs (Dynamic Tab-Switching) ── */}
+      <SubSolutionTabs activeTab={activeTab} onSelectTab={setActiveTab} />
 
-      {/* ── Section 1 & 2: Overview & Key Features (Side-by-Side on Desktop) ── */}
-      <section className="py-12 sm:py-16 bg-[#F5F8FC] dark:bg-[#0D1733] border-b border-slate-200/80 dark:border-white/10 transition-colors duration-300">
+      {/* ── Dynamic Shared Content Area (Renders ONLY active tab content) ── */}
+      <section
+        id="subsolution-tab-content"
+        className="py-10 sm:py-14 bg-[#F5F8FC] dark:bg-[#0D1733] border-b border-slate-200/80 dark:border-white/10 transition-colors duration-300 min-h-[460px]"
+      >
         <div className="section-container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">
-            {/* Overview Card */}
-            <SubSolutionOverview overview={data.overview} title={data.title} />
+          {activeTab === 'overview' && (
+            <div className="animate-in fade-in duration-150">
+              <SubSolutionOverview overview={data.overview} title={data.title} />
+            </div>
+          )}
 
-            {/* Key Features Card */}
-            <SubSolutionFeatures features={data.features} />
-          </div>
+          {activeTab === 'key-features' && (
+            <div className="animate-in fade-in duration-150">
+              <SubSolutionFeatures features={data.features} />
+            </div>
+          )}
+
+          {activeTab === 'specifications' && (
+            <div className="animate-in fade-in duration-150">
+              <SubSolutionSpecs specifications={data.specifications} />
+            </div>
+          )}
+
+          {activeTab === 'system-architecture' && (
+            <div className="animate-in fade-in duration-150">
+              <SubSolutionArchitecture architecture={data.architecture} />
+            </div>
+          )}
         </div>
       </section>
-
-      {/* ── Section 3: Specifications (2-Column Table matching Image 2) ── */}
-      <SubSolutionSpecs specifications={data.specifications} title={data.title} />
-
-      {/* ── Section 4: System Architecture (Visual Flow) ── */}
-      <SubSolutionArchitecture architecture={data.architecture} />
 
       {/* ── Consultation / Solution Enquiry CTA ── */}
       <section className="py-14 sm:py-20 relative bg-gradient-to-b from-[#F5F8FC] to-blue-50/50 dark:from-[#0D1733] dark:to-[#081026] text-center">

@@ -5,10 +5,7 @@ export default function SubSolutionFeatures({ features = [] }) {
   if (!features || features.length === 0) return null;
 
   return (
-    <div
-      id="key-features"
-      className="bg-white dark:bg-[#101936] rounded-2xl border border-slate-200/90 dark:border-white/10 shadow-xs p-6 sm:p-8 flex flex-col justify-between scroll-mt-32 transition-colors duration-300"
-    >
+    <div className="bg-white dark:bg-[#101936] rounded-2xl border border-slate-200/90 dark:border-white/10 shadow-xs p-6 sm:p-8 lg:p-10 flex flex-col justify-between transition-colors duration-300">
       <div>
         {/* Eyebrow Label */}
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 dark:bg-[#17264A] border border-[#089EC2]/30 dark:border-[#2DD4F0]/30 w-fit mb-4">
@@ -19,20 +16,23 @@ export default function SubSolutionFeatures({ features = [] }) {
         </div>
 
         {/* Heading */}
-        <h2 className="text-xl sm:text-2xl font-extrabold text-[#14213D] dark:text-white tracking-tight mb-5">
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#14213D] dark:text-white tracking-tight mb-2">
           Key Features
         </h2>
+        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6 max-w-3xl">
+          Core technical features and architectural advantages engineered into this solution to ensure low latency, deterministic safety, and field reliability.
+        </p>
 
-        {/* Feature Points List */}
-        <div className="space-y-4">
+        {/* Feature Points Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {features.map((feat, idx) => (
             <div
               key={idx}
-              className="flex items-start gap-3.5 p-3.5 rounded-xl bg-[#F8FAFD] dark:bg-[#142347]/50 border border-slate-200/80 dark:border-white/5 hover:border-[#089EC2]/40 dark:hover:border-[#2DD4F0]/40 transition-colors"
+              className="flex items-start gap-3.5 p-4 rounded-xl bg-[#F8FAFD] dark:bg-[#142347]/50 border border-slate-200/80 dark:border-white/5 hover:border-[#089EC2]/40 dark:hover:border-[#2DD4F0]/40 transition-colors"
             >
               <CheckCircle2 className="w-5 h-5 text-[#089EC2] dark:text-[#2DD4F0] shrink-0 mt-0.5" />
               <div className="flex-1 min-w-0">
-                <h3 className="text-sm font-bold text-[#14213D] dark:text-white leading-snug">
+                <h3 className="text-sm sm:text-[15px] font-bold text-[#14213D] dark:text-white leading-snug">
                   {feat.title}
                 </h3>
                 {feat.desc && (
