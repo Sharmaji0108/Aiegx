@@ -146,11 +146,11 @@ export default function SubSolutionPage({ slug, data: propData }) {
         </div>
       </section>
 
-      {/* ── Section 3: System Architecture (Visual Flow) ── */}
-      <SubSolutionArchitecture architecture={data.architecture} />
+      {/* ── Section 3: Specifications (2-Column Table matching Image 2) ── */}
+      <SubSolutionSpecs specifications={data.specifications} title={data.title} />
 
-      {/* ── Section 4: Specifications (Compact Table) ── */}
-      <SubSolutionSpecs specifications={data.specifications} />
+      {/* ── Section 4: System Architecture (Visual Flow) ── */}
+      <SubSolutionArchitecture architecture={data.architecture} />
 
       {/* ── Consultation / Solution Enquiry CTA ── */}
       <section className="py-14 sm:py-20 relative bg-gradient-to-b from-[#F5F8FC] to-blue-50/50 dark:from-[#0D1733] dark:to-[#081026] text-center">
