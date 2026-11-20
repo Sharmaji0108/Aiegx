@@ -74,10 +74,10 @@ const mobileProductCategories = [
 ];
 
 const mobileAboutItems = [
-  { name: 'Company Overview', href: '/about-us#engineering-capabilities', icon: Building2 },
+  { name: 'Company Overview', href: '/about-us#who-we-are', icon: Building2 },
   { name: 'Why AIEGX', href: '/about-us#why-aiegx', icon: Sparkles },
-  { name: 'Our Expertise', href: '/about-us#expertise', icon: Cpu },
-  { name: 'Our Approach', href: '/about-us#our-approach', icon: Target },
+  { name: 'Our Expertise', href: '/about-us#what-we-do', icon: Cpu },
+  { name: 'Our Approach', href: '/about-us#engineering-capabilities', icon: Target },
 ];
 
 export default function Header() {
