@@ -20,6 +20,7 @@ import {
 import ProductBreadcrumb from '../products/ProductBreadcrumb';
 import SectionHeadingContainer from '../common/SectionHeadingContainer';
 import KeyCapabilities from './KeyCapabilities';
+import OurSolutions from './OurSolutions';
 import { ProductEnquiryModal } from '../products/ProductEnquiry';
 import { navigateTo } from '../../utils/navigation';
 
@@ -42,7 +43,7 @@ export default function SolutionCategoryTemplate({ data }) {
 
   const scrollToSubtopics = (e) => {
     if (e && typeof e.preventDefault === 'function') e.preventDefault();
-    const el = document.getElementById('subtopics');
+    const el = document.getElementById('our-solutions') || document.getElementById('subtopics');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -142,61 +143,8 @@ export default function SolutionCategoryTemplate({ data }) {
       {/* ── 2. Key Capabilities Section ── */}
       <KeyCapabilities capabilities={data.keyCapabilities} />
 
-      {/* ── 3. Subtopics Section (Clean Responsive Card Layout) ── */}
-      <section
-        id="subtopics"
-        className="py-14 sm:py-20 relative bg-[#F5F8FC] dark:bg-[#0D1733] border-b border-slate-200/80 dark:border-white/10 scroll-mt-20 transition-colors duration-300"
-      >
-        <div className="section-container">
-          <SectionHeadingContainer
-            subheading="SUBTOPICS & PLATFORM ARCHITECTURES"
-            heading={
-              <>
-                Specialized{' '}
-                <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
-                  Subsystem Architectures
-                </span>
-              </>
-            }
-            description="Explore each dedicated subtopic architecture engineered to meet specific latency, accuracy, and operational field requirements."
-          />
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8 items-stretch">
-            {data.subtopics.map((subtopic) => (
-              <div
-                key={subtopic.id}
-                id={subtopic.id}
-                className="group bg-white dark:bg-[#101936] rounded-xl border border-slate-200/90 dark:border-white/10 shadow-xs hover:shadow-md hover:border-[#089EC2]/50 dark:hover:border-[#2DD4F0]/50 transition-all duration-200 p-4 sm:p-5 flex flex-col justify-between h-full scroll-mt-24"
-              >
-                {/* 1. Main Subtopic Heading */}
-                <div className="mb-4">
-                  <h3 className="text-sm sm:text-base font-bold text-[#14213D] dark:text-white leading-snug tracking-tight">
-                    <a
-                      href={`/solutions/${subtopic.id}`}
-                      onClick={(e) => navigateTo(`/solutions/${subtopic.id}`, e)}
-                      className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors"
-                    >
-                      {subtopic.title}
-                    </a>
-                  </h3>
-                </div>
-
-                {/* 2. Existing Explore Button */}
-                <div className="mt-auto">
-                  <a
-                    href={`/solutions/${subtopic.id}`}
-                    onClick={(e) => navigateTo(`/solutions/${subtopic.id}`, e)}
-                    className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg font-semibold text-xs sm:text-sm text-[#089EC2] dark:text-[#2DD4F0] bg-[#089EC2]/10 dark:bg-[#2DD4F0]/10 hover:bg-[#089EC2]/20 dark:hover:bg-[#2DD4F0]/20 border border-[#089EC2]/25 dark:border-[#2DD4F0]/25 transition-all duration-150 cursor-pointer group"
-                  >
-                    <span>Explore</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ── 3. Our Solutions Section ── */}
+      <OurSolutions categoryId={data.id} data={data} />
 
       {/* ── 4. Contact Us / Discuss Your Project CTA ── */}
       <section className="py-14 sm:py-20 relative bg-gradient-to-b from-[#F5F8FC] to-blue-50/50 dark:from-[#0D1733] dark:to-[#081026] text-center">
