@@ -8,7 +8,7 @@ import SectionHeadingContainer from '../common/SectionHeadingContainer';
  * - Single horizontal row on desktop & tablet with thin vertical separators
  * - Prominent blue/cyan Lucide icons
  * - Compact, readable capability labels directly below icons
- * - Subtle light-blue gradient background, rounded corners, subtle border
+ * - Clean subtle background matching original website theme, rounded corners, subtle border
  * - Horizontally scrollable row on mobile with vertical dividers, preventing text overlap
  */
 export default function KeyCapabilities({ capabilities = [] }) {
@@ -25,7 +25,7 @@ export default function KeyCapabilities({ capabilities = [] }) {
         />
 
         {/* Key Capabilities Panel */}
-        <div className="mt-6 sm:mt-8 rounded-2xl border border-[#D0E3F7] dark:border-white/10 bg-gradient-to-r from-[#F0F6FE] via-[#F8FAFD] to-[#F0F6FE] dark:from-[#132247] dark:via-[#101936] dark:to-[#132247] shadow-xs overflow-hidden">
+        <div className="mt-6 sm:mt-8 rounded-2xl border border-[#D0E3F7] dark:border-white/10 bg-slate-50/80 dark:bg-[#152144]/60 shadow-xs overflow-hidden">
           {/* Desktop & Tablet: Single Horizontal Row with Thin Vertical Separators */}
           <div className="hidden sm:grid sm:grid-cols-5 divide-x divide-[#D0E3F7] dark:divide-white/10">
             {capabilities.map((cap, idx) => {
