@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
-import { MessageSquare, FlaskConical, ArrowLeft, ExternalLink } from 'lucide-react';
+import { MessageSquare, FlaskConical, ArrowLeft } from 'lucide-react';
 import SectionHeadingContainer from '../../components/common/SectionHeadingContainer';
 import ProductBreadcrumb from '../../components/products/ProductBreadcrumb';
 import ProductGallery from '../../components/products/ProductGallery';
 import ProductSpecifications from '../../components/products/ProductSpecifications';
-import TechnicalInfoTable from '../../components/products/TechnicalInfoTable';
-import TypicalApplicationsCarousel from '../../components/products/TypicalApplicationsCarousel';
-import ProductDocuments from '../../components/products/ProductDocuments';
 import ProductEnquiry, { ProductEnquiryModal } from '../../components/products/ProductEnquiry';
-import { RZG2L_PRODUCT_DETAILS, RZG2L_APPLICATIONS } from '../../data/rzg2lData';
+import { RZG2L_PRODUCT_DETAILS } from '../../data/rzg2lData';
 import { navigateTo } from '../../utils/navigation';
 
 const SOM_SUBTITLE = 'Embedded Computing Module for HMI & Control';
@@ -34,27 +31,6 @@ const SOM_FEATURES = [
   'MIPI DSI display interface support',
   'SMARC-based modular hardware design',
   'Embedded Linux support using Renesas software packages',
-];
-
-const G2L_FEATURES = [
-  { text: 'Cortex-A55 (dual or single)' },
-  { text: 'Cortex-M33' },
-  { text: '3D graphics engine (Arm Mali-G31)' },
-  { text: 'Video codec (H.264)' },
-  { text: 'Camera interface (MIPI-CSI or Parallel-IF)' },
-  { text: 'Display interface (MIPI-DSI or Parallel-IF)' },
-  { text: 'USB 2.0 interface 2ch, SD interface 2ch' },
-  { text: 'CAN interface (CAN FD)' },
-  { text: 'Gigabit Ethernet 2ch' },
-  { text: 'Memory error detection/correction (ECC)' },
-  { text: 'DDR4 or DDR3L memory interface' },
-  { text: 'BGA package (15mm x 15mm, 21mm x 21mm)' },
-  {
-    isLink: true,
-    prefix: 'Explore Renesas-validated',
-    linkText: 'DRAM Compatibility List',
-    linkUrl: 'https://www.renesas.com/products/rzg2l',
-  },
 ];
 
 const RZG2L_SBC_FEATURES = [
@@ -325,75 +301,6 @@ export default function RZG2LSMARCSoM({ productSlug = 'smarc-som' }) {
         </div>
       </section>
 
-      {/* Technical Features (RZ/G2L Development Kit) */}
-      {isSbc && (
-        <section
-          id="features"
-          className="py-4 sm:py-6 lg:py-8 relative bg-[#F5F8FC] dark:bg-[#0D1733] scroll-mt-32 transition-colors duration-300"
-        >
-          <div className="section-container relative">
-            <SectionHeadingContainer
-              subheading="KEY PLATFORM CAPABILITIES"
-              heading={
-                <>
-                  Technical{' '}
-                  <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
-                    Features
-                  </span>
-                </>
-              }
-              description="Dual Cortex-A55 compute, real-time Cortex-M33 core, Arm Mali-G31 3D graphics engine, and industrial HMI interfaces."
-            />
-
-            <div className="rounded-2xl bg-white dark:bg-[#17264A] border border-[#DBE4F0] dark:border-[#24355A] shadow-xs overflow-hidden">
-              <div className="w-full overflow-x-auto">
-                <table className="w-full text-left border-collapse">
-                  <thead>
-                    <tr className="bg-[#EDF2F7] dark:bg-[#101936] border-b border-[#DBE4F0] dark:border-[#24355A]">
-                      <th
-                        scope="col"
-                        className="py-3.5 px-4 sm:px-6 text-xs font-mono font-bold uppercase tracking-wider text-[#089EC2] dark:text-[#2DD4F0]"
-                      >
-                        DETAILS
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-[#E2E8F0] dark:divide-[#24355A]">
-                    {G2L_FEATURES.map((item, idx) => (
-                      <tr
-                        key={idx}
-                        className={`transition-colors hover:bg-[#F8FAFD] dark:hover:bg-[#1E315E]/50 ${
-                          idx % 2 === 1 ? 'bg-[#FAFBFD] dark:bg-[#142244]/50' : 'bg-transparent'
-                        }`}
-                      >
-                        <td className="py-3.5 px-4 sm:px-6 text-xs sm:text-sm font-normal text-[#14213D] dark:text-[#CBD5E1] leading-relaxed">
-                          {item.isLink ? (
-                            <span>
-                              {item.prefix}{' '}
-                              <a
-                                href={item.linkUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="font-semibold text-[#089EC2] dark:text-[#2DD4F0] underline hover:text-[#067A97] dark:hover:text-[#67E8F9] transition-colors inline-flex items-center gap-1"
-                              >
-                                <span>{item.linkText}</span>
-                                <ExternalLink className="w-3.5 h-3.5 inline shrink-0" />
-                              </a>
-                            </span>
-                          ) : (
-                            item.text
-                          )}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
       {/* Technical Specifications */}
       <ProductSpecifications
         specifications={
@@ -407,69 +314,6 @@ export default function RZG2LSMARCSoM({ productSlug = 'smarc-som' }) {
         featureHeader={productSlug === 'smarc-som' ? 'FEATURE' : 'FEATURES'}
         detailsHeader="DETAILS"
       />
-
-      {/* Hardware Interfaces */}
-      {product.interfaces && (
-        <TechnicalInfoTable
-          id="interfaces"
-          subheading="CONNECTIVITY & I/O"
-          heading={
-            <>
-              Hardware{' '}
-              <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
-                Interfaces
-              </span>
-            </>
-          }
-          description="Comprehensive high-speed networking, industrial fieldbuses, and display pipelines routed for reliable peripheral integration."
-          columns={['Interface', 'Description']}
-          rows={product.interfaces.map((iface) => ({
-            label: iface.name,
-            description: iface.detail,
-          }))}
-        />
-      )}
-
-      {/* Software Support */}
-      {product.softwareSupport && (
-        <TechnicalInfoTable
-          id="software-support"
-          subheading="SOFTWARE & BSP"
-          heading={
-            <>
-              Software{' '}
-              <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
-                Support
-              </span>
-            </>
-          }
-          description="Production-ready Linux distribution tooling, kernel support, drivers, and developer resources."
-          columns={['Software Support', 'Description']}
-          rows={product.softwareSupport.map((item) => ({
-            label: item.title,
-            description: item.description,
-          }))}
-        />
-      )}
-
-      {/* Typical Applications (RZ/G2L Development Kit) */}
-      {isSbc && (
-        <TypicalApplicationsCarousel
-          applications={RZG2L_APPLICATIONS}
-          subheading="TARGET APPLICATIONS"
-          headingPrefix="Typical"
-          headingHighlight="Applications"
-          description="Designed for graphical HMI, industrial telemetry controllers, medical diagnostics, and connected IoT gateways."
-        />
-      )}
-
-      {/* Documents */}
-      {product.documents && product.documents.length > 0 && (
-        <ProductDocuments
-          documents={product.documents}
-          onRequestDocument={(docTitle) => openModal('Request Document', docTitle)}
-        />
-      )}
 
       {/* =====================================================================
           Section K: Contact / Enquiry CTA

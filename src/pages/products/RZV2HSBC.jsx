@@ -3,68 +3,14 @@ import {
   MessageSquare,
   FlaskConical,
   ArrowLeft,
-  ExternalLink,
-  Cpu,
-  BrainCircuit,
-  Camera,
-  Network,
 } from 'lucide-react';
 import SectionHeadingContainer from '../../components/common/SectionHeadingContainer';
 import ProductBreadcrumb from '../../components/products/ProductBreadcrumb';
 import ProductGallery from '../../components/products/ProductGallery';
 import ProductSpecifications from '../../components/products/ProductSpecifications';
-import TechnicalInfoTable from '../../components/products/TechnicalInfoTable';
-import ProductDocuments from '../../components/products/ProductDocuments';
 import ProductEnquiry, { ProductEnquiryModal } from '../../components/products/ProductEnquiry';
 import { RZV2H_PRODUCT_DETAILS } from '../../data/rzv2hData';
 import { navigateTo } from '../../utils/navigation';
-
-const V2H_KEY_HIGHLIGHTS = [
-  {
-    icon: Cpu,
-    title: 'High-Performance Processing',
-    description: 'Quad Cortex-A55 @ 1.8GHz + Dual Cortex-R8.',
-  },
-  {
-    icon: BrainCircuit,
-    title: 'Advanced AI Acceleration',
-    description: 'DRP-AI3 with 8 TOPS Dense / 80 TOPS Sparse.',
-  },
-  {
-    icon: Camera,
-    title: 'Multi-Camera Vision',
-    description: 'Up to 4-channel MIPI CSI-2 camera interface.',
-  },
-  {
-    icon: Network,
-    title: 'High-Speed Connectivity',
-    description: 'PCIe Gen3, USB 3.2 Gen2 and Dual Gigabit Ethernet.',
-  },
-];
-
-const V2H_FEATURES = [
-  { text: 'Cortex-A55 (1.8GHz) x 4 cores' },
-  { text: 'Cortex-R8 (800MHz) x 2 cores' },
-  { text: 'Cortex-M33 (200MHz) x 1 core' },
-  { text: 'AI Accelerator DRP-AI3 (8TOPS/dense, 80TOPS/sparse)' },
-  { text: 'Dynamically reconfigurable processor (DRP)' },
-  { text: 'Arm® Mali™-C55 ISP (option)' },
-  { text: '6MB on-chip SRAM' },
-  { text: 'LPDDR4/LPDDR4X memory interface' },
-  { text: 'Gigabit Ethernet 2ch' },
-  { text: 'USB 2.0 interface 2ch (On-the-Go (OTG) x 1ch, Host x 1ch)' },
-  { text: 'USB 3.2 (Gen2) interface 2ch (Host only)' },
-  { text: 'PCIe® interface (Gen3/4-lane) 1ch' },
-  { text: 'MIPI® CSI-2® camera interface 4ch' },
-  { text: 'CAN interface (CAN FD) 6ch' },
-  { text: 'Package: BGA, 19mm x 19mm 1368-pin 0.5mm pitch' },
-  {
-    isLink: true,
-    prefix: 'Explore Renesas-validated',
-    linkText: 'DRAM Compatibility List',
-    linkUrl: 'https://www.renesas.com/products/rzv2h',
-  },
-];
 
 /**
  * RZ/V2H Embedded Computing Platform Product Detail Page
@@ -230,176 +176,13 @@ export default function RZV2HSBC() {
         </div>
       </section>
 
-      {/* SECTION 2: Technical Features */}
-      <section
-        id="features"
-        className="py-4 sm:py-6 lg:py-8 relative bg-[#F5F8FC] dark:bg-[#0D1733] scroll-mt-32 transition-colors duration-300"
-      >
-            <div className="section-container relative">
-              <SectionHeadingContainer
-                subheading="KEY PLATFORM CAPABILITIES"
-                heading={
-                  <>
-                    Technical{' '}
-                    <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
-                      Features
-                    </span>
-                  </>
-                }
-                description="Core microprocessor compute, dual real-time subsystems, DRP-AI3 neural acceleration, and high-speed industrial I/O."
-              />
-
-              {/* 4 Key Technical Highlights */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4 mb-6 sm:mb-8">
-                {V2H_KEY_HIGHLIGHTS.map((item, idx) => {
-                  const Icon = item.icon;
-                  return (
-                    <div
-                      key={idx}
-                      className="group relative rounded-xl sm:rounded-2xl bg-white dark:bg-[#17264A] border border-[#DBE4F0] dark:border-[#24355A] hover:border-[#089EC2]/50 dark:hover:border-[#2DD4F0]/50 p-4 sm:p-5 flex flex-col justify-between h-full shadow-xs hover:shadow-md transition-all duration-200"
-                    >
-                      <div>
-                        <div className="w-10 h-10 rounded-xl bg-[#E2EEFB] dark:bg-[#1A2C52] border border-[#C5DDF5] dark:border-[#244277] flex items-center justify-center text-[#089EC2] dark:text-[#2DD4F0] mb-3 group-hover:scale-105 transition-transform duration-200">
-                          <Icon className="w-5 h-5" />
-                        </div>
-                        <h3 className="text-sm sm:text-base font-bold text-[#14213D] dark:text-[#F8FAFC] leading-snug mb-1.5">
-                          {item.title}
-                        </h3>
-                        <p className="text-xs sm:text-[13px] text-[#52627C] dark:text-[#AAB6D0] leading-relaxed">
-                          {item.description}
-                        </p>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-
-              <div className="rounded-2xl bg-white dark:bg-[#17264A] border border-[#DBE4F0] dark:border-[#24355A] shadow-xs overflow-hidden">
-                <div className="w-full overflow-x-auto">
-                  <table className="w-full text-left border-collapse">
-                    <thead>
-                      <tr className="bg-[#EDF2F7] dark:bg-[#101936] border-b border-[#DBE4F0] dark:border-[#24355A]">
-                        <th
-                          scope="col"
-                          className="py-3.5 px-4 sm:px-6 text-xs font-mono font-bold uppercase tracking-wider text-[#089EC2] dark:text-[#2DD4F0]"
-                        >
-                          DETAILS
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-[#E2E8F0] dark:divide-[#24355A]">
-                      {V2H_FEATURES.map((item, idx) => (
-                        <tr
-                          key={idx}
-                          className={`transition-colors hover:bg-[#F8FAFD] dark:hover:bg-[#1E315E]/50 ${
-                            idx % 2 === 1 ? 'bg-[#FAFBFD] dark:bg-[#142244]/50' : 'bg-transparent'
-                          }`}
-                        >
-                          <td className="py-3.5 px-4 sm:px-6 text-xs sm:text-sm font-normal text-[#14213D] dark:text-[#CBD5E1] leading-relaxed">
-                            {item.isLink ? (
-                              <span>
-                                {item.prefix}{' '}
-                                <a
-                                  href={item.linkUrl}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="font-semibold text-[#089EC2] dark:text-[#2DD4F0] underline hover:text-[#067A97] dark:hover:text-[#67E8F9] transition-colors inline-flex items-center gap-1"
-                                >
-                                  <span>{item.linkText}</span>
-                                  <ExternalLink className="w-3.5 h-3.5 inline shrink-0" />
-                                </a>
-                              </span>
-                            ) : (
-                              item.text
-                            )}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </section>
-
-      {/* SECTION 3: Technical Specifications */}
+      {/* SECTION 2: Technical Specifications */}
       <ProductSpecifications
         specifications={product.specifications}
         productName={product.title}
       />
 
-      {/* SECTION 4: Hardware Interfaces */}
-      {product.interfaces && (
-        <section className="py-4 sm:py-6 bg-[#F5F8FC] dark:bg-[#0D1733] transition-colors duration-300">
-          <div className="section-container">
-            <SectionHeadingContainer
-              subheading="CONNECTIVITY & I/O"
-              heading={
-                <>
-                  Hardware{' '}
-                  <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
-                    Interfaces
-                  </span>
-                </>
-              }
-              description="Integrated high-speed PCIe Gen3, multi-camera MIPI CSI-2, USB 3.2 Gen2, and real-time motion I/O interfaces."
-              className="mb-2 sm:mb-2.5"
-            />
-
-            <TechnicalInfoTable
-              data={product.interfaces}
-              featureHeader="Item"
-              descriptionHeader="Description"
-              featureColWidth="28%"
-              descColWidth="72%"
-            />
-          </div>
-        </section>
-      )}
-
-      {/* SECTION 5: Software Support */}
-      {product.softwareSupport && (
-        <section className="py-4 sm:py-6 bg-[#F5F8FC] dark:bg-[#0D1733] transition-colors duration-300">
-          <div className="section-container">
-            <SectionHeadingContainer
-              subheading="BOARD SUPPORT PACKAGE & OS"
-              heading={
-                <>
-                  Software Support &{' '}
-                  <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
-                    Toolchains
-                  </span>
-                </>
-              }
-              description="Production-grade Linux BSP, 2nd Gen DRP-AI compiler toolkit, ROS 2 Humble runtime, and dual Cortex-R8 real-time stack."
-              className="mb-2 sm:mb-2.5"
-            />
-
-            <TechnicalInfoTable
-              data={product.softwareSupport}
-              featureHeader="Software Component"
-              descriptionHeader="Description & Deliverables"
-              featureColWidth="30%"
-              descColWidth="70%"
-            />
-          </div>
-        </section>
-      )}
-
-      {/* SECTION 6: Documents */}
-      {product.documents && product.documents.length > 0 && (
-        <ProductDocuments
-          documents={product.documents}
-          onRequestDoc={(doc) =>
-            setEnquiryModal({
-              isOpen: true,
-              type: `Request ${doc.title}`,
-            })
-          }
-        />
-      )}
-
-      {/* SECTION 4: Bottom Technical / Commercial Enquiry Strip */}
+      {/* SECTION 3: Bottom Technical / Commercial Enquiry Strip */}
       <ProductEnquiry
         productName="RZ/V2H Embedded Computing Platform"
         onRequestQuote={() =>

@@ -4,10 +4,8 @@ import ProductBreadcrumb from '../../components/products/ProductBreadcrumb';
 import ProductGallery from '../../components/products/ProductGallery';
 import ProductSpecifications from '../../components/products/ProductSpecifications';
 import TechnicalInfoTable from '../../components/products/TechnicalInfoTable';
-import TypicalApplicationsCarousel from '../../components/products/TypicalApplicationsCarousel';
-import ProductDocuments from '../../components/products/ProductDocuments';
 import ProductEnquiry, { ProductEnquiryModal } from '../../components/products/ProductEnquiry';
-import { RZV2H_PRODUCT_DETAILS, RZV2H_APPLICATIONS } from '../../data/rzv2hData';
+import { RZV2H_PRODUCT_DETAILS } from '../../data/rzv2hData';
 import { navigateTo } from '../../utils/navigation';
 
 /**
@@ -122,11 +120,6 @@ export default function RZV2HProduct({ productSlug = 'sbc' }) {
           <TechnicalInfoTable data={product.technicalInfo} />
         </div>
       </section>
-
-      {/* SECTION 3: Documents */}
-      {product.documents && product.documents.length > 0 && (
-        <ProductDocuments documents={product.documents} openModal={openModal} />
-      )}
 
       {/* Enquiry Modal */}
       <ProductEnquiryModal isOpen={enquiryModal.isOpen} onClose={() => setEnquiryModal({ isOpen: false, type: 'Request Quote' })} type={enquiryModal.type} productName={product.title} documentName={enquiryModal.documentName} />

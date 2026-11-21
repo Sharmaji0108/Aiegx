@@ -1,37 +1,12 @@
 import React, { useState } from 'react';
-import { MessageSquare, FlaskConical, ArrowLeft, ExternalLink } from 'lucide-react';
+import { MessageSquare, FlaskConical, ArrowLeft } from 'lucide-react';
 import SectionHeadingContainer from '../../components/common/SectionHeadingContainer';
 import ProductBreadcrumb from '../../components/products/ProductBreadcrumb';
 import ProductGallery from '../../components/products/ProductGallery';
 import ProductSpecifications from '../../components/products/ProductSpecifications';
-import TechnicalInfoTable from '../../components/products/TechnicalInfoTable';
-import TypicalApplicationsCarousel from '../../components/products/TypicalApplicationsCarousel';
-import ProductDocuments from '../../components/products/ProductDocuments';
 import ProductEnquiry, { ProductEnquiryModal } from '../../components/products/ProductEnquiry';
-import { RZG2N_PRODUCT_DETAILS, RZG2N_APPLICATIONS } from '../../data/rzg2nData';
+import { RZG2N_PRODUCT_DETAILS } from '../../data/rzg2nData';
 import { navigateTo } from '../../utils/navigation';
-
-const G2N_FEATURES = [
-  {
-    text: 'Highest level of computing performance',
-    subText: 'Calculation performance of about 12.3 thousand DMIPS',
-  },
-  {
-    text: "ECC function indispensable for the system's high reliability",
-    subText: 'ECC support for both L1/L2cache, DDR/IF',
-  },
-  { text: '384KB System RAM' },
-  { text: 'Built-in high-speed interface (USB 3.0, PCIe, Gbit-Ether)' },
-  { text: '4K compatible H.265 decoder, H.264 decoder/encoder installed' },
-  { text: 'Equipped with 3DGfx engine Power VR ideal for embedded devices' },
-  { text: 'Security function for communication, data, and program protection' },
-  {
-    isLink: true,
-    prefix: 'Explore Renesas-validated',
-    linkText: 'DRAM Compatibility List',
-    linkUrl: 'https://www.renesas.com/products/rzg2n',
-  },
-];
 
 /**
  * RZ/G2N Embedded Computing Platform Product Detail Page
@@ -167,139 +142,13 @@ export default function RZG2NSBC() {
         </div>
       </section>
 
-      {/* SECTION 2: Technical Features */}
-      <section
-        id="features"
-        className="py-4 sm:py-6 lg:py-8 relative bg-[#F5F8FC] dark:bg-[#0D1733] scroll-mt-32 transition-colors duration-300"
-      >
-            <div className="section-container relative">
-              <SectionHeadingContainer
-                subheading="KEY PLATFORM CAPABILITIES"
-                heading={
-                  <>
-                    Technical{' '}
-                    <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
-                      Features
-                    </span>
-                  </>
-                }
-                description="High-performance dual Cortex-A57 compute, PowerVR 3D graphics, 4K video engine, and high-speed industrial interfaces."
-              />
-
-              <div className="rounded-2xl bg-white dark:bg-[#17264A] border border-[#DBE4F0] dark:border-[#24355A] shadow-xs overflow-hidden">
-                <div className="w-full overflow-x-auto">
-                  <table className="w-full text-left border-collapse">
-                    <thead>
-                      <tr className="bg-[#EDF2F7] dark:bg-[#101936] border-b border-[#DBE4F0] dark:border-[#24355A]">
-                        <th
-                          scope="col"
-                          className="py-3.5 px-4 sm:px-6 text-xs font-mono font-bold uppercase tracking-wider text-[#089EC2] dark:text-[#2DD4F0]"
-                        >
-                          DETAILS
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-[#E2E8F0] dark:divide-[#24355A]">
-                      {G2N_FEATURES.map((item, idx) => (
-                        <tr
-                          key={idx}
-                          className={`transition-colors hover:bg-[#F8FAFD] dark:hover:bg-[#1E315E]/50 ${
-                            idx % 2 === 1 ? 'bg-[#FAFBFD] dark:bg-[#142244]/50' : 'bg-transparent'
-                          }`}
-                        >
-                          <td className="py-3.5 px-4 sm:px-6 text-xs sm:text-sm font-normal text-[#14213D] dark:text-[#CBD5E1] leading-relaxed">
-                            {item.isLink ? (
-                              <span>
-                                {item.prefix}{' '}
-                                <a
-                                  href={item.linkUrl}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="font-semibold text-[#089EC2] dark:text-[#2DD4F0] underline hover:text-[#067A97] dark:hover:text-[#67E8F9] transition-colors inline-flex items-center gap-1"
-                                >
-                                  <span>{item.linkText}</span>
-                                  <ExternalLink className="w-3.5 h-3.5 inline shrink-0" />
-                                </a>
-                              </span>
-                            ) : (
-                              <div>
-                                <div>{item.text}</div>
-                                {item.subText && (
-                                  <div className="mt-1.5 ml-4 sm:ml-5 flex items-start gap-2 text-xs sm:text-[13px] text-[#52627C] dark:text-[#94A3B8]">
-                                    <span className="w-1.5 h-1.5 rounded-full border border-[#089EC2] dark:border-[#2DD4F0] bg-transparent mt-1.5 shrink-0" />
-                                    <span>{item.subText}</span>
-                                  </div>
-                                )}
-                              </div>
-                            )}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </section>
-
-      {/* SECTION 3: Technical Specifications */}
+      {/* SECTION 2: Technical Specifications */}
       <ProductSpecifications
         specifications={product.specifications}
         productName={product.title}
       />
 
-      {/* SECTION 4: Hardware Interfaces */}
-      {product.interfaces && (
-        <TechnicalInfoTable
-          id="interfaces"
-          subheading="CONNECTIVITY & I/O"
-          heading={
-            <>
-              Hardware{' '}
-              <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
-                Interfaces
-              </span>
-            </>
-          }
-          description="Industrial bus routing, display outputs, camera ports, and expansion headers available on the board."
-          columns={['Interface', 'Description']}
-          rows={product.interfaces}
-        />
-      )}
-
-      {/* SECTION 5: Software Support */}
-      {product.softwareSupport && (
-        <TechnicalInfoTable
-          id="software-support"
-          subheading="OPERATING SYSTEMS & BSP"
-          heading={
-            <>
-              Software{' '}
-              <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
-                Support
-              </span>
-            </>
-          }
-          description="Production-grade Linux distributions, verified driver stacks, and long-term security maintenance."
-          columns={['Software Support', 'Description']}
-          rows={product.softwareSupport}
-        />
-      )}
-
-      {/* SECTION 6: Documents */}
-      {product.documents && product.documents.length > 0 && (
-        <ProductDocuments
-          documents={product.documents}
-          onRequestDocument={(doc) =>
-            setEnquiryModal({
-              isOpen: true,
-              type: `Request Document: ${doc.title}`,
-            })
-          }
-        />
-      )}
-
-      {/* SECTION 4: Bottom Engineering Enquiry CTA */}
+      {/* SECTION 3: Bottom Engineering Enquiry CTA */}
       <ProductEnquiry
         productName="RZ/G2N Embedded Computing Platform"
         onRequestQuote={() =>
