@@ -7,6 +7,8 @@ import SectionHeadingContainer from '../common/SectionHeadingContainer';
  */
 export default function ProductEnquiry({
   productName = 'RZ/G2L Platform',
+  description,
+  bottomMessage,
   onRequestQuote,
   onContactTeam,
 }) {
@@ -29,12 +31,16 @@ export default function ProductEnquiry({
               </span>
             </>
           }
-          description={`Collaborate with our hardware and BSP engineers on evaluation kits, custom carrier design, or volume pricing for the ${productName}.`}
+          description={
+            description ||
+            `Collaborate with our hardware and BSP engineers on evaluation kits, custom carrier design, or volume pricing for the ${productName}.`
+          }
         />
 
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#17264A] border border-[#DBE4F0] dark:border-[#24355A] shadow-xs">
           <p className="text-sm sm:text-base text-[#52627C] dark:text-[#AAB6D0] leading-relaxed max-w-2xl">
-            Speak directly with our embedded engineering team regarding SMARC module selection, custom baseboard development, Yocto BSP customization, or sample hardware evaluation.
+            {bottomMessage ||
+              'Speak directly with our embedded engineering team regarding SMARC module selection, custom baseboard development, Yocto BSP customization, or sample hardware evaluation.'}
           </p>
 
           <div className="flex flex-wrap items-center gap-3 shrink-0">
