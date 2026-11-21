@@ -1,9 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { MessageSquare, FlaskConical, ArrowLeft, CheckCircle2, ExternalLink } from 'lucide-react';
 import SectionHeadingContainer from '../../components/common/SectionHeadingContainer';
 import ProductBreadcrumb from '../../components/products/ProductBreadcrumb';
 import ProductGallery from '../../components/products/ProductGallery';
-import ProductTabs from '../../components/products/ProductTabs';
 import ProductSpecifications from '../../components/products/ProductSpecifications';
 import TechnicalInfoTable from '../../components/products/TechnicalInfoTable';
 import TypicalApplicationsCarousel from '../../components/products/TypicalApplicationsCarousel';
@@ -11,22 +10,6 @@ import ProductDocuments from '../../components/products/ProductDocuments';
 import ProductEnquiry, { ProductEnquiryModal } from '../../components/products/ProductEnquiry';
 import { RZV2L_PRODUCT_DETAILS, RZV2L_APPLICATIONS } from '../../data/rzv2lData';
 import { navigateTo } from '../../utils/navigation';
-
-const RZV2L_DEV_KIT_TABS = [
-  { id: 'features', label: 'Features' },
-  { id: 'specifications', label: 'Specifications' },
-  { id: 'interfaces', label: 'Interfaces' },
-  { id: 'software-support', label: 'Software Support' },
-  { id: 'applications', label: 'Applications' },
-  { id: 'documents', label: 'Documents' },
-];
-
-const RZV2L_DEFAULT_TABS = [
-  { id: 'specifications', label: 'Specifications' },
-  { id: 'interfaces', label: 'Interfaces' },
-  { id: 'software-support', label: 'Software Support' },
-  { id: 'documents', label: 'Documents' },
-];
 
 const V2L_FEATURES = [
   { text: 'AI accelerator; DRP-AI' },
@@ -211,30 +194,11 @@ export default function RZV2LSBC({ productSlug = 'sbc' }) {
   const rawProduct = RZV2L_PRODUCT_DETAILS[productSlug] || RZV2L_PRODUCT_DETAILS['sbc'];
   const product = productSlug === 'sbc' ? { ...rawProduct, title: 'RZ/V2L Carrier Board' } : rawProduct;
   const isDevKit = productSlug === 'dev-kit';
-  const tabs = isDevKit ? RZV2L_DEV_KIT_TABS : RZV2L_DEFAULT_TABS;
-  const [prevSlug, setPrevSlug] = useState(productSlug);
-  const [activeTab, setActiveTab] = useState(isDevKit ? 'features' : 'specifications');
-  const tabContentRef = useRef(null);
   const [enquiryModal, setEnquiryModal] = useState({
     isOpen: false,
     type: 'Request Quote',
     documentName: null,
   });
-
-  if (productSlug !== prevSlug) {
-    setPrevSlug(productSlug);
-    setActiveTab(productSlug === 'dev-kit' ? 'features' : 'specifications');
-  }
-
-  const handleTabChange = (nextTab) => {
-    setActiveTab(nextTab);
-    setTimeout(() => {
-      const tabTarget = document.getElementById('product-tabs-section');
-      if (tabTarget) {
-        tabTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }, 60);
-  };
 
   const openModal = (type, documentName = null) => {
     setEnquiryModal({ isOpen: true, type, documentName });
@@ -407,178 +371,155 @@ export default function RZV2LSBC({ productSlug = 'sbc' }) {
         </div>
       </section>
 
-      {/* SECTION 2: Sticky Tab Navigation */}
-      <ProductTabs
-        tabs={tabs}
-        activeTab={activeTab}
-        onTabChange={handleTabChange}
-      />
+      {/* Technical Features (RZ/V2L Development Kit) */}
+      {isDevKit && (
+        <section
+          id="features"
+          className="py-4 sm:py-6 lg:py-8 relative bg-[#F5F8FC] dark:bg-[#0D1733] scroll-mt-32 transition-colors duration-300"
+        >
+          <div className="section-container relative">
+            <SectionHeadingContainer
+              subheading="KEY PLATFORM CAPABILITIES"
+              heading={
+                <>
+                  Technical{' '}
+                  <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
+                    Features
+                  </span>
+                </>
+              }
+              description="Power-efficient DRP-AI vision engine, heterogeneous dual Cortex-A55 architecture, and industrial edge interfaces."
+            />
 
-      {/* SECTION 3: Tab Content Area */}
-      <div
-        key={activeTab}
-        id="product-tabs-section"
-        ref={tabContentRef}
-        role="tabpanel"
-        aria-labelledby={`tab-${activeTab}`}
-        className="scroll-mt-32 transition-opacity duration-200"
-      >
-        {/* Tab 0: Features (RZ/V2L SBC) */}
-        {activeTab === 'features' && (
-          <section
-            id="features"
-            className="py-4 sm:py-6 lg:py-8 relative bg-[#F5F8FC] dark:bg-[#0D1733] scroll-mt-32 transition-colors duration-300"
-          >
-            <div className="section-container relative">
-              <SectionHeadingContainer
-                subheading="KEY PLATFORM CAPABILITIES"
-                heading={
-                  <>
-                    Technical{' '}
-                    <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
-                      Features
-                    </span>
-                  </>
-                }
-                description="Power-efficient DRP-AI vision engine, heterogeneous dual Cortex-A55 architecture, and industrial edge interfaces."
-              />
-
-              <div className="rounded-2xl bg-white dark:bg-[#17264A] border border-[#DBE4F0] dark:border-[#24355A] shadow-xs overflow-hidden">
-                <div className="w-full overflow-x-auto">
-                  <table className="w-full text-left border-collapse">
-                    <thead>
-                      <tr className="bg-[#EDF2F7] dark:bg-[#101936] border-b border-[#DBE4F0] dark:border-[#24355A]">
-                        <th
-                          scope="col"
-                          className="py-3.5 px-4 sm:px-6 text-xs font-mono font-bold uppercase tracking-wider text-[#089EC2] dark:text-[#2DD4F0]"
-                        >
-                          DETAILS
-                        </th>
+            <div className="rounded-2xl bg-white dark:bg-[#17264A] border border-[#DBE4F0] dark:border-[#24355A] shadow-xs overflow-hidden">
+              <div className="w-full overflow-x-auto">
+                <table className="w-full text-left border-collapse">
+                  <thead>
+                    <tr className="bg-[#EDF2F7] dark:bg-[#101936] border-b border-[#DBE4F0] dark:border-[#24355A]">
+                      <th
+                        scope="col"
+                        className="py-3.5 px-4 sm:px-6 text-xs font-mono font-bold uppercase tracking-wider text-[#089EC2] dark:text-[#2DD4F0]"
+                      >
+                        DETAILS
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-[#E2E8F0] dark:divide-[#24355A]">
+                    {V2L_FEATURES.map((item, idx) => (
+                      <tr
+                        key={idx}
+                        className={`transition-colors hover:bg-[#F8FAFD] dark:hover:bg-[#1E315E]/50 ${
+                          idx % 2 === 1 ? 'bg-[#FAFBFD] dark:bg-[#142244]/50' : 'bg-transparent'
+                        }`}
+                      >
+                        <td className="py-3.5 px-4 sm:px-6 text-xs sm:text-sm font-normal text-[#14213D] dark:text-[#CBD5E1] leading-relaxed">
+                          {item.isLink ? (
+                            <span>
+                              {item.prefix}{' '}
+                              <a
+                                href={item.linkUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="font-semibold text-[#089EC2] dark:text-[#2DD4F0] underline hover:text-[#067A97] dark:hover:text-[#67E8F9] transition-colors inline-flex items-center gap-1"
+                              >
+                                <span>{item.linkText}</span>
+                                <ExternalLink className="w-3.5 h-3.5 inline shrink-0" />
+                              </a>
+                            </span>
+                          ) : (
+                            item.text
+                          )}
+                        </td>
                       </tr>
-                    </thead>
-                    <tbody className="divide-y divide-[#E2E8F0] dark:divide-[#24355A]">
-                      {V2L_FEATURES.map((item, idx) => (
-                        <tr
-                          key={idx}
-                          className={`transition-colors hover:bg-[#F8FAFD] dark:hover:bg-[#1E315E]/50 ${
-                            idx % 2 === 1 ? 'bg-[#FAFBFD] dark:bg-[#142244]/50' : 'bg-transparent'
-                          }`}
-                        >
-                          <td className="py-3.5 px-4 sm:px-6 text-xs sm:text-sm font-normal text-[#14213D] dark:text-[#CBD5E1] leading-relaxed">
-                            {item.isLink ? (
-                              <span>
-                                {item.prefix}{' '}
-                                <a
-                                  href={item.linkUrl}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="font-semibold text-[#089EC2] dark:text-[#2DD4F0] underline hover:text-[#067A97] dark:hover:text-[#67E8F9] transition-colors inline-flex items-center gap-1"
-                                >
-                                  <span>{item.linkText}</span>
-                                  <ExternalLink className="w-3.5 h-3.5 inline shrink-0" />
-                                </a>
-                              </span>
-                            ) : (
-                              item.text
-                            )}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </div>
-          </section>
-        )}
+          </div>
+        </section>
+      )}
 
-        {/* Tab 1: Specifications */}
-        {activeTab === 'specifications' && (
-          <ProductSpecifications
-            specifications={
-              productSlug === 'sbc'
-                ? (product.specifications && product.specifications.length === 8 ? product.specifications : RZV2L_SBC_SPECIFICATIONS)
-                : productSlug === 'som'
-                ? (product.specifications && product.specifications.length === 7 ? product.specifications : RZV2L_SOM_SPECIFICATIONS)
-                : (product.specifications || [])
-            }
-            productName={product.title}
-            featureHeader="FEATURES"
-            detailsHeader="DETAILS"
-          />
-        )}
+      {/* Technical Specifications */}
+      <ProductSpecifications
+        specifications={
+          productSlug === 'sbc'
+            ? (product.specifications && product.specifications.length === 8 ? product.specifications : RZV2L_SBC_SPECIFICATIONS)
+            : productSlug === 'som'
+            ? (product.specifications && product.specifications.length === 7 ? product.specifications : RZV2L_SOM_SPECIFICATIONS)
+            : (product.specifications || [])
+        }
+        productName={product.title}
+        featureHeader="FEATURES"
+        detailsHeader="DETAILS"
+      />
 
-        {/* Tab 3: Interfaces */}
-        {activeTab === 'interfaces' && (
-          <TechnicalInfoTable
-            id="interfaces"
-            subheading="CONNECTIVITY & I/O"
-            heading={
-              <>
-                Hardware{' '}
-                <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
-                  Interfaces
-                </span>
-              </>
-            }
-            description="Comprehensive high-speed networking, camera, display outputs, and industrial fieldbus interfaces."
-            columns={['Interface', 'Description']}
-            rows={
-              (product.interfaces &&
-                product.interfaces.map((iface) => ({
-                  label: iface.label || iface.name,
-                  description: iface.description || iface.detail,
-                }))) ||
-              []
-            }
-          />
-        )}
+      {/* Hardware Interfaces */}
+      {product.interfaces && product.interfaces.length > 0 && (
+        <TechnicalInfoTable
+          id="interfaces"
+          subheading="CONNECTIVITY & I/O"
+          heading={
+            <>
+              Hardware{' '}
+              <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
+                Interfaces
+              </span>
+            </>
+          }
+          description="Comprehensive high-speed networking, camera, display outputs, and industrial fieldbus interfaces."
+          columns={['Interface', 'Description']}
+          rows={
+            product.interfaces.map((iface) => ({
+              label: iface.label || iface.name,
+              description: iface.description || iface.detail,
+            }))
+          }
+        />
+      )}
 
-        {/* Tab 4: Software Support */}
-        {activeTab === 'software-support' && (
-          <TechnicalInfoTable
-            id="software-support"
-            subheading="BOARD SUPPORT PACKAGE & OS"
-            heading={
-              <>
-                Software{' '}
-                <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
-                  Support
-                </span>
-              </>
-            }
-            description="Production-grade Linux distribution tooling, DRP-AI Translator compiler, and industrial software stack."
-            columns={['Software Support', 'Description']}
-            rows={
-              (product.softwareSupport &&
-                product.softwareSupport.map((item) => ({
-                  label: item.label || item.title,
-                  description: item.description,
-                }))) ||
-              []
-            }
-          />
-        )}
+      {/* Software Support */}
+      {product.softwareSupport && product.softwareSupport.length > 0 && (
+        <TechnicalInfoTable
+          id="software-support"
+          subheading="BOARD SUPPORT PACKAGE & OS"
+          heading={
+            <>
+              Software{' '}
+              <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
+                Support
+              </span>
+            </>
+          }
+          description="Production-grade Linux distribution tooling, DRP-AI Translator compiler, and industrial software stack."
+          columns={['Software Support', 'Description']}
+          rows={
+            product.softwareSupport.map((item) => ({
+              label: item.label || item.title,
+              description: item.description,
+            }))
+          }
+        />
+      )}
 
-        {/* Tab 5: Applications */}
-        {activeTab === 'applications' && (
-          <TypicalApplicationsCarousel
-            applications={RZV2L_APPLICATIONS}
-            subheading="TARGET APPLICATIONS"
-            headingPrefix="Typical"
-            headingHighlight="Applications"
-            description="Designed for real-time edge vision AI, smart camera systems, robotics, and connected IoT nodes."
-          />
-        )}
+      {/* Typical Applications (RZ/V2L Development Kit) */}
+      {isDevKit && (
+        <TypicalApplicationsCarousel
+          applications={RZV2L_APPLICATIONS}
+          subheading="TARGET APPLICATIONS"
+          headingPrefix="Typical"
+          headingHighlight="Applications"
+          description="Designed for real-time edge vision AI, smart camera systems, robotics, and connected IoT nodes."
+        />
+      )}
 
-        {/* Tab 6: Documents */}
-        {activeTab === 'documents' && (
-          <ProductDocuments
-            documents={product.documents || []}
-            onRequestDocument={(docTitle) => openModal('Request Document', docTitle)}
-          />
-        )}
-      </div>
+      {/* Documents */}
+      {product.documents && product.documents.length > 0 && (
+        <ProductDocuments
+          documents={product.documents || []}
+          onRequestDocument={(docTitle) => openModal('Request Document', docTitle)}
+        />
+      )}
 
       {/* SECTION 4: Bottom Technical / Commercial Enquiry Strip */}
       <ProductEnquiry

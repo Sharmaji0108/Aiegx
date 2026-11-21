@@ -1,9 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { MessageSquare, FlaskConical, ArrowLeft, ExternalLink } from 'lucide-react';
 import SectionHeadingContainer from '../../components/common/SectionHeadingContainer';
 import ProductBreadcrumb from '../../components/products/ProductBreadcrumb';
 import ProductGallery from '../../components/products/ProductGallery';
-import ProductTabs from '../../components/products/ProductTabs';
 import ProductSpecifications from '../../components/products/ProductSpecifications';
 import TechnicalInfoTable from '../../components/products/TechnicalInfoTable';
 import TypicalApplicationsCarousel from '../../components/products/TypicalApplicationsCarousel';
@@ -11,14 +10,6 @@ import ProductDocuments from '../../components/products/ProductDocuments';
 import ProductEnquiry, { ProductEnquiryModal } from '../../components/products/ProductEnquiry';
 import { RZG2N_PRODUCT_DETAILS, RZG2N_APPLICATIONS } from '../../data/rzg2nData';
 import { navigateTo } from '../../utils/navigation';
-
-const RZG2N_TABS = [
-  { id: 'features', label: 'Features' },
-  { id: 'specifications', label: 'Specifications' },
-  { id: 'interfaces', label: 'Interfaces' },
-  { id: 'software-support', label: 'Software Support' },
-  { id: 'documents', label: 'Documents' },
-];
 
 const G2N_FEATURES = [
   {
@@ -48,22 +39,10 @@ const G2N_FEATURES = [
  */
 export default function RZG2NSBC() {
   const product = RZG2N_PRODUCT_DETAILS['sbc'];
-  const [activeTab, setActiveTab] = useState('features');
-  const tabContentRef = useRef(null);
   const [enquiryModal, setEnquiryModal] = useState({
     isOpen: false,
     type: 'Request Quote',
   });
-
-  const handleTabChange = (nextTab) => {
-    setActiveTab(nextTab);
-    setTimeout(() => {
-      const tabTarget = document.getElementById('product-tabs-section');
-      if (tabTarget) {
-        tabTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }, 60);
-  };
 
   return (
     <div className="flex flex-col w-full max-w-full min-w-0 overflow-x-hidden bg-[#F5F8FC] dark:bg-[#0D1733] text-[#14213D] dark:text-[#F8FAFC] transition-colors duration-300">
@@ -188,30 +167,11 @@ export default function RZG2NSBC() {
         </div>
       </section>
 
-      {/* SECTION 2: Sticky Tab Navigation Bar */}
-      <div id="product-tabs-section">
-        <ProductTabs
-          tabs={RZG2N_TABS}
-          activeTab={activeTab}
-          onTabChange={handleTabChange}
-        />
-      </div>
-
-      {/* SECTION 3: Tab Content Panels */}
-      <div
-        ref={tabContentRef}
-        key={activeTab}
-        id={`panel-${activeTab}`}
-        role="tabpanel"
-        aria-labelledby={`tab-${activeTab}`}
-        className="scroll-mt-32 transition-opacity duration-200"
+      {/* SECTION 2: Technical Features */}
+      <section
+        id="features"
+        className="py-4 sm:py-6 lg:py-8 relative bg-[#F5F8FC] dark:bg-[#0D1733] scroll-mt-32 transition-colors duration-300"
       >
-        {/* TAB 0: Features (RZ/G2N SBC) */}
-        {activeTab === 'features' && (
-          <section
-            id="features"
-            className="py-4 sm:py-6 lg:py-8 relative bg-[#F5F8FC] dark:bg-[#0D1733] scroll-mt-32 transition-colors duration-300"
-          >
             <div className="section-container relative">
               <SectionHeadingContainer
                 subheading="KEY PLATFORM CAPABILITIES"
@@ -281,67 +241,63 @@ export default function RZG2NSBC() {
               </div>
             </div>
           </section>
-        )}
 
-        {/* TAB 1: Specifications */}
-        {activeTab === 'specifications' && (
-          <ProductSpecifications
-            specifications={product.specifications}
-            productName={product.title}
-          />
-        )}
+      {/* SECTION 3: Technical Specifications */}
+      <ProductSpecifications
+        specifications={product.specifications}
+        productName={product.title}
+      />
 
-        {/* TAB 3: Interfaces */}
-        {activeTab === 'interfaces' && (
-          <TechnicalInfoTable
-            id="interfaces"
-            subheading="CONNECTIVITY & I/O"
-            heading={
-              <>
-                Hardware{' '}
-                <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
-                  Interfaces
-                </span>
-              </>
-            }
-            description="Industrial bus routing, display outputs, camera ports, and expansion headers available on the board."
-            columns={['Interface', 'Description']}
-            rows={product.interfaces}
-          />
-        )}
+      {/* SECTION 4: Hardware Interfaces */}
+      {product.interfaces && (
+        <TechnicalInfoTable
+          id="interfaces"
+          subheading="CONNECTIVITY & I/O"
+          heading={
+            <>
+              Hardware{' '}
+              <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
+                Interfaces
+              </span>
+            </>
+          }
+          description="Industrial bus routing, display outputs, camera ports, and expansion headers available on the board."
+          columns={['Interface', 'Description']}
+          rows={product.interfaces}
+        />
+      )}
 
-        {/* TAB 4: Software Support */}
-        {activeTab === 'software-support' && (
-          <TechnicalInfoTable
-            id="software-support"
-            subheading="OPERATING SYSTEMS & BSP"
-            heading={
-              <>
-                Software{' '}
-                <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
-                  Support
-                </span>
-              </>
-            }
-            description="Production-grade Linux distributions, verified driver stacks, and long-term security maintenance."
-            columns={['Software Support', 'Description']}
-            rows={product.softwareSupport}
-          />
-        )}
+      {/* SECTION 5: Software Support */}
+      {product.softwareSupport && (
+        <TechnicalInfoTable
+          id="software-support"
+          subheading="OPERATING SYSTEMS & BSP"
+          heading={
+            <>
+              Software{' '}
+              <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
+                Support
+              </span>
+            </>
+          }
+          description="Production-grade Linux distributions, verified driver stacks, and long-term security maintenance."
+          columns={['Software Support', 'Description']}
+          rows={product.softwareSupport}
+        />
+      )}
 
-        {/* TAB 5: Documents */}
-        {activeTab === 'documents' && (
-          <ProductDocuments
-            documents={product.documents}
-            onRequestDocument={(doc) =>
-              setEnquiryModal({
-                isOpen: true,
-                type: `Request Document: ${doc.title}`,
-              })
-            }
-          />
-        )}
-      </div>
+      {/* SECTION 6: Documents */}
+      {product.documents && product.documents.length > 0 && (
+        <ProductDocuments
+          documents={product.documents}
+          onRequestDocument={(doc) =>
+            setEnquiryModal({
+              isOpen: true,
+              type: `Request Document: ${doc.title}`,
+            })
+          }
+        />
+      )}
 
       {/* SECTION 4: Bottom Engineering Enquiry CTA */}
       <ProductEnquiry

@@ -1,8 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { MessageSquare, FlaskConical, ArrowLeft } from 'lucide-react';
 import ProductBreadcrumb from '../../components/products/ProductBreadcrumb';
 import ProductGallery from '../../components/products/ProductGallery';
-import ProductTabs from '../../components/products/ProductTabs';
 import ProductSpecifications from '../../components/products/ProductSpecifications';
 import TechnicalInfoTable from '../../components/products/TechnicalInfoTable';
 import TypicalApplicationsCarousel from '../../components/products/TypicalApplicationsCarousel';
@@ -17,19 +16,7 @@ import { navigateTo } from '../../utils/navigation';
  */
 export default function RZV2HProduct({ productSlug = 'sbc' }) {
   const product = RZV2H_PRODUCT_DETAILS[productSlug] || RZV2H_PRODUCT_DETAILS['sbc'];
-  const [activeTab, setActiveTab] = useState('specifications');
-  const tabContentRef = useRef(null);
   const [enquiryModal, setEnquiryModal] = useState({ isOpen: false, type: 'Request Quote', documentName: null });
-
-  const handleTabChange = (nextTab) => {
-    setActiveTab(nextTab);
-    setTimeout(() => {
-      const tabTarget = document.getElementById('product-tabs-section');
-      if (tabTarget) {
-        tabTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }, 60);
-  };
 
   const openModal = (type, documentName = null) => {
     setEnquiryModal({ isOpen: true, type, documentName });
@@ -129,31 +116,17 @@ export default function RZV2HProduct({ productSlug = 'sbc' }) {
         </div>
       </section>
 
-      {/* SECTION 2: Tabs */}
-      <ProductTabs
-        tabs={[
-          { id: 'specifications', label: 'Specifications' },
-          { id: 'interfaces', label: 'Interfaces' },
-          { id: 'software-support', label: 'Software Support' },
-          { id: 'documents', label: 'Documents' },
-        ]}
-        activeTab={activeTab}
-        onTabChange={handleTabChange}
-      />
+      {/* SECTION 2: Technical Specifications */}
+      <section className="py-8 sm:py-12 bg-[#F5F8FC] dark:bg-[#0D1733] transition-colors duration-300">
+        <div className="section-container">
+          <TechnicalInfoTable data={product.technicalInfo} />
+        </div>
+      </section>
 
-      {/* SECTION 3: Tab Content */}
-      <div id="product-tabs-section" ref={tabContentRef} className="scroll-mt-24">
-        {activeTab === 'specifications' && (
-          <section className="py-8 sm:py-12 bg-[#F5F8FC] dark:bg-[#0D1733] transition-colors duration-300">
-            <div className="section-container">
-              <TechnicalInfoTable data={product.technicalInfo} />
-            </div>
-          </section>
-        )}
-        {activeTab === 'documents' && (
-          <ProductDocuments documents={product.documents} openModal={openModal} />
-        )}
-      </div>
+      {/* SECTION 3: Documents */}
+      {product.documents && product.documents.length > 0 && (
+        <ProductDocuments documents={product.documents} openModal={openModal} />
+      )}
 
       {/* Enquiry Modal */}
       <ProductEnquiryModal isOpen={enquiryModal.isOpen} onClose={() => setEnquiryModal({ isOpen: false, type: 'Request Quote' })} type={enquiryModal.type} productName={product.title} documentName={enquiryModal.documentName} />
