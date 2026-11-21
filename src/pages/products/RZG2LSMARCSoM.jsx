@@ -15,27 +15,19 @@ import { navigateTo } from '../../utils/navigation';
 const SOM_SUBTITLE = 'Up to 2 x Arm Cortex-A55, 1 x Cortex-M33';
 
 const SOM_SPECIFICATIONS = [
-  { feature: 'CPU', details: 'Renesas RZ/G2L 2x Arm® Cortex®-A55 @ Up to 1.2 GHz 1x Cortex®-M33' },
-  { feature: 'RAM', details: 'Default: 1 GB DDR4, Up to 2 GB DDR4' },
-  { feature: 'eMMC', details: 'Default: 8GB, up to 64GB' },
-  { feature: 'Ethernet', details: 'Up to 2 X 10/100/1000 Mbps phy on board' },
-  { feature: 'Wireless', details: '802.11 b/g/n/ac + BT 5.0' },
+  { feature: 'Processor', details: 'Renesas RZ/G2L' },
+  { feature: 'CPU', details: 'Up to dual-core Arm Cortex-A55 @ 1.2 GHz + Cortex-M33 @ 200 MHz' },
+  { feature: 'RAM', details: 'Up to 2 GB DDR4' },
+  { feature: 'eMMC', details: '8 GB' },
   { feature: 'GPU', details: 'Arm Mali-G31' },
-  { feature: '3D GPU Support', details: 'OpenGL ES1.1 / 2.0 / 3.0 / 3.1 and 3.2 Supported; OpenCL 2.0 Full Profile Supported' },
-  { feature: 'USB', details: '2X USB2.0' },
-  { feature: 'I/O Interfaces', details: '3x UART, 3x I2C, 2x SPI, GPIO, PWM, 2x SD/MMC' },
-  { feature: 'CAN', details: '2x CAN FD' },
-  { feature: 'Display Interface', details: '1x MIPI DSI, RGB' },
-  { feature: 'Camera Interface', details: '1x MIPI CSI-2 support 5MP, 30 fps' },
-  { feature: 'B2B Connectors', details: '3x Hirose DF40 connectors' },
-  { feature: 'External Storage Support', details: 'SD' },
-  { feature: 'Supply Voltage', details: '5V' },
-  { feature: 'I/O Voltage', details: '3.3V' },
-  { feature: 'Power Consumption', details: '<5W' },
-  { feature: 'Temperature', details: 'Commercial: 0°C to 70°C; Industrial: -40°C to 85°C' },
-  { feature: 'Product Longevity', details: '2032' },
-  { feature: 'Supported OS', details: 'Embedded Linux (Yocto/Debian Distribution)' },
-  { feature: 'Form Factor', details: 'Mezzanine, size 47 x 30 mm' },
+  { feature: 'Video Codec', details: 'H.264 encoding and decoding, up to Full HD (1920 × 1080) @ 30 fps' },
+  { feature: 'Display Interface', details: 'MIPI DSI, up to Full HD (1920 × 1080) @ 60 Hz' },
+  { feature: 'Camera Interface', details: 'MIPI CSI-2, up to 5 MP @ 30 fps (RAW12)' },
+  { feature: 'Ethernet', details: 'Dual Gigabit Ethernet' },
+  { feature: 'USB', details: 'USB 2.0' },
+  { feature: 'Serial Interfaces', details: 'UART, SPI, I²C' },
+  { feature: 'Form Factor', details: 'SMARC SoM' },
+  { feature: 'Software Support', details: 'Renesas RZ/G Verified Linux Package' },
 ];
 
 const SOM_FEATURES = [
@@ -464,7 +456,7 @@ export default function RZG2LSMARCSoM({ productSlug = 'smarc-som' }) {
           <ProductSpecifications
             specifications={
               productSlug === 'smarc-som'
-                ? (product.specifications && product.specifications.length >= 20 ? product.specifications : SOM_SPECIFICATIONS)
+                ? (product.specifications || SOM_SPECIFICATIONS)
                 : (product.specifications && product.specifications.length === 8 && product.specifications[0]?.feature
                     ? product.specifications
                     : RZG2L_SBC_SPECIFICATIONS)
