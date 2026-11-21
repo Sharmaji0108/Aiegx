@@ -18,6 +18,7 @@ import {
   Layers,
   Server,
   Zap,
+  Settings,
 } from 'lucide-react';
 
 /* ─── Hardware tag data per product ─────────────────────────────────── */
@@ -50,7 +51,7 @@ const FEATURES = [
   {
     icon: Layers,
     title: 'Flexible Hardware Options',
-    sub: 'SoM, SBC, carrier boards (platform dependent).',
+    sub: 'SoM, SBC, and carrier board options based on platform requirements.',
   },
   {
     icon: Server,
@@ -60,7 +61,7 @@ const FEATURES = [
   {
     icon: Clock,
     title: 'Long-Term Support',
-    sub: 'Stable supply and lifecycle management.',
+    sub: 'Stable supply and product lifecycle support.',
   },
 ];
 
@@ -70,30 +71,30 @@ function HardwareCard({ product, className = '' }) {
 
   return (
     <div
-      className={`group relative flex flex-col bg-white dark:bg-[#17264A] rounded-[18px] border transition-all duration-300 overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-0.5 p-4 sm:p-5 ${
+      className={`group relative flex flex-col bg-white dark:bg-[#17264A] rounded-[18px] border transition-all duration-300 overflow-hidden shadow-xs hover:shadow-md hover:-translate-y-0.5 p-4 sm:p-4.5 ${
         product.ctaGradient
           ? 'border-[#089EC2]/50 dark:border-[#2DD4F0]/40 shadow-[0_2px_12px_rgba(8,158,194,0.12)]'
           : 'border-[#DCE8F5] dark:border-[#24355A] hover:border-[#089EC2]/40 dark:hover:border-[#2DD4F0]/30'
       } ${className}`}
     >
       {/* 1. Platform name */}
-      <h3 className="text-lg sm:text-xl font-extrabold text-[#14213D] dark:text-[#F8FAFC] tracking-tight leading-tight">
+      <h3 className="text-base sm:text-[17px] font-extrabold text-[#14213D] dark:text-[#F8FAFC] tracking-tight leading-snug">
         {product.name}
       </h3>
 
       {/* 2. Subtitle */}
-      <p className="platform-subtitle text-sm font-bold text-[#1672E8] dark:text-[#2DD4F0] normal-case">
+      <p className="text-xs sm:text-[13px] font-bold text-[#14213D] dark:text-[#F8FAFC] mt-0.5">
         {product.subtitle}
       </p>
 
       {/* 3. Platform description */}
-      <p className="text-xs sm:text-[13px] leading-relaxed text-[#52627C] dark:text-[#AAB6D0] mb-3">
+      <p className="text-xs leading-relaxed text-[#52627C] dark:text-[#AAB6D0] mt-1.5 min-h-[48px]">
         {product.shortDescription}
       </p>
 
       {/* 4. Hardware Image / 3D Model */}
       <div
-        className="w-full h-36 sm:h-40 flex items-center justify-center bg-white dark:bg-[#17264A] mb-4 overflow-hidden rounded-xl cursor-pointer"
+        className="w-full h-28 sm:h-32 flex items-center justify-center bg-white dark:bg-[#17264A] my-3 overflow-hidden rounded-xl cursor-pointer"
         onClick={(e) => navigateTo(`/products/${product.id}`, e)}
         role="button"
         tabIndex={0}
@@ -138,11 +139,11 @@ function HardwareCard({ product, className = '' }) {
       </p>
 
       {/* 6. Hardware tags */}
-      <div className="flex flex-wrap gap-1.5 mb-4">
+      <div className="flex flex-wrap gap-1.5 mb-3.5 min-h-[26px]">
         {hwTags.map(({ label, icon: TagIcon }) => (
           <span
             key={label}
-            className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10.5px] font-semibold bg-[#E2EEFB] dark:bg-[#1A2C52] text-[#089EC2] dark:text-[#2DD4F0] border border-[#C5DDF5] dark:border-[#244277]"
+            className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10.5px] font-semibold bg-[#E2EEFB] dark:bg-[#1A2C52] text-[#089EC2] dark:text-[#2DD4F0] border border-[#C5DDF5] dark:border-[#244277]"
           >
             <TagIcon className="w-3 h-3" />
             {label}
@@ -151,13 +152,13 @@ function HardwareCard({ product, className = '' }) {
       </div>
 
       {/* 7. Explore Platform button */}
-      <div className="mt-auto">
+      <div className="mt-auto pt-1">
         <button
           onClick={(e) => navigateTo(`/products/${product.id}`, e)}
-          className="explore-btn"
+          className="explore-btn text-xs py-2"
         >
           Explore Platform
-          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+          <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
         </button>
       </div>
     </div>
@@ -363,13 +364,13 @@ export default function Products() {
   const products = [
     {
       id: 'rz-g2l',
-      name: 'RZ/G2L',
+      name: 'RZ/G2L-Based Platforms',
       subtitle: 'Embedded Control & HMI',
       image: RZG2L,
       fallbackImage: '/images/RZG2L.png',
       fullName: 'Renesas RZ/G2L SMARC MPU Module',
       shortDescription:
-        'For industrial HMI, control, display and connected embedded applications.',
+        'Embedded platform based on Renesas RZ/G2L for industrial HMI, control, display, and connected applications.',
       categoryLabel: 'Embedded MPU Module',
       badge: 'Cortex-A55 + M33',
       headline: 'Dual 64-bit Arm Cortex-A55 with 3D Graphics for Next-Gen HMI',
@@ -385,13 +386,13 @@ export default function Products() {
     },
     {
       id: 'rz-g2n',
-      name: 'RZ/G2N',
+      name: 'RZ/G2N-Based SBC',
       subtitle: 'Multimedia & Video',
       image: RZG2N,
       fallbackImage: '/images/RZG2N.png',
       fullName: 'Renesas RZ/G2N High-Performance Embedded SBC',
       shortDescription:
-        'For multimedia, display and video processing applications.',
+        'Embedded platform based on Renesas RZ/G2N for multimedia, display, and video-processing applications.',
       categoryLabel: 'High-Performance SBC',
       badge: 'Dual Cortex-A57',
       headline: 'Dual Arm Cortex-A57 @ 1.5GHz with 4K UHD Video Processing',
@@ -407,13 +408,13 @@ export default function Products() {
     },
     {
       id: 'rz-v2l',
-      name: 'RZ/V2L',
+      name: 'RZ/V2L-Based Platforms',
       subtitle: 'Entry Vision AI',
       image: RZV2L,
       fallbackImage: '/images/RZV2L.png',
       fullName: 'Renesas RZ/V2L AI Vision Evaluation Board',
       shortDescription:
-        'Low-power vision AI platform for smart cameras and compact edge AI applications.',
+        'Edge AI platform based on Renesas RZ/V2L for smart cameras, image processing, and intelligent applications.',
       categoryLabel: 'Vision AI Processor',
       badge: 'DRP-AI Neural Core',
       headline: 'Embedded MPU with Renesas DRP-AI Dedicated Neural Engine',
@@ -429,13 +430,13 @@ export default function Products() {
     },
     {
       id: 'rz-v2h',
-      name: 'RZ/V2H',
+      name: 'RZ/V2H-Based SBC',
       subtitle: 'High-Performance Edge AI',
       image: RZV2H,
       fallbackImage: '/images/RZV2H.png',
       fullName: 'Renesas RZ/V2H High-Performance AI Vision Module',
       shortDescription:
-        'For multi-camera AI, robotics and advanced vision analytics applications.',
+        'High-performance edge AI platform based on Renesas RZ/V2H for multi-camera processing and advanced vision applications.',
       categoryLabel: 'Edge AI Processor',
       badge: 'DRP-AI 2nd Gen',
       headline: 'High-Performance Embedded AI with 2nd Gen DRP-AI @ 10 TOPS',
@@ -476,14 +477,14 @@ export default function Products() {
               </span>
             </>
           }
-          description="High-reliability System-on-Modules and single-board computers powered by Renesas RZ processors for edge computing and industrial control."
+          description="Explore our embedded hardware platforms powered by Renesas RZ processors, designed for industrial control, multimedia, computer vision, and edge AI applications."
           rightContent={
             <div className="w-full xl:w-auto grid grid-cols-2 sm:grid-cols-4 xl:flex xl:flex-nowrap items-center gap-2 sm:gap-3">
               {[
-                { icon: Cpu, title: 'Renesas RZ Family', sub: 'Powered Platforms' },
-                { icon: Layers, title: 'Multiple', sub: 'Form Factors' },
-                { icon: ShieldCheck, title: 'Industrial Grade', sub: 'Rugged & Reliable' },
-                { icon: Clock, title: 'Long Product', sub: 'Lifecycle Support' },
+                { icon: Cpu, title: 'Renesas RZ Family', sub: 'Processor-Based Platforms' },
+                { icon: Layers, title: 'Multiple Form Factors', sub: 'SoM, SBC & Carrier Boards' },
+                { icon: Settings, title: 'Application-Focused', sub: 'Designed for Diverse Applications' },
+                { icon: Clock, title: 'Engineering Support', sub: 'Development & Integration' },
               ].map(({ icon: Icon, title, sub }, idx, arr) => (
                 <div key={title} className="flex items-center gap-2 px-1 sm:px-1.5 xl:px-2 py-1 min-w-0">
                   <div className="flex-shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-[#E2EEFB] dark:bg-[#1A2C52] border border-[#C5DDF5] dark:border-[#244277] flex items-center justify-center shadow-xs">
@@ -513,11 +514,11 @@ export default function Products() {
         </div>
 
         {/* ══ Bottom Feature Strip ══════════════════════════════════════════ */}
-        <div className="mt-6 sm:mt-8 grid grid-cols-2 lg:grid-cols-4 gap-0 divide-x divide-[#DCE8F5] dark:divide-[#24355A] rounded-2xl border border-[#DCE8F5] dark:border-[#24355A] bg-white dark:bg-[#17264A] shadow-sm overflow-hidden">
+        <div className="mt-5 sm:mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 divide-y sm:divide-y-0 sm:divide-x divide-[#DCE8F5] dark:divide-[#24355A] rounded-2xl border border-[#DCE8F5] dark:border-[#24355A] bg-white dark:bg-[#17264A] shadow-xs overflow-hidden">
           {FEATURES.map(({ icon: Icon, title, sub }) => (
-            <div key={title} className="flex items-start gap-3 px-4 sm:px-5 py-4 sm:py-5">
-              <div className="flex-shrink-0 mt-0.5 w-9 h-9 rounded-xl bg-[#E2EEFB] dark:bg-[#1A2C52] border border-[#C5DDF5] dark:border-[#244277] flex items-center justify-center">
-                <Icon className="w-4 h-4 text-[#089EC2] dark:text-[#2DD4F0]" />
+            <div key={title} className="flex items-start gap-3.5 px-4 sm:px-5 py-3.5 sm:py-4">
+              <div className="flex-shrink-0 mt-0.5 w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#E2EEFB] dark:bg-[#1A2C52] border border-[#C5DDF5] dark:border-[#244277] flex items-center justify-center shadow-xs">
+                <Icon className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#089EC2] dark:text-[#2DD4F0]" />
               </div>
               <div>
                 <p className="text-xs sm:text-[13px] font-bold text-[#14213D] dark:text-[#F8FAFC] leading-snug">{title}</p>
