@@ -304,16 +304,6 @@ export default function RZV2LSBC({ productSlug = 'sbc' }) {
         productName={product.title}
         featureHeader={productSlug === 'sbc' || productSlug === 'carrier-board' ? 'FEATURE' : 'FEATURES'}
         detailsHeader="DETAILS"
-        heading={
-          productSlug === 'sbc' || productSlug === 'carrier-board' ? (
-            <>
-              RZ/V2L{' '}
-              <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
-                Carrier Board
-              </span>
-            </>
-          ) : undefined
-        }
         description={
           productSlug === 'sbc' || productSlug === 'carrier-board'
             ? 'Interfaces, connectors and expansion features for the RZ/V2L SMARC SoM.'

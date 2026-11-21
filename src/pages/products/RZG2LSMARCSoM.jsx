@@ -294,16 +294,6 @@ export default function RZG2LSMARCSoM({ productSlug = 'smarc-som' }) {
         productName={product.title}
         featureHeader="FEATURE"
         detailsHeader="DETAILS"
-        heading={
-          productSlug === 'carrier-board' ? (
-            <>
-              RZ/G2L{' '}
-              <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
-                Carrier Board
-              </span>
-            </>
-          ) : undefined
-        }
         description={
           productSlug === 'carrier-board'
             ? 'Interfaces, connectors and expansion features for the RZ/G2L SMARC SoM.'
