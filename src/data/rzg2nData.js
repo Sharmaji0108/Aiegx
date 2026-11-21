@@ -81,17 +81,17 @@ export const RZG2N_PLATFORM_DATA = {
     {
       id: 'rz-g2n-sbc',
       name: 'RZ/G2N SBC',
-      badge: 'SBC',
+      badge: 'SINGLE-BOARD COMPUTER',
       description:
-        'High-performance turnkey single-board computer engineered for multimedia, 4K video processing, and edge computing.',
+        'RZ/G2N-based single-board computer for multimedia, display, and embedded computing applications.',
       image: '/images/RZG2N.png',
       fallbackImage: '/images/RZG2N.png',
       imageAlt: 'RZ/G2N Single Board Computer Development Platform',
       features: [
-        'Renesas RZ/G2N Processor (Dual A57 @ 1.5GHz)',
-        '4K H.265/H.264 Hardware Video Processing',
-        'PCIe Gen2, USB 3.0 & Dual Gigabit Ethernet',
-        'Production-Ready Yocto Linux BSP',
+        'Integrated RZ/G2N single-board design.',
+        'Onboard memory and peripheral connectivity.',
+        'Suitable for development and system integration.',
+        'Embedded Linux support.',
       ],
       route: '/products/rz-g2n/sbc',
       featured: true,

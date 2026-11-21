@@ -99,7 +99,7 @@ export default function RZG2NPlatform() {
             </span>
           </>
         }
-        description="Commercial-grade single-board computer development platform powered by the Renesas RZ/G2N processor."
+        description="Explore our RZ/G2N-based single-board computer for multimedia, display and embedded computing applications."
       />
 
       {/* Section F: Typical Applications (Single horizontal row with continuous automatic right-to-left marquee) */}
