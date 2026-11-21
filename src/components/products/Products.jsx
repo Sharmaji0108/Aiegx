@@ -464,7 +464,7 @@ export default function Products() {
       <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-[#3285FF]/8 rounded-full blur-[150px] pointer-events-none" />
       <div className="absolute bottom-10 left-10 w-[400px] h-[400px] bg-[#2DD4F0]/8 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="section-container relative">
+      <div className="section-container relative w-full min-w-0">
 
         {/* ══ Section Header Banner ══════════════════════════════════════════ */}
         <SectionHeadingContainer
@@ -479,14 +479,14 @@ export default function Products() {
           }
           description="Explore our embedded hardware platforms powered by Renesas RZ processors, designed for industrial control, multimedia, computer vision, and edge AI applications."
           rightContent={
-            <div className="w-full xl:w-auto grid grid-cols-2 sm:grid-cols-4 xl:flex xl:flex-nowrap items-center gap-2 sm:gap-3">
+            <div className="w-full lg:w-auto grid grid-cols-2 md:grid-cols-2 lg:flex lg:flex-nowrap items-center gap-2 sm:gap-2.5 lg:gap-3">
               {[
                 { icon: Cpu, title: 'Renesas RZ Family', sub: 'Processor-Based Platforms' },
                 { icon: Layers, title: 'Multiple Form Factors', sub: 'SoM, SBC & Carrier Boards' },
                 { icon: Settings, title: 'Application-Focused', sub: 'Designed for Diverse Applications' },
                 { icon: Clock, title: 'Engineering Support', sub: 'Development & Integration' },
               ].map(({ icon: Icon, title, sub }, idx, arr) => (
-                <div key={title} className="flex items-center gap-2 px-1 sm:px-1.5 xl:px-2 py-1 min-w-0">
+                <div key={title} className="flex items-center gap-2 px-1 sm:px-1.5 xl:px-2 py-1 min-w-0 shrink-0">
                   <div className="flex-shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-[#E2EEFB] dark:bg-[#1A2C52] border border-[#C5DDF5] dark:border-[#244277] flex items-center justify-center shadow-xs">
                     <Icon className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#089EC2] dark:text-[#2DD4F0]" />
                   </div>

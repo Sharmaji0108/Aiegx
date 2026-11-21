@@ -65,7 +65,7 @@ export default function SectionHeadingContainer({
   return (
     <div
       id={id}
-      className={`section-heading-container relative w-full ${marginClass} px-4 py-4 sm:px-6 sm:py-5 lg:px-7 overflow-hidden rounded-2xl border border-[#DCE6F3] dark:border-[#24355A] shadow-[0_4px_20px_rgba(50,133,255,0.06)] dark:shadow-[0_4px_20px_rgba(45,212,240,0.08)] ${className}`}
+      className={`section-heading-container relative w-full min-w-0 ${marginClass} px-4 py-4 sm:px-6 sm:py-5 lg:px-7 overflow-hidden rounded-2xl border border-[#DCE6F3] dark:border-[#24355A] shadow-[0_4px_20px_rgba(50,133,255,0.06)] dark:shadow-[0_4px_20px_rgba(45,212,240,0.08)] ${className}`}
     >
       {/* ── Futuristic Technology Fluid Wave Graphic on the RIGHT ── */}
       <svg
@@ -243,20 +243,20 @@ export default function SectionHeadingContainer({
       </svg>
 
       {/* ── Content on the LEFT (elevated above graphic) ── */}
-      <div className="relative z-10 w-full flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-4">
-        <div className="flex-1 min-w-0 pr-2">
+      <div className="relative z-10 w-full min-w-0 flex flex-col md:flex-row md:items-center justify-between gap-4 lg:gap-6">
+        <div className="flex-1 min-w-0 md:min-w-[280px] lg:min-w-[320px] pr-0 md:pr-4">
           {displaySubheading && (
-            <p className="text-[10px] sm:text-xs font-bold tracking-[0.16em] uppercase text-[#1672E8] dark:text-[#2DD4F0] mb-1">
+            <p className="text-[10px] sm:text-xs font-bold tracking-[0.16em] uppercase text-[#1672E8] dark:text-[#2DD4F0] mb-1 break-normal whitespace-normal sm:whitespace-nowrap">
               {displaySubheading}
             </p>
           )}
           {displayHeading && (
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#0D1733] dark:text-[#F8FAFC] tracking-tight mb-2 break-words">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#0D1733] dark:text-[#F8FAFC] tracking-tight mb-2 break-normal">
               {displayHeading}
             </h2>
           )}
           {description && (
-            <p className="section-heading-description text-xs sm:text-sm lg:text-[15px] font-medium text-[#0D1733] dark:text-[#CBD5E1] max-w-3xl leading-relaxed mt-1 break-words">
+            <p className="section-heading-description text-xs sm:text-sm lg:text-[15px] font-medium text-[#0D1733] dark:text-[#CBD5E1] max-w-3xl leading-relaxed mt-1 break-normal">
               {description}
             </p>
           )}
@@ -265,7 +265,7 @@ export default function SectionHeadingContainer({
 
         {/* Optional Right Content (e.g. badge, action, or custom count) */}
         {rightContent && (
-          <div className="w-full md:w-auto shrink-0 md:shrink self-start md:self-center min-w-0">
+          <div className="w-full md:w-auto shrink-0 self-start md:self-center min-w-0 mt-2 md:mt-0">
             {rightContent}
           </div>
         )}
