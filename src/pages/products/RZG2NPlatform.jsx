@@ -105,7 +105,7 @@ export default function RZG2NPlatform() {
       {/* Section F: Typical Applications (Single horizontal row with continuous automatic right-to-left marquee) */}
       <TypicalApplicationsCarousel
         applications={RZG2N_APPLICATIONS}
-        description="Engineered for high-bandwidth video analytics, 4K digital signage, and connected edge gateways."
+        description="Embedded computing applications for industrial control, building systems, video monitoring, and digital displays."
       />
 
       {/* Bottom Enquiry CTA */}
