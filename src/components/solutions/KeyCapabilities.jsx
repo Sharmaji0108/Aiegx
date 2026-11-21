@@ -1,18 +1,73 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import SectionHeadingContainer from '../common/SectionHeadingContainer';
 
 /**
  * KeyCapabilities Component
  * Reusable capability showcase positioned immediately after the Solution Hero section.
- * Features:
- * - Single horizontal row on desktop & tablet with thin vertical separators
- * - Prominent blue/cyan Lucide icons
- * - Compact, readable capability labels directly below icons
- * - Clean subtle background matching original website theme, rounded corners, subtle border
- * - Horizontally scrollable row on mobile with vertical dividers, preventing text overlap
+ * Responsive behavior:
+ * - Desktop & Tablet (>= 640px): Original 5-column grid layout with thin vertical separators
+ * - Mobile (< 640px): Smooth, continuous right-to-left marquee carousel with touch swiping, matching Industries We Serve
  */
 export default function KeyCapabilities({ capabilities = [] }) {
+  const scrollRef = useRef(null);
+  const [isPaused, setIsPaused] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+
   if (!capabilities || capabilities.length === 0) return null;
+
+  // Repeat sequence 4 times for seamless mobile marquee
+  const trackItems = [
+    ...capabilities,
+    ...capabilities,
+    ...capabilities,
+    ...capabilities,
+  ];
+
+  // Mouse drag handlers for manual drag on mobile/touch simulators
+  const handleMouseDown = (e) => {
+    if (window.innerWidth >= 640) return;
+    setIsDragging(true);
+    setIsPaused(true);
+    setStartX(e.pageX - (scrollRef.current?.offsetLeft || 0));
+    setScrollLeft(scrollRef.current?.scrollLeft || 0);
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging || !scrollRef.current || window.innerWidth >= 640) return;
+    e.preventDefault();
+    const x = e.pageX - (scrollRef.current.offsetLeft || 0);
+    const walk = (x - startX) * 1.5;
+    scrollRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+    setIsPaused(false);
+  };
+
+  const renderCard = (cap, uniqueKey, isExtra = false) => {
+    const Icon = cap.icon;
+    return (
+      <div
+        key={uniqueKey}
+        className={`flex flex-col items-center justify-center text-center shrink-0 w-[140px] px-3 py-5 border-r border-[#D0E3F7] dark:border-white/10 sm:border-r-0 sm:w-auto sm:px-3 sm:py-6 lg:py-7 ${
+          isExtra ? 'sm:hidden' : ''
+        }`}
+      >
+        {/* Prominent Blue/Cyan Icon Badge */}
+        <div className="w-11 h-11 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-2xl bg-white dark:bg-[#17264D] text-[#089EC2] dark:text-[#2DD4F0] border border-[#CDE1F5] dark:border-white/10 shadow-xs flex items-center justify-center mb-2.5 sm:mb-3.5 shrink-0">
+          {Icon ? <Icon className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7" /> : null}
+        </div>
+
+        {/* Capability Label Directly Below Icon */}
+        <span className="text-xs sm:text-[13px] lg:text-sm font-bold text-[#14213D] dark:text-white leading-tight tracking-tight max-w-[130px] sm:max-w-[145px] break-words whitespace-normal select-none">
+          {cap.name}
+        </span>
+      </div>
+    );
+  };
 
   return (
     <section className="py-10 sm:py-12 bg-transparent border-b border-slate-200/80 dark:border-white/10 transition-colors duration-300">
@@ -26,47 +81,44 @@ export default function KeyCapabilities({ capabilities = [] }) {
 
         {/* Key Capabilities Panel (Transparent Background) */}
         <div className="mt-6 sm:mt-8 rounded-2xl border border-[#D0E3F7] dark:border-white/10 bg-transparent shadow-xs overflow-hidden">
-          {/* Desktop & Tablet: Single Horizontal Row with Thin Vertical Separators */}
-          <div className="hidden sm:grid sm:grid-cols-5 divide-x divide-[#D0E3F7] dark:divide-white/10">
-            {capabilities.map((cap, idx) => {
-              const Icon = cap.icon;
-              return (
-                <div
-                  key={idx}
-                  className="flex flex-col items-center justify-center text-center px-3 py-6 lg:py-7"
-                >
-                  {/* Prominent Blue/Cyan Icon Badge */}
-                  <div className="w-12 h-12 lg:w-14 lg:h-14 rounded-2xl bg-white dark:bg-[#17264D] text-[#089EC2] dark:text-[#2DD4F0] border border-[#CDE1F5] dark:border-white/10 shadow-xs flex items-center justify-center mb-3.5 shrink-0">
-                    {Icon ? <Icon className="w-6 h-6 lg:w-7 lg:h-7" /> : null}
-                  </div>
+          {/*
+            Carousel Viewport:
+            - Mobile (< 640px): Horizontal sliding marquee carousel with touch/drag support
+            - Desktop & Tablet (>= 640px): Standard 5-column grid layout
+          */}
+          <div
+            ref={scrollRef}
+            className="key-capabilities-carousel-viewport relative w-full overflow-hidden overflow-x-auto no-scrollbar py-1 select-none cursor-grab active:cursor-grabbing sm:cursor-default sm:overflow-visible sm:py-0 [mask-image:linear-gradient(to_right,transparent,black_16px,black_calc(100%-16px),transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_16px,black_calc(100%-16px),transparent)] sm:[mask-image:none] sm:[-webkit-mask-image:none]"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => { setIsPaused(false); setIsDragging(false); }}
+            onTouchStart={() => setIsPaused(true)}
+            onTouchEnd={() => setIsPaused(false)}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+          >
+            <div
+              className="key-capabilities-marquee-track flex flex-nowrap whitespace-nowrap sm:block sm:w-full sm:transform-none"
+              style={{
+                animationPlayState: isPaused ? 'paused' : 'running',
+              }}
+            >
+              {/* Primary Track: becomes 5-column grid on desktop & tablet */}
+              <div className="flex flex-nowrap shrink-0 items-center sm:grid sm:grid-cols-5 sm:divide-x sm:divide-[#D0E3F7] sm:dark:divide-white/10 sm:w-full">
+                {trackItems.map((item, index) => {
+                  const isExtra = index >= capabilities.length;
+                  return renderCard(item, `cap-t1-${index}`, isExtra);
+                })}
+              </div>
 
-                  {/* Capability Label Directly Below Icon */}
-                  <span className="text-xs sm:text-[13px] lg:text-sm font-bold text-[#14213D] dark:text-white leading-tight tracking-tight max-w-[145px]">
-                    {cap.name}
-                  </span>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Mobile: Horizontally Scrollable Row with Vertical Dividers */}
-          <div className="sm:hidden flex items-stretch divide-x divide-[#D0E3F7] dark:divide-white/10 overflow-x-auto py-2 px-1 scrollbar-none">
-            {capabilities.map((cap, idx) => {
-              const Icon = cap.icon;
-              return (
-                <div
-                  key={idx}
-                  className="flex flex-col items-center justify-center text-center px-4 py-5 shrink-0 w-[140px]"
-                >
-                  <div className="w-11 h-11 rounded-2xl bg-white dark:bg-[#17264D] text-[#089EC2] dark:text-[#2DD4F0] border border-[#CDE1F5] dark:border-white/10 shadow-xs flex items-center justify-center mb-2.5 shrink-0">
-                    {Icon ? <Icon className="w-5 h-5" /> : null}
-                  </div>
-                  <span className="text-xs font-bold text-[#14213D] dark:text-white leading-snug tracking-tight">
-                    {cap.name}
-                  </span>
-                </div>
-              );
-            })}
+              {/* Seamless Infinite Loop Clone Track (Hidden on desktop & tablet) */}
+              <div
+                className="key-capabilities-clone-track carousel-clone-track flex flex-nowrap shrink-0 items-center sm:hidden"
+                aria-hidden="true"
+              >
+                {trackItems.map((item, index) => renderCard(item, `cap-t2-${index}`, false))}
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -1075,6 +1075,57 @@ html.dark .section-heading-description {
   }
 }
 
+/* ==========================================================================
+   Key Capabilities Mobile Marquee Carousel (< 640px)
+   ========================================================================== */
+@keyframes keyCapabilitiesMarqueeScroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 639px) {
+  .key-capabilities-marquee-track {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    white-space: nowrap !important;
+    width: max-content !important;
+    animation: keyCapabilitiesMarqueeScroll 30s linear infinite !important;
+    will-change: transform;
+  }
+
+  .key-capabilities-marquee-track:hover,
+  .key-capabilities-marquee-track:focus-within,
+  .key-capabilities-marquee-track:active {
+    animation-play-state: paused !important;
+  }
+}
+
+@media (min-width: 640px) {
+  .key-capabilities-carousel-viewport {
+    overflow: visible !important;
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+    cursor: default !important;
+  }
+
+  .key-capabilities-marquee-track {
+    display: block !important;
+    width: 100% !important;
+    animation: none !important;
+    transform: none !important;
+    white-space: normal !important;
+  }
+
+  .key-capabilities-clone-track {
+    display: none !important;
+  }
+}
+
 /* Hide scrollbar utility across all browsers */
 .no-scrollbar::-webkit-scrollbar {
   display: none !important;
