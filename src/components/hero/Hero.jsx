@@ -304,7 +304,7 @@ export default function Hero() {
             >
               <div className={`transform will-change-[transform,opacity] ${getTextTransitionClass()}`}>
                 {/* Tag Badge */}
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white dark:bg-[#17264A] border border-slate-200 dark:border-[#24355A] text-xs font-mono text-[#089EC2] dark:text-[#2DD4F0] uppercase tracking-wider mb-5 shadow-xs">
+                <div className="inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full bg-white dark:bg-[#17264A] border border-slate-200 dark:border-[#24355A] text-[14px] font-mono font-bold text-[#102A43] dark:text-[#E2EEFB] uppercase tracking-wider mb-5 shadow-xs">
                   <span className="w-2 h-2 rounded-full bg-[#089EC2] dark:bg-[#2DD4F0] animate-pulse" />
                   <span>{current.tag}</span>
                 </div>
