@@ -535,6 +535,8 @@ export default function RZG2LSMARCSoM({ productSlug = 'smarc-som' }) {
          ===================================================================== */}
       <ProductEnquiry
         productName={product.title}
+        description="Explore RZ/G2L-based hardware, custom board development, and embedded software integration with our engineering team."
+        bottomMessage="Discuss your hardware requirements, custom board design, or embedded Linux development with our engineers."
         onRequestQuote={() => openModal('Request Quote')}
         onContactTeam={() => openModal('Contact Engineering Team')}
       />
