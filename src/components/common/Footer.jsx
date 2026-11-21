@@ -5,6 +5,7 @@ import {
   CheckCircle2, 
   ShieldCheck
 } from 'lucide-react';
+import { navigateTo } from '../../utils/navigation';
 
 
 export default function Footer() {
@@ -32,10 +33,15 @@ export default function Footer() {
           <div className="lg:col-span-5 flex flex-col justify-between">
             <div>
               {/* Logo */}
-              <Logo className="mb-4" imgClassName="w-10 h-10 sm:w-11 sm:h-11" />
+              <Logo 
+                className="mb-4" 
+                imgClassName="w-10 h-10 sm:w-11 sm:h-11" 
+                tagline="Embedded Hardware & Integrated Solutions"
+                taglineClassName="text-xs sm:text-sm font-medium text-[#64748B] dark:text-[#AAB6D0] mt-0.5 sm:mt-1.5 leading-none select-none truncate"
+              />
 
               <p className="text-sm text-[#52627C] dark:text-[#AAB6D0] leading-relaxed max-w-sm mb-6">
-                Aiegx designs and manufactures ultra-low-power neural silicon, rugged industrial edge hardware, and real-time embedded software for autonomous systems.
+                AIEGX designs and develops embedded hardware products and integrated solutions for transportation, surveillance, industrial automation, and defence applications.
               </p>
             </div>
 
@@ -75,48 +81,45 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Links Column 1: Hardware Platforms (2 cols) */}
+          {/* Links Column 1: Hardware Products (2 cols) */}
           <div className="lg:col-span-2 space-y-3">
             <h4 className="text-xs font-mono uppercase tracking-wider text-[#089EC2] dark:text-[#2DD4F0] font-bold">
-              Platforms
+              HARDWARE PRODUCTS
             </h4>
             <ul className="space-y-2 text-xs text-[#52627C] dark:text-[#AAB6D0]">
-              <li><a href="#hardware-platforms" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">RZ/G2L MPU Module</a></li>
-              <li><a href="#hardware-platforms" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">RZ/G2N Embedded SBC</a></li>
-              <li><a href="#hardware-platforms" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">RZ/V2L Vision AI Board</a></li>
-              <li><a href="#hardware-platforms" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">RZ/V2H Industrial Board</a></li>
-              <li><a href="/products/type-1" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Type 1 Product</a></li>
-              <li><a href="#hardware-platforms" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Custom Carrier Boards</a></li>
+              <li><a href="/products/rz-g2l" onClick={(e) => navigateTo('/products/rz-g2l', e)} className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">RZ/G2L-Based Platforms</a></li>
+              <li><a href="/products/rz-g2n/sbc" onClick={(e) => navigateTo('/products/rz-g2n/sbc', e)} className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">RZ/G2N SBC</a></li>
+              <li><a href="/products/rz-v2l" onClick={(e) => navigateTo('/products/rz-v2l', e)} className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">RZ/V2L-Based Platforms</a></li>
+              <li><a href="/products/rz-v2h/sbc" onClick={(e) => navigateTo('/products/rz-v2h/sbc', e)} className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">RZ/V2H SBC</a></li>
             </ul>
           </div>
 
-          {/* Links Column 2: Solutions (2 cols) */}
+          {/* Links Column 2: Integrated Solutions (2 cols) */}
           <div className="lg:col-span-2 space-y-3">
             <h4 className="text-xs font-mono uppercase tracking-wider text-[#089EC2] dark:text-[#2DD4F0] font-bold">
-              Solutions
+              INTEGRATED SOLUTIONS
             </h4>
             <ul className="space-y-2 text-xs text-[#52627C] dark:text-[#AAB6D0]">
-              <li><a href="#integrated-solutions" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">HMI Display Interface</a></li>
-              <li><a href="#integrated-solutions" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">DMS In-Cabin Vision</a></li>
-              <li><a href="#integrated-solutions" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Vehicle Domain Controller</a></li>
-              <li><a href="#integrated-solutions" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">ANPR Edge Neural OCR</a></li>
-              <li><a href="#industries" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Railways Transit</a></li>
-              <li><a href="#industries" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Smart City & Defense</a></li>
+              <li><a href="/solutions/vehicle-mobility" onClick={(e) => navigateTo('/solutions/vehicle-mobility', e)} className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Vehicle & Mobility Solutions</a></li>
+              <li><a href="/solutions/video-surveillance" onClick={(e) => navigateTo('/solutions/video-surveillance', e)} className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Video & Surveillance Solutions</a></li>
+              <li><a href="/solutions/industrial-machine-vision" onClick={(e) => navigateTo('/solutions/industrial-machine-vision', e)} className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Industrial & Machine Vision Solutions</a></li>
+              <li><a href="/solutions/defence-advanced-vision" onClick={(e) => navigateTo('/solutions/defence-advanced-vision', e)} className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Defence & Advanced Vision Solutions</a></li>
             </ul>
           </div>
 
           {/* Links Column 3: Engineering & Company (3 cols) */}
           <div className="lg:col-span-3 space-y-3">
             <h4 className="text-xs font-mono uppercase tracking-wider text-[#089EC2] dark:text-[#2DD4F0] font-bold">
-              Engineering & Company
+              ENGINEERING & COMPANY
             </h4>
             <ul className="space-y-2 text-xs text-[#52627C] dark:text-[#AAB6D0]">
-              <li><a href="#engineering-capabilities" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Hardware & Carrier Design</a></li>
-              <li><a href="#engineering-capabilities" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Linux / Yocto BSP Drivers</a></li>
-              <li><a href="#engineering-capabilities" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Camera & ISP Integration</a></li>
-              <li><a href="#engineering-capabilities" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Edge AI Model Quantization</a></li>
-              <li><a href="#contact" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Speak with Engineers</a></li>
-              <li><a href="#contact" className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Request Technical Inquiry</a></li>
+              <li><a href="/#engineering-capabilities" onClick={(e) => navigateTo('/#engineering-capabilities', e)} className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Hardware Design & Development</a></li>
+              <li><a href="/#engineering-capabilities" onClick={(e) => navigateTo('/#engineering-capabilities', e)} className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Linux / Yocto BSP & Driver Development</a></li>
+              <li><a href="/#engineering-capabilities" onClick={(e) => navigateTo('/#engineering-capabilities', e)} className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Camera & Multimedia Integration</a></li>
+              <li><a href="/#engineering-capabilities" onClick={(e) => navigateTo('/#engineering-capabilities', e)} className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Edge AI Application Development</a></li>
+              <li><a href="/#engineering-capabilities" onClick={(e) => navigateTo('/#engineering-capabilities', e)} className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Custom Hardware Design</a></li>
+              <li><a href="/about-us" onClick={(e) => navigateTo('/about-us', e)} className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">About Us</a></li>
+              <li><a href="/#contact" onClick={(e) => navigateTo('/#contact', e)} className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Contact Us</a></li>
             </ul>
           </div>
 
@@ -126,13 +129,9 @@ export default function Footer() {
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
           
           <div className="flex flex-wrap items-center gap-4 text-xs text-slate-500 dark:text-white/40">
-            <span>&copy; {new Date().getFullYear()} Aiegx Technologies Inc. All rights reserved.</span>
-            <span className="hidden sm:inline">&bull;</span>
-            <a href="#why-aiegx" className="hover:text-slate-900 dark:hover:text-white transition-colors">Privacy Policy</a>
-            <span className="hidden sm:inline">&bull;</span>
-            <a href="#why-aiegx" className="hover:text-slate-900 dark:hover:text-white transition-colors">Terms of Hardware Procurement</a>
-            <span className="hidden sm:inline">&bull;</span>
-            <a href="#why-aiegx" className="hover:text-slate-900 dark:hover:text-white transition-colors">Supply Chain Statement</a>
+            <span>&copy; 2026 AIEGX. All rights reserved.</span>
+            <span className="text-slate-400 dark:text-white/20">|</span>
+            <a href="#why-aiegx" onClick={(e) => navigateTo('/#why-aiegx', e)} className="hover:text-slate-900 dark:hover:text-white transition-colors">Privacy Policy</a>
           </div>
 
           {/* Certifications and Social Icons */}

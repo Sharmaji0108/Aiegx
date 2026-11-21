@@ -6,6 +6,7 @@ export default function Logo({
   showText = true, 
   showTagline = true,
   tagline = 'EMBEDDED & EDGE AI',
+  taglineClassName,
   href = '/', 
   _variant = 'default',
   onClick
@@ -44,7 +45,7 @@ export default function Logo({
             AIEGX
           </span>
           {showTagline && (
-            <span className="text-[10px] sm:text-[13px] font-mono tracking-wider sm:tracking-widest text-[#64748B] dark:text-[#AAB6D0] uppercase font-semibold mt-0.5 sm:mt-1.5 leading-none select-none truncate">
+            <span className={taglineClassName || "text-[10px] sm:text-[13px] font-mono tracking-wider sm:tracking-widest text-[#64748B] dark:text-[#AAB6D0] uppercase font-semibold mt-0.5 sm:mt-1.5 leading-none select-none truncate"}>
               {tagline}
             </span>
           )}

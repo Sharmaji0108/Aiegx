@@ -62,13 +62,13 @@ export default function ContactSection() {
               Let's Build Your <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">Next Product</span>
             </>
           }
-          description="Collaborate with our engineering team to design, customize, and deploy your next-generation embedded or edge AI solution."
+          description="Partner with our engineering team to design, customize, and deploy embedded hardware products or integrated solutions tailored to your requirements."
         />
 
         {/* Action Row: Description & Contact Us Button */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#17264A] border border-[#DBE4F0] dark:border-[#24355A] shadow-xs">
           <p className="text-base sm:text-lg text-[#52627C] dark:text-[#AAB6D0] leading-relaxed max-w-2xl">
-            Talk to our engineers about your hardware, solution, or custom development requirements.
+            Have a product idea or technical requirement? Let's discuss how we can bring it to life.
           </p>
           <div className="shrink-0 w-full sm:w-auto">
             <button
