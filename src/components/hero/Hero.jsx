@@ -5,8 +5,13 @@ export const heroSlides = [
   {
     id: 1,
     tag: 'Embedded Hardware Platforms',
-    heading: 'Embedded Computing Made Easy',
-    description: 'Explore integrated hardware and software platforms designed to simplify embedded product development, accelerate time to market, and support long product lifecycles.',
+    heading: (
+      <>
+        Embedded Hardware.<br />
+        Built for Innovation.
+      </>
+    ),
+    description: 'We design and develop embedded hardware platforms for industrial, multimedia, and intelligent applications, combining performance, flexibility, and reliability.',
     ctaText: 'Explore Hardware',
     ctaHref: '#hardware-platforms',
     image: '/images/sbc-platform-hd.jpg',
@@ -16,8 +21,13 @@ export const heroSlides = [
   {
     id: 2,
     tag: 'Integrated Solutions',
-    heading: 'Our Integrated Solutions',
-    description: 'Pre-validated turnkey architectures for Human-Machine Interfaces (HMI), Driver Monitoring Systems (DMS), Vehicle Domain Controllers (VDC), and high-speed ANPR computer vision.',
+    heading: (
+      <>
+        Intelligent Solutions for<br />
+        Real-World Applications
+      </>
+    ),
+    description: 'We combine embedded hardware and software to develop integrated solutions for transportation, surveillance, industrial automation, and intelligent vision applications.',
     ctaText: 'Explore Solutions',
     ctaHref: '#integrated-solutions',
     image: '/images/integrated-solution-hd.jpg',
@@ -28,7 +38,7 @@ export const heroSlides = [
     id: 3,
     tag: 'Industries & Applications',
     heading: 'Industries We Serve',
-    description: 'Mission-critical computing platforms engineered for Railways (EN 50155), Public Transportation, Intelligent Traffic, Smart Cities, Security Surveillance, and Rugged Defense.',
+    description: 'Delivering embedded hardware products and integrated solutions for Railways, Public Transportation, Security & Surveillance, Smart Cities, and Defence applications.',
     ctaText: 'Explore Industries',
     ctaHref: '#industries',
     image: '/images/industrial-computing-hd.jpg',
@@ -39,7 +49,7 @@ export const heroSlides = [
     id: 4,
     tag: 'Full-Lifecycle Services',
     heading: 'Our Engineering Capabilities',
-    description: 'From SoM, SBC, and custom carrier-board design to production-grade Linux & Yocto BSP development, multi-camera ISP tuning, and edge AI model deployment.',
+    description: 'From hardware design and embedded Linux development to software, camera integration, and edge AI, we provide engineering expertise to develop complete embedded products.',
     ctaText: 'Talk to Engineers',
     ctaHref: '#contact',
     image: '/images/hero-som-module.jpg',
@@ -371,7 +381,7 @@ export default function Hero() {
               role="tab"
               type="button"
               aria-selected={isActive}
-              aria-label={`Go to slide ${idx + 1}: ${slide.heading}`}
+              aria-label={`Go to slide ${idx + 1}: ${typeof slide.heading === 'string' ? slide.heading : slide.tag}`}
               onClick={() => goToSlide(idx, idx > currentSlide ? 'next' : 'prev')}
               className={`h-2 rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2DD4F0] cursor-pointer ${
                 isActive 
