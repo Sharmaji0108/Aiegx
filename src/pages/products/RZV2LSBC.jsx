@@ -87,7 +87,7 @@ const RZV2L_SOM_SPECIFICATIONS = [
 ];
 
 const RZV2L_CARRIER_BOARD_SPECIFICATIONS = [
-  { feature: 'Supported SoM', details: 'RZ/V2L SMARC SoM' },
+  { feature: 'Supported SoM', details: 'RZ/V2L SoM' },
   { feature: 'Onboard Storage (SoM)', details: 'eMMC (on SMARC SoM)' },
   { feature: 'Ethernet', details: '2 × Gigabit Ethernet (1 Gbps, RJ45)' },
   { feature: 'USB 0', details: 'USB 2.0 Type-A' },
@@ -306,7 +306,7 @@ export default function RZV2LSBC({ productSlug = 'sbc' }) {
         detailsHeader="DETAILS"
         description={
           productSlug === 'sbc' || productSlug === 'carrier-board'
-            ? 'Interfaces, connectors and expansion features for the RZ/V2L SMARC SoM.'
+            ? 'Interfaces, connectors and expansion features for the RZ/V2L SoM.'
             : undefined
         }
       />

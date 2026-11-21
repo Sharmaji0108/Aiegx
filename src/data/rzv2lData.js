@@ -443,7 +443,7 @@ export const RZV2L_PRODUCT_DETAILS = {
       { title: 'Industrial Grade Reliability', icon: ShieldCheck },
     ],
     specifications: [
-      { feature: 'Supported SoM', details: 'RZ/V2L SMARC SoM' },
+      { feature: 'Supported SoM', details: 'RZ/V2L SoM' },
       { feature: 'Onboard Storage (SoM)', details: 'eMMC (on SMARC SoM)' },
       { feature: 'Ethernet', details: '2 × Gigabit Ethernet (1 Gbps, RJ45)' },
       { feature: 'USB 0', details: 'USB 2.0 Type-A' },
