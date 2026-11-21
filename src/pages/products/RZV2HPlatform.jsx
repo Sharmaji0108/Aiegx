@@ -143,12 +143,14 @@ export default function RZV2HPlatform() {
 
       {/* Section H: Technical & Commercial Enquiry */}
       <ProductEnquiry
-        productName="RZ/V2H High-Performance Edge AI Platform"
+        productName="RZ/V2H Platform"
+        description="Explore RZ/V2H-based hardware, custom board development, and embedded software integration with our engineering team."
+        bottomMessage="Discuss your hardware requirements, custom board design, or embedded Linux development with our engineers."
         onRequestQuote={() =>
           setEnquiryModal({ isOpen: true, type: 'Request Quote' })
         }
-        onRequestDatasheet={() =>
-          setEnquiryModal({ isOpen: true, type: 'Download Datasheet' })
+        onContactTeam={() =>
+          setEnquiryModal({ isOpen: true, type: 'Contact Engineering Team' })
         }
       />
 
