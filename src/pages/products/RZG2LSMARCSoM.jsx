@@ -12,7 +12,7 @@ import ProductEnquiry, { ProductEnquiryModal } from '../../components/products/P
 import { RZG2L_PRODUCT_DETAILS, RZG2L_APPLICATIONS } from '../../data/rzg2lData';
 import { navigateTo } from '../../utils/navigation';
 
-const SOM_SUBTITLE = 'Up to 2 x Arm Cortex-A55, 1 x Cortex-M33';
+const SOM_SUBTITLE = 'Embedded Computing Module for HMI & Control';
 
 const SOM_SPECIFICATIONS = [
   { feature: 'Processor', details: 'Renesas RZ/G2L' },
@@ -31,11 +31,10 @@ const SOM_SPECIFICATIONS = [
 ];
 
 const SOM_FEATURES = [
-  'Dual core Arm Cortex A55 up to 1.2GHz + Cortex M33',
-  'MIPI-DSI interface for HMI applications',
-  'Onboard Certified Dual Band WiFi 802.11 a/b/g/n/ac with Bluetooth 5.0',
-  'Pin to Pin compatible with RZ/V2L SOM',
-  'The CIP (Civil Infrastructure Platform) Linux ensures robust, sustainable infrastructural systems',
+  'Arm Cortex-A55 and Cortex-M33 processing',
+  'MIPI DSI display interface support',
+  'SMARC-based modular hardware design',
+  'Embedded Linux support using Renesas software packages',
 ];
 
 const RZG2L_SBC_TABS = [

@@ -260,13 +260,12 @@ export const RZG2L_PRODUCT_DETAILS = {
     slug: 'smarc-som',
     category: 'SMARC MODULE',
     title: 'RZ/G2L SMARC SoM',
-    subtitle: 'Up to 2 x Arm Cortex-A55, 1 x Cortex-M33',
+    subtitle: 'Embedded Computing Module for HMI & Control',
     featuresList: [
-      'Dual core Arm Cortex A55 up to 1.2GHz + Cortex M33',
-      'MIPI-DSI interface for HMI applications',
-      'Onboard Certified Dual Band WiFi 802.11 a/b/g/n/ac with Bluetooth 5.0',
-      'Pin to Pin compatible with RZ/V2L SOM',
-      'The CIP (Civil Infrastructure Platform) Linux ensures robust, sustainable infrastructural systems',
+      'Arm Cortex-A55 and Cortex-M33 processing',
+      'MIPI DSI display interface support',
+      'SMARC-based modular hardware design',
+      'Embedded Linux support using Renesas software packages',
     ],
     breadcrumb: [
       { label: 'Home', path: '/' },
@@ -282,10 +281,10 @@ export const RZG2L_PRODUCT_DETAILS = {
       },
     ],
     heroHighlights: [
-      { label: 'Compact SMARC Form Factor', icon: Maximize2 },
-      { label: 'Optimized for HMI & Display', icon: Monitor },
-      { label: 'Rich Connectivity Interfaces', icon: Plug },
-      { label: 'Yocto Linux BSP Support', icon: Terminal },
+      { label: 'Compact SMARC Form Factor', icon: Layers },
+      { label: 'Graphics & Display Support', icon: Monitor },
+      { label: 'Modular Hardware Integration', icon: Network },
+      { label: 'Linux / Yocto Support', icon: Terminal },
     ],
     overviewSummary:
       'The RZ/G2L SMARC SoM provides a compact and scalable solution for industrial and embedded applications. It combines the high-performance and low-power Renesas RZ/G2L processor with essential memory, storage and connectivity interfaces in a standard SMARC form factor, enabling faster development and reduced time to market.',
