@@ -75,7 +75,10 @@ export default function RZG2LPlatform() {
       </div>
 
       {/* Section E: Available Hardware (3 Product Cards) */}
-      <AvailableHardware products={RZG2L_PLATFORM_DATA.availableHardware} />
+      <AvailableHardware
+        products={RZG2L_PLATFORM_DATA.availableHardware}
+        description={RZG2L_PLATFORM_DATA.availableHardwareDescription}
+      />
 
       {/* Section F: Typical Applications (Single horizontal row with continuous automatic right-to-left marquee) */}
       <TypicalApplicationsCarousel applications={RZG2L_APPLICATIONS} />
