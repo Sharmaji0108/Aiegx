@@ -111,8 +111,8 @@ export default function RZG2NPlatform() {
       {/* Bottom Enquiry CTA */}
       <ProductEnquiry
         productName="RZ/G2N Platform"
-        description="Explore RZ/G2N-based hardware, custom board development, and embedded software integration with our engineering team."
-        bottomMessage="Discuss your hardware requirements, custom board design, or embedded Linux development with our engineers."
+        description="Discuss RZ/G2N SBC selection, system integration and embedded Linux support with our engineering team."
+        bottomMessage="Speak with our team about your application requirements, hardware interfaces and customization options for the RZ/G2N SBC."
         onRequestQuote={() =>
           setEnquiryModal({ isOpen: true, type: 'Request Quote' })
         }
