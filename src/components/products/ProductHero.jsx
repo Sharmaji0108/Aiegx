@@ -139,10 +139,12 @@ export default function ProductHero({
                 <span className={hero.familyClassName || "font-mono uppercase tracking-wider text-[#52627C] dark:text-[#AAB6D0]"}>
                   {hero.family || 'Renesas RZ/G2L Family'}
                 </span>
-                <span className="inline-flex items-center gap-1.5 font-semibold text-[#089EC2] dark:text-[#2DD4F0]">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#089EC2] dark:bg-[#2DD4F0]" />
-                  Production Ready
-                </span>
+                {hero.badge && hero.badge !== 'Production Ready' && (
+                  <span className="inline-flex items-center gap-1.5 font-semibold text-[#089EC2] dark:text-[#2DD4F0]">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#089EC2] dark:bg-[#2DD4F0]" />
+                    {hero.badge}
+                  </span>
+                )}
               </div>
             </div>
           </div>

@@ -112,7 +112,7 @@ export default function RZG2NSBC() {
               <ProductGallery
                 images={product.gallery}
                 productName={product.title}
-                badge={product.badge || 'Production Ready'}
+                badge={product.badge}
               />
             </div>
 

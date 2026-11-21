@@ -108,15 +108,17 @@ export default function ProductGallery({ images = [], productName = 'Product', b
         </div>
 
         {/* Caption & Status Information Bar (Hidden if no caption or 3D view) */}
-        {!is3DView && current.caption && (
+        {!is3DView && (current.caption || (badge && badge !== 'Production Ready')) && (
           <div className="mt-3.5 pt-3 border-t border-[#E2E8F0] dark:border-[#24355A] flex items-center justify-between text-xs gap-3">
             <span className="font-medium text-[#52627C] dark:text-[#AAB6D0] truncate">
               {current.caption}
             </span>
-            <span className="inline-flex items-center gap-1.5 font-semibold text-[#089EC2] dark:text-[#2DD4F0] shrink-0">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#089EC2] dark:bg-[#2DD4F0]" />
-              {badge || 'Production Ready'}
-            </span>
+            {badge && badge !== 'Production Ready' && (
+              <span className="inline-flex items-center gap-1.5 font-semibold text-[#089EC2] dark:text-[#2DD4F0] shrink-0">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#089EC2] dark:bg-[#2DD4F0]" />
+                {badge}
+              </span>
+            )}
           </div>
         )}
       </div>
