@@ -27,21 +27,27 @@ const SOM_SPECIFICATIONS = [
 ];
 
 const RZG2L_CARRIER_BOARD_SPECIFICATIONS = [
-  { feature: 'Supported SoM', details: 'RZ/G2L SMARC SoM' },
-  { feature: 'Onboard Storage (SoM)', details: 'eMMC (on SMARC SoM)' },
+  { feature: 'Processor', details: 'Renesas RZ/G2L' },
+  { feature: 'CPU', details: 'Up to dual-core Arm Cortex-A55 @ 1.2 GHz + Cortex-M33 @ 200 MHz' },
+  { feature: 'RAM', details: 'Up to 2 GB DDR4' },
+  { feature: 'Onboard Storage', details: 'eMMC (on SMARC SoM)' },
+  { feature: 'GPU', details: 'Arm Mali-G31' },
+  { feature: 'Video Codec', details: 'H.264 encoding and decoding, up to Full HD (1920 × 1080) @ 30 fps' },
   { feature: 'Ethernet', details: '2 × Gigabit Ethernet (1 Gbps, RJ45)' },
-  { feature: 'USB 0', details: 'USB 2.0 Type-A' },
+  { feature: 'USB 0', details: 'USB 2.0' },
   { feature: 'USB 1', details: 'Micro-USB' },
   { feature: 'External Storage', details: 'SD card slot (microSD)' },
   { feature: 'Camera Interface', details: 'MIPI CSI-2 (4-lane) connector' },
   { feature: 'Display Interface', details: 'MIPI DSI (4-lane) connector' },
   { feature: 'PMOD Connectors', details: 'GPIO, I²C and SPI' },
-  { feature: 'Serial Expansion', details: 'UART (via dedicated connector)' },
-  { feature: 'Debug Interface', details: 'Debug UART (console)' },
-  { feature: 'PWM / Backlight', details: 'PWM and Backlight GPIOs (via connector)' },
+  { feature: 'UART Interface', details: 'UART (via dedicated connector)' },
+  { feature: 'Debug Interface', details: 'Debug UART' },
+  { feature: 'PWM / Backlight', details: 'PWM and backlight GPIO connector' },
   { feature: 'Audio Interface', details: 'Speaker and Mic' },
-  { feature: 'Reset', details: 'Reset button (system reset)' },
   { feature: 'Real-Time Clock (RTC)', details: 'Onboard RTC' },
+  { feature: 'Reset', details: 'Reset button' },
+  { feature: 'Software Support', details: 'Renesas RZ/G Verified Linux Package' },
+  { feature: 'Hardware Configuration', details: 'RZ/G2L SMARC SoM + Carrier Board' },
 ];
 
 const SOM_FEATURES = [
@@ -333,19 +339,9 @@ export default function RZG2LSMARCSoM({ productSlug = 'smarc-som' }) {
         productName={product.title}
         featureHeader={productSlug === 'smarc-som' || productSlug === 'carrier-board' ? 'FEATURE' : 'FEATURES'}
         detailsHeader="DETAILS"
-        heading={
-          productSlug === 'carrier-board' ? (
-            <>
-              RZ/G2L{' '}
-              <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
-                Carrier Board
-              </span>
-            </>
-          ) : undefined
-        }
         description={
           productSlug === 'carrier-board'
-            ? 'Interfaces, connectors and expansion features for the RZ/G2L SMARC SoM.'
+            ? 'Hardware specifications and interfaces of the complete RZ/G2L SMARC SoM and carrier-board platform.'
             : undefined
         }
       />
