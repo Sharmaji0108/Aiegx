@@ -73,8 +73,8 @@ export const RZV2H_PLATFORM_DATA = {
   availableHardware: [
     {
       id: 'rz-v2h-sbc',
-      name: 'RZ/V2H Embedded Computing Platform',
-      badge: 'EMBEDDED COMPUTING PLATFORM',
+      name: 'RZ/V2H SBC',
+      badge: 'SBC',
       description:
         'High-performance turnkey edge AI single-board computer featuring the Renesas RZ/V2H MPU with 10 TOPS DRP-AI accelerator and multi-camera support.',
       image: '/images/RZV2H.png',
@@ -166,8 +166,8 @@ export const RZV2H_APPLICATIONS = [
 export const RZV2H_PRODUCT_DETAILS = {
   sbc: {
     slug: 'sbc',
-    category: 'HIGH-PERFORMANCE EDGE AI SBC',
-    title: 'RZ/V2H Embedded Computing Platform',
+    category: 'SBC',
+    title: 'RZ/V2H SBC',
     shortDescription:
       'High-performance turnkey edge AI single-board computer powered by the Renesas RZ/V2H processor with 10 TOPS 2nd Gen DRP-AI, multi-camera interfaces, and PCIe Gen3.',
     introParagraph:

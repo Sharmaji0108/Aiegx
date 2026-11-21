@@ -29,7 +29,7 @@ const HW_TAGS = {
     { label: 'Carrier Board', icon: Layers },
   ],
   'rz-g2n': [
-    { label: 'Embedded Computing Platform', icon: LayoutGrid },
+    { label: 'SBC', icon: LayoutGrid },
   ],
   'rz-v2l': [
     { label: 'SMARC SoM', icon: CircuitBoard },
@@ -37,7 +37,7 @@ const HW_TAGS = {
     { label: 'Carrier Board', icon: Layers },
   ],
   'rz-v2h': [
-    { label: 'Embedded Computing Platform', icon: LayoutGrid },
+    { label: 'SBC', icon: LayoutGrid },
   ],
 };
 
@@ -386,7 +386,7 @@ export default function Products() {
     },
     {
       id: 'rz-g2n',
-      name: 'RZ/G2N-Based Embedded Computing Platform',
+      name: 'RZ/G2N-Based SBC',
       subtitle: 'Multimedia & Video',
       image: RZG2N,
       fallbackImage: '/images/RZG2N.png',
@@ -430,7 +430,7 @@ export default function Products() {
     },
     {
       id: 'rz-v2h',
-      name: 'RZ/V2H-Based Embedded Computing Platform',
+      name: 'RZ/V2H-Based SBC',
       subtitle: 'High-Performance Edge AI',
       image: RZV2H,
       fallbackImage: '/images/RZV2H.png',
