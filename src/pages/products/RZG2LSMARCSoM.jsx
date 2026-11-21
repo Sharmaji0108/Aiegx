@@ -27,27 +27,21 @@ const SOM_SPECIFICATIONS = [
 ];
 
 const RZG2L_CARRIER_BOARD_SPECIFICATIONS = [
-  { feature: 'Processor', details: 'Renesas RZ/G2L' },
-  { feature: 'CPU', details: 'Up to dual-core Arm Cortex-A55 @ 1.2 GHz + Cortex-M33 @ 200 MHz' },
-  { feature: 'RAM', details: 'Up to 2 GB DDR4' },
-  { feature: 'Onboard Storage', details: 'eMMC (on SMARC SoM)' },
-  { feature: 'GPU', details: 'Arm Mali-G31' },
-  { feature: 'Video Codec', details: 'H.264 encoding and decoding, up to Full HD (1920 × 1080) @ 30 fps' },
+  { feature: 'Supported SoM', details: 'RZ/G2L SMARC SoM' },
+  { feature: 'Onboard Storage (SoM)', details: 'eMMC (on SMARC SoM)' },
   { feature: 'Ethernet', details: '2 × Gigabit Ethernet (1 Gbps, RJ45)' },
-  { feature: 'USB 0', details: 'USB 2.0' },
+  { feature: 'USB 0', details: 'USB 2.0 Type-A' },
   { feature: 'USB 1', details: 'Micro-USB' },
   { feature: 'External Storage', details: 'SD card slot (microSD)' },
   { feature: 'Camera Interface', details: 'MIPI CSI-2 (4-lane) connector' },
   { feature: 'Display Interface', details: 'MIPI DSI (4-lane) connector' },
   { feature: 'PMOD Connectors', details: 'GPIO, I²C and SPI' },
-  { feature: 'UART Interface', details: 'UART (via dedicated connector)' },
-  { feature: 'Debug Interface', details: 'Debug UART' },
-  { feature: 'PWM / Backlight', details: 'PWM and backlight GPIO connector' },
+  { feature: 'Serial Expansion', details: 'UART (via dedicated connector)' },
+  { feature: 'Debug Interface', details: 'Debug UART (console)' },
+  { feature: 'PWM / Backlight', details: 'PWM and Backlight GPIOs (via connector)' },
   { feature: 'Audio Interface', details: 'Speaker and Mic' },
+  { feature: 'Reset', details: 'Reset button (system reset)' },
   { feature: 'Real-Time Clock (RTC)', details: 'Onboard RTC' },
-  { feature: 'Reset', details: 'Reset button' },
-  { feature: 'Software Support', details: 'Renesas RZ/G Verified Linux Package' },
-  { feature: 'Hardware Configuration', details: 'RZ/G2L SMARC SoM + Carrier Board' },
 ];
 
 const SOM_FEATURES = [
@@ -58,13 +52,15 @@ const SOM_FEATURES = [
 ];
 
 const RZG2L_SBC_FEATURES = [
-  'Renesas RZ/G2L MPU with 64-bit ARM®v8.2A, ARM®v8-M & 3D-Graphics Engine with Arm®Mali™ Architecture',
-  '2GB DDR4 (Expandable)',
-  '16GB eMMC Flash (Expandable)',
-  'All Power required for the SoC generated using DA9062 PMIC',
-  '1 x Gigabit Ethernet Jack',
-  'MIPI CSI & MIPI DSI support',
+  'Combines the RZ/G2L SMARC SoM and carrier board',
+  'Arm® Cortex®-A55 and Cortex®-M33 processing',
+  '2 × Gigabit Ethernet connectivity',
+  'MIPI CSI-2 camera and MIPI DSI display interfaces',
+  'USB, serial communication and peripheral expansion',
+  'Embedded Linux / Yocto BSP support',
 ];
+
+const RZG2L_SBC_SUBTITLE = 'Complete Embedded Platform with SMARC SoM and Carrier Board.';
 
 const RZG2L_SBC_SPECIFICATIONS = [
   {
@@ -235,13 +231,22 @@ export default function RZG2LSMARCSoM({ productSlug = 'smarc-som' }) {
 
               {/* Product Title */}
               <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold tracking-tight text-[#14213D] dark:text-[#F8FAFC] leading-[1.15] mb-2 sm:mb-2.5">
-                {product.title}
+                {productSlug === 'sbc' ? (
+                  <>
+                    RZ/G2L{' '}
+                    <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
+                      Embedded Computing Platform
+                    </span>
+                  </>
+                ) : (
+                  product.title
+                )}
               </h1>
 
               {/* Subtitle / Core Architecture */}
-              {(product.subtitle || (productSlug === 'smarc-som' && SOM_SUBTITLE)) && (
+              {(product.subtitle || (productSlug === 'smarc-som' && SOM_SUBTITLE) || (productSlug === 'sbc' && RZG2L_SBC_SUBTITLE)) && (
                 <p className="text-sm sm:text-base font-semibold text-[#52627C] dark:text-[#AAB6D0] mb-4">
-                  {product.subtitle || SOM_SUBTITLE}
+                  {product.subtitle || (productSlug === 'smarc-som' ? SOM_SUBTITLE : RZG2L_SBC_SUBTITLE)}
                 </p>
               )}
 
@@ -339,9 +344,19 @@ export default function RZG2LSMARCSoM({ productSlug = 'smarc-som' }) {
         productName={product.title}
         featureHeader={productSlug === 'smarc-som' || productSlug === 'carrier-board' ? 'FEATURE' : 'FEATURES'}
         detailsHeader="DETAILS"
+        heading={
+          productSlug === 'carrier-board' ? (
+            <>
+              RZ/G2L{' '}
+              <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
+                Carrier Board
+              </span>
+            </>
+          ) : undefined
+        }
         description={
           productSlug === 'carrier-board'
-            ? 'Hardware specifications and interfaces of the complete RZ/G2L SMARC SoM and carrier-board platform.'
+            ? 'Interfaces, connectors and expansion features for the RZ/G2L SMARC SoM.'
             : undefined
         }
       />
