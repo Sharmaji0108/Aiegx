@@ -200,70 +200,61 @@ function SolutionCard({ solution, className = '' }) {
 
 /* ─── Mobile Auto-Sliding Carousel Component (Exclusively on Mobile) ─── */
 function MobileSolutionsCarousel({ solutions }) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [outgoingIndex, setOutgoingIndex] = useState(null);
-  const [slideDirection, setSlideDirection] = useState('next');
+  const total = solutions.length;
+  // Extended array for seamless right-to-left infinite loop: [last, ...items, first]
+  const extendedItems = [solutions[total - 1], ...solutions, solutions[0]];
+
+  const [currentIndex, setCurrentIndex] = useState(1);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
 
   const timerRef = useRef(null);
-  const transitionTimeoutRef = useRef(null);
   const touchStartXRef = useRef(0);
   const touchStartYRef = useRef(0);
   const isSwipingRef = useRef(false);
 
-  // Transition to target slide with directional animation (600–800ms)
-  const goToSlide = useCallback((nextIndex, dir = 'next') => {
-    if (nextIndex === currentIndex || isTransitioning) return;
-
-    if (transitionTimeoutRef.current) {
-      clearTimeout(transitionTimeoutRef.current);
-    }
-
-    setOutgoingIndex(currentIndex);
-    setCurrentIndex(nextIndex);
-    setSlideDirection(dir);
+  // Transition to target slide index
+  const goToSlide = useCallback((targetIndex) => {
+    if (isTransitioning) return;
     setIsTransitioning(true);
-
-    transitionTimeoutRef.current = setTimeout(() => {
-      setOutgoingIndex(null);
-      setIsTransitioning(false);
-    }, 700);
-  }, [currentIndex, isTransitioning]);
+    setCurrentIndex(targetIndex);
+  }, [isTransitioning]);
 
   const handleNext = useCallback(() => {
-    const nextIndex = (currentIndex + 1) % solutions.length;
-    goToSlide(nextIndex, 'next');
-  }, [currentIndex, solutions.length, goToSlide]);
+    goToSlide(currentIndex + 1);
+  }, [currentIndex, goToSlide]);
 
   const handlePrev = useCallback(() => {
-    const prevIndex = (currentIndex - 1 + solutions.length) % solutions.length;
-    goToSlide(prevIndex, 'prev');
-  }, [currentIndex, solutions.length, goToSlide]);
+    goToSlide(currentIndex - 1);
+  }, [currentIndex, goToSlide]);
 
   const handleDotClick = useCallback((idx) => {
-    if (idx === currentIndex || isTransitioning) return;
-    const dir = idx > currentIndex ? 'next' : 'prev';
-    goToSlide(idx, dir);
-  }, [currentIndex, isTransitioning, goToSlide]);
+    goToSlide(idx + 1);
+  }, [goToSlide]);
 
-  // Automatic slide interval: 5 seconds, looping infinitely
+  // Handle seamless wrap-around at the cloned boundary slides
+  const handleTransitionEnd = () => {
+    if (currentIndex >= extendedItems.length - 1) {
+      // Reached cloned first slide at the end -> jump to real first slide (index 1) without animation
+      setIsTransitioning(false);
+      setCurrentIndex(1);
+    } else if (currentIndex <= 0) {
+      // Reached cloned last slide at the start -> jump to real last slide (index total) without animation
+      setIsTransitioning(false);
+      setCurrentIndex(total);
+    } else {
+      setIsTransitioning(false);
+    }
+  };
+
+  // Automatic slide interval: 5 seconds, looping infinitely right to left
   useEffect(() => {
-    if (timerRef.current) {
-      clearInterval(timerRef.current);
-      timerRef.current = null;
-    }
+    if (isPaused) return;
 
-    const prefersReducedMotion =
-      typeof window !== 'undefined' &&
-      window.matchMedia &&
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (!isPaused && !prefersReducedMotion) {
-      timerRef.current = setInterval(() => {
-        handleNext();
-      }, 5000);
-    }
+    timerRef.current = setInterval(() => {
+      setIsTransitioning(true);
+      setCurrentIndex((prev) => prev + 1);
+    }, 5000);
 
     return () => {
       if (timerRef.current) {
@@ -271,16 +262,7 @@ function MobileSolutionsCarousel({ solutions }) {
         timerRef.current = null;
       }
     };
-  }, [isPaused, currentIndex, handleNext]);
-
-  // Clean up transition timer on unmount
-  useEffect(() => {
-    return () => {
-      if (transitionTimeoutRef.current) {
-        clearTimeout(transitionTimeoutRef.current);
-      }
-    };
-  }, []);
+  }, [isPaused, currentIndex]);
 
   // Touch Swipe Handlers for mobile gestures
   const handleTouchStart = (e) => {
@@ -308,6 +290,9 @@ function MobileSolutionsCarousel({ solutions }) {
     }
   };
 
+  // Active pagination dot index (0 to total - 1)
+  const activeDotIndex = (currentIndex - 1 + total) % total;
+
   return (
     <div
       className="relative w-full max-w-md mx-auto px-1"
@@ -316,32 +301,26 @@ function MobileSolutionsCarousel({ solutions }) {
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      {/* ── Single-Card Carousel Stage ── */}
+      {/* ── Single-Card Carousel Stage with CSS transform: translateX() ── */}
       <div className="relative w-full overflow-hidden rounded-[18px]">
-        {/* Outgoing Card (Fades out and exits) */}
-        {outgoingIndex !== null && (
-          <div
-            key={`outgoing-${outgoingIndex}`}
-            className={`absolute inset-0 w-full h-full z-0 pointer-events-none ${
-              slideDirection === 'next' ? 'solution-slide-out-left' : 'solution-slide-out-right'
-            }`}
-          >
-            <SolutionCard solution={solutions[outgoingIndex]} />
-          </div>
-        )}
-
-        {/* Incoming / Active Card (Fades in and slides into view) */}
         <div
-          key={`active-${currentIndex}`}
-          className={`relative w-full z-10 ${
-            isTransitioning
-              ? slideDirection === 'next'
-                ? 'solution-slide-in-right'
-                : 'solution-slide-in-left'
-              : ''
-          }`}
+          className="flex w-full will-change-transform"
+          style={{
+            transform: `translateX(-${currentIndex * 100}%)`,
+            transition: isTransitioning
+              ? 'transform 700ms cubic-bezier(0.25, 1, 0.5, 1)'
+              : 'none',
+          }}
+          onTransitionEnd={handleTransitionEnd}
         >
-          <SolutionCard solution={solutions[currentIndex]} />
+          {extendedItems.map((sol, index) => (
+            <div
+              key={`slide-${index}-${sol.id}`}
+              className="w-full min-w-full shrink-0"
+            >
+              <SolutionCard solution={sol} />
+            </div>
+          ))}
         </div>
       </div>
 
@@ -360,7 +339,7 @@ function MobileSolutionsCarousel({ solutions }) {
         {/* Four Pagination Dots */}
         <div className="flex items-center gap-2" role="tablist" aria-label="Solutions carousel pagination">
           {solutions.map((sol, idx) => {
-            const isActive = idx === currentIndex;
+            const isActive = idx === activeDotIndex;
             return (
               <button
                 key={sol.id}
