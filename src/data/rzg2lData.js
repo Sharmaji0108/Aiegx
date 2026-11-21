@@ -155,13 +155,13 @@ export const RZG2L_PLATFORM_DATA = {
     },
     {
       id: 'rz-g2l-sbc',
-      name: 'RZ/G2L SBC',
-      badge: 'SINGLE-BOARD COMPUTER',
+      name: 'RZ/G2L Development Kit',
+      badge: 'DEVELOPMENT KIT',
       description:
         'Single-board computer for embedded application development and system integration.',
       image: '/images/RZV2L-SBC.png',
       fallbackImage: '/images/RZV2L-SBC.png',
-      imageAlt: 'RZ/G2L Single Board Computer Development Platform',
+      imageAlt: 'RZ/G2L Development Kit Platform',
       features: [
         'RZ/G2L-based embedded computing',
         'Integrated board-level interfaces',
@@ -619,8 +619,8 @@ export const RZG2L_PRODUCT_DETAILS = {
   },
   sbc: {
     slug: 'sbc',
-    category: 'DEVELOPMENT PLATFORM / SBC',
-    title: 'RZ/G2L SBC (Development Platform)',
+    category: 'DEVELOPMENT PLATFORM / DEVELOPMENT KIT',
+    title: 'RZ/G2L Development Kit',
     featuresList: [
       'Renesas RZ/G2L MPU with 64-bit ARM®v8.2A, ARM®v8-M & 3D-Graphics Engine with Arm®Mali™ Architecture',
       '2GB DDR4 (Expandable)',
@@ -633,13 +633,13 @@ export const RZG2L_PRODUCT_DETAILS = {
       { label: 'Home', path: '/' },
       { label: 'Products', path: '/#hardware-platforms' },
       { label: 'RZ/G2L', path: '/products/rz-g2l' },
-      { label: 'Complete SBC', path: null },
+      { label: 'Complete Development Kit', path: null },
     ],
     gallery: [
       {
         src: '/images/RZV2L-SBC.png',
         model3d: '/models/G2L-V2L_SBC.glb',
-        alt: 'RZ/G2L SBC 3D Model',
+        alt: 'RZ/G2L Development Kit 3D Model',
       },
     ],
     heroHighlights: [
@@ -649,9 +649,9 @@ export const RZG2L_PRODUCT_DETAILS = {
       { label: 'Yocto Linux BSP', icon: Terminal },
     ],
     overviewSummary:
-      'Designed to eliminate initial hardware bring-up delays, the RZ/G2L SBC delivers a completely validated computing system ready for software engineering, graphical UI prototyping, and field trials on day one.',
+      'Designed to eliminate initial hardware bring-up delays, the RZ/G2L Development Kit delivers a completely validated computing system ready for software engineering, graphical UI prototyping, and field trials on day one.',
     overviewParagraphs: [
-      'Designed to eliminate initial hardware bring-up delays, the RZ/G2L SBC delivers a completely validated computing system ready for software engineering, graphical UI prototyping, and field trials on day one.',
+      'Designed to eliminate initial hardware bring-up delays, the RZ/G2L Development Kit delivers a completely validated computing system ready for software engineering, graphical UI prototyping, and field trials on day one.',
       'Shipping with pre-flashed Yocto Linux reference images, thermal solution compatibility, and comprehensive I/O connectivity, it bridges early application evaluation directly into production deployment.',
     ],
     overviewMetrics: [
@@ -800,7 +800,7 @@ export const RZG2L_PRODUCT_DETAILS = {
         id: 'datasheet',
         title: 'Datasheet',
         category: 'Hardware Reference',
-        description: 'Complete SBC platform technical specifications and environmental ratings.',
+        description: 'Complete Development Kit platform technical specifications and environmental ratings.',
         fileUrl: null,
       },
       {
@@ -828,7 +828,7 @@ export const RZG2L_PRODUCT_DETAILS = {
         id: 'design-guide',
         title: 'Design Guide',
         category: 'Migration Guide',
-        description: 'Guidance for transitioning from evaluation SBC to custom production carrier.',
+        description: 'Guidance for transitioning from evaluation Development Kit to custom production carrier.',
         fileUrl: null,
       },
     ],

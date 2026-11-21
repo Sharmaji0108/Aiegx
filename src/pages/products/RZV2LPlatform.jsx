@@ -76,7 +76,7 @@ export default function RZV2LPlatform() {
           subheading="MODULAR ARCHITECTURE"
           title="Hardware"
           titleGradient="Architecture"
-          description="The RZ/V2L platform supports a modular architecture. SoM provides the core computing module, Carrier Board provides application interfaces, and together they form a complete SBC / Development Platform."
+          description="The RZ/V2L platform supports a modular architecture. SoM provides the core computing module, Carrier Board provides application interfaces, and together they form a complete Development Kit."
           stackOnMobile={true}
         />
       </div>

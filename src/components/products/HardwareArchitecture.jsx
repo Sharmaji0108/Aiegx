@@ -12,7 +12,7 @@ export default function HardwareArchitecture({
   subheading,
   title = 'Hardware',
   titleGradient = 'Architecture',
-  description = 'The RZ/G2L platform supports a modular architecture. SMARC SoM provides the core computing module, Carrier Board provides application interfaces, and together they form a complete SBC / Development Platform.',
+  description = 'The RZ/G2L platform supports a modular architecture. SMARC SoM provides the core computing module, Carrier Board provides application interfaces, and together they form a complete Development Kit.',
   statement,
   stackOnMobile = false,
 }) {

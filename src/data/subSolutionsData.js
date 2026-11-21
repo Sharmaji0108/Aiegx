@@ -175,7 +175,7 @@ export const SUBSOLUTIONS_DATA = {
       { label: 'Processing Capabilities', value: 'Dual Arm Cortex-A55 @ 1.2GHz + Cortex-M33 real-time core' },
       { label: 'AI Inference', value: 'Renesas DRP-AI (low-power sub-5W total system envelope)' },
       { label: 'Connectivity / Interfaces', value: 'Dual GbE, RS-485, USB 2.0, multi-channel GPIO for LED indicator drivers and gate relays' },
-      { label: 'Platform Support', value: 'Renesas RZ/V2L SMARC Module / Renesas RZ/G2L SBC' },
+      { label: 'Platform Support', value: 'Renesas RZ/V2L SMARC Module / Renesas RZ/G2L Development Kit' },
       { label: 'Operating Temperature', value: '-40°C to +85°C outdoor garage and surface lot qualified' }
     ]
   },
@@ -255,7 +255,7 @@ export const SUBSOLUTIONS_DATA = {
       { label: 'Processing Capabilities', value: 'Dual/Quad Cortex-A55 @ 1.2GHz with hardware graphics accelerator' },
       { label: 'AI Inference', value: 'Renesas DRP-AI (up to 10 TOPS for real-time multi-target classification)' },
       { label: 'Connectivity / Interfaces', value: 'Optoisolated digital inputs/outputs, RS-485 for PTZ Pelco-D/P protocols, Dual GbE' },
-      { label: 'Platform Support', value: 'Renesas RZ/V2H Complete SBC / Renesas RZ/G2L SBC' },
+      { label: 'Platform Support', value: 'Renesas RZ/V2H Complete SBC / Renesas RZ/G2L Development Kit' },
       { label: 'Operating Temperature', value: '-40°C to +85°C continuous 24/7 deployment' }
     ]
   },
@@ -411,7 +411,7 @@ export const SUBSOLUTIONS_DATA = {
       { label: 'Processing Capabilities', value: 'Dual Arm Cortex-A55 @ 1.2GHz + Arm Cortex-M33 @ 200MHz (RZ/G2L) or Dual Cortex-A57 (RZ/G2N)' },
       { label: 'AI Inference', value: 'Arm Mali-G31 3D GPU / PowerVR GPU (OpenGL ES 3.2, Vulkan)' },
       { label: 'Connectivity / Interfaces', value: 'Dual CAN-FD, 2x GbE Ethernet, RS-485, RS-232, optoisolated digital inputs & relay outputs' },
-      { label: 'Platform Support', value: 'Renesas RZ/G2L Single Board Computer / Complete SBC' },
+      { label: 'Platform Support', value: 'Renesas RZ/G2L Development Kit' },
       { label: 'Operating Temperature', value: '-40°C to +85°C fanless, EN 50155 / IEC 61373 compliant design' }
     ]
   },
@@ -449,7 +449,7 @@ export const SUBSOLUTIONS_DATA = {
       { label: 'Processing Capabilities', value: 'Dual Arm Cortex-A57 @ 1.5GHz (RZ/G2N) or Dual Cortex-A55 @ 1.2GHz (RZ/G2L)' },
       { label: 'AI Inference', value: 'Hardware 2D/3D GPU with multi-plane alpha blending & video decoding' },
       { label: 'Connectivity / Interfaces', value: 'Dual GbE, USB 3.0, PCIe Gen2, MicroSD / eMMC 5.1' },
-      { label: 'Platform Support', value: 'Renesas RZ/G2N Development Platform / Renesas RZ/G2L SBC' },
+      { label: 'Platform Support', value: 'Renesas RZ/G2N Development Platform / Renesas RZ/G2L Development Kit' },
       { label: 'Operating Temperature', value: '-40°C to +85°C industrial temperature' }
     ]
   },
@@ -563,7 +563,7 @@ export const SUBSOLUTIONS_DATA = {
       { label: 'Processing Capabilities', value: 'Dual Arm Cortex-A55 @ 1.2GHz + Cortex-M33 (RZ/G2L) or Dual Cortex-A57 (RZ/G2N)' },
       { label: 'AI Inference', value: 'Hardware Secure Boot, Cryptographic Engine (AES/RSA/ECC), True RNG' },
       { label: 'Connectivity / Interfaces', value: 'Isolated RS-485 / RS-422, CAN 2.0B / CAN-FD, 24V optoisolated digital I/O' },
-      { label: 'Platform Support', value: 'Renesas RZ/G2L Single Board Computer / Complete SBC' },
+      { label: 'Platform Support', value: 'Renesas RZ/G2L Development Kit' },
       { label: 'Operating Temperature', value: '-40°C to +85°C fanless, high surge/ESD isolation' }
     ]
   },

@@ -353,7 +353,7 @@ export const SOLUTIONS_MAP = {
       { name: 'RZ/G2N', tag: 'High-Resolution HMI', desc: 'Dual Cortex-A57 @ 1.5GHz with PowerVR 3D GPU supporting dual 1080p and 4K displays.', href: '/products/rz-g2n' }
     ],
     relatedProducts: [
-      { name: 'RZ/G2L SBC Development Platform', type: 'Single Board Computer', specs: 'Dual Cortex-A55 @ 1.2GHz, Mali-G31 GPU, Dual GbE, LVDS, MIPI-DSI', href: '/products/rzg2l/complete-sbc/' },
+      { name: 'RZ/G2L Development Kit', type: 'Development Platform', specs: 'Dual Cortex-A55 @ 1.2GHz, Mali-G31 GPU, Dual GbE, LVDS, MIPI-DSI', href: '/products/rzg2l/complete-sbc/' },
       { name: 'RZ/G2N SBC', type: 'Single Board Computer', specs: 'Dual Cortex-A57 @ 1.5GHz, PowerVR GPU, PCIe, Dual GbE, SATA', href: '/products/rz-g2n/sbc' }
     ]
   },
@@ -455,7 +455,7 @@ export const SOLUTIONS_MAP = {
       { name: 'RZ/G2L', tag: 'Infrastructure RT MPU', desc: 'Dual Cortex-A55 + Cortex-M33 real-time core with dual CAN-FD and TSN Ethernet.', href: '/products/rz-g2l' }
     ],
     relatedProducts: [
-      { name: 'RZ/G2L SBC Development Platform', type: 'Single Board Computer', specs: 'Dual Cortex-A55, Cortex-M33, Dual GbE, CAN-FD', href: '/products/rzg2l/complete-sbc/' }
+      { name: 'RZ/G2L Development Kit', type: 'Development Platform', specs: 'Dual Cortex-A55, Cortex-M33, Dual GbE, CAN-FD', href: '/products/rzg2l/complete-sbc/' }
     ]
   },
 

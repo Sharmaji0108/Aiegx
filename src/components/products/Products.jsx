@@ -25,7 +25,7 @@ import {
 const HW_TAGS = {
   'rz-g2l': [
     { label: 'SMARC SoM', icon: CircuitBoard },
-    { label: 'SBC', icon: LayoutGrid },
+    { label: 'Development Kit', icon: LayoutGrid },
     { label: 'Carrier Board', icon: Layers },
   ],
   'rz-g2n': [
@@ -33,7 +33,7 @@ const HW_TAGS = {
   ],
   'rz-v2l': [
     { label: 'SMARC SoM', icon: CircuitBoard },
-    { label: 'SBC', icon: LayoutGrid },
+    { label: 'Development Kit', icon: LayoutGrid },
     { label: 'Carrier Board', icon: Layers },
   ],
   'rz-v2h': [

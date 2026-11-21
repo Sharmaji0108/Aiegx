@@ -41,9 +41,9 @@ const mobileProductCategories = [
     name: 'Single Board Computers',
     icon: Server,
     items: [
-      { name: 'RZ/G2L SBC (Development Platform)', href: '/products/rzg2l/complete-sbc/' },
+      { name: 'RZ/G2L Development Kit', href: '/products/rzg2l/complete-sbc/' },
       { name: 'RZ/G2N SBC (Development Platform)', href: '/products/rz-g2n/sbc' },
-      { name: 'RZ/V2L SBC (Development Platform)', href: '/products/rzv2l/complete-sbc/' },
+      { name: 'RZ/V2L Development Kit', href: '/products/rzv2l/complete-sbc/' },
       { name: 'RZ/V2H SBC (Development Platform)', href: '/products/rzv2h/complete-sbc/' },
     ],
   },
