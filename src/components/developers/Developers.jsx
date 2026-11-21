@@ -128,7 +128,7 @@ export default function Developers() {
               Industries <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">We Serve</span>
             </>
           }
-          description="Delivering embedded, vision and AI solutions for mission-critical applications across key industry sectors."
+          description="Embedded hardware products and integrated solutions for transportation, security, industrial infrastructure, and defence applications."
         />
 
         {/* 

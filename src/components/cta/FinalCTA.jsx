@@ -130,7 +130,7 @@ export default function FinalCTA() {
               Our <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">Engineering Capabilities</span>
             </>
           }
-          description="End-to-end design, development and integration of embedded hardware, software and AI-based vision systems."
+          description="Expertise in embedded hardware design, Linux BSP development, software engineering, multimedia integration, and edge AI integration."
         />
 
         {/* 
