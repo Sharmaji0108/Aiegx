@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import SectionHeadingContainer from '../common/SectionHeadingContainer';
 import {
   Car,
@@ -21,6 +21,8 @@ import {
   Target,
   RadioTower,
   ArrowRight,
+  ChevronLeft,
+  ChevronRight,
 } from 'lucide-react';
 import { navigateTo } from '../../utils/navigation';
 
@@ -115,15 +117,15 @@ function StatusBadge({ status }) {
 }
 
 /* ─── Single Card ───────────────────────────────────────────────────────── */
-function SolutionCard({ solution }) {
+function SolutionCard({ solution, className = '' }) {
   const CardIcon = solution.icon;
 
   return (
-    <div className="flex flex-col bg-white dark:bg-[#17264A] border border-[#DCE8F5] dark:border-[#24355A] rounded-[18px] shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 overflow-hidden">
+    <div className={`flex flex-col bg-white dark:bg-[#17264A] border border-[#DCE8F5] dark:border-[#24355A] rounded-[18px] shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 overflow-hidden ${className}`}>
 
       {/* ── Icon + Title + Description ── */}
-      <div className="p-5 pb-4">
-        <div className="flex items-start gap-3 mb-3">
+      <div className="p-5 pb-4 min-h-[105px]">
+        <div className="flex items-start gap-3 mb-2.5">
           {/* Icon circle */}
           <a
             href={solution.href}
@@ -163,8 +165,8 @@ function SolutionCard({ solution }) {
         />
       </a>
 
-      {/* ── Feature List ── */}
-      <div className="flex-1 px-5 pt-4 pb-4 space-y-2.5">
+      {/* ── Feature List (Consistent min-height to guarantee identical card heights) ── */}
+      <div className="flex-1 px-5 pt-4 pb-4 space-y-2.5 min-h-[190px]">
         {solution.features.map((feat, i) => {
           const FeatIcon = feat.icon;
           return (
@@ -201,6 +203,201 @@ function SolutionCard({ solution }) {
   );
 }
 
+/* ─── Mobile Auto-Sliding Carousel Component (Exclusively on Mobile) ─── */
+function MobileSolutionsCarousel({ solutions }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [outgoingIndex, setOutgoingIndex] = useState(null);
+  const [slideDirection, setSlideDirection] = useState('next');
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const timerRef = useRef(null);
+  const transitionTimeoutRef = useRef(null);
+  const touchStartXRef = useRef(0);
+  const touchStartYRef = useRef(0);
+  const isSwipingRef = useRef(false);
+
+  // Transition to target slide with directional animation (600–800ms)
+  const goToSlide = useCallback((nextIndex, dir = 'next') => {
+    if (nextIndex === currentIndex || isTransitioning) return;
+
+    if (transitionTimeoutRef.current) {
+      clearTimeout(transitionTimeoutRef.current);
+    }
+
+    setOutgoingIndex(currentIndex);
+    setCurrentIndex(nextIndex);
+    setSlideDirection(dir);
+    setIsTransitioning(true);
+
+    transitionTimeoutRef.current = setTimeout(() => {
+      setOutgoingIndex(null);
+      setIsTransitioning(false);
+    }, 700);
+  }, [currentIndex, isTransitioning]);
+
+  const handleNext = useCallback(() => {
+    const nextIndex = (currentIndex + 1) % solutions.length;
+    goToSlide(nextIndex, 'next');
+  }, [currentIndex, solutions.length, goToSlide]);
+
+  const handlePrev = useCallback(() => {
+    const prevIndex = (currentIndex - 1 + solutions.length) % solutions.length;
+    goToSlide(prevIndex, 'prev');
+  }, [currentIndex, solutions.length, goToSlide]);
+
+  const handleDotClick = useCallback((idx) => {
+    if (idx === currentIndex || isTransitioning) return;
+    const dir = idx > currentIndex ? 'next' : 'prev';
+    goToSlide(idx, dir);
+  }, [currentIndex, isTransitioning, goToSlide]);
+
+  // Automatic slide interval: 5 seconds, looping infinitely
+  useEffect(() => {
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+      timerRef.current = null;
+    }
+
+    const prefersReducedMotion =
+      typeof window !== 'undefined' &&
+      window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!isPaused && !prefersReducedMotion) {
+      timerRef.current = setInterval(() => {
+        handleNext();
+      }, 5000);
+    }
+
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+        timerRef.current = null;
+      }
+    };
+  }, [isPaused, currentIndex, handleNext]);
+
+  // Clean up transition timer on unmount
+  useEffect(() => {
+    return () => {
+      if (transitionTimeoutRef.current) {
+        clearTimeout(transitionTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  // Touch Swipe Handlers for mobile gestures
+  const handleTouchStart = (e) => {
+    setIsPaused(true);
+    touchStartXRef.current = e.touches[0].clientX;
+    touchStartYRef.current = e.touches[0].clientY;
+    isSwipingRef.current = true;
+  };
+
+  const handleTouchEnd = (e) => {
+    setIsPaused(false);
+    if (!isSwipingRef.current) return;
+    isSwipingRef.current = false;
+
+    const deltaX = e.changedTouches[0].clientX - touchStartXRef.current;
+    const deltaY = e.changedTouches[0].clientY - touchStartYRef.current;
+
+    // Minimum swipe threshold 40px and dominant horizontal angle
+    if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY) * 1.2) {
+      if (deltaX < 0) {
+        handleNext();
+      } else {
+        handlePrev();
+      }
+    }
+  };
+
+  return (
+    <div
+      className="relative w-full max-w-md mx-auto px-1"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
+      {/* ── Single-Card Carousel Stage ── */}
+      <div className="relative w-full overflow-hidden rounded-[18px]">
+        {/* Outgoing Card (Fades out and exits) */}
+        {outgoingIndex !== null && (
+          <div
+            key={`outgoing-${outgoingIndex}`}
+            className={`absolute inset-0 w-full h-full z-0 pointer-events-none ${
+              slideDirection === 'next' ? 'solution-slide-out-left' : 'solution-slide-out-right'
+            }`}
+          >
+            <SolutionCard solution={solutions[outgoingIndex]} />
+          </div>
+        )}
+
+        {/* Incoming / Active Card (Fades in and slides into view) */}
+        <div
+          key={`active-${currentIndex}`}
+          className={`relative w-full z-10 ${
+            isTransitioning
+              ? slideDirection === 'next'
+                ? 'solution-slide-in-right'
+                : 'solution-slide-in-left'
+              : ''
+          }`}
+        >
+          <SolutionCard solution={solutions[currentIndex]} />
+        </div>
+      </div>
+
+      {/* ── Navigation Controls: Previous Button, Pagination Dots, Next Button ── */}
+      <div className="flex items-center justify-center gap-3.5 mt-5">
+        {/* Previous Arrow Button */}
+        <button
+          type="button"
+          onClick={handlePrev}
+          aria-label="Previous solution card"
+          className="w-10 h-10 rounded-full flex items-center justify-center bg-white dark:bg-[#17264A] border border-[#DCE8F5] dark:border-[#24355A] text-slate-700 dark:text-slate-200 hover:text-[#089EC2] dark:hover:text-[#2DD4F0] hover:border-[#089EC2]/40 dark:hover:border-[#2DD4F0]/40 shadow-xs active:scale-95 transition-all cursor-pointer"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+
+        {/* Four Pagination Dots */}
+        <div className="flex items-center gap-2" role="tablist" aria-label="Solutions carousel pagination">
+          {solutions.map((sol, idx) => {
+            const isActive = idx === currentIndex;
+            return (
+              <button
+                key={sol.id}
+                type="button"
+                role="tab"
+                aria-selected={isActive}
+                aria-label={`Go to ${sol.title}`}
+                onClick={() => handleDotClick(idx)}
+                className={`transition-all duration-300 rounded-full cursor-pointer ${
+                  isActive
+                    ? 'w-7 h-2.5 bg-[#089EC2] dark:bg-[#2DD4F0]'
+                    : 'w-2.5 h-2.5 bg-slate-300 dark:bg-slate-600 hover:bg-slate-400 dark:hover:bg-slate-500'
+                }`}
+              />
+            );
+          })}
+        </div>
+
+        {/* Next Arrow Button */}
+        <button
+          type="button"
+          onClick={handleNext}
+          aria-label="Next solution card"
+          className="w-10 h-10 rounded-full flex items-center justify-center bg-white dark:bg-[#17264A] border border-[#DCE8F5] dark:border-[#24355A] text-slate-700 dark:text-slate-200 hover:text-[#089EC2] dark:hover:text-[#2DD4F0] hover:border-[#089EC2]/40 dark:hover:border-[#2DD4F0]/40 shadow-xs active:scale-95 transition-all cursor-pointer"
+        >
+          <ChevronRight className="w-5 h-5" />
+        </button>
+      </div>
+    </div>
+  );
+}
+
 /* ─── Section ───────────────────────────────────────────────────────────── */
 export default function Applications() {
   return (
@@ -232,11 +429,16 @@ export default function Applications() {
           description="Turnkey embedded systems combining intelligent vision, AI analytics, and rugged connectivity for mobility, surveillance, and smart infrastructure."
         />
 
-        {/* ── Four Cards ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+        {/* ── Desktop & Tablet Grid: Exactly 4 Cards (Unchanged) ── */}
+        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {solutions.map((sol) => (
             <SolutionCard key={sol.id} solution={sol} />
           ))}
+        </div>
+
+        {/* ── Mobile Auto-Sliding Carousel: Exclusively on Mobile Screens (sm:hidden) ── */}
+        <div className="block sm:hidden">
+          <MobileSolutionsCarousel solutions={solutions} />
         </div>
 
       </div>

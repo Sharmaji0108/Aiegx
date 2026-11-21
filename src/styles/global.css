@@ -1118,3 +1118,81 @@ html.dark .section-heading-description {
     animation: none !important;
   }
 }
+
+/* ==========================================================================
+   MOBILE SOLUTIONS AUTO-SLIDING CAROUSEL ANIMATIONS (600–800ms)
+   ========================================================================== */
+@keyframes solutionSlideInRight {
+  0% {
+    transform: translate3d(100%, 0, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes solutionSlideOutLeft {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(-100%, 0, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes solutionSlideInLeft {
+  0% {
+    transform: translate3d(-100%, 0, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes solutionSlideOutRight {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(100%, 0, 0);
+    opacity: 0;
+  }
+}
+
+.solution-slide-in-right {
+  animation: solutionSlideInRight 700ms cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.solution-slide-out-left {
+  animation: solutionSlideOutLeft 700ms cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.solution-slide-in-left {
+  animation: solutionSlideInLeft 700ms cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.solution-slide-out-right {
+  animation: solutionSlideOutRight 700ms cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .solution-slide-in-right,
+  .solution-slide-out-left,
+  .solution-slide-in-left,
+  .solution-slide-out-right {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
