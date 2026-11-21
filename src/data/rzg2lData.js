@@ -4,6 +4,7 @@ import {
   Network,
   Terminal,
   Clock,
+  PlaySquare,
   CircuitBoard,
   Layers,
   HardDrive,
@@ -48,43 +49,50 @@ export const RZG2L_PLATFORM_DATA = {
       'Camera, display, and industrial connectivity',
     ],
   },
+  capabilitiesDescription:
+    'Arm-based processing, graphics, multimedia, industrial connectivity, and embedded Linux support.',
   capabilities: [
     {
       id: 'cpu',
-      title: 'Quad Cortex-A55 (Up to 1.2 GHz)',
-      description: '64-bit Arm processing paired with deterministic real-time control.',
+      title: 'Arm Cortex-A55 Processing',
+      description:
+        'Up to dual-core Arm Cortex-A55 at 1.2 GHz, with a Cortex-M33 core for real-time processing.',
       icon: Cpu,
     },
     {
       id: 'graphics',
-      title: '2D/3D Graphics & Display Support',
-      description: 'Mali-G31 3D GPU supporting HDMI, LVDS, and MIPI-DSI panels.',
+      title: 'Graphics & Display Support',
+      description:
+        'Arm Mali-G31 GPU with MIPI DSI and parallel display interface support.',
       icon: Monitor,
     },
     {
       id: 'interfaces',
-      title: 'Rich Industrial Interfaces',
-      description: 'Dual GbE, CAN, USB, UART, SPI, I2C, and industrial GPIO.',
+      title: 'Industrial Connectivity',
+      description:
+        'Gigabit Ethernet, CAN FD, USB 2.0, UART, SPI, and I²C interfaces.',
       icon: Network,
     },
     {
       id: 'linux',
       title: 'Linux / Yocto Support',
-      description: 'Production-ready Yocto BSP, kernel drivers, and LTS support.',
+      description:
+        'Embedded Linux development supported by Renesas Linux BSP packages.',
       icon: Terminal,
     },
     {
-      id: 'lifecycle',
-      title: 'Long Product Lifecycle',
-      description: 'Industrial longevity program built for 10+ year deployments.',
-      icon: Clock,
+      id: 'multimedia',
+      title: 'Multimedia Capabilities',
+      description:
+        'Integrated H.264 video encoding and decoding for multimedia applications.',
+      icon: PlaySquare,
     },
   ],
   architecture: [
     {
       id: 'smarc-som',
-      title: 'SMARC SoM',
-      subtitle: 'Processor, Memory, Core Interfaces',
+      title: 'RZ/G2L SMARC SoM',
+      subtitle: 'Processor, memory, and core interfaces',
       image: '/images/SOM.png',
       fallbackImage: '/images/aiegx-hardware-som-hd.jpg',
       imageAlt: 'RZ/G2L SMARC SoM hardware module',
@@ -92,14 +100,14 @@ export const RZG2L_PLATFORM_DATA = {
     {
       id: 'carrier-board',
       title: 'RZ/G2L Carrier Board',
-      subtitle: 'Application Interfaces and Expansion',
+      subtitle: 'Application interfaces and expansion',
       image: '/images/RZG2L-Carrier_Board.png',
       fallbackImage: '/images/RZG2L-Carrier_Board.png',
       imageAlt: 'RZ/G2L Carrier Board',
     },
     {
       id: 'complete-sbc',
-      title: 'Complete SBC / Development Platform',
+      title: 'Complete Development Platform',
       subtitle: 'SMARC SoM + Carrier Board',
       image: '/images/RZV2L-SBC.png',
       fallbackImage: '/images/RZV2L-SBC.png',

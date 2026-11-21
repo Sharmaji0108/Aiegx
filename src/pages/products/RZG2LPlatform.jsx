@@ -43,6 +43,7 @@ export default function RZG2LPlatform() {
       <div className="hidden lg:block">
         <PlatformCapabilitiesAndArchitecture
           capabilities={RZG2L_PLATFORM_DATA.capabilities}
+          capabilitiesDescription={RZG2L_PLATFORM_DATA.capabilitiesDescription}
           architectureBlocks={RZG2L_PLATFORM_DATA.architecture}
         />
       </div>
@@ -62,7 +63,7 @@ export default function RZG2LPlatform() {
                   </span>
                 </>
               }
-              description="Balanced 64-bit Arm performance, 3D graphics, industrial I/O, and long-term Yocto Linux support."
+              description={RZG2L_PLATFORM_DATA.capabilitiesDescription}
             />
 
             <PlatformFeatures items={RZG2L_PLATFORM_DATA.capabilities} columns={5} />
