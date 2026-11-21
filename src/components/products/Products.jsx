@@ -25,19 +25,19 @@ import {
 const HW_TAGS = {
   'rz-g2l': [
     { label: 'SMARC SoM', icon: CircuitBoard },
-    { label: 'Development Kit', icon: LayoutGrid },
+    { label: 'Embedded Computing Platform', icon: LayoutGrid },
     { label: 'Carrier Board', icon: Layers },
   ],
   'rz-g2n': [
-    { label: 'SBC', icon: LayoutGrid },
+    { label: 'Embedded Computing Platform', icon: LayoutGrid },
   ],
   'rz-v2l': [
     { label: 'SMARC SoM', icon: CircuitBoard },
-    { label: 'Development Kit', icon: LayoutGrid },
+    { label: 'Embedded Computing Platform', icon: LayoutGrid },
     { label: 'Carrier Board', icon: Layers },
   ],
   'rz-v2h': [
-    { label: 'SBC', icon: LayoutGrid },
+    { label: 'Embedded Computing Platform', icon: LayoutGrid },
   ],
 };
 
@@ -386,7 +386,7 @@ export default function Products() {
     },
     {
       id: 'rz-g2n',
-      name: 'RZ/G2N-Based SBC',
+      name: 'RZ/G2N-Based Embedded Computing Platform',
       subtitle: 'Multimedia & Video',
       image: RZG2N,
       fallbackImage: '/images/RZG2N.png',
@@ -430,7 +430,7 @@ export default function Products() {
     },
     {
       id: 'rz-v2h',
-      name: 'RZ/V2H-Based SBC',
+      name: 'RZ/V2H-Based Embedded Computing Platform',
       subtitle: 'High-Performance Edge AI',
       image: RZV2H,
       fallbackImage: '/images/RZV2H.png',

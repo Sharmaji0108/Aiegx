@@ -155,13 +155,13 @@ export const RZG2L_PLATFORM_DATA = {
     },
     {
       id: 'rz-g2l-sbc',
-      name: 'RZ/G2L Development Kit',
-      badge: 'DEVELOPMENT KIT',
+      name: 'RZ/G2L Embedded Computing Platform',
+      badge: 'EMBEDDED COMPUTING PLATFORM',
       description:
         'Single-board computer for embedded application development and system integration.',
       image: '/images/RZV2L-SBC.png',
       fallbackImage: '/images/RZV2L-SBC.png',
-      imageAlt: 'RZ/G2L Development Kit Platform',
+      imageAlt: 'RZ/G2L Embedded Computing Platform',
       features: [
         'RZ/G2L-based embedded computing',
         'Integrated board-level interfaces',

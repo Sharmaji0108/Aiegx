@@ -74,7 +74,7 @@ export const RZV2H_PLATFORM_DATA = {
     {
       id: 'rz-v2h-sbc',
       name: 'RZ/V2H Embedded Computing Platform',
-      badge: 'Single Board Computer',
+      badge: 'EMBEDDED COMPUTING PLATFORM',
       description:
         'High-performance turnkey edge AI single-board computer featuring the Renesas RZ/V2H MPU with 10 TOPS DRP-AI accelerator and multi-camera support.',
       image: '/images/RZV2H.png',

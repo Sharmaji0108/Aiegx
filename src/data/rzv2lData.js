@@ -139,13 +139,13 @@ export const RZV2L_PLATFORM_DATA = {
     },
     {
       id: 'rz-v2l-dev-kit',
-      name: 'RZ/V2L Development Kit',
-      badge: 'Development Kit',
+      name: 'RZ/V2L Embedded Computing Platform',
+      badge: 'EMBEDDED COMPUTING PLATFORM',
       description:
         'Complete development solution for evaluating and developing RZ/V2L-based embedded and AI applications.',
       image: '/images/RZV2L-SBC.png',
       fallbackImage: '/images/RZV2L-SBC.png',
-      imageAlt: 'RZ/V2L Development Kit Evaluation Platform',
+      imageAlt: 'RZ/V2L Embedded Computing Platform',
       features: [
         'Complete Evaluation & Dev Solution',
         'MIPI CSI-2 Camera Module Included',

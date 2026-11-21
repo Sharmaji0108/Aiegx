@@ -76,7 +76,7 @@ export const RZG2N_PLATFORM_DATA = {
     {
       id: 'rz-g2n-sbc',
       name: 'RZ/G2N Embedded Computing Platform',
-      badge: 'Single Board Computer',
+      badge: 'EMBEDDED COMPUTING PLATFORM',
       description:
         'High-performance turnkey single-board computer engineered for multimedia, 4K video processing, and edge computing.',
       image: '/images/RZG2N.png',
