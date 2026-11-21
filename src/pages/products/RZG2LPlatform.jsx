@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { CheckCircle2 } from 'lucide-react';
 import SectionHeadingContainer from '../../components/common/SectionHeadingContainer';
 import ProductHero from '../../components/products/ProductHero';
 import PlatformFeatures from '../../components/products/PlatformFeatures';
@@ -85,45 +84,6 @@ export default function RZG2LPlatform() {
         applications={RZG2L_APPLICATIONS}
         description="Embedded computing solutions for industrial HMI, display systems, remote monitoring, and connected applications."
       />
-
-      {/* Section G: Why RZ/G2L? */}
-      <section className="py-6 sm:py-8 lg:py-10 relative bg-[#F5F8FC] dark:bg-[#0D1733] transition-colors duration-300">
-        <div className="section-container relative">
-          <SectionHeadingContainer
-            subheading="PLATFORM ADVANTAGES"
-            heading={
-              <>
-                Why{' '}
-                <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
-                  RZ/G2L?
-                </span>
-              </>
-            }
-            description="A versatile processor platform combining Arm processing, graphics, multimedia, and industrial connectivity for embedded applications."
-          />
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-            {RZG2L_PLATFORM_DATA.whyPoints.map((point) => (
-              <div
-                key={point.title}
-                className="rounded-2xl bg-white dark:bg-[#17264A] border border-[#DBE4F0] dark:border-[#24355A] hover:border-[#089EC2]/60 dark:hover:border-[#2DD4F0]/60 p-5 shadow-xs hover:shadow-md transition-all duration-300 flex items-start gap-3.5"
-              >
-                <div className="w-9 h-9 rounded-xl bg-[#E2EEFB] dark:bg-[#1A2C52] border border-[#C5DDF5] dark:border-[#244277] flex items-center justify-center text-[#089EC2] dark:text-[#2DD4F0] shrink-0 mt-0.5">
-                  <CheckCircle2 className="w-4 h-4" />
-                </div>
-                <div className="min-w-0">
-                  <h3 className="text-sm sm:text-[15px] font-bold text-[#14213D] dark:text-[#F8FAFC] leading-snug">
-                    {point.title}
-                  </h3>
-                  <p className="text-xs text-[#52627C] dark:text-[#AAB6D0] leading-relaxed mt-1.5">
-                    {point.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Bottom Enquiry CTA */}
       <ProductEnquiry
