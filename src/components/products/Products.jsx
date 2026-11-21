@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import SectionHeadingContainer from '../common/SectionHeadingContainer';
 import { navigateTo } from '../../utils/navigation';
 import SOM3DViewer from './SOM3DViewer';
@@ -8,6 +8,8 @@ import RZV2L from '../../../public/images/RZV2L.png';
 import RZV2H from '../../../public/images/RZV2H.png';
 import {
   ArrowRight,
+  ChevronLeft,
+  ChevronRight,
   Cpu,
   CircuitBoard,
   LayoutGrid,
@@ -61,6 +63,301 @@ const FEATURES = [
     sub: 'Stable supply and lifecycle management.',
   },
 ];
+
+/* ─── Single Hardware Card Component ───────────────────────────────────── */
+function HardwareCard({ product, className = '' }) {
+  const hwTags = HW_TAGS[product.id] || [];
+
+  return (
+    <div
+      className={`group relative flex flex-col bg-white dark:bg-[#17264A] rounded-[18px] border transition-all duration-300 overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-0.5 p-4 sm:p-5 ${
+        product.ctaGradient
+          ? 'border-[#089EC2]/50 dark:border-[#2DD4F0]/40 shadow-[0_2px_12px_rgba(8,158,194,0.12)]'
+          : 'border-[#DCE8F5] dark:border-[#24355A] hover:border-[#089EC2]/40 dark:hover:border-[#2DD4F0]/30'
+      } ${className}`}
+    >
+      {/* 1. Platform name */}
+      <h3 className="text-lg sm:text-xl font-extrabold text-[#14213D] dark:text-[#F8FAFC] tracking-tight leading-tight">
+        {product.name}
+      </h3>
+
+      {/* 2. Subtitle */}
+      <p className="platform-subtitle text-sm font-bold text-[#1672E8] dark:text-[#2DD4F0] normal-case">
+        {product.subtitle}
+      </p>
+
+      {/* 3. Platform description */}
+      <p className="text-xs sm:text-[13px] leading-relaxed text-[#52627C] dark:text-[#AAB6D0] mb-3">
+        {product.shortDescription}
+      </p>
+
+      {/* 4. Hardware Image / 3D Model */}
+      <div
+        className="w-full h-36 sm:h-40 flex items-center justify-center bg-white dark:bg-[#17264A] mb-4 overflow-hidden rounded-xl cursor-pointer"
+        onClick={(e) => navigateTo(`/products/${product.id}`, e)}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            navigateTo(`/products/${product.id}`, e);
+          }
+        }}
+        aria-label={`View ${product.name} platform`}
+      >
+        {product.model3d ? (
+          <div className="w-full h-full p-1 pointer-events-auto">
+            <SOM3DViewer
+              modelUrl={product.model3d}
+              fallbackSrc={product.image}
+              fallbackAlt={product.name}
+            />
+          </div>
+        ) : product.image ? (
+          <img
+            src={product.image}
+            alt={product.name}
+            onError={(e) => {
+              if (product.fallbackImage && e.currentTarget.src !== product.fallbackImage) {
+                e.currentTarget.src = product.fallbackImage;
+              }
+            }}
+            className="max-h-full max-w-full object-contain"
+            loading="lazy"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center text-[#AAB6D0] text-xs italic">
+            Hardware in Development
+          </div>
+        )}
+      </div>
+
+      {/* 5. AVAILABLE HARDWARE label */}
+      <p className="text-[10px] font-bold tracking-[0.15em] uppercase text-[#52627C] dark:text-[#AAB6D0] mb-1.5">
+        AVAILABLE HARDWARE
+      </p>
+
+      {/* 6. Hardware tags */}
+      <div className="flex flex-wrap gap-1.5 mb-4">
+        {hwTags.map(({ label, icon: TagIcon }) => (
+          <span
+            key={label}
+            className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10.5px] font-semibold bg-[#E2EEFB] dark:bg-[#1A2C52] text-[#089EC2] dark:text-[#2DD4F0] border border-[#C5DDF5] dark:border-[#244277]"
+          >
+            <TagIcon className="w-3 h-3" />
+            {label}
+          </span>
+        ))}
+      </div>
+
+      {/* 7. Explore Platform button */}
+      <div className="mt-auto">
+        <button
+          onClick={(e) => navigateTo(`/products/${product.id}`, e)}
+          className="explore-btn"
+        >
+          Explore Platform
+          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+        </button>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Mobile Auto-Sliding Carousel Component (Exclusively on Mobile) ─── */
+function MobileHardwareCarousel({ products }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [outgoingIndex, setOutgoingIndex] = useState(null);
+  const [slideDirection, setSlideDirection] = useState('next');
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const timerRef = useRef(null);
+  const transitionTimeoutRef = useRef(null);
+  const touchStartXRef = useRef(0);
+  const touchStartYRef = useRef(0);
+  const isSwipingRef = useRef(false);
+
+  // Transition to target slide with directional animation (600–800ms)
+  const goToSlide = useCallback((nextIndex, dir = 'next') => {
+    if (nextIndex === currentIndex || isTransitioning) return;
+
+    if (transitionTimeoutRef.current) {
+      clearTimeout(transitionTimeoutRef.current);
+    }
+
+    setOutgoingIndex(currentIndex);
+    setCurrentIndex(nextIndex);
+    setSlideDirection(dir);
+    setIsTransitioning(true);
+
+    transitionTimeoutRef.current = setTimeout(() => {
+      setOutgoingIndex(null);
+      setIsTransitioning(false);
+    }, 700);
+  }, [currentIndex, isTransitioning]);
+
+  const handleNext = useCallback(() => {
+    const nextIndex = (currentIndex + 1) % products.length;
+    goToSlide(nextIndex, 'next');
+  }, [currentIndex, products.length, goToSlide]);
+
+  const handlePrev = useCallback(() => {
+    const prevIndex = (currentIndex - 1 + products.length) % products.length;
+    goToSlide(prevIndex, 'prev');
+  }, [currentIndex, products.length, goToSlide]);
+
+  const handleDotClick = useCallback((idx) => {
+    if (idx === currentIndex || isTransitioning) return;
+    const dir = idx > currentIndex ? 'next' : 'prev';
+    goToSlide(idx, dir);
+  }, [currentIndex, isTransitioning, goToSlide]);
+
+  // Automatic slide interval: 5 seconds, looping infinitely
+  useEffect(() => {
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+      timerRef.current = null;
+    }
+
+    const prefersReducedMotion =
+      typeof window !== 'undefined' &&
+      window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!isPaused && !prefersReducedMotion) {
+      timerRef.current = setInterval(() => {
+        handleNext();
+      }, 5000);
+    }
+
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+        timerRef.current = null;
+      }
+    };
+  }, [isPaused, currentIndex, handleNext]);
+
+  // Clean up transition timer on unmount
+  useEffect(() => {
+    return () => {
+      if (transitionTimeoutRef.current) {
+        clearTimeout(transitionTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  // Touch Swipe Handlers for mobile gestures
+  const handleTouchStart = (e) => {
+    setIsPaused(true);
+    touchStartXRef.current = e.touches[0].clientX;
+    touchStartYRef.current = e.touches[0].clientY;
+    isSwipingRef.current = true;
+  };
+
+  const handleTouchEnd = (e) => {
+    setIsPaused(false);
+    if (!isSwipingRef.current) return;
+    isSwipingRef.current = false;
+
+    const deltaX = e.changedTouches[0].clientX - touchStartXRef.current;
+    const deltaY = e.changedTouches[0].clientY - touchStartYRef.current;
+
+    // Minimum swipe threshold 40px and dominant horizontal angle
+    if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY) * 1.2) {
+      if (deltaX < 0) {
+        handleNext();
+      } else {
+        handlePrev();
+      }
+    }
+  };
+
+  return (
+    <div
+      className="relative w-full max-w-md mx-auto px-1"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
+      {/* ── Single-Card Carousel Stage ── */}
+      <div className="relative w-full overflow-hidden rounded-[18px]">
+        {/* Outgoing Card (Fades out and exits) */}
+        {outgoingIndex !== null && (
+          <div
+            key={`outgoing-${outgoingIndex}`}
+            className={`absolute inset-0 w-full h-full z-0 pointer-events-none ${
+              slideDirection === 'next' ? 'solution-slide-out-left' : 'solution-slide-out-right'
+            }`}
+          >
+            <HardwareCard product={products[outgoingIndex]} />
+          </div>
+        )}
+
+        {/* Incoming / Active Card (Fades in and slides into view) */}
+        <div
+          key={`active-${currentIndex}`}
+          className={`relative w-full z-10 ${
+            isTransitioning
+              ? slideDirection === 'next'
+                ? 'solution-slide-in-right'
+                : 'solution-slide-in-left'
+              : ''
+          }`}
+        >
+          <HardwareCard product={products[currentIndex]} />
+        </div>
+      </div>
+
+      {/* ── Navigation Controls: Previous Button, Pagination Dots, Next Button ── */}
+      <div className="flex items-center justify-center gap-3.5 mt-5">
+        {/* Previous Arrow Button */}
+        <button
+          type="button"
+          onClick={handlePrev}
+          aria-label="Previous hardware platform"
+          className="w-10 h-10 rounded-full flex items-center justify-center bg-white dark:bg-[#17264A] border border-[#DCE8F5] dark:border-[#24355A] text-slate-700 dark:text-slate-200 hover:text-[#089EC2] dark:hover:text-[#2DD4F0] hover:border-[#089EC2]/40 dark:hover:border-[#2DD4F0]/40 shadow-xs active:scale-95 transition-all cursor-pointer"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+
+        {/* Four Pagination Dots */}
+        <div className="flex items-center gap-2" role="tablist" aria-label="Hardware carousel pagination">
+          {products.map((prod, idx) => {
+            const isActive = idx === currentIndex;
+            return (
+              <button
+                key={prod.id}
+                type="button"
+                role="tab"
+                aria-selected={isActive}
+                aria-label={`Go to ${prod.name}`}
+                onClick={() => handleDotClick(idx)}
+                className={`transition-all duration-300 rounded-full cursor-pointer ${
+                  isActive
+                    ? 'w-7 h-2.5 bg-[#089EC2] dark:bg-[#2DD4F0]'
+                    : 'w-2.5 h-2.5 bg-slate-300 dark:bg-slate-600 hover:bg-slate-400 dark:hover:bg-slate-500'
+                }`}
+              />
+            );
+          })}
+        </div>
+
+        {/* Next Arrow Button */}
+        <button
+          type="button"
+          onClick={handleNext}
+          aria-label="Next hardware platform"
+          className="w-10 h-10 rounded-full flex items-center justify-center bg-white dark:bg-[#17264A] border border-[#DCE8F5] dark:border-[#24355A] text-slate-700 dark:text-slate-200 hover:text-[#089EC2] dark:hover:text-[#2DD4F0] hover:border-[#089EC2]/40 dark:hover:border-[#2DD4F0]/40 shadow-xs active:scale-95 transition-all cursor-pointer"
+        >
+          <ChevronRight className="w-5 h-5" />
+        </button>
+      </div>
+    </div>
+  );
+}
 
 export default function Products() {
   const products = [
@@ -203,104 +500,16 @@ export default function Products() {
         />
 
         {/* ══ Four Platform Cards ════════════════════════════════════════════ */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 items-stretch">
-          {products.map((product) => {
-            const hwTags = HW_TAGS[product.id] || [];
-            return (
-              <div
-                key={product.id}
-                className={`group relative flex flex-col bg-white dark:bg-[#17264A] rounded-[18px] border transition-all duration-300 overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-0.5 p-4 sm:p-5 ${product.ctaGradient
-                  ? 'border-[#089EC2]/50 dark:border-[#2DD4F0]/40 shadow-[0_2px_12px_rgba(8,158,194,0.12)]'
-                  : 'border-[#DCE8F5] dark:border-[#24355A] hover:border-[#089EC2]/40 dark:hover:border-[#2DD4F0]/30'
-                  }`}
-              >
-                {/* 1. Platform name */}
-                <h3 className="text-lg sm:text-xl font-extrabold text-[#14213D] dark:text-[#F8FAFC] tracking-tight leading-tight">
-                  {product.name}
-                </h3>
+        {/* Desktop & Tablet: 2 or 4-column Grid */}
+        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 items-stretch">
+          {products.map((product) => (
+            <HardwareCard key={product.id} product={product} />
+          ))}
+        </div>
 
-                {/* 2. Subtitle */}
-                <p className="platform-subtitle text-sm font-bold text-[#1672E8] dark:text-[#2DD4F0] normal-case">
-                  {product.subtitle}
-                </p>
-
-                {/* 3. Platform description */}
-                <p className="text-xs sm:text-[13px] leading-relaxed text-[#52627C] dark:text-[#AAB6D0] mb-3">
-                  {product.shortDescription}
-                </p>
-
-                {/* 4. Hardware Image / 3D Model */}
-                <div
-                  className="w-full h-36 sm:h-40 flex items-center justify-center bg-white dark:bg-[#17264A] mb-4 overflow-hidden rounded-xl cursor-pointer"
-                  onClick={(e) => navigateTo(`/products/${product.id}`, e)}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      navigateTo(`/products/${product.id}`, e);
-                    }
-                  }}
-                  aria-label={`View ${product.name} platform`}
-                >
-                  {product.model3d ? (
-                    <div className="w-full h-full p-1 pointer-events-auto">
-                      <SOM3DViewer
-                        modelUrl={product.model3d}
-                        fallbackSrc={product.image}
-                        fallbackAlt={product.name}
-                      />
-                    </div>
-                  ) : product.image ? (
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      onError={(e) => {
-                        if (product.fallbackImage && e.currentTarget.src !== product.fallbackImage) {
-                          e.currentTarget.src = product.fallbackImage;
-                        }
-                      }}
-                      className="max-h-full max-w-full object-contain"
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center text-[#AAB6D0] text-xs italic">
-                      Hardware in Development
-                    </div>
-                  )}
-                </div>
-
-                {/* 5. AVAILABLE HARDWARE label */}
-                <p className="text-[10px] font-bold tracking-[0.15em] uppercase text-[#52627C] dark:text-[#AAB6D0] mb-1.5">
-                  AVAILABLE HARDWARE
-                </p>
-
-                {/* 6. Hardware tags */}
-                <div className="flex flex-wrap gap-1.5 mb-4">
-                  {hwTags.map(({ label, icon: TagIcon }) => (
-                    <span
-                      key={label}
-                      className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10.5px] font-semibold bg-[#E2EEFB] dark:bg-[#1A2C52] text-[#089EC2] dark:text-[#2DD4F0] border border-[#C5DDF5] dark:border-[#244277]"
-                    >
-                      <TagIcon className="w-3 h-3" />
-                      {label}
-                    </span>
-                  ))}
-                </div>
-
-                {/* 7. Explore Platform button */}
-                <div className="mt-auto">
-                  <button
-                    onClick={(e) => navigateTo(`/products/${product.id}`, e)}
-                    className="explore-btn"
-                  >
-                    Explore Platform
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
-                  </button>
-                </div>
-              </div>
-            );
-          })}
+        {/* Mobile View: Auto-sliding Carousel (sm:hidden) */}
+        <div className="block sm:hidden">
+          <MobileHardwareCarousel products={products} />
         </div>
 
         {/* ══ Bottom Feature Strip ══════════════════════════════════════════ */}
