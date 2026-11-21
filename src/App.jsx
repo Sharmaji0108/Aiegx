@@ -107,7 +107,9 @@ export default function App() {
     cleanPath === '/products/rzv2l/complete-sbc' ||
     cleanPath === '/products/rz-v2l/complete-sbc' ||
     cleanPath === '/products/rz-v2l/sbc' ||
-    cleanPath === '/products/rzv2l/sbc';
+    cleanPath === '/products/rzv2l/sbc' ||
+    cleanPath === '/products/rz-v2l/carrier-board' ||
+    cleanPath === '/products/rzv2l/carrier-board';
   const isRzv2lDevKitPage =
     cleanPath === '/products/rzv2l/development-kit' ||
     cleanPath === '/products/rz-v2l/development-kit' ||
