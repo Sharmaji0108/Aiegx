@@ -33,7 +33,7 @@ const solutions = [
     icon: Car,
     title: 'Vehicle & Mobility Solutions',
     description:
-      'Intelligent vision and monitoring systems for vehicles, traffic and transportation.',
+      'Intelligent vehicle monitoring and vision systems for smarter transportation.',
     image: '/images/AI Traffic Surveillance with Plate Detection.png',
     imageAlt: 'AI Traffic Surveillance with Plate Detection',
     features: [
@@ -50,7 +50,7 @@ const solutions = [
     icon: Camera,
     title: 'Video & Surveillance Solutions',
     description:
-      'Recording, monitoring and intelligent video analytics for enhanced security.',
+      'Integrated video recording, monitoring, and analytics for enhanced security.',
     image: '/images/AI Security Surveillance at Modern Entrance.png',
     imageAlt: 'AI Security Surveillance at Modern Entrance',
     features: [
@@ -68,7 +68,7 @@ const solutions = [
     icon: Factory,
     title: 'Industrial & Machine Vision Solutions',
     description:
-      'Embedded control, HMI and vision systems for industrial automation and inspection.',
+      'Embedded control, HMI, and vision systems for industrial automation and inspection.',
     image: '/images/Automated Gear Inspection Line.png',
     imageAlt: 'Automated Gear Inspection Line',
     features: [
@@ -86,7 +86,7 @@ const solutions = [
     icon: Shield,
     title: 'Defence & Advanced Vision Solutions',
     description:
-      'Specialized vision and guidance systems for defence and strategic applications.',
+      'Specialized embedded vision and surveillance systems for defence applications.',
     image: '/images/Futuristic Mountain Surveillance HUD.png',
     imageAlt: 'Futuristic Mountain Surveillance HUD',
     features: [
@@ -106,10 +106,11 @@ function StatusBadge({ status }) {
   const isDev = status === 'In Development';
   return (
     <span
-      className={`inline-flex items-center ml-2 px-2 py-0.5 rounded-full text-[10px] font-semibold whitespace-nowrap ${isDev
-        ? 'bg-amber-100 text-amber-700 border border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-700/40'
-        : 'bg-[#E2EEFB] text-[#089EC2] border border-[#C5DDF5] dark:bg-[#1A2C52] dark:text-[#2DD4F0] dark:border-[#244277]'
-        }`}
+      className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold whitespace-nowrap flex-shrink-0 ${
+        isDev
+          ? 'bg-amber-100 text-amber-700 border border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-700/40'
+          : 'bg-[#E2EEFB] text-[#089EC2] border border-[#C5DDF5] dark:bg-[#1A2C52] dark:text-[#2DD4F0] dark:border-[#244277]'
+      }`}
     >
       {status}
     </span>
@@ -121,41 +122,35 @@ function SolutionCard({ solution, className = '' }) {
   const CardIcon = solution.icon;
 
   return (
-    <div className={`flex flex-col bg-white dark:bg-[#17264A] border border-[#DCE8F5] dark:border-[#24355A] rounded-[18px] shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 overflow-hidden ${className}`}>
-
-      {/* ── Icon + Title + Description ── */}
-      <div className="p-5 pb-4 min-h-[105px]">
-        <div className="flex items-start gap-3 mb-2.5">
-          {/* Icon circle */}
+    <div
+      className={`flex flex-col bg-white dark:bg-[#17264A] border border-[#DCE8F5] dark:border-[#24355A] rounded-[18px] shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 p-4 sm:p-4.5 ${className}`}
+    >
+      {/* ── Icon + Heading Row ── */}
+      <div className="flex items-center gap-2.5 mb-2">
+        <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-[#EBF5FD] dark:bg-[#1A2C52] border border-[#C5DDF5] dark:border-[#244277] flex items-center justify-center shadow-2xs">
+          <CardIcon className="w-4.5 h-4.5 text-[#089EC2] dark:text-[#2DD4F0]" />
+        </div>
+        <h3 className="text-sm sm:text-[14.5px] font-bold leading-snug text-[#14213D] dark:text-[#F8FAFC]">
           <a
             href={solution.href}
             onClick={(e) => navigateTo(solution.href, e)}
-            className="flex-shrink-0 w-11 h-11 rounded-full bg-[#E8F4FD] dark:bg-[#1A2C52] border border-[#C5DDF5] dark:border-[#244277] flex items-center justify-center hover:scale-105 transition-transform"
+            className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors"
           >
-            <CardIcon className="w-5 h-5 text-[#089EC2] dark:text-[#2DD4F0]" />
+            {solution.title}
           </a>
-          {/* Title */}
-          <h3 className="text-base font-bold leading-snug text-[#14213D] dark:text-[#F8FAFC] pt-0.5">
-            <a
-              href={solution.href}
-              onClick={(e) => navigateTo(solution.href, e)}
-              className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors"
-            >
-              {solution.title}
-            </a>
-          </h3>
-        </div>
-        {/* Description */}
-        <p className="text-xs leading-relaxed text-[#52627C] dark:text-[#AAB6D0]">
-          {solution.description}
-        </p>
+        </h3>
       </div>
 
-      {/* ── Image ── */}
+      {/* ── Description directly below heading ── */}
+      <p className="text-xs leading-relaxed text-[#52627C] dark:text-[#AAB6D0] mb-3 min-h-[34px]">
+        {solution.description}
+      </p>
+
+      {/* ── Image below description ── */}
       <a
         href={solution.href}
         onClick={(e) => navigateTo(solution.href, e)}
-        className="mx-5 rounded-xl overflow-hidden border border-[#DCE8F5] dark:border-[#24355A] flex-shrink-0 h-44 block group/img"
+        className="w-full h-32 sm:h-36 rounded-xl overflow-hidden border border-[#DCE8F5] dark:border-[#24355A] mb-3.5 block group/img flex-shrink-0"
       >
         <img
           src={solution.image}
@@ -165,8 +160,8 @@ function SolutionCard({ solution, className = '' }) {
         />
       </a>
 
-      {/* ── Feature List (Consistent min-height to guarantee identical card heights) ── */}
-      <div className="flex-1 px-5 pt-4 pb-4 space-y-2.5 min-h-[190px]">
+      {/* ── Subtopics List (Compact horizontal rows) ── */}
+      <div className="flex-1 space-y-2 min-h-[150px]">
         {solution.features.map((feat, i) => {
           const FeatIcon = feat.icon;
           return (
@@ -174,29 +169,29 @@ function SolutionCard({ solution, className = '' }) {
               key={i}
               href={feat.href}
               onClick={(e) => navigateTo(feat.href, e)}
-              className="flex items-center gap-2.5 group/feat hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors cursor-pointer"
+              className="flex items-center justify-between gap-2 group/feat hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors cursor-pointer py-0.5"
             >
-              <div className="flex-shrink-0 w-6 h-6 rounded-md bg-[#E8F4FD] dark:bg-[#1A2C52] group-hover/feat:bg-[#089EC2]/20 dark:group-hover/feat:bg-[#2DD4F0]/20 flex items-center justify-center transition-colors">
-                <FeatIcon className="w-3.5 h-3.5 text-[#089EC2] dark:text-[#2DD4F0]" />
+              <div className="flex items-center gap-2 min-w-0">
+                <FeatIcon className="w-3.5 h-3.5 text-[#089EC2] dark:text-[#2DD4F0] flex-shrink-0" />
+                <span className="text-xs text-[#14213D] dark:text-[#D4E3F5] group-hover/feat:text-[#089EC2] dark:group-hover/feat:text-[#2DD4F0] font-medium leading-tight truncate">
+                  {feat.label}
+                </span>
               </div>
-              <span className="text-xs text-[#14213D] dark:text-[#D4E3F5] group-hover/feat:text-[#089EC2] dark:group-hover/feat:text-[#2DD4F0] font-medium leading-tight transition-colors">
-                {feat.label}
-              </span>
-              <StatusBadge status={feat.status} />
+              {feat.status && <StatusBadge status={feat.status} />}
             </a>
           );
         })}
       </div>
 
-      {/* ── CTA Button ── */}
-      <div className="px-5 pb-5 mt-auto">
+      {/* ── Full-width Explore Solutions CTA Button ── */}
+      <div className="mt-auto pt-3">
         <a
           href={solution.href}
           onClick={(e) => navigateTo(solution.href, e)}
-          className="explore-btn"
+          className="explore-btn text-xs py-2"
         >
           Explore Solutions
-          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+          <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
         </a>
       </div>
     </div>
@@ -416,21 +411,70 @@ export default function Applications() {
       <div className="section-container relative">
 
         {/* ── Section Header Banner ── */}
-        <SectionHeadingContainer
-          subheading="INTEGRATED SOLUTIONS"
-          heading={
-            <>
+        <div className="section-heading-container relative w-full mb-4 px-5 py-4 sm:px-6 sm:py-4.5 overflow-hidden rounded-2xl border border-[#DCE6F3] dark:border-[#24355A] bg-white dark:bg-[#17264A] shadow-[0_4px_20px_rgba(50,133,255,0.06)] dark:shadow-[0_4px_20px_rgba(45,212,240,0.08)]">
+          {/* Subtle flowing blue wave/gradient decoration along the right and lower-right side */}
+          <svg
+            className="absolute right-0 top-0 h-full w-[170px] sm:w-[300px] md:w-[400px] lg:w-[470px] pointer-events-none select-none overflow-hidden z-0"
+            viewBox="0 0 480 140"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+          >
+            <defs>
+              <linearGradient id="sol-wave-back" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#E0F2FE" stopOpacity="0.3" />
+                <stop offset="45%" stopColor="#7DD3FC" stopOpacity="0.55" />
+                <stop offset="100%" stopColor="#0284C7" stopOpacity="0.8" />
+              </linearGradient>
+              <linearGradient id="sol-wave-mid" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#38BDF8" stopOpacity="0.4" />
+                <stop offset="50%" stopColor="#0EA5E9" stopOpacity="0.75" />
+                <stop offset="100%" stopColor="#2563EB" stopOpacity="0.85" />
+              </linearGradient>
+              <linearGradient id="sol-wave-front" x1="0%" y1="50%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#0284C7" stopOpacity="0.75" />
+                <stop offset="100%" stopColor="#0369A1" stopOpacity="0.9" />
+              </linearGradient>
+            </defs>
+            <path
+              d="M 60 140 C 180 120, 240 40, 480 10 L 480 140 Z"
+              fill="url(#sol-wave-back)"
+            />
+            <path
+              d="M 140 140 C 240 130, 290 55, 480 35 L 480 140 Z"
+              fill="url(#sol-wave-mid)"
+            />
+            <path
+              d="M 230 140 C 310 135, 360 80, 480 65 L 480 140 Z"
+              fill="url(#sol-wave-front)"
+            />
+          </svg>
+
+          {/* Banner Text Content */}
+          <div className="relative z-10 max-w-2xl">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-[10.5px] sm:text-xs font-bold tracking-[0.16em] uppercase text-[#1672E8] dark:text-[#2DD4F0]">
+                INTEGRATED SOLUTIONS
+              </span>
+              <span className="w-5 h-[2px] bg-[#1672E8] dark:bg-[#2DD4F0] rounded-full inline-block" />
+            </div>
+
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-[#0D1733] dark:text-[#F8FAFC] tracking-tight mb-1">
               Our{' '}
               <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
                 Integrated Solutions
               </span>
-            </>
-          }
-          description="Turnkey embedded systems combining intelligent vision, AI analytics, and rugged connectivity for mobility, surveillance, and smart infrastructure."
-        />
+            </h2>
 
-        {/* ── Desktop & Tablet Grid: Exactly 4 Cards (Unchanged) ── */}
-        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+            <p className="text-xs sm:text-[13.5px] font-medium text-[#52627C] dark:text-[#CBD5E1] leading-relaxed">
+              Embedded hardware and software solutions for transportation, surveillance, industrial automation, and defence applications.
+            </p>
+          </div>
+        </div>
+
+        {/* ── Desktop & Tablet Grid: Exactly 4 Cards ── */}
+        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 items-stretch">
           {solutions.map((sol) => (
             <SolutionCard key={sol.id} solution={sol} />
           ))}
