@@ -355,8 +355,18 @@ export default function RZG2LSMARCSoM({ productSlug = 'smarc-som' }) {
          ===================================================================== */}
       <ProductEnquiry
         productName={product.title}
-        description="Explore RZ/G2L-based hardware, custom board development, and embedded software integration with our engineering team."
-        bottomMessage="Discuss your hardware requirements, custom board design, or embedded Linux development with our engineers."
+        description={
+          product.enquiryDescription ||
+          (productSlug === 'carrier-board'
+            ? 'Explore RZ/G2L carrier-board integration, custom hardware design, and embedded Linux development.'
+            : 'Explore RZ/G2L-based hardware, custom board development, and embedded software integration with our engineering team.')
+        }
+        bottomMessage={
+          product.enquiryBottomMessage ||
+          (productSlug === 'carrier-board'
+            ? 'Discuss your hardware requirements, custom carrier design, or embedded Linux development with our engineering team.'
+            : 'Discuss your hardware requirements, custom board design, or embedded Linux development with our engineers.')
+        }
         onRequestQuote={() => openModal('Request Quote')}
         onContactTeam={() => openModal('Contact Engineering Team')}
       />

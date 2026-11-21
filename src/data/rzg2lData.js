@@ -432,6 +432,10 @@ export const RZG2L_PRODUCT_DETAILS = {
       { label: 'Camera & Display Integration', icon: Network },
       { label: 'Peripheral Interfaces', icon: Layers },
     ],
+    enquiryDescription:
+      'Explore RZ/G2L carrier-board integration, custom hardware design, and embedded Linux development.',
+    enquiryBottomMessage:
+      'Discuss your hardware requirements, custom carrier design, or embedded Linux development with our engineering team.',
     overviewSummary:
       'Engineered to unlock every peripheral of the RZ/G2L SMARC SoM, the RZ/G2L Carrier Board breaks out dual RJ45 Gigabit Ethernet ports, USB 3.0/2.0 hosts, isolated CAN interfaces, serial UART headers, and multiple display interfaces on ruggedized connectors.',
     overviewParagraphs: [
