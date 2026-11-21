@@ -386,7 +386,7 @@ export default function Products() {
     },
     {
       id: 'rz-g2n',
-      name: 'RZ/G2N-Based SBC',
+      name: 'RZ/G2N-Based Platform',
       subtitle: 'Multimedia & Video',
       image: RZG2N,
       fallbackImage: '/images/RZG2N.png',
@@ -430,7 +430,7 @@ export default function Products() {
     },
     {
       id: 'rz-v2h',
-      name: 'RZ/V2H-Based SBC',
+      name: 'RZ/V2H-Based Platform',
       subtitle: 'High-Performance Edge AI',
       image: RZV2H,
       fallbackImage: '/images/RZV2H.png',
