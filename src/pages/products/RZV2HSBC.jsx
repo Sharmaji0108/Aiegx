@@ -76,7 +76,7 @@ const V2H_FEATURES = [
 ];
 
 /**
- * RZ/V2H SBC (Development Platform) Product Detail Page
+ * RZ/V2H Embedded Computing Platform Product Detail Page
  * Matching the exact visual design language, structure, and tabular technical layout of RZ/G2L.
  */
 export default function RZV2HSBC() {
@@ -436,7 +436,7 @@ export default function RZV2HSBC() {
 
       {/* SECTION 4: Bottom Technical / Commercial Enquiry Strip */}
       <ProductEnquiry
-        productName="RZ/V2H SBC (Development Platform)"
+        productName="RZ/V2H Embedded Computing Platform"
         onRequestQuote={() =>
           setEnquiryModal({ isOpen: true, type: 'Request Quote' })
         }
@@ -450,7 +450,7 @@ export default function RZV2HSBC() {
         isOpen={enquiryModal.isOpen}
         onClose={() => setEnquiryModal({ isOpen: false, type: 'Request Quote' })}
         type={enquiryModal.type}
-        productName="RZ/V2H SBC"
+        productName="RZ/V2H Embedded Computing Platform"
       />
     </div>
   );

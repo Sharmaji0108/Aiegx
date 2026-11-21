@@ -43,7 +43,7 @@ const G2N_FEATURES = [
 ];
 
 /**
- * RZ/G2N SBC (Development Platform) Product Detail Page
+ * RZ/G2N Embedded Computing Platform Product Detail Page
  * Matching the exact visual design language, structure, and tabular technical layout of RZ/G2L.
  */
 export default function RZG2NSBC() {
@@ -345,7 +345,7 @@ export default function RZG2NSBC() {
 
       {/* SECTION 4: Bottom Engineering Enquiry CTA */}
       <ProductEnquiry
-        productName="RZ/G2N SBC (Development Platform)"
+        productName="RZ/G2N Embedded Computing Platform"
         onRequestQuote={() =>
           setEnquiryModal({
             isOpen: true,
@@ -365,7 +365,7 @@ export default function RZG2NSBC() {
         isOpen={enquiryModal.isOpen}
         onClose={() => setEnquiryModal((prev) => ({ ...prev, isOpen: false }))}
         initialType={enquiryModal.type}
-        productName="RZ/G2N SBC (Development Platform)"
+        productName="RZ/G2N Embedded Computing Platform"
       />
     </div>
   );

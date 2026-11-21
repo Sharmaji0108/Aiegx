@@ -75,7 +75,7 @@ export const RZG2N_PLATFORM_DATA = {
   availableHardware: [
     {
       id: 'rz-g2n-sbc',
-      name: 'RZ/G2N SBC (Development Platform)',
+      name: 'RZ/G2N Embedded Computing Platform',
       badge: 'Single Board Computer',
       description:
         'High-performance turnkey single-board computer engineered for multimedia, 4K video processing, and edge computing.',
@@ -168,7 +168,7 @@ export const RZG2N_PRODUCT_DETAILS = {
   sbc: {
     slug: 'sbc',
     category: 'HIGH-PERFORMANCE SBC',
-    title: 'RZ/G2N SBC (Development Platform)',
+    title: 'RZ/G2N Embedded Computing Platform',
     shortDescription:
       'High-performance turnkey single-board computer powered by the Renesas RZ/G2N processor for 4K multimedia, video analytics, and edge IoT gateways.',
     introParagraph:
