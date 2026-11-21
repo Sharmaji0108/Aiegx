@@ -32,7 +32,7 @@ export const RZG2N_PLATFORM_DATA = {
     imageAlt: 'AIEGX RZ/G2N Multimedia & 4K Video Single Board Computer',
     highlights: [
       'Dual-core Arm Cortex-A57 at 1.5 GHz with Cortex-R7 at 800 MHz',
-      'PowerVR GE7800 GPU, 4K H.264 encoding/decoding and H.265 decoding',
+      '3D graphics, 4K H.264 encoding/decoding and H.265 decoding',
       'PCIe Gen 2, USB 3.0 and Gigabit Ethernet support',
     ],
   },
