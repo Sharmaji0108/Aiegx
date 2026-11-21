@@ -44,8 +44,22 @@ export default function ProductSpecifications({
   productName = 'RZ/G2L SMARC SoM',
   featureHeader = 'FEATURES',
   detailsHeader = 'DETAILS',
+  heading,
+  subheading = 'TECHNICAL SPECIFICATIONS',
+  description,
 }) {
   const specList = Array.isArray(specifications) ? specifications : [];
+
+  const defaultHeading = (
+    <>
+      Technical{' '}
+      <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
+        Specifications
+      </span>
+    </>
+  );
+
+  const defaultDescription = `Detailed hardware parameters and interface support for the ${productName}.`;
 
   return (
     <section
@@ -54,16 +68,9 @@ export default function ProductSpecifications({
     >
       <div className="section-container relative">
         <SectionHeadingContainer
-          subheading="TECHNICAL SPECIFICATIONS"
-          heading={
-            <>
-              Technical{' '}
-              <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
-                Specifications
-              </span>
-            </>
-          }
-          description={`Detailed hardware parameters and interface support for the ${productName}.`}
+          subheading={subheading}
+          heading={heading || defaultHeading}
+          description={description || defaultDescription}
         />
 
         <div className="rounded-2xl bg-white dark:bg-[#17264A] border border-[#DBE4F0] dark:border-[#24355A] shadow-xs overflow-hidden">
