@@ -599,6 +599,8 @@ export const RZG2L_PRODUCT_DETAILS = {
       { label: 'Camera & Display Integration', icon: CheckCircle2 },
       { label: 'Embedded Linux Support', icon: Terminal },
     ],
+    enquiryDescription:
+      'Talk to our engineering team for your project requirements, interface needs and customization options for the RZ/G2L Embedded Computing Platform.',
     overviewSummary:
       'Designed to eliminate initial hardware bring-up delays, the RZ/G2L Development Kit delivers a completely validated computing system ready for software engineering, graphical UI prototyping, and field trials on day one.',
     overviewParagraphs: [

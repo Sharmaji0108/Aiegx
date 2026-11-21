@@ -128,7 +128,7 @@ export default function RZG2LPlatform() {
       {/* Bottom Enquiry CTA */}
       <ProductEnquiry
         productName="RZ/G2L Platform"
-        description="Explore RZ/G2L-based hardware, custom board development, and embedded software integration with our engineering team."
+        description="Talk to our engineering team for your project requirements, interface needs and customization options for the RZ/G2L Embedded Computing Platform."
         bottomMessage="Discuss your hardware requirements, custom board design, or embedded Linux development with our engineers."
         onRequestQuote={() =>
           setEnquiryModal({ isOpen: true, type: 'Request Quote' })
