@@ -39,39 +39,43 @@ export const RZG2N_PLATFORM_DATA = {
   capabilities: [
     {
       id: 'cpu',
-      title: 'Dual Cortex-A57 (Up to 1.5 GHz)',
-      description: '64-bit Arm compute delivering ~12.3k DMIPS paired with a real-time Cortex-R7 core.',
+      title: 'Arm Cortex-A57 Processing',
+      description: 'Dual-core Arm Cortex-A57 at 1.5 GHz with Cortex-R7 at 800 MHz.',
       icon: Cpu,
     },
     {
       id: 'graphics',
-      title: 'PowerVR 3D GPU & 4K VPU',
-      description: 'Hardware 4K H.265/H.264 video decode and PowerVR Series 6XE (GE7800) 3D graphics.',
+      title: '3D Graphics & Video Processing',
+      description: '3D graphics, 4K H.264 encoding/decoding and H.265 decoding.',
       icon: Monitor,
     },
     {
       id: 'connectivity',
-      title: 'PCIe Gen2, Dual GbE & USB 3.0',
-      description: 'High-speed expansion bus, dual Gigabit Ethernet ports, and USB 3.0 Host/OTG.',
+      title: 'High-Speed Connectivity',
+      description: 'PCIe Gen 2, USB 3.0 and Gigabit Ethernet support.',
       icon: Network,
     },
     {
       id: 'linux',
-      title: 'CIP Linux & Yocto BSP',
-      description: 'Production-ready Yocto reference BSP and Civil Infrastructure Platform (CIP) LTS kernel.',
+      title: 'Embedded Linux Support',
+      description: 'Renesas RZ/G Verified Linux Package for embedded Linux development.',
       icon: Terminal,
     },
     {
-      id: 'lifecycle',
-      title: '10+ Year Product Longevity',
-      description: 'Super Long-Term Support (SLTS) program guaranteeing 10+ year availability.',
+      id: 'multimedia',
+      title: 'Multimedia Interfaces',
+      description: 'Camera, display and audio interfaces for multimedia applications.',
       icon: Clock,
     },
   ],
   architecture: {
+    subheading: 'INTEGRATED BOARD ARCHITECTURE',
     title: 'Hardware',
     titleGradient: 'Architecture',
-    statement: 'Processor is mounted directly on the main PCB.',
+    statement: 'Single-Board Computer (SBC)',
+    statementTitle: 'Single-Board Computer (SBC)',
+    statementDescription:
+      'RZ/G2N processor mounted directly on the main PCB, with onboard memory and peripheral interfaces.',
   },
   availableHardware: [
     {

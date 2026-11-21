@@ -43,10 +43,13 @@ export default function RZG2NPlatform() {
       <div className="hidden lg:block">
         <PlatformCapabilitiesAndArchitecture
           capabilities={RZG2N_PLATFORM_DATA.capabilities}
-          capabilitiesDescription="High-compute 64-bit Arm performance, 4K multimedia codecs, high-speed serial buses, and long-term Linux support."
+          capabilitiesDescription="Arm processing, 4K video capabilities, 3D graphics, connectivity and embedded Linux support."
+          architectureSubheading={RZG2N_PLATFORM_DATA.architecture.subheading || 'INTEGRATED BOARD ARCHITECTURE'}
           title={RZG2N_PLATFORM_DATA.architecture.title}
           titleGradient={RZG2N_PLATFORM_DATA.architecture.titleGradient}
           statement={RZG2N_PLATFORM_DATA.architecture.statement}
+          statementTitle={RZG2N_PLATFORM_DATA.architecture.statementTitle}
+          statementDescription={RZG2N_PLATFORM_DATA.architecture.statementDescription}
           architectureDescription={RZG2N_PLATFORM_DATA.architecture.description}
         />
       </div>
@@ -66,7 +69,7 @@ export default function RZG2NPlatform() {
                   </span>
                 </>
               }
-              description="High-compute 64-bit Arm performance, 4K multimedia codecs, high-speed serial buses, and long-term Linux support."
+              description="Arm processing, 4K video capabilities, 3D graphics, connectivity and embedded Linux support."
             />
 
             <PlatformFeatures items={RZG2N_PLATFORM_DATA.capabilities} columns={5} />
@@ -75,10 +78,13 @@ export default function RZG2NPlatform() {
 
         {/* Section D: Hardware Architecture */}
         <HardwareArchitecture
+          subheading={RZG2N_PLATFORM_DATA.architecture.subheading || 'INTEGRATED BOARD ARCHITECTURE'}
           title={RZG2N_PLATFORM_DATA.architecture.title}
           titleGradient={RZG2N_PLATFORM_DATA.architecture.titleGradient}
           description={RZG2N_PLATFORM_DATA.architecture.description}
           statement={RZG2N_PLATFORM_DATA.architecture.statement}
+          statementTitle={RZG2N_PLATFORM_DATA.architecture.statementTitle}
+          statementDescription={RZG2N_PLATFORM_DATA.architecture.statementDescription}
         />
       </div>
 

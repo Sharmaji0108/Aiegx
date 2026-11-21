@@ -1,5 +1,5 @@
 import React from 'react';
-import { Plus, Equal } from 'lucide-react';
+import { Plus, Equal, CircuitBoard } from 'lucide-react';
 
 /**
  * Compact Hardware Architecture section.
@@ -14,23 +14,47 @@ export default function HardwareArchitecture({
   titleGradient = 'Architecture',
   description = 'The RZ/G2L platform supports a modular architecture. SMARC SoM provides the core computing module, Carrier Board provides application interfaces, and together they form a complete Development Kit.',
   statement,
+  statementTitle,
+  statementDescription,
   stackOnMobile = false,
 }) {
   return (
     <section className="py-6 sm:py-8 lg:py-10 relative bg-[#F5F8FC] dark:bg-[#0D1733] transition-colors duration-300">
       <div className="section-container relative">
         <div className="rounded-2xl bg-white dark:bg-[#17264A] border border-[#DBE4F0] dark:border-[#24355A] p-5 sm:p-6 lg:p-8 shadow-xs">
-          {statement ? (
+          {statement || statementTitle ? (
             <div className="max-w-3xl">
+              {subheading && (
+                <span className="text-[11px] sm:text-xs font-mono uppercase tracking-wider text-[#089EC2] dark:text-[#2DD4F0] font-bold block mb-1">
+                  {subheading}
+                </span>
+              )}
               <h2 className="text-xl sm:text-2xl lg:text-[28px] font-extrabold tracking-tight text-[#14213D] dark:text-[#F8FAFC] leading-tight mb-2.5">
                 {title}{' '}
                 <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] dark:from-[#2DD4F0] dark:to-[#38BDF8] bg-clip-text text-transparent">
                   {titleGradient}
                 </span>
               </h2>
-              <p className="text-sm sm:text-base lg:text-[17px] font-medium text-[#52627C] dark:text-[#AAB6D0] leading-relaxed">
-                {statement}
-              </p>
+              {statement && !statementDescription ? (
+                <p className="text-sm sm:text-base lg:text-[17px] font-medium text-[#52627C] dark:text-[#AAB6D0] leading-relaxed">
+                  {statement}
+                </p>
+              ) : (
+                <div className="rounded-xl bg-[#F8FAFD] dark:bg-[#101936] border border-[#DBE4F0] dark:border-[#24355A] p-5 sm:p-6 flex items-center gap-4 shadow-2xs mt-4">
+                  <div className="w-12 h-12 rounded-xl bg-[#E2EEFB] dark:bg-[#1A2C52] border border-[#C5DDF5] dark:border-[#244277] flex items-center justify-center text-[#089EC2] dark:text-[#2DD4F0] shrink-0">
+                    <CircuitBoard className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm sm:text-base font-bold text-[#14213D] dark:text-[#F8FAFC] leading-relaxed">
+                      {statementTitle || statement}
+                    </h3>
+                    <p className="text-xs text-[#52627C] dark:text-[#AAB6D0] leading-relaxed mt-1">
+                      {statementDescription ||
+                        'Engineered for optimal signal integrity, high thermal dissipation, and industrial reliability.'}
+                    </p>
+                  </div>
+                </div>
+              )}
             </div>
           ) : (
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">

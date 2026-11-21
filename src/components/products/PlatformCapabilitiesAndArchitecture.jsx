@@ -10,6 +10,8 @@ export default function PlatformCapabilitiesAndArchitecture({
   capabilities = [],
   architectureBlocks = [],
   statement,
+  statementTitle,
+  statementDescription,
   capabilitiesSubheading = 'KEY PLATFORM CAPABILITIES',
   capabilitiesTitle = 'Platform',
   capabilitiesTitleGradient = 'Capabilities',
@@ -125,18 +127,18 @@ export default function PlatformCapabilitiesAndArchitecture({
               </div>
 
               {/* Statement Architecture or 3 Hardware components arranged horizontally with + and = */}
-              {statement ? (
+              {statement || statementTitle ? (
                 <div className="flex-1 flex flex-col justify-center">
                   <div className="rounded-xl bg-[#F8FAFD] dark:bg-[#101936] border border-[#DBE4F0] dark:border-[#24355A] p-5 sm:p-6 flex items-center gap-4 shadow-2xs">
                     <div className="w-12 h-12 rounded-xl bg-[#E2EEFB] dark:bg-[#1A2C52] border border-[#C5DDF5] dark:border-[#244277] flex items-center justify-center text-[#089EC2] dark:text-[#2DD4F0] shrink-0">
                       <CircuitBoard className="w-6 h-6" />
                     </div>
                     <div>
-                      <p className="text-sm sm:text-base font-semibold text-[#14213D] dark:text-[#F8FAFC] leading-relaxed">
-                        {statement}
-                      </p>
+                      <h3 className="text-sm sm:text-base font-bold text-[#14213D] dark:text-[#F8FAFC] leading-relaxed">
+                        {statementTitle || statement}
+                      </h3>
                       <p className="text-xs text-[#52627C] dark:text-[#AAB6D0] leading-relaxed mt-1">
-                        Engineered for optimal signal integrity, high thermal dissipation, and industrial reliability.
+                        {statementDescription || 'Engineered for optimal signal integrity, high thermal dissipation, and industrial reliability.'}
                       </p>
                     </div>
                   </div>
