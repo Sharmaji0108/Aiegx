@@ -174,34 +174,34 @@ export const RZG2L_PLATFORM_DATA = {
   ],
   whyPoints: [
     {
-      title: 'Optimized for HMI and Display',
+      title: 'Graphics & Display Support',
       description:
-        'Integrated 3D graphics engine and multi-interface display controller drive responsive, crisp touch UIs.',
+        'Arm Mali-G31 GPU for rich graphics and interactive HMI.',
     },
     {
-      title: 'Rich Industrial Interfaces',
+      title: 'Industrial Connectivity',
       description:
-        'Native Gigabit Ethernet, CAN bus, UART, SPI, I2C, USB, and GPIO simplify industrial peripheral connectivity.',
+        'Gigabit Ethernet, CAN FD, USB 2.0, and serial interfaces (UART, SPI, I²C) for industrial systems.',
     },
     {
-      title: 'Flexible Modular Architecture',
+      title: 'Modular Hardware Platforms',
       description:
-        'SMARC standard allows effortless scaling and carrier board customization without re-engineering core compute.',
+        'RZ/G2L SMARC SoM and carrier board for embedded development and integration.',
     },
     {
-      title: 'Linux / Yocto Long-Term Support',
+      title: 'Embedded Linux Support',
       description:
-        'Civil Infrastructure Platform (CIP) and Yocto LTS BSP backing ensures long-term security and software stability.',
+        'Renesas Linux software package (RZ/G Verified Linux Package) for embedded application development.',
     },
     {
-      title: 'Proven and Reliable Platform',
+      title: 'Multimedia Capabilities',
       description:
-        'Engineered for continuous 24/7 operation with optional industrial temperature tolerance from -40°C to +85°C.',
+        'Integrated H.264 video encoding and decoding (Full HD class) for video applications.',
     },
     {
-      title: 'Industrial and Transportation Applications',
+      title: 'Camera & Display Interfaces',
       description:
-        'Trusted across factory automation, railway cab displays, medical instrumentation, and smart infrastructure.',
+        'MIPI CSI-2 camera input and MIPI DSI display output for camera and display integration.',
     },
   ],
 };
@@ -210,35 +210,46 @@ export const RZG2L_APPLICATIONS = [
   {
     id: 'industrial-hmi',
     title: 'Industrial HMI',
-    subtitle: 'Operator Panels & Factory Control',
+    description: 'Industrial control and operator interfaces.',
+    subtitle: 'Industrial control and operator interfaces.',
     image: '/images/Automated Gear Inspection Line.png',
     icon: Factory,
   },
   {
     id: 'railway-hmi',
     title: 'Railway HMI',
-    subtitle: 'Cab Displays & Transit Telemetry',
+    description: 'Driver displays and train system monitoring.',
+    subtitle: 'Driver displays and train system monitoring.',
     image: '/images/Modern Train Cockpit Control Panel.png',
     icon: Train,
   },
   {
-    id: 'display-controller',
-    title: 'Display Controller',
-    subtitle: 'Digital Signage & Instrumentation',
+    id: 'display-systems',
+    title: 'Display Systems',
+    description:
+      'Embedded displays and visualization (e.g., digital signage, information displays).',
+    subtitle:
+      'Embedded displays and visualization (e.g., digital signage, information displays).',
     image: '/images/AI Security Surveillance at Modern Entrance.png',
     icon: Monitor,
   },
   {
-    id: 'remote-monitoring',
-    title: 'Remote Monitoring',
-    subtitle: 'Automated Edge Diagnostics',
+    id: 'video-enabled-systems',
+    title: 'Video-Enabled Systems',
+    description:
+      'Embedded video monitoring and communication (e.g., intercom, doorbell).',
+    subtitle:
+      'Embedded video monitoring and communication (e.g., intercom, doorbell).',
     image: '/images/AI Traffic Surveillance with Plate Detection.png',
     icon: Eye,
   },
   {
-    id: 'connected-systems',
-    title: 'Connected Systems',
-    subtitle: 'Industrial IoT & Smart Gateways',
+    id: 'industrial-gateways',
+    title: 'Industrial Gateways',
+    description:
+      'Connected devices, data collection, and industrial communication.',
+    subtitle:
+      'Connected devices, data collection, and industrial communication.',
     image: '/images/Precision Robotic Gripper on Assembly Line.png',
     icon: Share2,
   },

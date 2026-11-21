@@ -81,7 +81,10 @@ export default function RZG2LPlatform() {
       />
 
       {/* Section F: Typical Applications (Single horizontal row with continuous automatic right-to-left marquee) */}
-      <TypicalApplicationsCarousel applications={RZG2L_APPLICATIONS} />
+      <TypicalApplicationsCarousel
+        applications={RZG2L_APPLICATIONS}
+        description="Embedded computing solutions for industrial HMI, display systems, remote monitoring, and connected applications."
+      />
 
       {/* Section G: Why RZ/G2L? */}
       <section className="py-6 sm:py-8 lg:py-10 relative bg-[#F5F8FC] dark:bg-[#0D1733] transition-colors duration-300">
@@ -96,7 +99,7 @@ export default function RZG2LPlatform() {
                 </span>
               </>
             }
-            description="Purpose-built silicon and modular hardware designed for longevity, determinism, and graphical responsiveness."
+            description="A versatile processor platform combining Arm processing, graphics, multimedia, and industrial connectivity for embedded applications."
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
