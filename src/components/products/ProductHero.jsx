@@ -6,6 +6,23 @@ import SOM3DViewer from './SOM3DViewer';
 /**
  * Product Platform Hero section matching Aiegx homepage hero theme and layout.
  */
+function formatHeroTitle(title) {
+  if (!title) return null;
+  if (React.isValidElement(title)) return title;
+  if (typeof title === 'string' && title.endsWith('Platforms')) {
+    const prefix = title.slice(0, -'Platforms'.length).trim();
+    return (
+      <>
+        {prefix}{' '}
+        <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
+          Platforms
+        </span>
+      </>
+    );
+  }
+  return title;
+}
+
 export default function ProductHero({
   breadcrumb,
   hero,
@@ -49,7 +66,7 @@ export default function ProductHero({
             </div>
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#14213D] dark:text-[#F8FAFC] leading-[1.15] mb-2">
-              {hero.title}
+              {formatHeroTitle(hero.title)}
             </h1>
 
             <div className="mb-4">
@@ -119,7 +136,7 @@ export default function ProductHero({
               </div>
 
               <div className="mt-4 pt-3.5 border-t border-[#E2E8F0] dark:border-[#24355A] flex items-center justify-between text-xs">
-                <span className="font-mono uppercase tracking-wider text-[#52627C] dark:text-[#AAB6D0]">
+                <span className={hero.familyClassName || "font-mono uppercase tracking-wider text-[#52627C] dark:text-[#AAB6D0]"}>
                   {hero.family || 'Renesas RZ/G2L Family'}
                 </span>
                 <span className="inline-flex items-center gap-1.5 font-semibold text-[#089EC2] dark:text-[#2DD4F0]">

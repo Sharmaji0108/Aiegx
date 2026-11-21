@@ -32,18 +32,20 @@ export const RZG2L_PLATFORM_DATA = {
     { label: 'RZ/G2L', path: null },
   ],
   hero: {
-    tag: 'Renesas RZ/G2L Architecture',
-    title: 'RZ/G2L',
-    subtitle: 'Embedded Control & HMI Platform',
+    tag: 'EMBEDDED HARDWARE PLATFORMS',
+    title: 'RZ/G2L-Based Platforms',
+    subtitle: 'Embedded Control & HMI',
     description:
-      'Power-efficient 64-bit Arm Cortex-A55 embedded computing platform engineered for industrial Human-Machine Interfaces (HMI), real-time deterministic control, multi-display visualization, and long-lifecycle connected embedded systems.',
+      'Embedded hardware platforms based on the Renesas RZ/G2L processor, designed for industrial HMI, display, control, and connected applications.',
     image: '/images/RZV2L-SBC.png',
     fallbackImage: '/images/RZV2L-SBC.png',
     imageAlt: 'AIEGX RZ/G2L Embedded Control & HMI Hardware Module',
+    family: 'RZ/G2L-Based Hardware',
+    familyClassName: 'font-bold text-sm text-[#14213D] dark:text-[#F8FAFC]',
     highlights: [
-      'Dual / Quad-class Arm Cortex-A55 + Real-Time Cortex-M33',
-      'Hardware 3D GPU & Dual Display Pipeline',
-      'Industrial Temperature & 10+ Year Supply',
+      'Up to dual-core Arm Cortex-A55, 1.2 GHz',
+      'Arm Mali-G31 GPU and H.264 codec',
+      'Camera, display, and industrial connectivity',
     ],
   },
   capabilities: [
