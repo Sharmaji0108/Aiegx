@@ -20,19 +20,20 @@ export const RZG2N_PLATFORM_DATA = {
     { label: 'RZ/G2N', path: null },
   ],
   hero: {
-    tag: 'Renesas RZ/G2N Architecture',
-    family: 'Renesas RZ/G2N Family',
-    title: 'RZ/G2N',
-    subtitle: 'Multimedia & 4K Video Processing Platform',
+    tag: 'EMBEDDED HARDWARE PLATFORMS',
+    family: 'RZ/G2N SBC',
+    familyClassName: 'font-bold text-sm text-[#14213D] dark:text-[#F8FAFC]',
+    title: 'RZ/G2N-Based Platform',
+    subtitle: '4K Multimedia & Embedded Computing',
     description:
-      'High-performance 64-bit Arm Cortex-A57 embedded computing platform engineered for 4K video surveillance, edge video analytics, intelligent digital signage, and high-throughput industrial gateways with long-term Linux support.',
+      'Embedded computing platform based on the Renesas RZ/G2N processor, designed for multimedia, video processing, display and connected industrial applications.',
     image: '/images/RZG2N.png',
     fallbackImage: '/images/RZG2N.png',
     imageAlt: 'AIEGX RZ/G2N Multimedia & 4K Video Single Board Computer',
     highlights: [
-      'Dual Arm Cortex-A57 @ 1.5 GHz + Real-Time Cortex-R7',
-      'PowerVR 3D GPU & 4K H.265/H.264 Hardware VPU',
-      'PCIe Gen2, USB 3.0 & Dual Gigabit Ethernet',
+      'Dual-core Arm Cortex-A57 at 1.5 GHz with Cortex-R7 at 800 MHz',
+      'PowerVR GE7800 GPU, 4K H.264 encoding/decoding and H.265 decoding',
+      'PCIe Gen 2, USB 3.0 and Gigabit Ethernet support',
     ],
   },
   capabilities: [
