@@ -34,7 +34,7 @@ export default function RZV2HPlatform() {
         hero={RZV2H_PLATFORM_DATA.hero}
         onExploreHardware={scrollToAvailableHardware}
         onRequestQuote={() =>
-          setEnquiryModal({ isOpen: true, type: 'Request Quote' })
+          setEnquiryModal({ isOpen: true, type: 'Contact Engineering Team' })
         }
       />
 

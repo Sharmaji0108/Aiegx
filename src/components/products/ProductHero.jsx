@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, CheckCircle2, MessageSquare } from 'lucide-react';
+import { ArrowRight, CheckCircle2, MessageSquare, Wrench } from 'lucide-react';
 import ProductBreadcrumb from './ProductBreadcrumb';
 import SOM3DViewer from './SOM3DViewer';
 
@@ -79,6 +79,15 @@ export default function ProductHero({
               {hero.description}
             </p>
 
+            {hero.statusBadge && (
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 dark:bg-amber-500/20 border border-amber-300 dark:border-amber-600/40 text-xs font-mono font-bold text-amber-800 dark:text-amber-300 mb-5 shadow-xs">
+                <span className="w-5 h-5 rounded-full bg-amber-500/20 dark:bg-amber-400/20 flex items-center justify-center shrink-0">
+                  <Wrench className="w-3 h-3 text-amber-700 dark:text-amber-300" />
+                </span>
+                <span>{hero.statusBadge}</span>
+              </div>
+            )}
+
             {hero.highlights && hero.highlights.length > 0 && (
               <ul className="space-y-2 mb-6">
                 {hero.highlights.map((item) => (
@@ -91,14 +100,16 @@ export default function ProductHero({
             )}
 
             <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto">
-              <button
-                type="button"
-                onClick={onExploreHardware}
-                className="group inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-bold text-sm text-[#0D1733] bg-gradient-to-r from-[#2DD4F0] to-[#3285FF] hover:from-[#4be0f7] hover:to-[#4392ff] shadow-lg shadow-[#3285FF]/25 hover:shadow-[#2DD4F0]/35 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer"
-              >
-                <span>Available Hardware</span>
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </button>
+              {!hero.hideExploreHardware && !hero.hideExploreButton && (
+                <button
+                  type="button"
+                  onClick={onExploreHardware}
+                  className="group inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-bold text-sm text-[#0D1733] bg-gradient-to-r from-[#2DD4F0] to-[#3285FF] hover:from-[#4be0f7] hover:to-[#4392ff] shadow-lg shadow-[#3285FF]/25 hover:shadow-[#2DD4F0]/35 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer"
+                >
+                  <span>Available Hardware</span>
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </button>
+              )}
 
               <button
                 type="button"
@@ -106,7 +117,7 @@ export default function ProductHero({
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-semibold text-sm text-[#089EC2] dark:text-[#2DD4F0] bg-white dark:bg-[#17264A] border border-[#C5DDF5] dark:border-[#244277] hover:border-[#089EC2] dark:hover:border-[#2DD4F0] shadow-xs transition-all duration-200 hover:-translate-y-0.5 cursor-pointer"
               >
                 <MessageSquare className="w-4 h-4" />
-                <span>Request Quote</span>
+                <span>{hero.ctaText || hero.buttonText || 'Request Quote'}</span>
               </button>
             </div>
           </div>
