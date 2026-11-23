@@ -4,7 +4,8 @@ import {
   Sparkles,
   CheckCircle2,
   Cpu,
-  Layers
+  Layers,
+  ArrowRight
 } from 'lucide-react';
 import ProductBreadcrumb from '../../products/ProductBreadcrumb';
 import SubSolutionTabs from './SubSolutionTabs';
@@ -130,7 +131,7 @@ export default function SubSolutionPage({ slug, data: propData }) {
       </section>
 
       {/* ── Top Navigation Tabs (Dynamic Tab-Switching) ── */}
-      <SubSolutionTabs activeTab={activeTab} onSelectTab={setActiveTab} />
+      <SubSolutionTabs activeTab={activeTab} onSelectTab={setActiveTab} tabs={data.tabs} />
 
       {/* ── Dynamic Shared Content Area (Renders ONLY active tab content) ── */}
       <section
@@ -172,28 +173,32 @@ export default function SubSolutionPage({ slug, data: propData }) {
           </div>
 
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#14213D] dark:text-white tracking-tight">
-            Ready to Accelerate Your {data.title}?
+            {data.ctaHeading || `Interested in our ${data.title}?`}
           </h2>
 
           <p className="mt-3 text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-xl leading-relaxed">
-            Connect with our embedded hardware and AI engineering specialists for custom carrier board design, BSP tailoring, and volume pricing.
+            {data.ctaDescription ||
+              'Get in touch with our team to discuss your requirements.'}
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row items-center gap-3">
             <button
               type="button"
               onClick={() => setEnquiryModalOpen(true)}
-              className="px-7 py-3.5 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-[#089EC2] to-[#0284C7] hover:from-[#0aa8cf] hover:to-[#0394de] shadow-lg shadow-[#089EC2]/25 cursor-pointer active:scale-95 transition-all"
+              className="px-7 py-3.5 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-[#089EC2] to-[#0284C7] hover:from-[#0aa8cf] hover:to-[#0394de] shadow-lg shadow-[#089EC2]/25 cursor-pointer active:scale-95 transition-all inline-flex items-center gap-2"
             >
-              Request Architecture Consultation
+              <span>{data.ctaButtonText || 'Contact Our Team'}</span>
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
             </button>
-            <a
-              href="#contact"
-              onClick={(e) => navigateTo('#contact', e)}
-              className="px-6 py-3.5 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-[#17264D] hover:bg-slate-50 dark:hover:bg-[#1E3360] border border-slate-200 dark:border-white/10 cursor-pointer transition-colors"
-            >
-              Contact Sales Team
-            </a>
+            {data.ctaSecondaryButtonText && (
+              <a
+                href="#contact"
+                onClick={(e) => navigateTo('#contact', e)}
+                className="px-6 py-3.5 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-[#17264D] hover:bg-slate-50 dark:hover:bg-[#1E3360] border border-slate-200 dark:border-white/10 cursor-pointer transition-colors"
+              >
+                {data.ctaSecondaryButtonText}
+              </a>
+            )}
           </div>
         </div>
       </section>

@@ -78,38 +78,82 @@ export const SUBSOLUTIONS_DATA = {
     slug: 'anpr-systems',
     category: 'Vehicle & Mobility Solutions',
     title: 'Automatic Number Plate Recognition (ANPR)',
-    subtitle: 'High-speed edge license plate recognition and vehicle classification at speeds exceeding 160 km/h.',
+    subtitle:
+      'AI-based vehicle recognition solution developed on the Renesas RZ/V2H Evaluation Kit, supporting four RTSP camera streams for number plate recognition, vehicle classification, manufacturer logo detection and speed estimation.',
     heroImage: '/images/AI Traffic Surveillance with Plate Detection.png',
+    primaryButtonText: 'Contact Our Team',
+    secondaryButtonText: 'Explore Features',
+    secondaryTab: 'key-features',
+    highlights: [
+      '4 RTSP Camera Streams',
+      'Edge AI Processing',
+      'Renesas RZ/V2H EVK'
+    ],
+    ctaHeading: 'Interested in our Automatic Number Plate Recognition (ANPR)?',
+    ctaDescription: 'Get in touch with our team to discuss your requirements.',
+    ctaButtonText: 'Contact Our Team',
     overview: {
-      heading: 'High-Speed Edge Automatic Number Plate Recognition Platform',
-      summary: 'Deterministic roadside and vehicle-mounted vision computing platform engineered for high-speed multi-lane license plate capture, optical character recognition (OCR), and vehicle make/model classification.',
-      purpose: 'Provide automated access control, electronic toll collection, speed enforcement, and parking revenue management without relying on recurring cloud processing bandwidth.',
-      problem: 'High-speed vehicles exceeding 160 km/h, extreme glare from headlights, weather obscurants, and international plate varieties that overwhelm conventional OCR software and high-latency cloud APIs.',
-      aiegxRole: 'AIEGX pairs Renesas RZ/V2H 10 TOPS neural processing with high dynamic range (HDR) camera exposure pipelines and low-latency Gigabit Ethernet to execute plate localization and neural OCR in sub-100ms.'
+      heading: 'Overview',
+      summary:
+        'An embedded AI-based vehicle monitoring solution that processes video from four RTSP cameras to detect vehicles, recognise number plates, classify vehicle types, identify manufacturer logos and estimate vehicle speed.',
+      platform: 'Renesas RZ/V2H EVK',
+      aiProcessing: 'On-device (Edge AI)',
     },
     features: [
-      { title: 'High-Speed Multi-Lane Capture', desc: 'Simultaneously captures and reads up to 4 lanes of vehicular traffic moving at speeds up to 160 km/h.' },
-      { title: 'Universal Font & Plate OCR', desc: 'Deep learning OCR models trained for multi-national reflective, standard, and retro-reflective plates.' },
-      { title: 'Vehicle Attribute Classification', desc: 'Instantly identifies vehicle make, body type (sedan, SUV, truck, bus), and primary color.' },
-      { title: 'Low-Light Anti-Glare Accuracy', desc: 'High dynamic range (HDR) exposure fusion algorithms counteract headlight bloom and night glare.' },
-      { title: 'Dual TSN Gigabit Ethernet', desc: 'Direct gigabit connection to toll plaza controllers and law enforcement hotlist databases.' }
-    ],
-    architecture: [
-      { step: '01', title: 'Vehicle Camera', desc: 'High-speed global shutter optical camera capturing incoming traffic lanes', icon: Camera },
-      { step: '02', title: 'Image Acquisition', desc: 'Hardware-accelerated frame ingestion with multi-exposure HDR anti-glare processing', icon: Scan },
-      { step: '03', title: 'Image Processing', desc: 'DRP-AI neural detection isolating vehicle front/rear license plate regions', icon: Cpu },
-      { step: '04', title: 'Number Plate Detection', desc: 'Convolutional neural localization pinning exact plate boundary coordinates', icon: BrainCircuit },
-      { step: '05', title: 'Character Recognition', desc: 'Deep OCR network parsing alphanumeric characters, state codes & country identifiers', icon: Scan },
-      { step: '06', title: 'Result / Database', desc: 'Local hotlist verification, vehicle metadata indexing & Gigabit network database dispatch', icon: Database }
+      {
+        title: 'Multi-Camera Processing',
+        desc: 'Supports simultaneous processing of four RTSP camera streams.'
+      },
+      {
+        title: 'Number Plate Recognition',
+        desc: 'Detects vehicle number plates and extracts registration text.'
+      },
+      {
+        title: 'Vehicle Classification',
+        desc: 'Identifies vehicle categories using AI-based classification.'
+      },
+      {
+        title: 'Manufacturer Logo Detection',
+        desc: 'Detects vehicle manufacturer logos (e.g., Toyota, Honda, etc.).'
+      },
+      {
+        title: 'Vehicle Speed Estimation',
+        desc: 'Estimates vehicle speed using camera-based analysis.'
+      },
+      {
+        title: 'Embedded AI Processing',
+        desc: 'Performs vehicle analytics on the Renesas RZ/V2H EVK.'
+      }
     ],
     specifications: [
-      { label: 'Camera Interface', value: 'Dual 4-lane MIPI CSI-2 or Gigabit Ethernet RTSP / GigE Vision' },
-      { label: 'Video Input / Resolution', value: 'Up to 4K @ 30 FPS or 1080p @ 60/120 FPS high-speed capture' },
-      { label: 'Processing Capabilities', value: 'Quad Arm Cortex-A55 @ 1.2GHz + Dual Cortex-R8 real-time cores' },
-      { label: 'AI Inference', value: 'Renesas DRP-AI 10 TOPS neural acceleration (sub-50ms full-frame plate & character inferencing)' },
-      { label: 'Connectivity / Interfaces', value: 'Dual GbE (TSN support), RS-485, PCIe Gen3, isolated barrier trigger relays' },
-      { label: 'Platform Support', value: 'Renesas RZ/V2H Complete SBC' },
-      { label: 'Operating Temperature', value: '-40°C to +85°C fanless conduction cooling' }
+      {
+        label: 'Development Platform',
+        value: 'Renesas RZ/V2H Evaluation Kit'
+      },
+      {
+        label: 'Camera Input',
+        value: 'RTSP IP cameras'
+      },
+      {
+        label: 'Simultaneous Streams',
+        value: '4'
+      },
+      {
+        label: 'Video Analytics',
+        value: 'Vehicle detection, classification and manufacturer logo detection'
+      },
+      {
+        label: 'Number Plate Processing',
+        value: 'Plate detection and registration text extraction'
+      },
+      {
+        label: 'Speed Measurement',
+        value: 'Camera-based speed estimation'
+      },
+      {
+        label: 'AI Processing',
+        value: 'On-device AI inference'
+      }
     ]
   },
 

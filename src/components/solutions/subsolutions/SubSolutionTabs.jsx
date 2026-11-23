@@ -1,13 +1,13 @@
 import React from 'react';
 
-const TABS = [
+const DEFAULT_TABS = [
   { id: 'overview', label: 'Overview' },
   { id: 'key-features', label: 'Key Features' },
   { id: 'specifications', label: 'Specifications' },
-  { id: 'system-architecture', label: 'System Architecture' },
 ];
 
-export default function SubSolutionTabs({ activeTab = 'overview', onSelectTab }) {
+export default function SubSolutionTabs({ activeTab = 'overview', onSelectTab, tabs }) {
+  const tabList = tabs || DEFAULT_TABS;
   return (
     <div className="sticky top-[64px] sm:top-[72px] z-30 bg-white/95 dark:bg-[#0D1733]/95 backdrop-blur-md border-b border-slate-200/90 dark:border-white/10 transition-colors duration-300">
       <div className="section-container">
@@ -16,7 +16,7 @@ export default function SubSolutionTabs({ activeTab = 'overview', onSelectTab })
           aria-label="Sub-solution tabs"
           role="tablist"
         >
-          {TABS.map((tab) => {
+          {tabList.map((tab) => {
             const isActive = activeTab === tab.id;
             return (
               <button

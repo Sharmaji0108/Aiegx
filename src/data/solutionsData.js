@@ -111,20 +111,20 @@ export const SOLUTIONS_MAP = {
     slug: 'anpr-systems',
     category: 'Vehicle & Mobility Solutions',
     title: 'Automatic Number Plate Recognition (ANPR)',
-    subtitle: 'High-speed multi-lane license plate capture, character segmentation, and vehicle classification at the edge.',
+    subtitle:
+      'AI-based vehicle recognition solution developed on the Renesas RZ/V2H Evaluation Kit, supporting four RTSP camera streams for number plate recognition, vehicle classification, manufacturer logo detection and speed estimation.',
     heroImage: '/images/AI Traffic Surveillance with Plate Detection.png',
     overview: [
-      'AIEGX ANPR / LPR edge platforms provide deterministic license plate detection and character recognition at vehicle speeds exceeding 160 km/h, eliminating costly cloud streaming bandwidth.',
-      'Utilizing Renesas RZ/V2H multi-core vision MPUs with DRP-AI neural acceleration, the system performs simultaneous vehicle detection, country/state plate localization, OCR character recognition, and color/make classification.',
-      'Housed in weather-sealed industrial enclosures, these platforms interface with high-speed global-shutter IP cameras, radar sensors, and tolling infrastructure with sub-100 millisecond response times.'
+      'An embedded AI-based vehicle monitoring solution that processes video from four RTSP cameras to detect vehicles, recognise number plates, classify vehicle types, identify manufacturer logos and estimate vehicle speed.',
+      'Developed on the Renesas RZ/V2H Evaluation Kit with on-device Edge AI processing for high accuracy and deterministic performance.'
     ],
     features: [
-      { title: 'High-Speed Multi-Lane Capture', desc: 'Simultaneously captures and reads up to 4 lanes of vehicular traffic moving up to 160 km/h.' },
-      { title: 'Universal Font & Plate OCR', desc: 'Deep learning OCR models trained for multi-national reflective, standard, and retro-reflective plates.' },
-      { title: 'Vehicle Attribute Classification', desc: 'Instantly identifies vehicle make, body type (sedan, SUV, truck, bus), and primary color.' },
-      { title: 'Low-Light OCR Accuracy', desc: 'High dynamic range (HDR) exposure fusion algorithms counteract headlight bloom and night glare.' },
-      { title: 'Dual TSN Gigabit Ethernet', desc: 'Direct gigabit connection to toll plaza controllers and police hotlist databases.' },
-      { title: 'Industrial Edge Reliability', desc: 'Fanless operation from -40°C to +85°C with power-loss safe eMMC and NVMe storage.' }
+      { title: 'Multi-Camera Processing', desc: 'Supports simultaneous processing of four RTSP camera streams.' },
+      { title: 'Number Plate Recognition', desc: 'Detects vehicle number plates and extracts registration text.' },
+      { title: 'Vehicle Classification', desc: 'Identifies vehicle categories using AI-based classification.' },
+      { title: 'Manufacturer Logo Detection', desc: 'Detects vehicle manufacturer logos (e.g., Toyota, Honda, etc.).' },
+      { title: 'Vehicle Speed Estimation', desc: 'Estimates vehicle speed using camera-based analysis.' },
+      { title: 'Embedded AI Processing', desc: 'Performs vehicle analytics on the Renesas RZ/V2H EVK.' }
     ],
     recommendedProcessors: [
       { name: 'RZ/V2H', tag: 'High-Throughput ANPR', desc: 'Quad Cortex-A55 with 10 TOPS DRP-AI capable of multi-stream 4K OCR inference.', href: '/products/rz-v2h' },
