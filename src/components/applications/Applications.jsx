@@ -121,7 +121,7 @@ function SolutionCard({ solution, className = '' }) {
       </div>
 
       {/* ── Description directly below heading ── */}
-      <p className="text-xs leading-relaxed text-[#52627C] dark:text-[#AAB6D0] mb-3 min-h-[34px]">
+      <p className="text-xs leading-relaxed text-[#52627C] dark:text-[#AAB6D0] mb-3">
         {solution.description}
       </p>
 
@@ -140,30 +140,32 @@ function SolutionCard({ solution, className = '' }) {
       </a>
 
       {/* ── Subtopics List (Compact horizontal rows) ── */}
-      <div className="flex-1 space-y-2 min-h-[150px]">
-        {solution.features.map((feat, i) => {
-          const FeatIcon = feat.icon;
-          return (
-            <a
-              key={i}
-              href={feat.href}
-              onClick={(e) => navigateTo(feat.href, e)}
-              className="flex items-center justify-between gap-2 group/feat hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors cursor-pointer py-0.5"
-            >
-              <div className="flex items-center gap-2 min-w-0">
-                <FeatIcon className="w-3.5 h-3.5 text-[#089EC2] dark:text-[#2DD4F0] flex-shrink-0" />
-                <span className="text-xs text-[#14213D] dark:text-[#D4E3F5] group-hover/feat:text-[#089EC2] dark:group-hover/feat:text-[#2DD4F0] font-medium leading-tight truncate">
-                  {feat.label}
-                </span>
-              </div>
-              {feat.status && <StatusBadge status={feat.status} />}
-            </a>
-          );
-        })}
-      </div>
+      {solution.features && solution.features.length > 0 && (
+        <div className="space-y-2 mb-3.5">
+          {solution.features.map((feat, i) => {
+            const FeatIcon = feat.icon;
+            return (
+              <a
+                key={i}
+                href={feat.href}
+                onClick={(e) => navigateTo(feat.href, e)}
+                className="flex items-center justify-between gap-2 group/feat hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors cursor-pointer py-0.5"
+              >
+                <div className="flex items-center gap-2 min-w-0">
+                  <FeatIcon className="w-3.5 h-3.5 text-[#089EC2] dark:text-[#2DD4F0] flex-shrink-0" />
+                  <span className="text-xs text-[#14213D] dark:text-[#D4E3F5] group-hover/feat:text-[#089EC2] dark:group-hover/feat:text-[#2DD4F0] font-medium leading-tight truncate">
+                    {feat.label}
+                  </span>
+                </div>
+                {feat.status && <StatusBadge status={feat.status} />}
+              </a>
+            );
+          })}
+        </div>
+      )}
 
       {/* ── Full-width Explore Solutions / Contact CTA Button ── */}
-      <div className="mt-auto pt-3">
+      <div className="mt-auto">
         <a
           href={solution.href}
           onClick={(e) => navigateTo(solution.href, e)}
@@ -383,7 +385,7 @@ export default function Applications() {
         />
 
         {/* ── Desktop & Tablet Grid: Exactly 4 Cards ── */}
-        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 items-stretch">
+        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 items-start">
           {solutions.map((sol) => (
             <SolutionCard key={sol.id} solution={sol} />
           ))}
