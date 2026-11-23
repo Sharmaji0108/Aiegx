@@ -14,6 +14,7 @@ import {
   FlaskConical,
   Database,
   Code,
+  Share2,
 } from 'lucide-react';
 
 export const RZV2L_PLATFORM_DATA = {
@@ -554,29 +555,29 @@ export const RZV2L_PRODUCT_DETAILS = {
   },
   'dev-kit': {
     slug: 'dev-kit',
-    category: 'DEVELOPMENT PLATFORM',
-    title: 'RZ/V2L Development Kit',
-    badge: 'Development Platform',
+    category: 'EMBEDDED COMPUTING PLATFORM',
+    title: 'RZ/V2L Embedded Computing Platform',
+    badge: 'Embedded Computing Platform',
     shortDescription:
-      'Complete development solution for evaluating and developing RZ/V2L-based embedded and AI applications.',
+      'Complete embedded computing platform combining the RZ/V2L SMARC SoM and carrier board for AI, vision processing and embedded applications.',
     introParagraph:
       'The AIEGX RZ/V2L Development Kit is a comprehensive evaluation and prototyping platform engineered to fast-track embedded vision and AI application development. Combining the RZ/V2L compute core with a full-featured expansion carrier board, pre-tested Sony IMX MIPI CSI-2 camera module, HDMI display output, power supply, and debugging accessories, it provides engineers with everything required to evaluate the Renesas DRP-AI neural accelerator on day one. Pre-loaded with bootable Linux BSP images and DRP-AI Translator sample models, it enables immediate benchmark testing and custom software development.',
     breadcrumb: [
       { label: 'Home', path: '/' },
       { label: 'Products', path: '/#hardware-platforms' },
       { label: 'RZ/V2L', path: '/products/rzv2l' },
-      { label: 'RZ/V2L Development Kit', path: null },
+      { label: 'RZ/V2L Embedded Computing Platform', path: null },
     ],
     gallery: [
       {
         src: '/images/RZV2L-SBC.png',
         model3d: '/models/G2L-V2L_SBC.glb',
-        alt: 'RZ/V2L Development Kit Evaluation Platform',
-        caption: 'Development Kit — Carrier Baseboard & Compute Core',
+        alt: 'RZ/V2L Embedded Computing Platform Evaluation Platform',
+        caption: 'Embedded Computing Platform — Carrier Baseboard & Compute Core',
       },
       {
         src: '/images/RZV2L.png',
-        alt: 'RZ/V2L Development Kit Interfaces',
+        alt: 'RZ/V2L Embedded Computing Platform Interfaces',
         caption: 'Hardware Assembly — Dual GbE, USB & Debugging Headers',
       },
       {
@@ -586,10 +587,34 @@ export const RZV2L_PRODUCT_DETAILS = {
       },
     ],
     heroHighlights: [
-      { label: 'Complete Out-of-the-Box Kit', icon: FlaskConical },
-      { label: 'MIPI CSI-2 Camera Module Included', icon: Eye },
-      { label: 'Full Expansion & Debug Headers', icon: Plug },
-      { label: 'Pre-Flashed DRP-AI Vision Demos', icon: Terminal },
+      {
+        heading: 'Integrated Hardware Platform',
+        title: 'Integrated Hardware Platform',
+        label: 'Integrated Hardware Platform',
+        description: 'SMARC SoM and carrier board combined into a complete computing system.',
+        icon: Layers,
+      },
+      {
+        heading: 'DRP-AI Acceleration',
+        title: 'DRP-AI Acceleration',
+        label: 'DRP-AI Acceleration',
+        description: 'Integrated AI acceleration for embedded vision applications.',
+        icon: Cpu,
+      },
+      {
+        heading: 'Connectivity & Expansion',
+        title: 'Connectivity & Expansion',
+        label: 'Connectivity & Expansion',
+        description: 'Board-level interfaces for peripheral connectivity and system integration.',
+        icon: Share2,
+      },
+      {
+        heading: 'Embedded Linux Support',
+        title: 'Embedded Linux Support',
+        label: 'Embedded Linux Support',
+        description: 'Renesas RZ/V Verified Linux Package for embedded development.',
+        icon: Code,
+      },
     ],
     overviewSummary:
       'The RZ/V2L Development Kit provides a complete turn-key solution for engineering teams evaluating DRP-AI neural acceleration, prototyping intelligent edge vision systems, and deploying production AI pipelines.',

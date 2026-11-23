@@ -135,6 +135,13 @@ export default function RZV2LSBC({ productSlug = 'sbc' }) {
                       SMARC SoM
                     </span>
                   </>
+                ) : (product.title === 'RZ/V2L Embedded Computing Platform' || productSlug === 'dev-kit') ? (
+                  <>
+                    RZ/V2L{' '}
+                    <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
+                      Embedded Computing Platform
+                    </span>
+                  </>
                 ) : (
                   product.title
                 )}
@@ -154,11 +161,11 @@ export default function RZV2LSBC({ productSlug = 'sbc' }) {
               )}
 
               {/* Bullet Features or Paragraph Description */}
-              {productSlug !== 'som' && ((product.featuresList && product.featuresList.length > 0) || productSlug === 'sbc') && (
+              {productSlug === 'sbc' && ((product.featuresList && product.featuresList.length > 0) || RZV2L_SBC_FEATURES.length > 0) && (
                 <ul className="space-y-2.5 sm:space-y-3 mb-6 max-w-2xl">
                   {((product.featuresList && product.featuresList.length > 0)
                     ? product.featuresList
-                    : (productSlug === 'sbc' ? RZV2L_SBC_FEATURES : [])
+                    : RZV2L_SBC_FEATURES
                   ).map((item, idx) => (
                     <li
                       key={idx}
@@ -210,7 +217,7 @@ export default function RZV2LSBC({ productSlug = 'sbc' }) {
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#089EC2] to-[#3285FF] hover:from-[#078BAA] hover:to-[#256FE0] text-white font-semibold text-sm shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer"
                 >
                   <MessageSquare className="w-4 h-4" />
-                  <span>Request Commercial Quote</span>
+                  <span>{productSlug === 'dev-kit' ? 'Request Quote' : 'Request Commercial Quote'}</span>
                 </button>
 
                 <button
@@ -219,7 +226,7 @@ export default function RZV2LSBC({ productSlug = 'sbc' }) {
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white dark:bg-[#17264A] hover:bg-[#F0F5FA] dark:hover:bg-[#1E325E] border border-[#DCE8F5] dark:border-[#24355A] text-[#14213D] dark:text-[#F8FAFC] font-semibold text-sm transition-all duration-200 cursor-pointer"
                 >
                   <FlaskConical className="w-4 h-4 text-[#089EC2] dark:text-[#2DD4F0]" />
-                  <span>Technical Evaluation Kit</span>
+                  <span>{productSlug === 'dev-kit' ? 'Request Evaluation' : 'Technical Evaluation Kit'}</span>
                 </button>
               </div>
 
@@ -227,7 +234,7 @@ export default function RZV2LSBC({ productSlug = 'sbc' }) {
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-6 mt-6 border-t border-[#DCE8F5] dark:border-[#24355A] w-full max-w-2xl">
                 <div>
                   <div className="text-[10px] font-mono uppercase tracking-wider text-[#52627C] dark:text-[#AAB6D0]">
-                    Processor
+                    {productSlug === 'dev-kit' ? 'PROCESSOR' : 'Processor'}
                   </div>
                   <div className="text-xs sm:text-sm font-bold text-[#14213D] dark:text-[#F8FAFC] mt-0.5 truncate">
                     Renesas RZ/V2L
@@ -235,26 +242,26 @@ export default function RZV2LSBC({ productSlug = 'sbc' }) {
                 </div>
                 <div>
                   <div className="text-[10px] font-mono uppercase tracking-wider text-[#52627C] dark:text-[#AAB6D0]">
-                    AI Acceleration
+                    {productSlug === 'dev-kit' ? 'AI ACCELERATION' : 'AI Acceleration'}
                   </div>
                   <div className="text-xs sm:text-sm font-bold text-[#14213D] dark:text-[#F8FAFC] mt-0.5 truncate">
-                    DRP-AI (0.5 TOPS/W)
+                    {productSlug === 'dev-kit' ? 'DRP-AI (0.5 TOPS)' : 'DRP-AI (0.5 TOPS/W)'}
                   </div>
                 </div>
                 <div>
                   <div className="text-[10px] font-mono uppercase tracking-wider text-[#52627C] dark:text-[#AAB6D0]">
-                    Power Profile
+                    {productSlug === 'dev-kit' ? 'PLATFORM' : 'Power Profile'}
                   </div>
                   <div className="text-xs sm:text-sm font-bold text-[#14213D] dark:text-[#F8FAFC] mt-0.5 truncate">
-                    Sub-4W Fanless
+                    {productSlug === 'dev-kit' ? 'Integrated SMARC SoM + Carrier Board' : 'Sub-4W Fanless'}
                   </div>
                 </div>
                 <div>
                   <div className="text-[10px] font-mono uppercase tracking-wider text-[#52627C] dark:text-[#AAB6D0]">
-                    Longevity
+                    {productSlug === 'dev-kit' ? 'SOFTWARE' : 'Longevity'}
                   </div>
                   <div className="text-xs sm:text-sm font-bold text-[#14213D] dark:text-[#F8FAFC] mt-0.5 truncate">
-                    10+ Year SLTS
+                    {productSlug === 'dev-kit' ? 'Renesas RZ/V Verified Linux Package' : '10+ Year SLTS'}
                   </div>
                 </div>
               </div>
