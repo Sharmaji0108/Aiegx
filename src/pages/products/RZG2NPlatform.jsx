@@ -42,7 +42,7 @@ export default function RZG2NPlatform() {
       <div className="hidden lg:block">
         <PlatformCapabilitiesAndArchitecture
           capabilities={RZG2N_PLATFORM_DATA.capabilities}
-          capabilitiesDescription="Arm processing, 4K video capabilities, 3D graphics, connectivity and embedded Linux support."
+          capabilitiesDescription="Arm processing, 4K video, 3D graphics, connectivity and embedded Linux support."
           architectureSubheading={RZG2N_PLATFORM_DATA.architecture.subheading || 'INTEGRATED BOARD ARCHITECTURE'}
           title={RZG2N_PLATFORM_DATA.architecture.title}
           titleGradient={RZG2N_PLATFORM_DATA.architecture.titleGradient}
@@ -68,7 +68,7 @@ export default function RZG2NPlatform() {
                   </span>
                 </>
               }
-              description="Arm processing, 4K video capabilities, 3D graphics, connectivity and embedded Linux support."
+              description="Arm processing, 4K video, 3D graphics, connectivity and embedded Linux support."
             />
 
             <PlatformFeatures items={RZG2N_PLATFORM_DATA.capabilities} columns={5} />

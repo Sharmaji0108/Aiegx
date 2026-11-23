@@ -41,7 +41,7 @@ export const RZG2N_PLATFORM_DATA = {
     {
       id: 'cpu',
       title: 'Arm Cortex-A57 Processing',
-      description: 'Dual-core Arm Cortex-A57 at 1.5 GHz with Cortex-R7 at 800 MHz.',
+      description: 'Dual-core Cortex-A57 at 1.5 GHz with Cortex-R7 at 800 MHz.',
       icon: Cpu,
     },
     {
@@ -65,7 +65,7 @@ export const RZG2N_PLATFORM_DATA = {
     {
       id: 'multimedia',
       title: 'Multimedia Interfaces',
-      description: 'Camera, display and audio interfaces for multimedia applications.',
+      description: 'Camera, display and audio interface capabilities for multimedia applications.',
       icon: Clock,
     },
   ],
