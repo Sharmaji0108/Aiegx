@@ -287,6 +287,16 @@ export default function RZV2LSBC({ productSlug = 'sbc' }) {
       {/* SECTION 4: Bottom Technical / Commercial Enquiry Strip */}
       <ProductEnquiry
         productName={product.title}
+        description={
+          productSlug === 'som'
+            ? 'Discuss RZ/V2L SMARC SoM selection, carrier board integration and embedded Linux support with our engineering team.'
+            : undefined
+        }
+        bottomMessage={
+          productSlug === 'som'
+            ? 'Contact our team for RZ/V2L SoM evaluation, custom carrier board development, BSP customization and product enquiries.'
+            : undefined
+        }
         onRequestQuote={() => openModal('Request Quote')}
         onContactTeam={() => openModal('Contact Engineering Team')}
       />
