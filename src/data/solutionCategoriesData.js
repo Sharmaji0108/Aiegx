@@ -211,14 +211,14 @@ export const VIDEO_SURVEILLANCE_DATA = {
   subtopics: [
     {
       id: 'nvr-systems',
-      title: 'Network Video Recorder (NVR)',
-      status: null,
-      image: '/images/AI City Surveillance Camera.png',
+      title: 'Mobile Network Video Recorder (MNVR)',
+      status: 'In Development',
+      image: '/images/mnvr-live-view.jpg',
       shortDescription:
-        'Multi-channel edge recording platform with hardware video decoding and on-device neural indexing on NVMe storage.',
+        'An integrated video management solution for multi-camera recording, live monitoring, playback, system management and AI-based video analytics.',
       keyFeatures: [
-        'Multi-channel H.264/H.265 hardware video decoding',
-        'Real-time metadata indexing for person and vehicle search'
+        '8 Camera Channels & Full HD Recording',
+        'AI Video Analytics & Live Monitoring'
       ]
     },
     {
