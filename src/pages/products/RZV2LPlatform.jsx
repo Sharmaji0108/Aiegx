@@ -42,7 +42,7 @@ export default function RZV2LPlatform() {
       <div className="hidden lg:block">
         <PlatformCapabilitiesAndArchitecture
           capabilities={RZV2L_PLATFORM_DATA.capabilities}
-          capabilitiesDescription="Dedicated DRP-AI neural accelerator, dual Cortex-A55 cores, on-chip ISP, sub-4W fanless operation, and long-term Linux support."
+          capabilitiesDescription="Arm processing, AI acceleration, camera interfaces, multimedia capabilities and embedded Linux support."
           architectureBlocks={RZV2L_PLATFORM_DATA.architecture}
         />
       </div>
@@ -62,7 +62,7 @@ export default function RZV2LPlatform() {
                   </span>
                 </>
               }
-              description="Dedicated DRP-AI neural accelerator, dual Cortex-A55 cores, on-chip ISP, sub-4W fanless operation, and long-term Linux support."
+              description="Arm processing, AI acceleration, camera interfaces, multimedia capabilities and embedded Linux support."
             />
 
             <PlatformFeatures items={RZV2L_PLATFORM_DATA.capabilities} columns={5} />

@@ -41,64 +41,67 @@ export const RZV2L_PLATFORM_DATA = {
   capabilities: [
     {
       id: 'ai-engine',
-      title: 'DRP-AI Dedicated Neural Engine',
+      title: 'DRP-AI Acceleration',
       description:
-        'Renesas proprietary DRP-AI accelerator providing 0.5 TOPS/W power-efficient neural network inference for real-time vision.',
+        'Integrated DRP-AI accelerator delivering up to 0.5 TOPS for edge AI inference.',
       icon: Zap,
     },
     {
       id: 'cpu',
-      title: 'Dual Cortex-A55 + Cortex-M33',
+      title: 'Arm Cortex-A55 Processing',
       description:
-        'Dual 64-bit Arm Cortex-A55 cores @ 1.2 GHz for Linux application logic paired with Cortex-M33 real-time core.',
+        'Up to dual-core Arm Cortex-A55 at 1.2 GHz, with Cortex-M33 for real-time processing.',
       icon: Cpu,
     },
     {
       id: 'camera',
-      title: '4-Lane MIPI CSI-2 with ISP',
+      title: 'Camera Interface Support',
       description:
-        'High-speed camera input with on-chip image signal processor (ISP) supporting HDR and noise reduction.',
+        '4-lane MIPI CSI-2 camera input for embedded vision applications.',
       icon: Eye,
     },
     {
       id: 'power',
-      title: 'Sub-4W Fanless Operation',
+      title: 'Graphics & Multimedia',
       description:
-        'Ultra-low power envelope enabling sealed fanless enclosures and battery-operated edge devices.',
+        'Arm Mali-G31 GPU with H.264 video encoding and decoding.',
       icon: Activity,
     },
     {
       id: 'lifecycle',
-      title: '10+ Year Product Longevity',
+      title: 'Embedded Linux Support',
       description:
-        'Backed by Renesas Super Long-Term Support (SLTS) program guaranteeing 10+ year availability.',
+        'Renesas Linux software packages for embedded application and AI development.',
       icon: Clock,
     },
   ],
   architecture: [
     {
       id: 'rz-v2l-som',
-      title: 'SoM',
-      subtitle: 'Processor, Memory, Core Interfaces',
+      title: 'RZ/V2L SMARC SoM',
+      subtitle: 'Processor, memory and core interfaces.',
+      description: 'Processor, memory and core interfaces.',
       image: '/images/SOM.png',
       fallbackImage: '/images/SOM.png',
-      imageAlt: 'RZ/V2L SoM',
+      imageAlt: 'RZ/V2L SMARC SoM',
     },
     {
       id: 'rz-v2l-carrier-board',
       title: 'RZ/V2L Carrier Board',
-      subtitle: 'Application Interfaces and Expansion',
+      subtitle: 'Application interfaces and expansion.',
+      description: 'Application interfaces and expansion.',
       image: '/images/RZV2L-Carrier_Board.png',
       fallbackImage: '/images/RZV2L-Carrier_Board.png',
       imageAlt: 'RZ/V2L Carrier Board',
     },
     {
       id: 'rz-v2l-complete-sbc',
-      title: 'Complete Development Platform',
-      subtitle: 'SoM + Carrier Board',
+      title: 'Complete Computing Platform',
+      subtitle: 'SMARC SoM + Carrier Board',
+      description: 'SMARC SoM + Carrier Board',
       image: '/images/RZV2L-SBC.png',
       fallbackImage: '/images/RZV2L-SBC.png',
-      imageAlt: 'RZ/V2L Complete Development Kit',
+      imageAlt: 'RZ/V2L Complete Computing Platform',
     },
   ],
   availableHardware: [
