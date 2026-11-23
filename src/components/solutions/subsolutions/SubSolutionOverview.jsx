@@ -22,7 +22,7 @@ export default function SubSolutionOverview({ overview, title }) {
           </p>
 
           {/* Platform Details Box */}
-          {(overview.platform || overview.aiAccelerator) && (
+          {(overview.platform || overview.aiAccelerator || overview.aiProcessing) && (
             <div className="rounded-xl bg-[#F0F6FE] dark:bg-[#132247]/90 border border-[#D0E3F7] dark:border-[#244277] p-3.5 sm:p-4 flex items-center gap-3.5 shrink-0 shadow-2xs">
               <div className="w-10 h-10 rounded-lg bg-[#EBF5FD] dark:bg-[#1A2C52] border border-[#C5DDF5] dark:border-[#244277] flex items-center justify-center text-[#089EC2] dark:text-[#2DD4F0] shrink-0">
                 <Cpu className="w-5 h-5" />
@@ -38,6 +38,12 @@ export default function SubSolutionOverview({ overview, title }) {
                   <div className="flex items-center gap-2">
                     <span className="font-bold text-[#14213D] dark:text-white">AI Accelerator</span>
                     <span className="text-slate-600 dark:text-slate-300 font-medium">{overview.aiAccelerator}</span>
+                  </div>
+                )}
+                {overview.aiProcessing && (
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-[#14213D] dark:text-white">AI Processing</span>
+                    <span className="text-slate-600 dark:text-slate-300 font-medium">{overview.aiProcessing}</span>
                   </div>
                 )}
               </div>

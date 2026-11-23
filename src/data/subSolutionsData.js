@@ -99,6 +99,11 @@ export const SUBSOLUTIONS_DATA = {
       'Edge AI Processing',
       'Renesas RZ/V2H EVK'
     ],
+    tabs: [
+      { id: 'overview', label: 'Overview' },
+      { id: 'key-features', label: 'Key Features' },
+      { id: 'specifications', label: 'Specifications' }
+    ],
     ctaHeading: 'Interested in our Automatic Number Plate Recognition (ANPR)?',
     ctaDescription: 'Get in touch with our team to discuss your requirements.',
     ctaButtonText: 'Contact Our Team',
@@ -128,7 +133,7 @@ export const SUBSOLUTIONS_DATA = {
       },
       {
         title: 'Vehicle Speed Estimation',
-        desc: 'Estimates vehicle speed using camera-based analysis.'
+        desc: 'Estimates vehicle speed using camera-based speed analysis.'
       },
       {
         title: 'Embedded AI Processing',
