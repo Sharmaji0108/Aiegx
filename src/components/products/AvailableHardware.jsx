@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, CheckCircle2, MessageSquare, Wrench } from 'lucide-react';
 import SectionHeadingContainer from '../common/SectionHeadingContainer';
 import { navigateTo } from '../../utils/navigation';
 
@@ -11,6 +11,7 @@ export default function AvailableHardware({
   subheading = 'AVAILABLE HARDWARE',
   heading,
   description = 'Scalable Renesas hardware options spanning compact modules, carrier baseboards, and complete development platforms.',
+  onContactTeam,
 }) {
   return (
     <section
@@ -56,26 +57,56 @@ export default function AvailableHardware({
                 <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10.5px] font-mono font-semibold uppercase tracking-wider bg-[#E2EEFB] dark:bg-[#1A2C52] text-[#089EC2] dark:text-[#2DD4F0] border border-[#C5DDF5] dark:border-[#244277] mb-1.5">
                   {product.badge}
                 </span>
-                <h3 className="text-lg sm:text-xl font-extrabold text-[#14213D] dark:text-[#F8FAFC] tracking-tight leading-snug md:min-h-[5.25rem] lg:min-h-[3.5rem] xl:min-h-[1.75rem]">
+                <h3
+                  className={`text-lg sm:text-xl font-extrabold text-[#14213D] dark:text-[#F8FAFC] tracking-tight leading-snug ${
+                    products.length > 1
+                      ? 'md:min-h-[5.25rem] lg:min-h-[3.5rem] xl:min-h-[1.75rem]'
+                      : ''
+                  }`}
+                >
                   {product.id === 'rz-g2l-carrier-board'
                     ? 'RZ/G2L Carrier Board'
                     : product.id === 'rz-v2l-sbc'
                     ? 'RZ/V2L Carrier Board'
                     : product.name}
                 </h3>
-                <p className="text-xs sm:text-[13px] leading-relaxed text-[#52627C] dark:text-[#AAB6D0] mt-1 md:min-h-[5.5rem] lg:min-h-[4.25rem] xl:min-h-[2.75rem]">
+                {product.status && (
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/10 dark:bg-amber-500/20 border border-amber-300 dark:border-amber-600/40 text-[10.5px] font-mono font-bold text-amber-800 dark:text-amber-300 mt-1 mb-1.5 shadow-2xs">
+                    <span className="w-4 h-4 rounded-full bg-amber-500/20 dark:bg-amber-400/20 flex items-center justify-center shrink-0">
+                      <Wrench className="w-2.5 h-2.5 text-amber-700 dark:text-amber-300" />
+                    </span>
+                    <span>{product.status}</span>
+                  </div>
+                )}
+                <p
+                  className={`text-xs sm:text-[13px] leading-relaxed text-[#52627C] dark:text-[#AAB6D0] mt-1 ${
+                    products.length > 1
+                      ? 'md:min-h-[5.5rem] lg:min-h-[4.25rem] xl:min-h-[2.75rem]'
+                      : ''
+                  }`}
+                >
                   {product.description}
                 </p>
               </div>
 
               {/* Large Hardware Image Frame */}
               <div
-                onClick={(e) => navigateTo(product.route, e)}
+                onClick={(e) => {
+                  if (product.buttonText === 'Contact Our Team' && onContactTeam) {
+                    onContactTeam(product);
+                  } else {
+                    navigateTo(product.route, e);
+                  }
+                }}
                 role="button"
                 tabIndex={0}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
-                    navigateTo(product.route, e);
+                    if (product.buttonText === 'Contact Our Team' && onContactTeam) {
+                      onContactTeam(product);
+                    } else {
+                      navigateTo(product.route, e);
+                    }
                   }
                 }}
                 aria-label={`View ${product.name} product details`}
@@ -95,28 +126,47 @@ export default function AvailableHardware({
               </div>
 
               {/* Compact Feature List */}
-              <ul className="space-y-2 mb-5 flex-1">
-                {product.features.map((feature) => (
-                  <li
-                    key={feature}
-                    className="flex items-start gap-2 text-xs sm:text-[13px] font-medium leading-snug text-[#14213D] dark:text-[#D4E3F5]"
-                  >
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#089EC2] dark:text-[#2DD4F0] shrink-0 mt-0.5" />
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
+              {product.features && product.features.length > 0 && (
+                <ul className="space-y-2 mb-5 flex-1">
+                  {product.features.map((feature) => (
+                    <li
+                      key={feature}
+                      className="flex items-start gap-2 text-xs sm:text-[13px] font-medium leading-snug text-[#14213D] dark:text-[#D4E3F5]"
+                    >
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#089EC2] dark:text-[#2DD4F0] shrink-0 mt-0.5" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
 
               {/* View Product CTA Button */}
               <div className="mt-auto pt-2">
-                <a
-                  href={product.route}
-                  onClick={(e) => navigateTo(product.route, e)}
-                  className="explore-btn"
-                >
-                  <span>View Product</span>
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
-                </a>
+                {product.buttonText === 'Contact Our Team' ? (
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      if (onContactTeam) {
+                        onContactTeam(product);
+                      } else {
+                        navigateTo(product.route, e);
+                      }
+                    }}
+                    className="w-full inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full font-semibold text-xs sm:text-sm text-[#089EC2] dark:text-[#2DD4F0] bg-white dark:bg-[#17264A] border border-[#C5DDF5] dark:border-[#244277] hover:border-[#089EC2] dark:hover:border-[#2DD4F0] shadow-xs transition-all duration-200 hover:-translate-y-0.5 cursor-pointer"
+                  >
+                    <MessageSquare className="w-4 h-4" />
+                    <span>Contact Our Team</span>
+                  </button>
+                ) : (
+                  <a
+                    href={product.route}
+                    onClick={(e) => navigateTo(product.route, e)}
+                    className="explore-btn"
+                  >
+                    <span>{product.buttonText || 'View Product'}</span>
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                  </a>
+                )}
               </div>
             </div>
           ))}

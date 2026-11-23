@@ -100,7 +100,10 @@ export default function RZV2HPlatform() {
             </span>
           </>
         }
-        description="High-performance edge AI single-board computer development platform powered by the Renesas RZ/V2H processor."
+        description="AIEGX hardware based on the Renesas RZ/V2H processor, planned for edge AI and embedded vision applications."
+        onContactTeam={() =>
+          setEnquiryModal({ isOpen: true, type: 'Contact Engineering Team' })
+        }
       />
 
       {/* Section F: Typical Applications (Single horizontal row with continuous automatic right-to-left marquee on mobile, static grid on desktop) */}

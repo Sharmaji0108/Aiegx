@@ -84,21 +84,18 @@ export const RZV2H_PLATFORM_DATA = {
       id: 'rz-v2h-sbc',
       name: 'RZ/V2H SBC',
       badge: 'SBC',
+      category: 'SBC',
+      status: 'IN DEVELOPMENT',
       description:
-        'High-performance turnkey edge AI single-board computer featuring the Renesas RZ/V2H MPU with 10 TOPS DRP-AI accelerator and multi-camera support.',
+        'Planned single-board computer for edge AI and embedded vision applications.',
       image: '/images/RZV2H.png',
       fallbackImage: '/images/RZV2H.png',
       imageAlt: 'RZ/V2H Single Board Computer Development Platform',
-      features: [
-        'Renesas RZ/V2H (Quad A55 @ 1.8GHz + Dual R8)',
-        '2nd Gen DRP-AI Accelerator @ 10 TOPS',
-        'Up to 8 MIPI CSI-2 Camera Streams with ISP',
-        'PCIe Gen3, USB 3.2 & Dual Gigabit Ethernet',
-      ],
+      features: [],
+      buttonText: 'Contact Our Team',
       route: '/products/rzv2h/complete-sbc/',
       featured: true,
     },
-
   ],
   whyPoints: [
     {
