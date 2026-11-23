@@ -105,7 +105,7 @@ export default function RZG2NPlatform() {
       {/* Section F: Typical Applications (Single horizontal row with continuous automatic right-to-left marquee) */}
       <TypicalApplicationsCarousel
         applications={RZG2N_APPLICATIONS}
-        description="Embedded computing applications for industrial control, building systems, video monitoring, and digital displays."
+        description="Embedded computing applications for industrial control, building automation, video monitoring, transportation and information display systems."
       />
 
       {/* Bottom Enquiry CTA */}
