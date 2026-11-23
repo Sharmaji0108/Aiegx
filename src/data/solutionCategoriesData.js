@@ -134,7 +134,7 @@ export const VEHICLE_MOBILITY_DATA = {
       id: 'vehicle-detection-camera',
       title: 'Vehicle Detection Camera (VDC)',
       status: null,
-      image: '/images/Electric Bus at Smart City Stop.png',
+      image: '/images/vdc-zone-detection.jpg',
       shortDescription:
         'Detect and monitor vehicles for traffic management, safety and automation.',
       keyFeatures: [

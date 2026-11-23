@@ -175,38 +175,58 @@ export const SUBSOLUTIONS_DATA = {
   'vehicle-detection-camera': {
     slug: 'vehicle-detection-camera',
     category: 'Vehicle & Mobility Solutions',
-    title: 'Vehicle Detection Camera',
-    subtitle: 'Roadside edge vision sensor delivering real-time vehicle counting, queue tracking, and incident warnings.',
-    heroImage: '/images/Electric Bus at Smart City Stop.png',
+    title: 'Vehicle Detection Camera (VDC)',
+    subtitle:
+      'AI-based vehicle detection and classification solution developed on the Renesas RZ/V2H EVK, supporting five camera streams, vehicle recognition and zone-based occupancy monitoring.',
+    heroImage: '/images/vdc-zone-detection.jpg',
+    primaryButtonText: 'Contact Our Team',
+    secondaryButtonText: 'Explore Features',
+    secondaryTab: 'key-features',
+    highlights: [
+      '5 Camera Streams',
+      'Edge AI Processing',
+      'Renesas RZ/V2H EVK'
+    ],
+    tabs: [
+      { id: 'overview', label: 'Overview' },
+      { id: 'key-features', label: 'Key Features' },
+      { id: 'specifications', label: 'Specifications' }
+    ],
+    ctaHeading: 'Interested in our Vehicle Detection Camera (VDC)?',
+    ctaDescription: 'Get in touch with our team to discuss your requirements.',
+    ctaButtonText: 'Contact Our Team',
     overview: {
-      heading: 'Intelligent Roadside Vehicle Detection & Traffic Flow Camera',
-      summary: 'Integrated optical edge computing system combining wide-angle traffic cameras with real-time neural vehicle counting, occupancy detection, speed approximation, and incident warning capabilities.',
-      purpose: 'Automate intersection signal optimization, queue length monitoring, highway congestion detection, and wrong-way vehicle alerting.',
-      problem: 'Outdated inductive road loop sensors that require expensive pavement cutting, suffer high failure rates, and lack vehicle classification intelligence.',
-      aiegxRole: 'AIEGX deploys compact Renesas RZ/V2L and RZ/V2H smart camera platforms featuring low thermal dissipation, wide voltage inputs, and on-device object detection to process traffic video directly at the roadside pole.'
+      heading: 'Overview',
+      summary:
+        'A real-time, AI-based vehicle detection solution that processes video from five cameras to detect and classify vehicles, and monitor zone occupancy for traffic and roadway applications.',
+      platform: 'Renesas RZ/V2H EVK',
+      aiProcessing: 'On-device (Edge AI)'
     },
     features: [
-      { title: 'Multi-Class Vehicle Detection', desc: 'Classifies passenger cars, freight trucks, buses, motorcycles, bicycles, and crossing pedestrians.' },
-      { title: 'Virtual Queue & Occupancy Tracking', desc: 'Continuous measurement of intersection queue depth, lane occupancy percentage, and wait times.' },
-      { title: 'Incident & Wrong-Way Warnings', desc: 'Instant alert generation for stalled vehicles, wrong-way drivers, and shoulder obstructions.' },
-      { title: 'Traffic Controller Bus Integration', desc: 'Direct RS-485, CAN, and Ethernet connectivity to NEMA TS2 and 170/2070 traffic signal controllers.' },
-      { title: 'All-Weather Day/Night Robustness', desc: 'Neural feature extractors maintain high accuracy across heavy rain, fog, snowfall, and night darkness.' }
-    ],
-    architecture: [
-      { step: '01', title: 'Camera Input', desc: 'Wide-angle roadside optical sensor capturing multi-lane roadway footage', icon: Camera },
-      { step: '02', title: 'Image Processing', desc: 'Lens distortion correction, dynamic range normalization & frame cropping', icon: Scan },
-      { step: '03', title: 'Object Detection', desc: 'DRP-AI hardware accelerator detecting all moving and stationary roadway entities', icon: Cpu },
-      { step: '04', title: 'Vehicle Classification', desc: 'Multi-class deep learning categorizing vehicles, calculating speed vectors & lane occupancy', icon: BrainCircuit },
-      { step: '05', title: 'Detection Output', desc: 'Real-time telemetry transmission to municipal traffic controllers and SCADA networks', icon: Server }
+      {
+        title: 'Multi-Camera Processing',
+        desc: 'Supports simultaneous processing of five camera streams.'
+      },
+      {
+        title: 'Vehicle Detection & Classification',
+        desc: 'Detects and classifies vehicles into three categories: car, two-wheeler and bus/truck.'
+      },
+      {
+        title: 'Zone-Based Occupancy',
+        desc: 'Defines virtual zones and monitors occupancy when vehicles pass through the zone.'
+      },
+      {
+        title: 'Embedded AI Processing',
+        desc: 'Performs vehicle analytics on the Renesas RZ/V2H EVK.'
+      }
     ],
     specifications: [
-      { label: 'Camera Interface', value: '1x or 2x MIPI CSI-2 (up to 4 lanes) or IP RTSP stream input' },
-      { label: 'Video Input / Resolution', value: '1080p Full HD @ 60 FPS / 4K @ 30 FPS' },
-      { label: 'Processing Capabilities', value: 'Dual Arm Cortex-A55 @ 1.2GHz + Cortex-M33 (RZ/V2L) or Quad Cortex-A55 (RZ/V2H)' },
-      { label: 'AI Inference', value: 'Renesas DRP-AI hardware neural engine (0.5 to 10 TOPS)' },
-      { label: 'Connectivity / Interfaces', value: '10/100/1000 Mbps Ethernet, RS-485 Modbus, CAN-FD, optoisolated trigger I/O' },
-      { label: 'Platform Support', value: 'Renesas RZ/V2L SMARC Module / Renesas RZ/V2H Complete SBC' },
-      { label: 'Operating Temperature', value: '-40°C to +85°C sealed IP66/IP67 enclosure rated' }
+      { label: 'Development Platform', value: 'Renesas RZ/V2H Evaluation Kit' },
+      { label: 'Camera Input', value: 'IP cameras' },
+      { label: 'Simultaneous Streams', value: '5' },
+      { label: 'Vehicle Classification', value: 'Car, two-wheeler and bus/truck (combined)' },
+      { label: 'Zone Monitoring', value: 'Virtual zone creation and occupancy detection' },
+      { label: 'AI Processing', value: 'On-device AI inference' }
     ]
   },
 

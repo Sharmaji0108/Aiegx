@@ -30,7 +30,7 @@ function getFeatureIcon(title = '') {
   if (lower.includes('camera') || lower.includes('stream') || lower.includes('multi-camera')) {
     return Video;
   }
-  if (lower.includes('plate') || lower.includes('number plate') || lower.includes('registration')) {
+  if (lower.includes('plate') || lower.includes('number plate') || lower.includes('registration') || lower.includes('zone') || lower.includes('occupancy')) {
     return Scan;
   }
   if (lower.includes('classification') || lower.includes('vehicle category')) {
