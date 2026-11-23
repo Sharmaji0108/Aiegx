@@ -12,6 +12,8 @@ import {
   Layers,
   Plug,
   FlaskConical,
+  Database,
+  Code,
 } from 'lucide-react';
 
 export const RZV2L_PLATFORM_DATA = {
@@ -240,38 +242,60 @@ export const RZV2L_APPLICATIONS = [
 export const RZV2L_PRODUCT_DETAILS = {
   som: {
     slug: 'som',
-    category: 'SMARC 2.1 SYSTEM ON MODULE',
-    title: 'RZ/V2L SoM',
+    category: 'SYSTEM ON MODULE',
+    title: 'RZ/V2L SMARC SoM',
     badge: 'System on Module',
     featuresList: [
-      'RZ/V2L MPU with 64-bit Arm® v8.2A & v8-M Architecture',
-      'Dual Arm Cortex-A55 and Single core Cortex-M33',
-      'DRP-AI for accelerating AI processing',
-      'DDR4 – 2GB (Expandable), 16GB eMMC (Expandable)',
-      'QSPI Flash, Octal SPI Flash (Optional) & Micro SD Slot (Optional)',
-      'Multiple options for display: MIPI DSI, LVDS, HDMI, RGB',
+      'Compact SMARC module design for integration with a compatible carrier board.',
+      'Integrated DRP-AI acceleration for embedded vision applications.',
+      'Onboard memory and eMMC storage for embedded applications.',
+      'Renesas RZ/V2L verified Linux package for embedded development.',
     ],
     shortDescription:
-      'Compact computing module based on the Renesas RZ/V2L platform with dedicated DRP-AI neural core in a standard SMARC 2.1 form factor.',
+      'Compact SMARC System on Module integrating the Renesas RZ/V2L processor, memory and essential interfaces for embedded AI and vision applications.',
     introParagraph:
       'The AIEGX RZ/V2L SoM is an industrial-grade System on Module built to the standardized SMARC 2.1 specification (82 mm × 50 mm). Powered by the Renesas RZ/V2L processor, it combines dual Arm Cortex-A55 cores clocked at 1.2 GHz, a 200 MHz Cortex-M33 real-time core, and Renesas proprietary DRP-AI neural accelerator delivering 0.5 TOPS/W power efficiency. With onboard LPDDR4 memory with In-line ECC, high-speed eMMC flash, dual Gigabit Ethernet PHYs, and 4-lane MIPI CSI-2 camera input with built-in ISP, the module allows OEMs to rapidly design custom carrier baseboards while eliminating high-speed circuit design complexity.',
     breadcrumb: [
       { label: 'Home', path: '/' },
       { label: 'Products', path: '/#hardware-platforms' },
       { label: 'RZ/V2L', path: '/products/rzv2l' },
-      { label: 'RZ/V2L SoM', path: null },
+      { label: 'RZ/V2L SMARC SoM', path: null },
     ],
     gallery: [
       {
         src: '/images/SOM.png',
-        alt: 'RZ/V2L SoM Hardware View',
+        alt: 'RZ/V2L SMARC SoM Hardware View',
       },
     ],
     heroHighlights: [
-      { label: 'Dual Cortex-A55 @ 1.2GHz + M33', icon: Cpu },
-      { label: 'DRP-AI Dedicated AI Engine', icon: Zap },
-      { label: 'SMARC 2.1 Standard Form Factor', icon: Layers },
-      { label: 'Sub-4W Fanless Power Profile', icon: Activity },
+      {
+        heading: 'SMARC Module Design',
+        title: 'SMARC Module Design',
+        label: 'SMARC Module Design',
+        description: 'Compact processor module for integration with a compatible carrier board.',
+        icon: Layers,
+      },
+      {
+        heading: 'Integrated DRP-AI',
+        title: 'Integrated DRP-AI',
+        label: 'Integrated DRP-AI',
+        description: 'Dedicated AI acceleration for embedded vision applications.',
+        icon: Cpu,
+      },
+      {
+        heading: 'Onboard Memory & Storage',
+        title: 'Onboard Memory & Storage',
+        label: 'Onboard Memory & Storage',
+        description: 'Integrated memory and eMMC storage for embedded applications.',
+        icon: Database,
+      },
+      {
+        heading: 'Embedded Linux Support',
+        title: 'Embedded Linux Support',
+        label: 'Embedded Linux Support',
+        description: 'Renesas RZ/V Verified Linux Package for embedded development.',
+        icon: Code,
+      },
     ],
     overviewSummary:
       'The RZ/V2L SoM provides a compact, energy-efficient vision AI building block in a standard SMARC form factor, combining 64-bit Arm compute with dedicated neural acceleration.',

@@ -180,7 +180,16 @@ export default function RZV2LSBC({ productSlug = 'sbc' }) {
               </div>
 
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#14213D] dark:text-[#F8FAFC] leading-[1.2] mb-3">
-                {product.title}
+                {product.title === 'RZ/V2L SMARC SoM' ? (
+                  <>
+                    RZ/V2L{' '}
+                    <span className="bg-gradient-to-r from-[#089EC2] to-[#3285FF] bg-clip-text text-transparent">
+                      SMARC SoM
+                    </span>
+                  </>
+                ) : (
+                  product.title
+                )}
               </h1>
 
               {product.subtitle && (
@@ -189,8 +198,15 @@ export default function RZV2LSBC({ productSlug = 'sbc' }) {
                 </p>
               )}
 
+              {/* Product Short Description */}
+              {product.shortDescription && (
+                <p className="text-sm sm:text-base text-[#52627C] dark:text-[#AAB6D0] leading-relaxed max-w-2xl mb-5">
+                  {product.shortDescription}
+                </p>
+              )}
+
               {/* Bullet Features or Paragraph Description */}
-              {((product.featuresList && product.featuresList.length > 0) || productSlug === 'sbc') ? (
+              {productSlug !== 'som' && ((product.featuresList && product.featuresList.length > 0) || productSlug === 'sbc') && (
                 <ul className="space-y-2.5 sm:space-y-3 mb-6 max-w-2xl">
                   {((product.featuresList && product.featuresList.length > 0)
                     ? product.featuresList
@@ -205,31 +221,38 @@ export default function RZV2LSBC({ productSlug = 'sbc' }) {
                     </li>
                   ))}
                 </ul>
-              ) : (
-                <p className="text-sm sm:text-base text-[#52627C] dark:text-[#AAB6D0] leading-relaxed max-w-2xl mb-5">
-                  {product.shortDescription}
-                </p>
               )}
 
               {/* Hardware Highlights Checklist */}
-              <div className="grid grid-cols-2 gap-2.5 sm:gap-3 w-full max-w-xl mb-6">
-                {(product.heroHighlights || []).map((hl) => {
-                  const Icon = hl.icon;
-                  return (
-                    <div
-                      key={hl.label}
-                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl bg-white/80 dark:bg-[#17264A]/80 border border-[#DCE8F5] dark:border-[#24355A] shadow-xs backdrop-blur-xs min-w-0"
-                    >
-                      <div className="flex-shrink-0 w-7 h-7 rounded-lg bg-[#E2EEFB] dark:bg-[#1A2C52] border border-[#C5DDF5] dark:border-[#244277] flex items-center justify-center text-[#089EC2] dark:text-[#2DD4F0]">
-                        <Icon className="w-3.5 h-3.5" />
+              {product.heroHighlights && product.heroHighlights.length > 0 && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 w-full max-w-xl mb-6">
+                  {product.heroHighlights.map((hl) => {
+                    const Icon = hl.icon;
+                    return (
+                      <div
+                        key={hl.heading || hl.label}
+                        className="flex items-start gap-2.5 sm:gap-3 p-2.5 sm:p-3 rounded-xl bg-white dark:bg-[#17264A] border border-[#DBE4F0] dark:border-[#24355A] shadow-xs min-w-0"
+                      >
+                        {Icon && (
+                          <div className="w-8 h-8 rounded-lg bg-[#E2EEFB] dark:bg-[#1A2C52] border border-[#C5DDF5] dark:border-[#244277] flex items-center justify-center text-[#089EC2] dark:text-[#2DD4F0] shrink-0 mt-0.5">
+                            <Icon className="w-4 h-4" />
+                          </div>
+                        )}
+                        <div className="min-w-0">
+                          <h4 className="text-xs sm:text-[13px] font-bold text-[#14213D] dark:text-[#F8FAFC] leading-snug">
+                            {hl.heading || hl.label}
+                          </h4>
+                          {hl.description && (
+                            <p className="text-[11px] text-[#52627C] dark:text-[#AAB6D0] leading-snug mt-0.5">
+                              {hl.description}
+                            </p>
+                          )}
+                        </div>
                       </div>
-                      <span className="text-xs font-semibold text-[#14213D] dark:text-[#F8FAFC] truncate">
-                        {hl.label}
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
+                    );
+                  })}
+                </div>
+              )}
 
               {/* Action Buttons */}
               <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto">
