@@ -92,7 +92,7 @@ export default function RZV2LPlatform() {
             </span>
           </>
         }
-        description="Scalable Renesas RZ/V2L hardware options spanning compact SMARC modules, single-board computers, and complete development platforms."
+        description="Explore our RZ/V2L-based hardware, including SMARC modules, carrier boards and complete computing platforms for embedded AI and vision applications."
       />
 
       {/* Section F: Typical Applications (Single horizontal row with continuous automatic right-to-left marquee on mobile, static grid on desktop) */}
