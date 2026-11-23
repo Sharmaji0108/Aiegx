@@ -4,7 +4,9 @@ import {
   Sparkles,
   CheckCircle2,
   Cpu,
-  Layers
+  Layers,
+  Rocket,
+  ArrowRight
 } from 'lucide-react';
 import ProductBreadcrumb from '../../products/ProductBreadcrumb';
 import SubSolutionTabs from './SubSolutionTabs';
@@ -214,36 +216,42 @@ export default function SubSolutionPage({ slug, data: propData }) {
         </div>
       </div>
 
-      {/* ── Consultation / Solution Enquiry CTA ── */}
-      <section className="py-14 sm:py-20 relative bg-gradient-to-b from-[#F5F8FC] to-blue-50/50 dark:from-[#0D1733] dark:to-[#081026] text-center">
-        <div className="section-container max-w-3xl mx-auto flex flex-col items-center">
-          <div className="w-12 h-12 rounded-2xl bg-blue-100 dark:bg-[#17264D] text-[#089EC2] dark:text-[#2DD4F0] flex items-center justify-center mb-4 shadow-xs">
-            <Sparkles className="w-6 h-6" />
+      {/* ── Consultation / Solution Enquiry CTA Banner ── */}
+      <section className="relative py-7 sm:py-9 bg-gradient-to-r from-[#F0F7FF] via-[#E8F3FE] to-[#F1F7FF] dark:from-[#0B142D] dark:via-[#0F1C3F] dark:to-[#0B142D] border-t border-[#DCE8F5] dark:border-white/10 overflow-hidden transition-colors duration-300">
+        {/* Subtle curved / diagonal decorative background elements */}
+        <div className="absolute right-0 top-0 bottom-0 w-2/5 bg-gradient-to-l from-blue-200/30 to-transparent dark:from-blue-600/10 pointer-events-none rounded-l-full blur-2xl" />
+        <div className="absolute right-1/4 -top-24 w-72 h-72 bg-blue-400/15 dark:bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -left-12 -bottom-12 w-48 h-48 bg-[#089EC2]/10 dark:bg-[#2DD4F0]/10 rounded-full blur-2xl pointer-events-none" />
+
+        <div className="section-container relative z-10 flex flex-col md:flex-row items-center justify-between gap-5 sm:gap-6">
+          {/* Left: Rocket Icon, Divider & Text */}
+          <div className="flex items-center gap-4 sm:gap-5 w-full md:w-auto">
+            <div className="w-12 h-12 rounded-full bg-white dark:bg-[#15234A] border border-blue-100/90 dark:border-white/10 shadow-xs flex items-center justify-center shrink-0">
+              <Rocket className="w-6 h-6 text-[#0066FF] dark:text-[#38BDF8]" />
+            </div>
+
+            <div className="hidden sm:block w-px h-8 bg-slate-300/70 dark:bg-white/15" />
+
+            <div className="flex flex-col">
+              <h2 className="text-base sm:text-lg lg:text-xl font-bold text-[#14213D] dark:text-white tracking-tight">
+                {data.ctaHeading || `Interested in our ${data.title}?`}
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-normal mt-0.5">
+                {data.ctaDescription || 'Get in touch with our team to discuss your requirements.'}
+              </p>
+            </div>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#14213D] dark:text-white tracking-tight">
-            Ready to Accelerate Your {data.title}?
-          </h2>
-
-          <p className="mt-3 text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-xl leading-relaxed">
-            Connect with our embedded hardware and AI engineering specialists for custom carrier board design, BSP tailoring, and volume pricing.
-          </p>
-
-          <div className="mt-6 flex flex-col sm:flex-row items-center gap-3">
+          {/* Right: Single Blue CTA Button */}
+          <div className="w-full md:w-auto flex justify-start md:justify-end shrink-0">
             <button
               type="button"
               onClick={() => setEnquiryModalOpen(true)}
-              className="px-7 py-3.5 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-[#089EC2] to-[#0284C7] hover:from-[#0aa8cf] hover:to-[#0394de] shadow-lg shadow-[#089EC2]/25 cursor-pointer active:scale-95 transition-all"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm text-white bg-[#0066FF] hover:bg-[#0052cc] shadow-md shadow-blue-500/20 active:scale-98 transition-all cursor-pointer"
             >
-              Request Architecture Consultation
+              <span>{data.ctaButtonText || 'Contact Our Team'}</span>
+              <ArrowRight className="w-4 h-4" />
             </button>
-            <a
-              href="#contact"
-              onClick={(e) => navigateTo('#contact', e)}
-              className="px-6 py-3.5 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-[#17264D] hover:bg-slate-50 dark:hover:bg-[#1E3360] border border-slate-200 dark:border-white/10 cursor-pointer transition-colors"
-            >
-              Contact Sales Team
-            </a>
           </div>
         </div>
       </section>

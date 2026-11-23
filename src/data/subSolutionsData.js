@@ -42,6 +42,9 @@ export const SUBSOLUTIONS_DATA = {
       'Edge AI Processing',
       'Renesas RZ/V2L Platform'
     ],
+    ctaHeading: 'Interested in our Driver Monitoring System (DMS)?',
+    ctaDescription: 'Get in touch with our team to discuss your requirements.',
+    ctaButtonText: 'Contact Our Team',
     tabs: [
       { id: 'overview', label: 'Overview' },
       { id: 'key-features', label: 'Key Features' },
