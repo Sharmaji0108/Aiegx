@@ -54,6 +54,31 @@ const RZV2L_CARRIER_BOARD_SPECIFICATIONS = [
 
 const RZV2L_SBC_SPECIFICATIONS = RZV2L_CARRIER_BOARD_SPECIFICATIONS;
 
+const RZV2L_DEV_KIT_SPECIFICATIONS = [
+  { feature: 'Processor', details: 'Renesas RZ/V2L' },
+  { feature: 'CPU', details: 'Up to dual-core Arm Cortex-A55 @ 1.2 GHz + Cortex-M33 @ 200 MHz' },
+  { feature: 'RAM', details: 'Up to 2 GB DDR4' },
+  { feature: 'Onboard Storage', details: 'eMMC (on SMARC SoM; default 8 GB, configurable capacity)' },
+  { feature: 'GPU', details: 'Arm Mali-G31' },
+  { feature: 'AI Accelerator', details: 'Integrated DRP-AI (0.5 TOPS)' },
+  { feature: 'Video Codec', details: 'H.264 encoding and decoding, up to Full HD (1920 × 1080) @ 30 fps' },
+  { feature: 'Ethernet', details: '2 × Gigabit Ethernet (1 Gbps, RJ45)' },
+  { feature: 'USB0', details: 'USB 2.0' },
+  { feature: 'USB1', details: 'Micro-USB' },
+  { feature: 'External Storage', details: 'SD card slot (microSD)' },
+  { feature: 'Camera Interface', details: 'MIPI CSI-2 (4-lane) connector' },
+  { feature: 'Display Interface', details: 'MIPI DSI (4-lane) connector' },
+  { feature: 'PMOD Connectors', details: 'GPIO, I²C and SPI' },
+  { feature: 'UART Interface', details: 'UART (via dedicated connector)' },
+  { feature: 'Debug Interface', details: 'Debug UART' },
+  { feature: 'PWM / Backlight', details: 'PWM and backlight GPIO connector' },
+  { feature: 'Audio Interface', details: 'Speaker and Mic' },
+  { feature: 'Real-Time Clock (RTC)', details: 'Onboard RTC' },
+  { feature: 'Reset', details: 'Reset button' },
+  { feature: 'Software Support', details: 'Renesas RZ/V Verified Linux Package' },
+  { feature: 'Hardware Configuration', details: 'RZ/V2L SMARC SoM + Carrier Board' },
+];
+
 /**
  * RZ/V2L Product Detail Page
  * Supports RZ/V2L SoM, RZ/V2L SBC, and RZ/V2L Development Kit routes dynamically.
@@ -277,6 +302,8 @@ export default function RZV2LSBC({ productSlug = 'sbc' }) {
             ? (product.specifications || RZV2L_CARRIER_BOARD_SPECIFICATIONS)
             : productSlug === 'som'
             ? RZV2L_SOM_SPECIFICATIONS
+            : productSlug === 'dev-kit'
+            ? RZV2L_DEV_KIT_SPECIFICATIONS
             : (product.specifications || [])
         }
         productName={product.title}
@@ -285,6 +312,8 @@ export default function RZV2LSBC({ productSlug = 'sbc' }) {
         description={
           productSlug === 'som'
             ? 'Detailed hardware parameters and interface support for the RZ/V2L SMARC SoM.'
+            : productSlug === 'dev-kit'
+            ? 'Hardware specifications and interfaces of the complete RZ/V2L SMARC SoM and carrier-board platform.'
             : productSlug === 'sbc' || productSlug === 'carrier-board'
             ? 'Interfaces, connectors and expansion features for the RZ/V2L SoM.'
             : undefined
