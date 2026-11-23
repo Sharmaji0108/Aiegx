@@ -98,14 +98,14 @@ export default function RZV2LPlatform() {
       {/* Section F: Typical Applications (Single horizontal row with continuous automatic right-to-left marquee on mobile, static grid on desktop) */}
       <TypicalApplicationsCarousel
         applications={RZV2L_APPLICATIONS}
-        description="Engineered for intelligent vision cameras, automated optical inspection, smart terminals, and compact robotics."
+        description="Vision AI applications for driver monitoring, smart cameras, industrial inspection, intelligent interfaces and robotics."
       />
 
       {/* Section H: Technical & Commercial Enquiry */}
       <ProductEnquiry
         productName="RZ/V2L Platform"
-        description="Explore RZ/V2L-based hardware, custom board development, and embedded software integration with our engineering team."
-        bottomMessage="Discuss your hardware requirements, custom board design, or embedded Linux development with our engineers."
+        description="Explore RZ/V2L-based hardware, custom board development, and embedded software support with our engineering team."
+        bottomMessage="Discuss your hardware requirements, system integration and embedded AI development with our team."
         onRequestQuote={() =>
           setEnquiryModal({ isOpen: true, type: 'Request Quote' })
         }
