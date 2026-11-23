@@ -35,6 +35,11 @@ export default function HardwareArchitecture({
                   {titleGradient}
                 </span>
               </h2>
+              {description && (
+                <p className="text-xs sm:text-[13.5px] text-[#52627C] dark:text-[#AAB6D0] leading-relaxed mb-3">
+                  {description}
+                </p>
+              )}
               {statement && !statementDescription ? (
                 <p className="text-sm sm:text-base lg:text-[17px] font-medium text-[#52627C] dark:text-[#AAB6D0] leading-relaxed">
                   {statement}

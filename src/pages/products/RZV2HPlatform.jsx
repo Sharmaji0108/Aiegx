@@ -42,10 +42,14 @@ export default function RZV2HPlatform() {
       <div className="hidden lg:block">
         <PlatformCapabilitiesAndArchitecture
           capabilities={RZV2H_PLATFORM_DATA.capabilities}
-          capabilitiesDescription="2nd Gen DRP-AI delivering 10 TOPS, quad Cortex-A55 plus dual Cortex-R8 real-time cores, multi-camera streams, and LPDDR5."
+          capabilitiesSubheading="PLATFORM CAPABILITIES"
+          capabilitiesDescription="Key capabilities of the Renesas RZ/V2H processor platform for embedded vision and edge AI applications."
+          architectureSubheading={RZV2H_PLATFORM_DATA.architecture.subheading || 'PLATFORM OVERVIEW'}
           title={RZV2H_PLATFORM_DATA.architecture.title}
           titleGradient={RZV2H_PLATFORM_DATA.architecture.titleGradient}
           statement={RZV2H_PLATFORM_DATA.architecture.statement}
+          statementTitle={RZV2H_PLATFORM_DATA.architecture.statementTitle}
+          statementDescription={RZV2H_PLATFORM_DATA.architecture.statementDescription}
           architectureDescription={RZV2H_PLATFORM_DATA.architecture.description}
         />
       </div>
@@ -56,7 +60,7 @@ export default function RZV2HPlatform() {
         <section className="py-6 sm:py-8 relative bg-[#F5F8FC] dark:bg-[#0D1733] transition-colors duration-300">
           <div className="section-container relative">
             <SectionHeadingContainer
-              subheading="KEY PLATFORM CAPABILITIES"
+              subheading="PLATFORM CAPABILITIES"
               heading={
                 <>
                   Platform{' '}
@@ -65,7 +69,7 @@ export default function RZV2HPlatform() {
                   </span>
                 </>
               }
-              description="2nd Gen DRP-AI delivering 10 TOPS, quad Cortex-A55 plus dual Cortex-R8 real-time cores, multi-camera streams, and LPDDR5."
+              description="Key capabilities of the Renesas RZ/V2H processor platform for embedded vision and edge AI applications."
             />
 
             <PlatformFeatures items={RZV2H_PLATFORM_DATA.capabilities} columns={5} />
@@ -74,9 +78,13 @@ export default function RZV2HPlatform() {
 
         {/* Section D: Hardware Architecture */}
         <HardwareArchitecture
+          subheading={RZV2H_PLATFORM_DATA.architecture.subheading || 'PLATFORM OVERVIEW'}
           title={RZV2H_PLATFORM_DATA.architecture.title}
           titleGradient={RZV2H_PLATFORM_DATA.architecture.titleGradient}
+          description={RZV2H_PLATFORM_DATA.architecture.description}
           statement={RZV2H_PLATFORM_DATA.architecture.statement}
+          statementTitle={RZV2H_PLATFORM_DATA.architecture.statementTitle}
+          statementDescription={RZV2H_PLATFORM_DATA.architecture.statementDescription}
         />
       </div>
 
