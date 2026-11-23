@@ -30,7 +30,7 @@ export const SOLUTIONS_CATEGORIES = [
       { name: 'Driver Monitoring System (DMS)', href: '/solutions/driver-monitoring-system', slug: 'driver-monitoring-system' },
       { name: 'Automatic Number Plate Recognition (ANPR)', href: '/solutions/anpr-systems', slug: 'anpr-systems' },
       { name: 'Vehicle Detection Camera', href: '/solutions/vehicle-detection-camera', slug: 'vehicle-detection-camera' },
-      { name: 'Smart Parking', href: '/solutions/smart-parking', slug: 'smart-parking', badge: 'Planned' },
+      { name: 'Smart Parking', href: '/solutions/smart-parking', slug: 'smart-parking' },
     ],
   },
   {
@@ -42,8 +42,8 @@ export const SOLUTIONS_CATEGORIES = [
       { name: 'Network Video Recorder (NVR)', href: '/solutions/nvr-systems', slug: 'nvr-systems' },
       { name: 'CCTV Monitoring System', href: '/solutions/cctv-monitoring', slug: 'cctv-monitoring' },
       { name: 'AI Video Analytics', href: '/solutions/ai-video-analytics', slug: 'ai-video-analytics' },
-      { name: 'People Counting', href: '/solutions/people-counting', slug: 'people-counting', badge: 'Planned' },
-      { name: 'Multi-Camera Video Analytics', href: '/solutions/multi-camera-analytics', slug: 'multi-camera-analytics', badge: 'Planned' },
+      { name: 'People Counting', href: '/solutions/people-counting', slug: 'people-counting' },
+      { name: 'Multi-Camera Video Analytics', href: '/solutions/multi-camera-analytics', slug: 'multi-camera-analytics' },
     ],
   },
   {
@@ -56,7 +56,7 @@ export const SOLUTIONS_CATEGORIES = [
       { name: 'Display / Video Controller', href: '/solutions/display-video-controller', slug: 'display-video-controller' },
       { name: 'AI Visual Inspection', href: '/solutions/ai-visual-inspection', slug: 'ai-visual-inspection' },
       { name: 'Smart Vision AI Camera', href: '/solutions/smart-vision-ai-camera', slug: 'smart-vision-ai-camera' },
-      { name: 'Infrastructure Control Systems', href: '/solutions/infrastructure-control', slug: 'infrastructure-control', badge: 'Planned' },
+      { name: 'Infrastructure Control Systems', href: '/solutions/infrastructure-control', slug: 'infrastructure-control' },
     ],
   },
   {
@@ -66,9 +66,9 @@ export const SOLUTIONS_CATEGORIES = [
     icon: Shield,
     items: [
       { name: 'Seeker', href: '/solutions/seeker-systems', slug: 'seeker-systems', badge: 'In Development' },
-      { name: 'Surveillance Vision System', href: '/solutions/surveillance-vision', slug: 'surveillance-vision', badge: 'Planned' },
-      { name: 'Target Tracking & Recognition', href: '/solutions/target-tracking-recognition', slug: 'target-tracking-recognition', badge: 'Planned' },
-      { name: 'Rugged AI Embedded System', href: '/solutions/rugged-ai-embedded', slug: 'rugged-ai-embedded', badge: 'Planned' },
+      { name: 'Surveillance Vision System', href: '/solutions/surveillance-vision', slug: 'surveillance-vision' },
+      { name: 'Target Tracking & Recognition', href: '/solutions/target-tracking-recognition', slug: 'target-tracking-recognition' },
+      { name: 'Rugged AI Embedded System', href: '/solutions/rugged-ai-embedded', slug: 'rugged-ai-embedded' },
     ],
   },
 ];
@@ -179,7 +179,6 @@ export const SOLUTIONS_MAP = {
     title: 'Smart Parking',
     subtitle: 'Multi-space optical occupancy monitoring, automated payment verification, and digital bay signage guidance.',
     heroImage: '/images/Smart City.png',
-    badge: 'Planned',
     overview: [
       'AIEGX Smart Parking solutions leverage wide-angle overhead vision sensors to monitor up to 6 individual parking bays simultaneously with a single low-power edge compute node.',
       'Powered by Renesas RZ/V Series processors, the edge node detects open/occupied parking states, unauthorized space usage (such as EV charging stall blockages), and vehicle entry/exit timestamps.',
@@ -283,7 +282,6 @@ export const SOLUTIONS_MAP = {
     title: 'People Counting',
     subtitle: 'Bidirectional foot traffic monitoring, density estimation, and public space occupancy optimization.',
     heroImage: '/images/AI Security Surveillance at Modern Entrance.png',
-    badge: 'Planned',
     overview: [
       'AIEGX People Counting edge solutions provide high-accuracy occupancy statistics for public transit terminals, shopping centers, and commercial office complexes.',
       'Utilizing top-down stereo vision and Renesas DRP-AI neural detection, the system accurately counts crossing patrons while filtering out shopping carts, luggage, and strollers.',
@@ -309,7 +307,6 @@ export const SOLUTIONS_MAP = {
     title: 'Multi-Camera Video Analytics',
     subtitle: 'Synchronized multi-angle camera fusion for wide-area tracking, cross-camera person re-ID, and spatial mapping.',
     heroImage: '/images/integrated-solution-hd.jpg',
-    badge: 'Planned',
     overview: [
       'AIEGX Multi-Camera Video Analytics unites multiple overlapping or distributed camera streams into a coherent spatial digital twin of the monitored facility.',
       'Leveraging the 8-lane MIPI CSI-2 and PCIe expansion capabilities of the Renesas RZ/V2H platform, the system performs cross-camera person re-identification (Re-ID) and vehicle trajectory reconstruction.',
@@ -439,7 +436,6 @@ export const SOLUTIONS_MAP = {
     title: 'Infrastructure Control Systems',
     subtitle: 'High-availability deterministic control hubs for signaling, power distribution, and transit infrastructure.',
     heroImage: '/images/High-Speed Train.png',
-    badge: 'Planned',
     overview: [
       'AIEGX Infrastructure Control Systems provide high-reliability supervisory control and data acquisition (SCADA) processing for wayside railway signaling, smart energy grids, and water treatment plants.',
       'Structured around Renesas RZ industrial microprocessors with real-time Cortex-M33/R8 co-processing cores, the platform guarantees deterministic sub-millisecond response times for critical safety interlocks.',
@@ -492,7 +488,6 @@ export const SOLUTIONS_MAP = {
     title: 'Surveillance Vision System',
     subtitle: 'Long-range optical and thermal situational awareness platforms for border control and defense installations.',
     heroImage: '/images/UGV at a High-Tech Defense Base.png',
-    badge: 'Planned',
     overview: [
       'AIEGX Surveillance Vision Systems combine long-wave infrared (LWIR) thermal sensors with high-magnification visible optical cameras for 24/7 all-weather perimeter monitoring.',
       'Powered by Renesas RZ/V Series vision processors, the system performs edge-based multi-spectral image fusion, highlighting thermal signatures against high-resolution optical terrain backgrounds.',
@@ -518,7 +513,6 @@ export const SOLUTIONS_MAP = {
     title: 'Target Tracking & Recognition',
     subtitle: 'Deep neural object classification, robust multi-target tracking, and non-line-of-sight trajectory projection.',
     heroImage: '/images/Futuristic Mountain Surveillance HUD.png',
-    badge: 'Planned',
     overview: [
       'AIEGX Target Tracking & Recognition edge platforms provide automated classification and kinetic trajectory estimation for defense reconnaissance and counter-UAS systems.',
       'Running on the Renesas RZ/V2H platform with 10 TOPS DRP-AI acceleration, the system continuously tracks up to 50 simultaneous visual targets, maintaining track identity through temporary occlusions.',
@@ -544,7 +538,6 @@ export const SOLUTIONS_MAP = {
     title: 'Rugged AI Embedded System',
     subtitle: 'Conduction-cooled, MIL-STD-810H compliant edge AI computing chassis for extreme battlefield and airborne environments.',
     heroImage: '/images/UGV at a High-Tech Defense Base.png',
-    badge: 'Planned',
     overview: [
       'AIEGX Rugged AI Embedded Systems pack high-density neural inferencing into a fully sealed, conduction-cooled aluminum enclosure designed for extreme aerospace and armored vehicle environments.',
       'Driven by Renesas RZ/V2H and RZ/G2 processors, the ruggedized platform withstands extreme ballistic shock, continuous vibration, EMI interference (MIL-STD-461G), and sub-zero temperatures (-40°C to +85°C).',

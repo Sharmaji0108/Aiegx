@@ -102,7 +102,6 @@ export const VEHICLE_MOBILITY_DATA = {
     {
       id: 'smart-parking',
       title: 'Smart Parking',
-      status: 'Planned',
       image: '/images/Smart City.png',
       shortDescription:
         'Automated parking detection, occupancy monitoring and smart parking management.',
@@ -217,7 +216,6 @@ export const VIDEO_SURVEILLANCE_DATA = {
     {
       id: 'people-counting',
       title: 'People Counting',
-      status: 'Planned',
       image: '/images/AI Security Surveillance at Modern Entrance.png',
       shortDescription:
         'Overhead optical foot-traffic monitoring and occupancy analytics with high precision while preserving privacy.',
@@ -229,7 +227,6 @@ export const VIDEO_SURVEILLANCE_DATA = {
     {
       id: 'multi-camera-analytics',
       title: 'Multi-Camera Video Analytics',
-      status: 'Planned',
       image: '/images/integrated-solution-hd.jpg',
       shortDescription:
         'Synchronized multi-camera visual fusion providing cross-camera trajectory tracking across blind spots.',
@@ -356,7 +353,6 @@ export const INDUSTRIAL_VISION_DATA = {
     {
       id: 'infrastructure-control',
       title: 'Infrastructure Control Systems',
-      status: 'Planned',
       image: '/images/High-Speed Train.png',
       shortDescription:
         'High-availability SCADA control nodes with redundant fieldbus networking and deterministic safety interlocks.',
@@ -447,7 +443,6 @@ export const DEFENCE_VISION_DATA = {
     {
       id: 'surveillance-vision',
       title: 'Surveillance Vision System',
-      status: 'Planned',
       image: '/images/UGV at a High-Tech Defense Base.png',
       shortDescription:
         'Long-range multi-spectral situational awareness combining thermal and high-zoom optical sensors.',
@@ -459,7 +454,6 @@ export const DEFENCE_VISION_DATA = {
     {
       id: 'target-tracking-recognition',
       title: 'Target Tracking & Recognition',
-      status: 'Planned',
       image: '/images/Futuristic Mountain Surveillance HUD.png',
       shortDescription:
         'Neural multi-target tracking maintaining lock through smoke, foliage, and visual occlusions.',
@@ -471,7 +465,6 @@ export const DEFENCE_VISION_DATA = {
     {
       id: 'rugged-ai-embedded',
       title: 'Rugged AI Embedded System',
-      status: 'Planned',
       image: '/images/UGV at a High-Tech Defense Base.png',
       shortDescription:
         'Conduction-cooled military-grade edge AI computing chassis for armored vehicles and tactical platforms.',
