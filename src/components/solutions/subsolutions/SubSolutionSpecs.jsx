@@ -5,10 +5,10 @@ export default function SubSolutionSpecs({ specifications = [] }) {
   if (!specifications || specifications.length === 0) return null;
 
   return (
-    <div className="bg-white dark:bg-[#101936] rounded-2xl border border-slate-200/90 dark:border-white/10 shadow-xs p-6 sm:p-8 lg:p-10 flex flex-col justify-between transition-colors duration-300">
+    <div className="bg-white/80 dark:bg-[#101936]/80 backdrop-blur-xs rounded-2xl border border-[#DCE8F5] dark:border-white/10 shadow-xs p-6 sm:p-8 lg:p-10 flex flex-col justify-between transition-colors duration-300">
       <div>
         {/* Eyebrow Label */}
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 dark:bg-[#17264A] border border-[#089EC2]/30 dark:border-[#2DD4F0]/30 w-fit mb-4">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EBF5FD] dark:bg-[#17264A] border border-[#089EC2]/30 dark:border-[#2DD4F0]/30 w-fit mb-4">
           <Sliders className="w-3.5 h-3.5 text-[#089EC2] dark:text-[#2DD4F0]" />
           <span className="text-[11px] font-mono font-bold tracking-wider uppercase text-[#089EC2] dark:text-[#2DD4F0]">
             TECHNICAL PARAMETERS & PLATFORMS
@@ -24,11 +24,11 @@ export default function SubSolutionSpecs({ specifications = [] }) {
         </p>
 
         {/* Compact Specifications Table */}
-        <div className="rounded-xl border border-slate-200/90 dark:border-white/10 overflow-hidden shadow-xs bg-white dark:bg-[#101936]">
+        <div className="rounded-xl border border-[#DCE8F5] dark:border-white/10 overflow-hidden shadow-2xs bg-white dark:bg-[#101936]">
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-[#F0F6FE] dark:bg-[#132247] border-b border-slate-200 dark:border-white/10 text-[#089EC2] dark:text-[#2DD4F0] text-xs font-mono font-bold tracking-wider uppercase">
+                <tr className="bg-[#F0F6FE] dark:bg-[#132247] border-b border-[#DCE8F5] dark:border-white/10 text-[#089EC2] dark:text-[#2DD4F0] text-xs font-mono font-bold tracking-wider uppercase">
                   <th scope="col" className="py-3.5 px-5 sm:px-6 w-1/3">
                     Parameter
                   </th>
@@ -37,13 +37,13 @@ export default function SubSolutionSpecs({ specifications = [] }) {
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-200/70 dark:divide-white/5 text-xs sm:text-sm">
+              <tbody className="divide-y divide-[#E5EEF8] dark:divide-white/5 text-xs sm:text-sm">
                 {specifications.map((spec, idx) => {
                   const isEven = idx % 2 === 0;
                   return (
                     <tr
                       key={idx}
-                      className={isEven ? 'bg-white dark:bg-[#101936]' : 'bg-[#F8FAFD]/70 dark:bg-[#152144]/40'}
+                      className={isEven ? 'bg-white dark:bg-[#101936]' : 'bg-[#F8FAFD]/90 dark:bg-[#152144]/40'}
                     >
                       <td className="py-3.5 px-5 sm:px-6 font-bold text-[#14213D] dark:text-white align-top">
                         {spec.label}

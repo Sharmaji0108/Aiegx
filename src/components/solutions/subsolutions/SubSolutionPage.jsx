@@ -180,8 +180,12 @@ export default function SubSolutionPage({ slug, data: propData }) {
       <SubSolutionTabs tabs={data.tabs} activeTab={activeTab} onSelectTab={scrollToSection} />
 
       {/* ── Continuous Content Sections (Overview, Key Features, Specifications) ── */}
-      <div className="py-10 sm:py-14 bg-[#F5F8FC] dark:bg-[#0D1733] border-b border-slate-200/80 dark:border-white/10 transition-colors duration-300">
-        <div className="section-container space-y-10 sm:space-y-14">
+      <div className="relative py-10 sm:py-16 bg-gradient-to-b from-[#F5F8FC] via-white to-[#F5F8FC] dark:from-[#0D1733] dark:via-[#0F1C3F] dark:to-[#0D1733] border-b border-[#DCE8F5] dark:border-white/10 transition-colors duration-300 overflow-hidden">
+        {/* Subtle ambient lighting glows */}
+        <div className="absolute top-1/4 -left-40 w-96 h-96 bg-[#089EC2]/5 dark:bg-[#2DD4F0]/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-1/4 -right-40 w-96 h-96 bg-blue-500/5 dark:bg-blue-600/5 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="section-container relative z-10 space-y-10 sm:space-y-12">
           {/* 1. Overview Section */}
           <section id="overview" className="scroll-mt-32 sm:scroll-mt-36">
             <SubSolutionOverview overview={data.overview} title={data.title} />
