@@ -57,6 +57,9 @@ export const VEHICLE_MOBILITY_DATA = {
   capabilitiesHeading: 'Key Capabilities',
   capabilitiesDescription:
     'Core capabilities powering our embedded vehicle monitoring and vision solutions.',
+  ctaHeading: 'Ready to Accelerate Your Vehicle & Mobility Solutions?',
+  ctaDescription:
+    'Connect with our engineering team to discuss solution customization, integration and technical requirements.',
   keyCapabilities: [
     {
       name: 'In-Cabin Monitoring',

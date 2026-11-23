@@ -159,11 +159,12 @@ export default function SolutionCategoryTemplate({ data }) {
           </div>
 
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#14213D] dark:text-white tracking-tight">
-            Ready to Accelerate Your {data.title}?
+            {data.ctaHeading || `Ready to Accelerate Your ${data.title}?`}
           </h2>
 
           <p className="mt-3 text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-xl leading-relaxed">
-            Connect with our embedded hardware and vision engineering specialists for custom carrier board design, camera tuning, BSP tailoring, and volume pricing.
+            {data.ctaDescription ||
+              'Connect with our engineering team to discuss solution customization, integration and technical requirements.'}
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row items-center gap-3">
@@ -179,7 +180,7 @@ export default function SolutionCategoryTemplate({ data }) {
               onClick={(e) => navigateTo('#contact', e)}
               className="px-6 py-3.5 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-[#17264D] hover:bg-slate-50 dark:hover:bg-[#1E3360] border border-slate-200 dark:border-white/10 cursor-pointer transition-colors"
             >
-              Contact Engineering Team
+              Contact Our Team
             </a>
           </div>
         </div>
