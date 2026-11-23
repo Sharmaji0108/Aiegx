@@ -17,24 +17,25 @@ import {
 export const RZV2L_PLATFORM_DATA = {
   breadcrumb: [
     { label: 'Home', path: '/' },
-    { label: 'Products', path: '/#hardware-platforms' },
+    { label: 'Platforms', path: '/#hardware-platforms' },
     { label: 'RZ/V2L', path: null },
   ],
   hero: {
-    tag: 'Renesas RZ/V2L Architecture',
-    family: 'Renesas RZ/V2L Family',
-    title: 'RZ/V2L',
-    subtitle: 'Low-Power Vision AI Platform',
+    tag: 'EMBEDDED HARDWARE PLATFORMS',
+    family: 'RZ/V2L-Based Hardware',
+    familyClassName: 'font-bold text-sm text-[#14213D] dark:text-[#F8FAFC]',
+    title: 'RZ/V2L-Based Platforms',
+    subtitle: 'Edge AI & Vision Processing',
     description:
-      'Embedded vision AI processing platform powered by the Renesas RZ/V2L MPU with dedicated DRP-AI neural accelerator. Engineered for real-time edge AI inference, smart cameras, and low-power computer vision without requiring active cooling.',
+      'Embedded hardware platforms based on the Renesas RZ/V2L processor, designed for camera-based AI, image processing and connected embedded applications.',
     image: '/images/RZV2L.png',
     fallbackImage: '/images/RZV2L.png',
     imageAlt: 'AIEGX RZ/V2L Low-Power Vision AI Single Board Computer',
     highlights: [
-      'Renesas DRP-AI Engine (0.5 TOPS/W Efficiency)',
-      'Dual Arm Cortex-A55 @ 1.2 GHz + Cortex-M33',
-      '4-Lane MIPI CSI-2 with Hardware ISP',
-      'Sub-4W Thermal Design Power (Fanless)',
+      'Renesas DRP-AI accelerator — 0.5 TOPS',
+      'Dual-core Arm Cortex-A55 up to 1.2 GHz with Cortex-M33',
+      'MIPI CSI-2 camera interface with software-based ISP support',
+      'Integrated 3D graphics and H.264 video codec',
     ],
   },
   capabilities: [
