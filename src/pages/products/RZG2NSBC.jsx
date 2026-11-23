@@ -87,20 +87,27 @@ export default function RZG2NSBC() {
 
               {/* Hardware Highlights Checklist */}
               {product.heroHighlights && product.heroHighlights.length > 0 && (
-                <div className="grid grid-cols-2 gap-2.5 sm:gap-3 w-full max-w-xl mb-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 w-full max-w-xl mb-6">
                   {product.heroHighlights.map((hl) => {
                     const Icon = hl.icon;
                     return (
                       <div
-                        key={hl.label}
-                        className="flex items-center gap-2.5 p-2.5 rounded-xl bg-white dark:bg-[#17264A] border border-[#DBE4F0] dark:border-[#24355A] shadow-xs min-w-0"
+                        key={hl.heading || hl.label}
+                        className="flex items-start gap-2.5 sm:gap-3 p-2.5 sm:p-3 rounded-xl bg-white dark:bg-[#17264A] border border-[#DBE4F0] dark:border-[#24355A] shadow-xs min-w-0"
                       >
-                        <div className="w-7 h-7 rounded-lg bg-[#E2EEFB] dark:bg-[#1A2C52] border border-[#C5DDF5] dark:border-[#244277] flex items-center justify-center text-[#089EC2] dark:text-[#2DD4F0] shrink-0">
+                        <div className="w-8 h-8 rounded-lg bg-[#E2EEFB] dark:bg-[#1A2C52] border border-[#C5DDF5] dark:border-[#244277] flex items-center justify-center text-[#089EC2] dark:text-[#2DD4F0] shrink-0 mt-0.5">
                           <Icon className="w-4 h-4" />
                         </div>
-                        <span className="text-xs sm:text-[13px] font-semibold text-[#14213D] dark:text-[#E2E8F0] leading-snug truncate">
-                          {hl.label}
-                        </span>
+                        <div className="min-w-0">
+                          <h4 className="text-xs sm:text-[13px] font-bold text-[#14213D] dark:text-[#F8FAFC] leading-snug">
+                            {hl.heading || hl.label}
+                          </h4>
+                          {hl.description && (
+                            <p className="text-[11px] text-[#52627C] dark:text-[#AAB6D0] leading-snug mt-0.5">
+                              {hl.description}
+                            </p>
+                          )}
+                        </div>
                       </div>
                     );
                   })}
@@ -120,7 +127,7 @@ export default function RZG2NSBC() {
                   className="group inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-bold text-sm text-[#0D1733] bg-gradient-to-r from-[#2DD4F0] to-[#3285FF] hover:from-[#4be0f7] hover:to-[#4392ff] shadow-lg shadow-[#3285FF]/25 hover:shadow-[#2DD4F0]/35 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer"
                 >
                   <MessageSquare className="w-4 h-4" />
-                  <span>Request Quote</span>
+                  <span>Request a Quote</span>
                 </button>
 
                 <button
@@ -150,7 +157,7 @@ export default function RZG2NSBC() {
 
       {/* SECTION 3: Bottom Engineering Enquiry CTA */}
       <ProductEnquiry
-        productName="RZ/G2N Embedded Computing Platform"
+        productName="RZ/G2N SBC"
         onRequestQuote={() =>
           setEnquiryModal({
             isOpen: true,
@@ -170,7 +177,7 @@ export default function RZG2NSBC() {
         isOpen={enquiryModal.isOpen}
         onClose={() => setEnquiryModal((prev) => ({ ...prev, isOpen: false }))}
         initialType={enquiryModal.type}
-        productName="RZ/G2N Embedded Computing Platform"
+        productName="RZ/G2N SBC"
       />
     </div>
   );

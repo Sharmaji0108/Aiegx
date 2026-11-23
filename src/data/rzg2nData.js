@@ -11,6 +11,7 @@ import {
   Layers,
   HardDrive,
   Plug,
+  Share2,
 } from 'lucide-react';
 
 export const RZG2N_PLATFORM_DATA = {
@@ -177,10 +178,10 @@ export const RZG2N_APPLICATIONS = [
 export const RZG2N_PRODUCT_DETAILS = {
   sbc: {
     slug: 'sbc',
-    category: 'SBC',
+    category: 'SINGLE-BOARD COMPUTER',
     title: 'RZ/G2N SBC',
     shortDescription:
-      'High-performance turnkey single-board computer powered by the Renesas RZ/G2N processor for 4K multimedia, video analytics, and edge IoT gateways.',
+      'RZ/G2N-based single-board computer integrating the processor and peripheral connectivity for embedded computing applications.',
     introParagraph:
       'The AIEGX RZ/G2N SBC is a production-grade single-board computer powered by the Renesas RZ/G2N microprocessor featuring dual 64-bit Arm Cortex-A57 cores clocked at 1.5 GHz, a real-time Cortex-R7 core, and hardware-accelerated 4K H.265/H.264 video decoding. With onboard LPDDR4 with full ECC support, PCIe Gen2, dual Gigabit Ethernet, USB 3.0, and rich display interfaces, it delivers a turnkey platform ready for immediate software engineering and industrial deployment.',
     breadcrumb: [
@@ -197,10 +198,30 @@ export const RZG2N_PRODUCT_DETAILS = {
       },
     ],
     heroHighlights: [
-      { label: 'Dual Cortex-A57 @ 1.5GHz', icon: Cpu },
-      { label: '4K H.265/H.264 VPU', icon: Monitor },
-      { label: 'PCIe Gen2 & USB 3.0', icon: Plug },
-      { label: 'CIP Linux & Yocto BSP', icon: Terminal },
+      {
+        heading: 'Integrated SBC Design',
+        label: 'Integrated SBC Design',
+        description: 'Compact, ready-to-use board for rapid application development.',
+        icon: Layers,
+      },
+      {
+        heading: 'Onboard Memory & Storage',
+        label: 'Onboard Memory & Storage',
+        description: 'Integrated memory and storage for embedded applications.',
+        icon: HardDrive,
+      },
+      {
+        heading: 'Board Interfaces & Expansion',
+        label: 'Board Interfaces & Expansion',
+        description: 'I/O interfaces for display, networking and system expansion.',
+        icon: Share2,
+      },
+      {
+        heading: 'Embedded Linux Support',
+        label: 'Embedded Linux Support',
+        description: 'Renesas RZ/G Verified Linux Package (VLP) and Yocto-based BSP.',
+        icon: Terminal,
+      },
     ],
     overviewSummary:
       'Engineered for multimedia-rich and compute-intensive embedded applications, the RZ/G2N SBC delivers a turnkey, fully validated hardware and software platform ready for rapid prototyping and production rollout.',
