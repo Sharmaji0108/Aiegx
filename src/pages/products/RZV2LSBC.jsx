@@ -18,72 +18,20 @@ const RZV2L_SBC_FEATURES = [
 ];
 
 const RZV2L_SOM_SPECIFICATIONS = [
-  {
-    feature: 'CPU',
-    details: 'RZ/V2L: 2 x Cortex-A55 @1.2GHz, 1 x M33 core @200MHz, DRP-AI Accelerator',
-  },
-  {
-    feature: 'Memory & Storage',
-    details: [
-      'DDR4 – 2GB (Expandable)',
-      '16GB eMMC (Expandable)',
-      'QSPI Flash -16Mb',
-      'EEPROM -32K bit',
-      'Octa SPI*',
-      'Micro SD Slot*',
-    ],
-  },
-  {
-    feature: 'Network & Communication',
-    details: [
-      'Gigabit Ethernet PHY Transceiver x 2',
-      'USB 2.0 High-Speed 4-Port Hub',
-    ],
-  },
-  {
-    feature: 'Other',
-    details: [
-      'RGB Connector (24 Bit RGB)*',
-      'MIPI DSI to LVDS/HDMI Bridge*',
-      'TPM 2.0*',
-      'JTAG Header*',
-      'Debug UART Header*',
-      'Expansion Connector*',
-    ],
-  },
-  {
-    feature: 'Edge Connector Features',
-    details: [
-      'Gigabit Ethernet x 2 Port (through ON-SOM Gigabit Ethernet PHY Transceiver)',
-      'USB2.0 Host x 4 Ports (through On-SOM USB Hub)',
-      'USB2.0 OTG x 1 Port',
-      'SD (4 bit) x 1 Port',
-      'HDMI TX x 1*',
-      '4 Lane LVDS x 1*',
-      '4 lane MIPI CSI x 1',
-      'CAN x 2',
-      'SPI x 2',
-      'I2C x 4 (Power Management I2C is optional)',
-      'I2S x 2',
-      'PWM x 2',
-      'UART x 4',
-      'SMARC GPIOs',
-      '4 lane MIPI DSI x1',
-    ],
-  },
-  {
-    feature: 'OS Support',
-    details: 'Linux 5.10.175',
-  },
-  {
-    feature: 'General Features',
-    details: [
-      'Power Input: 5V, 2.5A through SMARC EDGE Connector',
-      'Form Factor: 82mm x 50mm',
-      'Operating Temperature: -40°C to +85°C (Industrial)',
-      'Environment Specification: RoHS3 & REACH Compliant',
-    ],
-  },
+  { feature: 'Processor', details: 'Renesas RZ/V2L' },
+  { feature: 'CPU', details: 'Up to dual-core Arm Cortex-A55 @ 1.2 GHz + Cortex-M33 @ 200 MHz' },
+  { feature: 'RAM', details: 'Up to 2 GB DDR4' },
+  { feature: 'eMMC', details: 'Default: 8 GB, configurable capacity' },
+  { feature: 'GPU', details: 'Arm Mali-G31' },
+  { feature: 'AI Accelerator', details: 'Integrated DRP-AI (0.5 TOPS)' },
+  { feature: 'Video Codec', details: 'H.264 encoding and decoding, up to Full HD (1920 × 1080) @ 30 fps' },
+  { feature: 'Display Interface', details: 'MIPI DSI' },
+  { feature: 'Camera Interface', details: 'MIPI CSI-2' },
+  { feature: 'Ethernet', details: 'Dual Gigabit Ethernet' },
+  { feature: 'USB', details: 'USB 2.0' },
+  { feature: 'Serial Interfaces', details: 'UART, SPI, I²C' },
+  { feature: 'Form Factor', details: 'SMARC SoM' },
+  { feature: 'Software Support', details: 'Renesas RZ/V Verified Linux Package' },
 ];
 
 const RZV2L_CARRIER_BOARD_SPECIFICATIONS = [
@@ -321,14 +269,16 @@ export default function RZV2LSBC({ productSlug = 'sbc' }) {
           productSlug === 'sbc' || productSlug === 'carrier-board'
             ? (product.specifications || RZV2L_CARRIER_BOARD_SPECIFICATIONS)
             : productSlug === 'som'
-            ? (product.specifications && product.specifications.length === 7 ? product.specifications : RZV2L_SOM_SPECIFICATIONS)
+            ? RZV2L_SOM_SPECIFICATIONS
             : (product.specifications || [])
         }
         productName={product.title}
-        featureHeader={productSlug === 'sbc' || productSlug === 'carrier-board' ? 'FEATURE' : 'FEATURES'}
+        featureHeader="FEATURE"
         detailsHeader="DETAILS"
         description={
-          productSlug === 'sbc' || productSlug === 'carrier-board'
+          productSlug === 'som'
+            ? 'Detailed hardware parameters and interface support for the RZ/V2L SMARC SoM.'
+            : productSlug === 'sbc' || productSlug === 'carrier-board'
             ? 'Interfaces, connectors and expansion features for the RZ/V2L SoM.'
             : undefined
         }
