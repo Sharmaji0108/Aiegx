@@ -21,12 +21,13 @@ export const VEHICLE_MOBILITY_DATA = {
   id: 'vehicle-mobility',
   route: '/vehicle-mobility',
   title: 'Vehicle & Mobility Solutions',
-  badge: 'AUTOMOTIVE & INTELLIGENT MOBILITY',
+  badge: 'TRANSPORTATION & MOBILITY',
   solutionsSubtitle:
     'Explore intelligent embedded vision and edge AI solutions designed to improve vehicle safety, identification, detection and smart transportation.',
   description:
-    'High-reliability in-cabin and exterior automotive edge vision platforms powered by Renesas RZ/V2L and RZ/V2H neural MPUs, enabling real-time driver safety, automated plate recognition, and smart parking automation.',
+    'Embedded vision solutions for driver monitoring, number plate recognition and vehicle detection across transportation applications.',
   heroImage: '/images/AI Traffic Surveillance with Plate Detection.png',
+  exploreButtonText: 'Explore Solutions',
   featureHighlights: [
     'AEC-Q100 Automotive Ready',
     'Sub-15ms Neural Inferencing',

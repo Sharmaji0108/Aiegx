@@ -96,7 +96,7 @@ export default function SolutionCategoryTemplate({ data }) {
                   className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-[#17264D] hover:bg-slate-50 dark:hover:bg-[#1E3360] border border-slate-200 dark:border-white/10 shadow-xs transition-all duration-200 cursor-pointer"
                 >
                   <Layers className="w-4 h-4 text-[#089EC2] dark:text-[#2DD4F0]" />
-                  <span>Explore Subtopics</span>
+                  <span>{data.exploreButtonText || 'Explore Solutions'}</span>
                   <ArrowRight className="w-4 h-4 ml-0.5 text-slate-400 group-hover:translate-x-0.5 transition-transform" />
                 </button>
               </div>
