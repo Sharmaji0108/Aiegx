@@ -141,7 +141,12 @@ export default function SolutionCategoryTemplate({ data }) {
       </section>
 
       {/* ── 2. Key Capabilities Section ── */}
-      <KeyCapabilities capabilities={data.keyCapabilities} />
+      <KeyCapabilities
+        subheading={data.capabilitiesSubheading}
+        heading={data.capabilitiesHeading}
+        description={data.capabilitiesDescription}
+        capabilities={data.keyCapabilities}
+      />
 
       {/* ── 3. Our Solutions Section ── */}
       <OurSolutions categoryId={data.id} data={data} />

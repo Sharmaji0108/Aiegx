@@ -1,6 +1,8 @@
+import React from 'react';
 import {
   Eye,
   Scan,
+  ScanText,
   Car,
   SquareParking,
   BrainCircuit,
@@ -16,6 +18,24 @@ import {
   Radar,
   Zap
 } from 'lucide-react';
+
+function SteeringWheelIcon(props) {
+  return React.createElement('svg', {
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: '2',
+    strokeLinecap: 'round',
+    strokeLinejoin: 'round',
+    ...props
+  },
+    React.createElement('circle', { cx: '12', cy: '12', r: '10' }),
+    React.createElement('circle', { cx: '12', cy: '12', r: '3' }),
+    React.createElement('line', { x1: '2', y1: '12', x2: '9', y2: '12' }),
+    React.createElement('line', { x1: '15', y1: '12', x2: '22', y2: '12' }),
+    React.createElement('line', { x1: '12', y1: '15', x2: '12', y2: '22' })
+  );
+}
 
 export const VEHICLE_MOBILITY_DATA = {
   id: 'vehicle-mobility',
@@ -33,12 +53,31 @@ export const VEHICLE_MOBILITY_DATA = {
     'Sub-15ms Neural Inferencing',
     '10+ Year Supply Longevity'
   ],
+  capabilitiesSubheading: 'VEHICLE & MOBILITY SOLUTIONS',
+  capabilitiesHeading: 'Key Capabilities',
+  capabilitiesDescription:
+    'Core capabilities powering our embedded vehicle monitoring and vision solutions.',
   keyCapabilities: [
-    { name: 'Driver Safety & Monitoring', icon: Eye },
-    { name: 'Vehicle Identification (ANPR)', icon: Scan },
-    { name: 'Vehicle Detection', icon: Car },
-    { name: 'Smart Parking', icon: SquareParking },
-    { name: 'Edge AI Processing', icon: BrainCircuit }
+    {
+      name: 'In-Cabin Monitoring',
+      icon: SteeringWheelIcon,
+      description: 'Monitor driver attention and behaviour for safety.'
+    },
+    {
+      name: 'Vehicle Recognition & Tracking',
+      icon: ScanText,
+      description: 'Detect, identify and track vehicles, where supported by the application.'
+    },
+    {
+      name: 'Real-Time Vision Processing',
+      icon: Gauge,
+      description: 'Process camera feeds for detection and monitoring on embedded hardware.'
+    },
+    {
+      name: 'Embedded System Integration',
+      icon: Layers,
+      description: 'Integrate cameras, AI software and embedded Linux platforms for reliable deployment.'
+    }
   ],
   overview: [
     'Deterministic, low-latency edge vision computing engineered for automotive, commercial fleets, and intelligent transit systems.',

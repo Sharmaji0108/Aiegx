@@ -8,7 +8,12 @@ import SectionHeadingContainer from '../common/SectionHeadingContainer';
  * - Desktop & Tablet (>= 640px): Original 5-column grid layout with thin vertical separators
  * - Mobile (< 640px): Smooth, continuous right-to-left marquee carousel with touch swiping, matching Industries We Serve
  */
-export default function KeyCapabilities({ capabilities = [] }) {
+export default function KeyCapabilities({
+  subheading = 'SYSTEM CAPABILITIES & ARCHITECTURE',
+  heading = 'Key Capabilities',
+  description = 'Core functional capabilities engineered into this platform architecture for demanding real-time operational environments.',
+  capabilities = []
+}) {
   const scrollRef = useRef(null);
   const [isPaused, setIsPaused] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
@@ -49,10 +54,11 @@ export default function KeyCapabilities({ capabilities = [] }) {
 
   const renderCard = (cap, uniqueKey, isExtra = false) => {
     const Icon = cap.icon;
+    const desc = cap.description || cap.desc;
     return (
       <div
         key={uniqueKey}
-        className={`flex flex-col items-center justify-center text-center shrink-0 w-[140px] px-3 py-5 border-r border-[#D0E3F7] dark:border-white/10 sm:border-r-0 sm:w-auto sm:px-3 sm:py-6 lg:py-7 ${
+        className={`flex flex-col items-center justify-start text-center shrink-0 w-[180px] px-3.5 py-5 border-r border-[#D0E3F7] dark:border-white/10 sm:border-r-0 sm:w-auto sm:px-4 sm:py-6 lg:py-7 ${
           isExtra ? 'sm:hidden' : ''
         }`}
       >
@@ -62,9 +68,16 @@ export default function KeyCapabilities({ capabilities = [] }) {
         </div>
 
         {/* Capability Label Directly Below Icon */}
-        <span className="text-xs sm:text-[13px] lg:text-sm font-bold text-[#14213D] dark:text-white leading-tight tracking-tight max-w-[130px] sm:max-w-[145px] break-words whitespace-normal select-none">
+        <span className="text-xs sm:text-[13px] lg:text-sm font-bold text-[#14213D] dark:text-white leading-tight tracking-tight max-w-[150px] sm:max-w-none break-words whitespace-normal select-none">
           {cap.name}
         </span>
+
+        {/* Capability Description */}
+        {desc && (
+          <p className="mt-2 text-xs leading-relaxed text-[#52627C] dark:text-[#AAB6D0] font-normal max-w-[220px] select-none whitespace-normal">
+            {desc}
+          </p>
+        )}
       </div>
     );
   };
@@ -74,9 +87,9 @@ export default function KeyCapabilities({ capabilities = [] }) {
       <div className="section-container">
         {/* Section Heading Container */}
         <SectionHeadingContainer
-          subheading="SYSTEM CAPABILITIES & ARCHITECTURE"
-          heading="Key Capabilities"
-          description="Core functional capabilities engineered into this platform architecture for demanding real-time operational environments."
+          subheading={subheading}
+          heading={heading}
+          description={description}
         />
 
         {/* Key Capabilities Panel (Transparent Background) */}
@@ -84,7 +97,7 @@ export default function KeyCapabilities({ capabilities = [] }) {
           {/*
             Carousel Viewport:
             - Mobile (< 640px): Horizontal sliding marquee carousel with touch/drag support
-            - Desktop & Tablet (>= 640px): Standard 5-column grid layout
+            - Desktop & Tablet (>= 640px): Standard grid layout (4 or 5 columns)
           */}
           <div
             ref={scrollRef}
@@ -103,8 +116,18 @@ export default function KeyCapabilities({ capabilities = [] }) {
                 animationPlayState: isPaused ? 'paused' : 'running',
               }}
             >
-              {/* Primary Track: becomes 5-column grid on desktop & tablet */}
-              <div className="flex flex-nowrap shrink-0 items-center sm:grid sm:grid-cols-5 sm:divide-x sm:divide-[#D0E3F7] sm:dark:divide-white/10 sm:w-full">
+              {/* Primary Track: becomes 4-column or 5-column grid on desktop & tablet */}
+              <div
+                className={`flex flex-nowrap shrink-0 items-stretch sm:grid ${
+                  capabilities.length === 4
+                    ? 'sm:grid-cols-4'
+                    : capabilities.length === 3
+                    ? 'sm:grid-cols-3'
+                    : capabilities.length === 6
+                    ? 'sm:grid-cols-3 lg:grid-cols-6'
+                    : 'sm:grid-cols-5'
+                } sm:divide-x sm:divide-[#D0E3F7] sm:dark:divide-white/10 sm:w-full`}
+              >
                 {trackItems.map((item, index) => {
                   const isExtra = index >= capabilities.length;
                   return renderCard(item, `cap-t1-${index}`, isExtra);
