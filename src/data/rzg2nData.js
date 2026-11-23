@@ -84,15 +84,15 @@ export const RZG2N_PLATFORM_DATA = {
       name: 'RZ/G2N SBC',
       badge: 'SINGLE-BOARD COMPUTER',
       description:
-        'RZ/G2N-based single-board computer for multimedia, display, and embedded computing applications.',
+        'RZ/G2N-based single-board computer for multimedia, display and embedded computing applications.',
       image: '/images/RZG2N.png',
       fallbackImage: '/images/RZG2N.png',
       imageAlt: 'RZ/G2N Single Board Computer Development Platform',
       features: [
         'Integrated RZ/G2N single-board design.',
         'Onboard memory and peripheral connectivity.',
-        'Suitable for development and system integration.',
-        'Embedded Linux support.',
+        'Suitable for product development, prototyping and system integration.',
+        'Embedded Linux support (Renesas RZ/G Verified Linux Package).',
       ],
       route: '/products/rz-g2n/sbc',
       featured: true,
