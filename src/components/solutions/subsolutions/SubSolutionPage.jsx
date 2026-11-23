@@ -74,36 +74,34 @@ export default function SubSolutionPage({ slug, data: propData }) {
                   className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-sm text-white bg-gradient-to-r from-[#089EC2] to-[#0284C7] hover:from-[#0aa8cf] hover:to-[#0394de] shadow-lg shadow-[#089EC2]/25 dark:shadow-cyan-950/40 transition-all duration-200 cursor-pointer active:scale-[0.98]"
                 >
                   <MessageSquare className="w-4 h-4" />
-                  <span>Request Solution Architecture</span>
+                  <span>{data.primaryButtonText || 'Contact Our Team'}</span>
                 </button>
 
                 <button
                   type="button"
                   onClick={() => {
-                    setActiveTab('system-architecture');
+                    setActiveTab(data.secondaryTab || 'key-features');
                     document.getElementById('subsolution-tab-content')?.scrollIntoView({ behavior: 'smooth' });
                   }}
                   className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-[#17264D] hover:bg-slate-50 dark:hover:bg-[#1E3360] border border-slate-200 dark:border-white/10 shadow-xs transition-all duration-200 cursor-pointer"
                 >
                   <Layers className="w-4 h-4 text-[#089EC2] dark:text-[#2DD4F0]" />
-                  <span>Explore Architecture</span>
+                  <span>{data.secondaryButtonText || 'Explore Features'}</span>
                 </button>
               </div>
 
               {/* Quick Spec Highlights */}
               <div className="pt-4 grid grid-cols-2 sm:grid-cols-3 gap-3 border-t border-slate-200/80 dark:border-white/10 text-xs font-medium text-slate-600 dark:text-slate-300">
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#089EC2] dark:text-[#2DD4F0] shrink-0" />
-                  <span>Renesas RZ Silicon</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#089EC2] dark:text-[#2DD4F0] shrink-0" />
-                  <span>10+ Year Longevity</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#089EC2] dark:text-[#2DD4F0] shrink-0" />
-                  <span>Deterministic Edge AI</span>
-                </div>
+                {(data.highlights || [
+                  'Renesas RZ Silicon',
+                  '10+ Year Longevity',
+                  'Deterministic Edge AI'
+                ]).map((highlight, hIdx) => (
+                  <div key={hIdx} className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-[#089EC2] dark:text-[#2DD4F0] shrink-0" />
+                    <span>{highlight}</span>
+                  </div>
+                ))}
               </div>
             </div>
 

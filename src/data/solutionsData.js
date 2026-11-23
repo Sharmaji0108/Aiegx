@@ -65,7 +65,8 @@ export const SOLUTIONS_MAP = {
     slug: 'driver-monitoring-system',
     category: 'Vehicle & Mobility Solutions',
     title: 'Driver Monitoring System (DMS)',
-    subtitle: 'Automotive-grade in-cabin vision system tracking driver drowsiness, distraction, and gaze vectors in real time.',
+    subtitle:
+      'Camera-based driver monitoring solution developed on the Renesas RZ/V2L platform to identify potential signs of driver drowsiness and distraction.',
     heroImage: '/images/Electric Bus at Smart City Stop.png',
     overview: [
       'AIEGX Driver Monitoring Systems (DMS) deliver deterministic, low-latency in-cabin driver state analysis powered by Renesas RZ/V2L and RZ/V2H processors with dedicated DRP-AI hardware neural accelerators.',

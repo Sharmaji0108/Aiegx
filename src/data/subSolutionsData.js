@@ -31,8 +31,17 @@ export const SUBSOLUTIONS_DATA = {
     slug: 'driver-monitoring-system',
     category: 'Vehicle & Mobility Solutions',
     title: 'Driver Monitoring System (DMS)',
-    subtitle: 'Automotive-grade in-cabin vision system tracking driver drowsiness, distraction, and gaze vectors in real time.',
+    subtitle:
+      'Camera-based driver monitoring solution developed on the Renesas RZ/V2L platform to identify potential signs of driver drowsiness and distraction.',
     heroImage: '/images/Electric Bus at Smart City Stop.png',
+    primaryButtonText: 'Contact Our Team',
+    secondaryButtonText: 'Explore Features',
+    secondaryTab: 'key-features',
+    highlights: [
+      'Camera-Based Monitoring',
+      'Edge AI Processing',
+      'Renesas RZ/V2L Platform'
+    ],
     overview: {
       heading: 'Automotive-Grade In-Cabin Driver Monitoring System',
       summary: 'High-reliability in-cabin vision computing platform delivering real-time driver state analysis, gaze vector tracking, and drowsiness detection to satisfy Euro NCAP and European General Safety Regulations (GSR).',
