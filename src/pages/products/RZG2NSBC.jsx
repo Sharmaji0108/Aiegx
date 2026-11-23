@@ -153,6 +153,9 @@ export default function RZG2NSBC() {
       <ProductSpecifications
         specifications={product.specifications}
         productName={product.title}
+        description="Hardware specifications and interfaces of the RZ/G2N SBC."
+        featureHeader="FEATURE"
+        detailsHeader="DETAILS"
       />
 
       {/* SECTION 3: Bottom Engineering Enquiry CTA */}
