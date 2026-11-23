@@ -43,7 +43,7 @@ export const VEHICLE_MOBILITY_DATA = {
   title: 'Vehicle & Mobility Solutions',
   badge: 'TRANSPORTATION & MOBILITY',
   solutionsSubtitle:
-    'Explore intelligent embedded vision and edge AI solutions designed to improve vehicle safety, identification, detection and smart transportation.',
+    'Explore intelligent embedded vision solutions for driver monitoring, vehicle identification and number plate recognition across mobility applications.',
   description:
     'Embedded vision solutions for driver monitoring, number plate recognition and vehicle detection across transportation applications.',
   heroImage: '/images/AI Traffic Surveillance with Plate Detection.png',
@@ -109,7 +109,7 @@ export const VEHICLE_MOBILITY_DATA = {
       status: null,
       image: '/images/Electric Bus at Smart City Stop.png',
       shortDescription:
-        'Real-time driver monitoring for fatigue detection, attention tracking and enhanced road safety.',
+        'Monitor driver attention and behaviour for enhanced safety and in-cabin awareness.',
       keyFeatures: [
         'Sub-15ms pupil and facial landmark tracking',
         'Pulsed 940nm NIR illumination for nighttime vision'
@@ -121,7 +121,7 @@ export const VEHICLE_MOBILITY_DATA = {
       status: null,
       image: '/images/AI Traffic Surveillance with Plate Detection.png',
       shortDescription:
-        'Intelligent number plate recognition for automated vehicle identification and access management.',
+        'Detect and recognize vehicle number plates with high accuracy in real-time environments.',
       keyFeatures: [
         'High-speed plate recognition with HDR anti-glare',
         'Vehicle make, model, and color classification'
@@ -129,25 +129,14 @@ export const VEHICLE_MOBILITY_DATA = {
     },
     {
       id: 'vehicle-detection-camera',
-      title: 'Vehicle Detection Camera',
+      title: 'Vehicle Detection Camera (VDC)',
       status: null,
       image: '/images/Electric Bus at Smart City Stop.png',
       shortDescription:
-        'AI-powered vehicle detection, classification and counting for intelligent traffic monitoring.',
+        'Detect and monitor vehicles for traffic management, safety and automation.',
       keyFeatures: [
         'Multi-class vehicle and pedestrian detection',
         'Continuous queue measurement for signal control'
-      ]
-    },
-    {
-      id: 'smart-parking',
-      title: 'Smart Parking',
-      image: '/images/Smart City.png',
-      shortDescription:
-        'Automated parking detection, occupancy monitoring and smart parking management.',
-      keyFeatures: [
-        'Multi-bay optical occupancy tracking',
-        'Automated detection of unauthorized EV bay parking'
       ]
     }
   ],

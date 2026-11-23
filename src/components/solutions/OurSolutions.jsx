@@ -38,7 +38,7 @@ const CATEGORY_MAP = {
  */
 const CATEGORY_SUBTITLES = {
   'vehicle-mobility':
-    'Explore intelligent embedded vision and edge AI solutions designed to improve vehicle safety, identification, detection and smart transportation.',
+    'Explore intelligent embedded vision solutions for driver monitoring, vehicle identification and number plate recognition across mobility applications.',
   'video-surveillance':
     'Explore intelligent edge video recording, perimeter monitoring, and real-time AI vision analytics engineered for high-security environments.',
   'industrial-vision':
@@ -57,11 +57,11 @@ const CATEGORY_SUBTITLES = {
 const SUB_SOLUTION_DESCRIPTIONS = {
   // Vehicle & Mobility Solutions
   'driver-monitoring-system':
-    'Real-time driver monitoring for fatigue detection, attention tracking and enhanced road safety.',
+    'Monitor driver attention and behaviour for enhanced safety and in-cabin awareness.',
   'anpr-systems':
-    'Intelligent number plate recognition for automated vehicle identification and access management.',
+    'Detect and recognize vehicle number plates with high accuracy in real-time environments.',
   'vehicle-detection-camera':
-    'AI-powered vehicle detection, classification and counting for intelligent traffic monitoring.',
+    'Detect and monitor vehicles for traffic management, safety and automation.',
   'smart-parking':
     'Automated parking detection, occupancy monitoring and smart parking management.',
 
@@ -183,10 +183,12 @@ export default function OurSolutions({
     navigateTo(href, e);
   };
 
-  // Responsive grid: 5 columns for 5 items, 4 columns for 4 items on desktop
+  // Responsive grid: 5 columns for 5 items, 3 columns for 3 items, 4 columns for 4 items on desktop
   const gridColsClass =
     items.length === 5
       ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5'
+      : items.length === 3
+      ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
       : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4';
 
   return (
