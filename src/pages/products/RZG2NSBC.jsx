@@ -161,6 +161,8 @@ export default function RZG2NSBC() {
       {/* SECTION 3: Bottom Engineering Enquiry CTA */}
       <ProductEnquiry
         productName="RZ/G2N SBC"
+        description="Discuss RZ/G2N SBC selection, hardware customization, and embedded Linux support with our engineering team."
+        bottomMessage="Contact our team for RZ/G2N SBC evaluation, system integration, BSP customization, and product enquiries."
         onRequestQuote={() =>
           setEnquiryModal({
             isOpen: true,
