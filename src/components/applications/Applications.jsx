@@ -7,11 +7,23 @@ import {
   Shield,
   Eye,
   ScanLine,
+  Car as CarIcon,
+  ParkingCircle,
   HardDrive,
+  Monitor,
+  Settings,
+  Users,
+  BarChart2,
+  Layers,
+  Search,
+  Cpu,
+  Server,
   Target,
+  RadioTower,
   ArrowRight,
   ChevronLeft,
   ChevronRight,
+  Mail,
 } from 'lucide-react';
 import { navigateTo } from '../../utils/navigation';
 
@@ -32,7 +44,6 @@ const solutions = [
     ],
     ctaGradient: true,
     href: '/vehicle-mobility',
-    buttonText: 'Explore Solutions',
   },
   {
     id: 'surveillance',
@@ -43,11 +54,10 @@ const solutions = [
     image: '/images/AI Security Surveillance at Modern Entrance.png',
     imageAlt: 'AI Security Surveillance at Modern Entrance',
     features: [
-      { icon: HardDrive, label: 'Mobile Network Video Recorder (MNVR)', status: 'In Development', href: '/solutions/video-surveillance' },
+      { icon: HardDrive, label: 'Mobile Network Video Recorder (MNVR)', status: 'In Development', href: '/solutions/nvr-systems' },
     ],
     ctaGradient: false,
     href: '/solutions/video-surveillance',
-    buttonText: 'Explore Solutions',
   },
   {
     id: 'industrial',
@@ -58,9 +68,10 @@ const solutions = [
     image: '/images/Automated Gear Inspection Line.png',
     imageAlt: 'Automated Gear Inspection Line',
     features: [],
-    ctaGradient: false,
-    href: '/contact',
     buttonText: 'Contact Our Team',
+    buttonHref: '#contact',
+    ctaGradient: false,
+    href: '/solutions/industrial-machine-vision',
   },
   {
     id: 'defence',
@@ -75,7 +86,6 @@ const solutions = [
     ],
     ctaGradient: false,
     href: '/solutions/defence-advanced-vision',
-    buttonText: 'Explore Solutions',
   },
 ];
 
@@ -121,7 +131,7 @@ function SolutionCard({ solution, className = '' }) {
       </div>
 
       {/* ── Description directly below heading ── */}
-      <p className="text-xs leading-relaxed text-[#52627C] dark:text-[#AAB6D0] mb-3">
+      <p className="text-xs leading-relaxed text-[#52627C] dark:text-[#AAB6D0] mb-3 min-h-[34px]">
         {solution.description}
       </p>
 
@@ -140,40 +150,49 @@ function SolutionCard({ solution, className = '' }) {
       </a>
 
       {/* ── Subtopics List (Compact horizontal rows) ── */}
-      {solution.features && solution.features.length > 0 && (
-        <div className="space-y-2 mb-3.5">
-          {solution.features.map((feat, i) => {
-            const FeatIcon = feat.icon;
-            return (
-              <a
-                key={i}
-                href={feat.href}
-                onClick={(e) => navigateTo(feat.href, e)}
-                className="flex items-center justify-between gap-2 group/feat hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors cursor-pointer py-0.5"
-              >
-                <div className="flex items-center gap-2 min-w-0">
-                  <FeatIcon className="w-3.5 h-3.5 text-[#089EC2] dark:text-[#2DD4F0] flex-shrink-0" />
-                  <span className="text-xs text-[#14213D] dark:text-[#D4E3F5] group-hover/feat:text-[#089EC2] dark:group-hover/feat:text-[#2DD4F0] font-medium leading-tight truncate">
-                    {feat.label}
-                  </span>
-                </div>
-                {feat.status && <StatusBadge status={feat.status} />}
-              </a>
-            );
-          })}
-        </div>
-      )}
+      <div className="flex-1 space-y-2 min-h-[150px]">
+        {solution.features.map((feat, i) => {
+          const FeatIcon = feat.icon;
+          return (
+            <a
+              key={i}
+              href={feat.href}
+              onClick={(e) => navigateTo(feat.href, e)}
+              className="flex items-center justify-between gap-2 group/feat hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors cursor-pointer py-0.5"
+            >
+              <div className="flex items-center gap-2 min-w-0">
+                <FeatIcon className="w-3.5 h-3.5 text-[#089EC2] dark:text-[#2DD4F0] flex-shrink-0" />
+                <span className="text-xs text-[#14213D] dark:text-[#D4E3F5] group-hover/feat:text-[#089EC2] dark:group-hover/feat:text-[#2DD4F0] font-medium leading-tight truncate">
+                  {feat.label}
+                </span>
+              </div>
+              {feat.status && <StatusBadge status={feat.status} />}
+            </a>
+          );
+        })}
+      </div>
 
-      {/* ── Full-width Explore Solutions / Contact CTA Button ── */}
-      <div className="mt-auto">
-        <a
-          href={solution.href}
-          onClick={(e) => navigateTo(solution.href, e)}
-          className="explore-btn text-xs py-2"
-        >
-          {solution.buttonText || 'Explore Solutions'}
-          <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
-        </a>
+      {/* ── Full-width Explore Solutions CTA Button ── */}
+      <div className="mt-auto pt-3">
+        {solution.buttonText === 'Contact Our Team' ? (
+          <a
+            href={solution.buttonHref || '#contact'}
+            onClick={(e) => navigateTo(solution.buttonHref || '#contact', e)}
+            className="w-full inline-flex items-center justify-center gap-2 py-2 px-4 rounded-full text-xs font-semibold text-white bg-[#0066FF] hover:bg-[#0052CC] shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer"
+          >
+            <Mail className="w-3.5 h-3.5" />
+            <span>Contact Our Team</span>
+          </a>
+        ) : (
+          <a
+            href={solution.buttonHref || solution.href}
+            onClick={(e) => navigateTo(solution.buttonHref || solution.href, e)}
+            className="explore-btn text-xs py-2"
+          >
+            <span>{solution.buttonText || 'Explore Solutions'}</span>
+            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+          </a>
+        )}
       </div>
     </div>
   );
@@ -385,7 +404,7 @@ export default function Applications() {
         />
 
         {/* ── Desktop & Tablet Grid: Exactly 4 Cards ── */}
-        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 items-start">
+        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 items-stretch">
           {solutions.map((sol) => (
             <SolutionCard key={sol.id} solution={sol} />
           ))}

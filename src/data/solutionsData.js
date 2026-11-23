@@ -29,8 +29,7 @@ export const SOLUTIONS_CATEGORIES = [
     items: [
       { name: 'Driver Monitoring System (DMS)', href: '/solutions/driver-monitoring-system', slug: 'driver-monitoring-system' },
       { name: 'Automatic Number Plate Recognition (ANPR)', href: '/solutions/anpr-systems', slug: 'anpr-systems' },
-      { name: 'Vehicle Detection Camera', href: '/solutions/vehicle-detection-camera', slug: 'vehicle-detection-camera' },
-      { name: 'Smart Parking', href: '/solutions/smart-parking', slug: 'smart-parking' },
+      { name: 'Vehicle Detection Camera (VDC)', href: '/solutions/vehicle-detection-camera', slug: 'vehicle-detection-camera' },
     ],
   },
   {
@@ -39,11 +38,7 @@ export const SOLUTIONS_CATEGORIES = [
     href: '/solutions/video-surveillance',
     icon: Video,
     items: [
-      { name: 'Network Video Recorder (NVR)', href: '/solutions/nvr-systems', slug: 'nvr-systems' },
-      { name: 'CCTV Monitoring System', href: '/solutions/cctv-monitoring', slug: 'cctv-monitoring' },
-      { name: 'AI Video Analytics', href: '/solutions/ai-video-analytics', slug: 'ai-video-analytics' },
-      { name: 'People Counting', href: '/solutions/people-counting', slug: 'people-counting' },
-      { name: 'Multi-Camera Video Analytics', href: '/solutions/multi-camera-analytics', slug: 'multi-camera-analytics' },
+      { name: 'Mobile Network Video Recorder (MNVR)', href: '/solutions/nvr-systems', slug: 'nvr-systems', badge: 'In Development' },
     ],
   },
   {
@@ -51,13 +46,7 @@ export const SOLUTIONS_CATEGORIES = [
     name: 'Industrial & Machine Vision Solutions',
     href: '/solutions/industrial-machine-vision',
     icon: Factory,
-    items: [
-      { name: 'Industrial / Railway HMI', href: '/solutions/industrial-railway-hmi', slug: 'industrial-railway-hmi' },
-      { name: 'Display / Video Controller', href: '/solutions/display-video-controller', slug: 'display-video-controller' },
-      { name: 'AI Visual Inspection', href: '/solutions/ai-visual-inspection', slug: 'ai-visual-inspection' },
-      { name: 'Smart Vision AI Camera', href: '/solutions/smart-vision-ai-camera', slug: 'smart-vision-ai-camera' },
-      { name: 'Infrastructure Control Systems', href: '/solutions/infrastructure-control', slug: 'infrastructure-control' },
-    ],
+    items: [],
   },
   {
     id: 'defence-advanced',
@@ -66,9 +55,6 @@ export const SOLUTIONS_CATEGORIES = [
     icon: Shield,
     items: [
       { name: 'Seeker', href: '/solutions/seeker-systems', slug: 'seeker-systems', badge: 'In Development' },
-      { name: 'Surveillance Vision System', href: '/solutions/surveillance-vision', slug: 'surveillance-vision' },
-      { name: 'Target Tracking & Recognition', href: '/solutions/target-tracking-recognition', slug: 'target-tracking-recognition' },
-      { name: 'Rugged AI Embedded System', href: '/solutions/rugged-ai-embedded', slug: 'rugged-ai-embedded' },
     ],
   },
 ];
