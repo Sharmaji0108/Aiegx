@@ -42,35 +42,42 @@ export const SUBSOLUTIONS_DATA = {
       'Edge AI Processing',
       'Renesas RZ/V2L Platform'
     ],
+    tabs: [
+      { id: 'overview', label: 'Overview' },
+      { id: 'key-features', label: 'Key Features' },
+      { id: 'specifications', label: 'Specifications' }
+    ],
     overview: {
-      heading: 'Automotive-Grade In-Cabin Driver Monitoring System',
-      summary: 'High-reliability in-cabin vision computing platform delivering real-time driver state analysis, gaze vector tracking, and drowsiness detection to satisfy Euro NCAP and European General Safety Regulations (GSR).',
-      purpose: 'Proactively detect driver fatigue, microsleep, mobile phone distraction, and eyes-off-road in real time to prevent collisions.',
-      problem: 'High accident rates caused by driver inattention and drowsy driving, compounded by the inability of cloud-based systems to deliver sub-15ms deterministic alerts without driver privacy compromises.',
-      aiegxRole: 'AIEGX integrates Renesas RZ/V2L and RZ/V2H processors with dedicated DRP-AI hardware neural accelerators, near-infrared (NIR) global shutter camera interfaces, and dual CAN-FD buses to deliver 100% on-device deterministic inferencing.'
+      heading: 'Overview',
+      summary:
+        'A real-time, camera-based Driver Monitoring System (DMS) that analyses driver behaviour to identify possible drowsiness and distraction, helping enhance driving safety in transportation applications.',
+      platform: 'Renesas RZ/V2L',
+      aiAccelerator: 'Renesas DRP-AI'
     },
     features: [
-      { title: 'Sub-15ms Neural Inference', desc: 'Hardware DRP-AI engine executes facial landmark detection and eye tracking models in under 15 milliseconds.' },
-      { title: 'Active NIR Illumination Control', desc: 'Synchronized pulsed 940nm IR LED driver ensures crisp pupil contrast across daytime and complete darkness.' },
-      { title: '3D Head Pose & Gaze Vector Tracking', desc: '6-Degrees-of-Freedom kinematic gaze vector estimation instantly flags driver road inattention.' },
-      { title: 'AEC-Q100 Automotive Temperature', desc: 'Qualified for vehicle cabin environments from -40°C to +105°C with 10+ years production longevity.' },
-      { title: 'Deterministic ECU Bus Integration', desc: 'Dual CAN-FD and Automotive Ethernet outputs immediate warning chime and seat-vibration telemetry.' }
-    ],
-    architecture: [
-      { step: '01', title: 'In-Cabin Camera', desc: 'NIR Global Shutter sensor with 940nm optical bandpass filter', icon: Camera },
-      { step: '02', title: 'Image Acquisition', desc: 'Hardware frame capture, debayering & synchronized IR strobe illumination', icon: Scan },
-      { step: '03', title: 'AI Processing', desc: 'DRP-AI hardware inferencing facial landmarks, PERCLOS & head pose', icon: BrainCircuit },
-      { step: '04', title: 'Driver Behaviour Detection', desc: 'Classification of drowsiness, distraction, yawning & gaze drift', icon: Activity },
-      { step: '05', title: 'Alerts / Event Logging', desc: 'Deterministic CAN-FD vehicle ECU alert dispatch & encrypted event logging', icon: Bell }
+      {
+        title: 'Eye Closure & Drowsiness Monitoring',
+        desc: 'Monitors eye closure to identify potential signs of drowsiness.'
+      },
+      {
+        title: 'Head Pose Detection',
+        desc: 'Monitors driver head movements to assess attention.'
+      },
+      {
+        title: 'Mobile Phone Detection',
+        desc: 'Detects mobile phone usage within the camera view.'
+      },
+      {
+        title: 'Yawn Detection',
+        desc: 'Detects driver yawning as a potential indicator of fatigue.'
+      }
     ],
     specifications: [
-      { label: 'Camera Interface', value: '1x or 2x 2-lane / 4-lane MIPI CSI-2 with active NIR illumination trigger' },
-      { label: 'Sensor Compatibility', value: '1MP / 2MP Global Shutter NIR sensors with 850nm / 940nm synchronized strobe' },
-      { label: 'Processing Capabilities', value: 'Dual Cortex-A55 @ 1.2GHz + Cortex-M33 (RZ/V2L) or Quad Cortex-A55 + Dual Cortex-R8 (RZ/V2H)' },
-      { label: 'AI Inference', value: 'Renesas DRP-AI / DRP-AI3 hardware neural engine (up to 10 TOPS, sub-15ms latency)' },
-      { label: 'Connectivity / Interfaces', value: 'Dual CAN-FD, LIN, Automotive Ethernet (100BASE-T1 / 1000BASE-T), isolated GPIO' },
-      { label: 'Platform Support', value: 'Renesas RZ/V2L SMARC Module / Renesas RZ/V2H Complete SBC' },
-      { label: 'Operating Temperature', value: '-40°C to +85°C (industrial) / -40°C to +105°C (automotive silicon qualified)' }
+      { label: 'Processing Platform', value: 'Renesas RZ/V2L' },
+      { label: 'AI Accelerator', value: 'Renesas DRP-AI' },
+      { label: 'Operating System', value: 'Embedded Linux' },
+      { label: 'Camera Input', value: 'Camera-based driver monitoring' },
+      { label: 'AI Capabilities', value: 'Eye closure, head pose, mobile phone and yawn detection' }
     ]
   },
 

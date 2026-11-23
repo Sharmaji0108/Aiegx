@@ -69,17 +69,13 @@ export const SOLUTIONS_MAP = {
       'Camera-based driver monitoring solution developed on the Renesas RZ/V2L platform to identify potential signs of driver drowsiness and distraction.',
     heroImage: '/images/Electric Bus at Smart City Stop.png',
     overview: [
-      'AIEGX Driver Monitoring Systems (DMS) deliver deterministic, low-latency in-cabin driver state analysis powered by Renesas RZ/V2L and RZ/V2H processors with dedicated DRP-AI hardware neural accelerators.',
-      'Equipped with high-sensitivity Near-Infrared (NIR) camera interfaces and active 850nm/940nm IR illumination drivers, the platform reliably monitors facial landmarks, eye closure (PERCLOS), head 3D pose, and phone distraction across all daytime and nighttime lighting conditions.',
-      'Designed to meet European General Safety Regulation (GSR) and Euro NCAP safety standards, AIEGX DMS solutions run entirely on-device with zero cloud latency and complete driver privacy.'
+      'A real-time, camera-based Driver Monitoring System (DMS) that analyses driver behaviour to identify possible drowsiness and distraction, helping enhance driving safety in transportation applications.',
     ],
     features: [
-      { title: 'Sub-15ms Neural Inference', desc: 'Hardware DRP-AI engine executes facial landmark detection and eye tracking models in under 15 milliseconds.' },
-      { title: 'Active NIR Illumination Control', desc: 'Synchronized pulsed IR LED driver ensures crisp pupil contrast without visible glare to the driver.' },
-      { title: 'Gaze & Head Pose Tracking', desc: '6-Degrees-of-Freedom 3D head pose and gaze vector estimation to instantly flag road inattention.' },
-      { title: 'Automotive Isolation & Bus', desc: 'Integrated Dual CAN-FD and automotive Ethernet interfaces provide instantaneous alerts to vehicle ECU.' },
-      { title: 'AEC-Q100 Hardware Longevity', desc: 'Qualified for automotive temperature ranges (-40°C to +105°C) with 10+ years production longevity.' },
-      { title: 'Root of Trust Security', desc: 'Secure boot with Renesas Cryptographic Engine ensures tamper-proof firmware and confidential video pipelines.' }
+      { title: 'Eye Closure & Drowsiness Monitoring', desc: 'Monitors eye closure to identify potential signs of drowsiness.' },
+      { title: 'Head Pose Detection', desc: 'Monitors driver head movements to assess attention.' },
+      { title: 'Mobile Phone Detection', desc: 'Detects mobile phone usage within the camera view.' },
+      { title: 'Yawn Detection', desc: 'Detects driver yawning as a potential indicator of fatigue.' },
     ],
     architecture: [
       { layer: 'Optics & Sensing', details: 'NIR Global Shutter sensor via MIPI CSI-2 with synchronized 940nm IR strobe pulse.' },
@@ -111,20 +107,20 @@ export const SOLUTIONS_MAP = {
     slug: 'anpr-systems',
     category: 'Vehicle & Mobility Solutions',
     title: 'Automatic Number Plate Recognition (ANPR)',
-    subtitle:
-      'AI-based vehicle recognition solution developed on the Renesas RZ/V2H Evaluation Kit, supporting four RTSP camera streams for number plate recognition, vehicle classification, manufacturer logo detection and speed estimation.',
+    subtitle: 'High-speed multi-lane license plate capture, character segmentation, and vehicle classification at the edge.',
     heroImage: '/images/AI Traffic Surveillance with Plate Detection.png',
     overview: [
-      'An embedded AI-based vehicle monitoring solution that processes video from four RTSP cameras to detect vehicles, recognise number plates, classify vehicle types, identify manufacturer logos and estimate vehicle speed.',
-      'Developed on the Renesas RZ/V2H Evaluation Kit with on-device Edge AI processing for high accuracy and deterministic performance.'
+      'AIEGX ANPR / LPR edge platforms provide deterministic license plate detection and character recognition at vehicle speeds exceeding 160 km/h, eliminating costly cloud streaming bandwidth.',
+      'Utilizing Renesas RZ/V2H multi-core vision MPUs with DRP-AI neural acceleration, the system performs simultaneous vehicle detection, country/state plate localization, OCR character recognition, and color/make classification.',
+      'Housed in weather-sealed industrial enclosures, these platforms interface with high-speed global-shutter IP cameras, radar sensors, and tolling infrastructure with sub-100 millisecond response times.'
     ],
     features: [
-      { title: 'Multi-Camera Processing', desc: 'Supports simultaneous processing of four RTSP camera streams.' },
-      { title: 'Number Plate Recognition', desc: 'Detects vehicle number plates and extracts registration text.' },
-      { title: 'Vehicle Classification', desc: 'Identifies vehicle categories using AI-based classification.' },
-      { title: 'Manufacturer Logo Detection', desc: 'Detects vehicle manufacturer logos (e.g., Toyota, Honda, etc.).' },
-      { title: 'Vehicle Speed Estimation', desc: 'Estimates vehicle speed using camera-based analysis.' },
-      { title: 'Embedded AI Processing', desc: 'Performs vehicle analytics on the Renesas RZ/V2H EVK.' }
+      { title: 'High-Speed Multi-Lane Capture', desc: 'Simultaneously captures and reads up to 4 lanes of vehicular traffic moving up to 160 km/h.' },
+      { title: 'Universal Font & Plate OCR', desc: 'Deep learning OCR models trained for multi-national reflective, standard, and retro-reflective plates.' },
+      { title: 'Vehicle Attribute Classification', desc: 'Instantly identifies vehicle make, body type (sedan, SUV, truck, bus), and primary color.' },
+      { title: 'Low-Light OCR Accuracy', desc: 'High dynamic range (HDR) exposure fusion algorithms counteract headlight bloom and night glare.' },
+      { title: 'Dual TSN Gigabit Ethernet', desc: 'Direct gigabit connection to toll plaza controllers and police hotlist databases.' },
+      { title: 'Industrial Edge Reliability', desc: 'Fanless operation from -40°C to +85°C with power-loss safe eMMC and NVMe storage.' }
     ],
     recommendedProcessors: [
       { name: 'RZ/V2H', tag: 'High-Throughput ANPR', desc: 'Quad Cortex-A55 with 10 TOPS DRP-AI capable of multi-stream 4K OCR inference.', href: '/products/rz-v2h' },

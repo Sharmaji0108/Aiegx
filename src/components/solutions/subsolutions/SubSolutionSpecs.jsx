@@ -46,10 +46,10 @@ export default function SubSolutionSpecs({ specifications = [] }) {
                       className={isEven ? 'bg-white dark:bg-[#101936]' : 'bg-[#F8FAFD]/70 dark:bg-[#152144]/40'}
                     >
                       <td className="py-3.5 px-5 sm:px-6 font-bold text-[#14213D] dark:text-white align-top">
-                        {spec.label || spec.parameter}
+                        {spec.label}
                       </td>
                       <td className="py-3.5 px-5 sm:px-6 text-slate-700 dark:text-slate-300 leading-relaxed font-medium align-top">
-                        {spec.value || spec.details}
+                        {spec.value}
                       </td>
                     </tr>
                   );
