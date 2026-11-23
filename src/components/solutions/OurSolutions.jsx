@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Video } from 'lucide-react';
 import SectionHeadingContainer from '../common/SectionHeadingContainer';
 import { SOLUTIONS_CATEGORIES } from '../../data/solutionsData';
 import { navigateTo } from '../../utils/navigation';
@@ -67,7 +67,7 @@ const SUB_SOLUTION_DESCRIPTIONS = {
 
   // Video & Surveillance Solutions
   'nvr-systems':
-    'High-throughput edge recording platform with hardware decoding and on-device neural search.',
+    'An embedded video recording and management system designed for multi-camera recording, live viewing and video playback.',
   'cctv-monitoring':
     'Continuous 24/7 perimeter surveillance with automated intrusion tripwires and PTZ camera tracking.',
   'ai-video-analytics':
@@ -191,6 +191,9 @@ export default function OurSolutions({
       ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
       : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4';
 
+  const isSingleItem = items.length === 1;
+  const sectionHeading = data?.solutionsHeading || (isSingleItem ? 'Our Solution' : 'Our Solutions');
+
   return (
     <section
       id="our-solutions"
@@ -200,60 +203,118 @@ export default function OurSolutions({
       <span id="subtopics" className="block -mt-24 pt-24 invisible pointer-events-none" aria-hidden="true" />
 
       <div className="section-container">
-        {/* Section Heading: "Our Solutions" with dynamic subtitle */}
+        {/* Section Heading: "Our Solutions" / "Our Solution" with dynamic subtitle */}
         <SectionHeadingContainer
-          heading="Our Solutions"
+          heading={sectionHeading}
           description={subtitle}
         />
 
-        {/* Sub-Solutions Horizontal Card Layout */}
-        <div className={`grid ${gridColsClass} gap-4 sm:gap-5 mt-6 sm:mt-8 items-stretch`}>
-          {items.map((item, idx) => {
-            const desc =
-              item.description ||
-              SUB_SOLUTION_DESCRIPTIONS[item.slug || item.id] ||
-              '';
+        {isSingleItem ? (
+          <div className="mt-6 sm:mt-8">
+            {items.map((item, idx) => {
+              const desc =
+                item.description ||
+                SUB_SOLUTION_DESCRIPTIONS[item.slug || item.id] ||
+                '';
 
-            return (
-              <div
-                key={item.slug || item.id || idx}
-                id={item.slug || item.id}
-                className="group bg-white dark:bg-[#101936] rounded-xl sm:rounded-2xl border border-slate-200/90 dark:border-white/10 shadow-xs hover:shadow-md hover:border-[#089EC2]/60 dark:hover:border-[#2DD4F0]/60 transition-all duration-200 p-4 sm:p-5 flex flex-col justify-between h-full scroll-mt-24"
-              >
-                {/* 1. Sub-solution name and short description (max 2 lines) */}
-                <div className="flex-1 min-w-0 flex flex-col mb-4">
-                  <h3 className="text-sm sm:text-base font-bold text-[#14213D] dark:text-white leading-snug tracking-tight">
+              return (
+                <div
+                  key={item.slug || item.id || idx}
+                  id={item.slug || item.id}
+                  className="bg-white dark:bg-[#101936] rounded-2xl border border-slate-200/90 dark:border-white/10 shadow-xs hover:shadow-md transition-all duration-200 p-5 sm:p-6 flex flex-col md:flex-row md:items-center justify-between gap-5"
+                >
+                  <div className="flex items-start sm:items-center gap-4 sm:gap-5 flex-1 min-w-0">
+                    <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl bg-blue-50/80 dark:bg-[#17264D] border border-blue-100 dark:border-white/10 text-[#0066FF] dark:text-[#38BDF8] flex items-center justify-center shrink-0">
+                      <Video className="w-6 h-6 sm:w-7 sm:h-7" />
+                    </div>
+                    <div className="flex flex-col min-w-0">
+                      <div className="flex flex-wrap items-center gap-2.5">
+                        <h3 className="text-base sm:text-lg font-bold text-[#14213D] dark:text-white">
+                          <a
+                            href={item.href}
+                            onClick={(e) => handleNavigate(item.href, e)}
+                            className="hover:text-[#0066FF] dark:hover:text-[#38BDF8] transition-colors"
+                          >
+                            {item.name || item.title}
+                          </a>
+                        </h3>
+                        {(item.badge || item.status) && (
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 border border-amber-200/80 dark:border-amber-500/30">
+                            {item.badge || item.status}
+                          </span>
+                        )}
+                      </div>
+                      {desc && (
+                        <p className="mt-1.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl">
+                          {desc}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  <div className="shrink-0 flex sm:justify-end">
                     <a
                       href={item.href}
                       onClick={(e) => handleNavigate(item.href, e)}
-                      className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors"
+                      className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-xs sm:text-sm text-[#0066FF] dark:text-[#38BDF8] bg-white dark:bg-[#17264D] hover:bg-blue-50/60 dark:hover:bg-[#1E3360] border border-blue-200 dark:border-white/15 transition-all shadow-xs cursor-pointer group/btn"
                     >
-                      {item.name || item.title}
+                      <span>Explore Solution</span>
+                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                     </a>
-                  </h3>
-
-                  {desc && (
-                    <p className="mt-2 text-xs sm:text-[13px] text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-2">
-                      {desc}
-                    </p>
-                  )}
+                  </div>
                 </div>
+              );
+            })}
+          </div>
+        ) : (
+          /* Sub-Solutions Horizontal Card Layout */
+          <div className={`grid ${gridColsClass} gap-4 sm:gap-5 mt-6 sm:mt-8 items-stretch`}>
+            {items.map((item, idx) => {
+              const desc =
+                item.description ||
+                SUB_SOLUTION_DESCRIPTIONS[item.slug || item.id] ||
+                '';
 
-                {/* 2. Explore Solution button with right-arrow icon (cyan/blue accents) */}
-                <div className="mt-auto pt-2">
-                  <a
-                    href={item.href}
-                    onClick={(e) => handleNavigate(item.href, e)}
-                    className="w-full inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-lg sm:rounded-xl font-semibold text-xs sm:text-sm text-[#089EC2] dark:text-[#2DD4F0] bg-[#089EC2]/10 dark:bg-[#2DD4F0]/10 hover:bg-[#089EC2]/20 dark:hover:bg-[#2DD4F0]/20 border border-[#089EC2]/25 dark:border-[#2DD4F0]/25 transition-all duration-150 cursor-pointer group/btn"
-                  >
-                    <span>Explore Solution</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
-                  </a>
+              return (
+                <div
+                  key={item.slug || item.id || idx}
+                  id={item.slug || item.id}
+                  className="group bg-white dark:bg-[#101936] rounded-xl sm:rounded-2xl border border-slate-200/90 dark:border-white/10 shadow-xs hover:shadow-md hover:border-[#089EC2]/60 dark:hover:border-[#2DD4F0]/60 transition-all duration-200 p-4 sm:p-5 flex flex-col justify-between h-full scroll-mt-24"
+                >
+                  {/* 1. Sub-solution name and short description (max 2 lines) */}
+                  <div className="flex-1 min-w-0 flex flex-col mb-4">
+                    <h3 className="text-sm sm:text-base font-bold text-[#14213D] dark:text-white leading-snug tracking-tight">
+                      <a
+                        href={item.href}
+                        onClick={(e) => handleNavigate(item.href, e)}
+                        className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors"
+                      >
+                        {item.name || item.title}
+                      </a>
+                    </h3>
+
+                    {desc && (
+                      <p className="mt-2 text-xs sm:text-[13px] text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-2">
+                        {desc}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* 2. Explore Solution button with right-arrow icon (cyan/blue accents) */}
+                  <div className="mt-auto pt-2">
+                    <a
+                      href={item.href}
+                      onClick={(e) => handleNavigate(item.href, e)}
+                      className="w-full inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-lg sm:rounded-xl font-semibold text-xs sm:text-sm text-[#089EC2] dark:text-[#2DD4F0] bg-[#089EC2]/10 dark:bg-[#2DD4F0]/10 hover:bg-[#089EC2]/20 dark:hover:bg-[#2DD4F0]/20 border border-[#089EC2]/25 dark:border-[#2DD4F0]/25 transition-all duration-150 cursor-pointer group/btn"
+                    >
+                      <span>Explore Solution</span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
+                    </a>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     </section>
   );

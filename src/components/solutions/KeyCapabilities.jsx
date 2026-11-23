@@ -12,7 +12,8 @@ export default function KeyCapabilities({
   subheading = 'SYSTEM CAPABILITIES & ARCHITECTURE',
   heading = 'Key Capabilities',
   description = 'Core functional capabilities engineered into this platform architecture for demanding real-time operational environments.',
-  capabilities = []
+  capabilities = [],
+  layout = 'vertical'
 }) {
   const scrollRef = useRef(null);
   const [isPaused, setIsPaused] = useState(false);
@@ -55,6 +56,34 @@ export default function KeyCapabilities({
   const renderCard = (cap, uniqueKey, isExtra = false) => {
     const Icon = cap.icon;
     const desc = cap.description || cap.desc;
+
+    if (layout === 'horizontal' || cap.layout === 'horizontal') {
+      return (
+        <div
+          key={uniqueKey}
+          className={`flex items-start text-left shrink-0 w-[240px] px-4 py-5 border-r border-[#D0E3F7] dark:border-white/10 sm:border-r-0 sm:w-auto sm:px-4 sm:py-5 lg:py-6 gap-3 sm:gap-3.5 ${
+            isExtra ? 'sm:hidden' : ''
+          }`}
+        >
+          {/* Blue/Cyan Icon Badge */}
+          <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-blue-50/80 dark:bg-[#17264D] text-[#0066FF] dark:text-[#38BDF8] border border-blue-100 dark:border-white/10 shadow-xs flex items-center justify-center shrink-0">
+            {Icon ? <Icon className="w-5 h-5 text-[#0066FF] dark:text-[#38BDF8]" /> : null}
+          </div>
+
+          <div className="flex flex-col min-w-0">
+            <span className="text-xs sm:text-[13px] lg:text-sm font-bold text-[#14213D] dark:text-white leading-tight tracking-tight">
+              {cap.name}
+            </span>
+            {desc && (
+              <p className="mt-1 text-xs text-slate-500 dark:text-slate-400 font-normal leading-relaxed">
+                {desc}
+              </p>
+            )}
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div
         key={uniqueKey}

@@ -16,7 +16,8 @@ import {
   Gauge,
   Target,
   Radar,
-  Zap
+  Zap,
+  Play
 } from 'lucide-react';
 
 function SteeringWheelIcon(props) {
@@ -167,24 +168,46 @@ export const VIDEO_SURVEILLANCE_DATA = {
   id: 'video-surveillance',
   route: '/solutions/video-surveillance',
   title: 'Video & Surveillance Solutions',
-  badge: 'INTELLIGENT VISION & PERIMETER SECURITY',
+  badge: 'VIDEO & SURVEILLANCE SOLUTIONS',
+  solutionsHeading: 'Our Solution',
   solutionsSubtitle:
-    'Explore intelligent edge video recording, perimeter monitoring, and real-time AI vision analytics engineered for high-security environments.',
+    'Explore our embedded video recording and monitoring solution under development.',
   description:
-    'Scalable edge video recording, perimeter intrusion detection, and deep learning video analytics powered by Renesas RZ Series microprocessors with multi-stream hardware decoding.',
-  heroImage: '/images/AI Security Surveillance at Modern Entrance.png',
-  featureHighlights: [
-    'Multi-Stream 4K Codecs',
-    'Low-Power DRP-AI Inference',
-    '24/7 Fanless Operation'
-  ],
+    'Embedded video recording, live monitoring and video management solutions for multi-camera surveillance applications.',
+  heroImage: '/images/mnvr-live-view.jpg',
+  showProductionBadge: false,
+  hideExploreArrow: true,
+  featureHighlights: null,
+  capabilitiesSubheading: 'SYSTEM CAPABILITIES & ARCHITECTURE',
+  capabilitiesHeading: 'Key Capabilities',
+  capabilitiesDescription:
+    'Core capabilities being developed for an embedded video recording and management solution.',
+  capabilitiesLayout: 'horizontal',
   keyCapabilities: [
-    { name: 'Real-Time Video Monitoring', icon: Video },
-    { name: 'Intelligent Video Analytics', icon: BrainCircuit },
-    { name: 'People Detection & Counting', icon: Users },
-    { name: 'Multi-Camera Processing', icon: Layers },
-    { name: 'Smart Recording Systems', icon: HardDrive }
+    {
+      name: 'Multi-Camera Recording',
+      description: 'Recording video from multiple IP cameras.',
+      icon: Video
+    },
+    {
+      name: 'Live Video Monitoring',
+      description: 'Viewing camera feeds through local and web interfaces.',
+      icon: Monitor
+    },
+    {
+      name: 'Video Playback & Retrieval',
+      description: 'Accessing and reviewing recorded video.',
+      icon: Play
+    },
+    {
+      name: 'Video Management',
+      description: 'Managing cameras, recording and system operations.',
+      icon: Layers
+    }
   ],
+  ctaHeading: 'Ready to Accelerate Your Video & Surveillance Solutions?',
+  ctaDescription: 'Connect with our team to discuss your requirements.',
+  ctaButtonText: 'Contact Our Team',
   overview: [
     'Proactive edge video intelligence transforming conventional CCTV streams into real-time threat detection networks.',
     'Renesas RZ/V2H (10 TOPS) & RZ/G2N processors delivering hardware H.264/H.265 decoding without recurring cloud bandwidth.',
@@ -213,58 +236,13 @@ export const VIDEO_SURVEILLANCE_DATA = {
       id: 'nvr-systems',
       title: 'Mobile Network Video Recorder (MNVR)',
       status: 'In Development',
+      badge: 'In Development',
       image: '/images/mnvr-live-view.jpg',
       shortDescription:
-        'An integrated video management solution for multi-camera recording, live monitoring, playback, system management and AI-based video analytics.',
+        'An embedded video recording and management system designed for multi-camera recording, live viewing and video playback.',
       keyFeatures: [
-        '8 Camera Channels & Full HD Recording',
-        'AI Video Analytics & Live Monitoring'
-      ]
-    },
-    {
-      id: 'cctv-monitoring',
-      title: 'CCTV Monitoring System',
-      status: null,
-      image: '/images/AI Security Surveillance at Modern Entrance.png',
-      shortDescription:
-        'Continuous 24/7 perimeter surveillance with automated intrusion tripwires and PTZ camera tracking handoff.',
-      keyFeatures: [
-        'Virtual tripwire and perimeter intrusion alerts',
-        'Automated PTZ target tracking and coordinate handoff'
-      ]
-    },
-    {
-      id: 'ai-video-analytics',
-      title: 'AI Video Analytics',
-      status: null,
-      image: '/images/AI City Surveillance Camera.png',
-      shortDescription:
-        'Real-time edge video parsing for worker safety, crowd density analysis, and anomaly detection.',
-      keyFeatures: [
-        'Real-time pose estimation for fall and safety alerts',
-        'Crowd density and loitering threshold tracking'
-      ]
-    },
-    {
-      id: 'people-counting',
-      title: 'People Counting',
-      image: '/images/AI Security Surveillance at Modern Entrance.png',
-      shortDescription:
-        'Overhead optical foot-traffic monitoring and occupancy analytics with high precision while preserving privacy.',
-      keyFeatures: [
-        'Bidirectional ingress and egress line crossing',
-        'Spatial heatmaps without storing private video'
-      ]
-    },
-    {
-      id: 'multi-camera-analytics',
-      title: 'Multi-Camera Video Analytics',
-      image: '/images/integrated-solution-hd.jpg',
-      shortDescription:
-        'Synchronized multi-camera visual fusion providing cross-camera trajectory tracking across blind spots.',
-      keyFeatures: [
-        'Cross-camera person and vehicle re-identification',
-        'Microsecond hardware multi-camera synchronization'
+        '8-channel Full HD (1920 × 1080) recording',
+        'Integrated video management with live view, playback and system control'
       ]
     }
   ],
