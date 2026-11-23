@@ -109,14 +109,14 @@ export default function RZV2HPlatform() {
       {/* Section F: Typical Applications (Single horizontal row with continuous automatic right-to-left marquee on mobile, static grid on desktop) */}
       <TypicalApplicationsCarousel
         applications={RZV2H_APPLICATIONS}
-        description="Engineered for autonomous mobile robotics, 8-channel smart city tracking, factory AOI, and high-speed edge AI."
+        description="Vision AI applications for vehicle detection, number plate recognition, industrial inspection, robotics and intelligent monitoring."
       />
 
       {/* Section H: Technical & Commercial Enquiry */}
       <ProductEnquiry
         productName="RZ/V2H Platform"
-        description="Explore RZ/V2H-based hardware, custom board development, and embedded software integration with our engineering team."
-        bottomMessage="Discuss your hardware requirements, custom board design, or embedded Linux development with our engineers."
+        description="Discuss planned RZ/V2H hardware and vision AI requirements with our engineering team."
+        bottomMessage="Contact our team for project discussions and development enquiries."
         onRequestQuote={() =>
           setEnquiryModal({ isOpen: true, type: 'Request Quote' })
         }
