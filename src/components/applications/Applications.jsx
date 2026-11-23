@@ -7,19 +7,8 @@ import {
   Shield,
   Eye,
   ScanLine,
-  Car as CarIcon,
-  ParkingCircle,
   HardDrive,
-  Monitor,
-  Settings,
-  Users,
-  BarChart2,
-  Layers,
-  Search,
-  Cpu,
-  Server,
   Target,
-  RadioTower,
   ArrowRight,
   ChevronLeft,
   ChevronRight,
@@ -33,70 +22,60 @@ const solutions = [
     icon: Car,
     title: 'Vehicle & Mobility Solutions',
     description:
-      'Intelligent vehicle monitoring and vision systems for smarter transportation.',
+      'Embedded vision solutions for driver monitoring, vehicle identification and detection.',
     image: '/images/AI Traffic Surveillance with Plate Detection.png',
     imageAlt: 'AI Traffic Surveillance with Plate Detection',
     features: [
       { icon: Eye, label: 'Driver Monitoring System (DMS)', status: null, href: '/solutions/driver-monitoring-system' },
       { icon: ScanLine, label: 'Automatic Number Plate Recognition (ANPR)', status: null, href: '/solutions/anpr-systems' },
-      { icon: Camera, label: 'Vehicle Detection Camera', status: null, href: '/solutions/vehicle-detection-camera' },
-      { icon: ParkingCircle, label: 'Smart Parking', status: null, href: '/solutions/smart-parking' },
+      { icon: Camera, label: 'Vehicle Detection Camera (VDC)', status: null, href: '/solutions/vehicle-detection-camera' },
     ],
     ctaGradient: true,
     href: '/vehicle-mobility',
+    buttonText: 'Explore Solutions',
   },
   {
     id: 'surveillance',
     icon: Camera,
     title: 'Video & Surveillance Solutions',
     description:
-      'Integrated video recording, monitoring, and analytics for enhanced security.',
+      'Embedded video recording, monitoring, and analytics for enhanced security.',
     image: '/images/AI Security Surveillance at Modern Entrance.png',
     imageAlt: 'AI Security Surveillance at Modern Entrance',
     features: [
-      { icon: HardDrive, label: 'Network Video Recorder (NVR)', status: null, href: '/solutions/nvr-systems' },
-      { icon: Monitor, label: 'CCTV Monitoring System', status: null, href: '/solutions/cctv-monitoring' },
-      { icon: Settings, label: 'AI Video Analytics', status: null, href: '/solutions/ai-video-analytics' },
-      { icon: Users, label: 'People Counting', status: null, href: '/solutions/people-counting' },
-      { icon: BarChart2, label: 'Multi-Camera Video Analytics', status: null, href: '/solutions/multi-camera-analytics' },
+      { icon: HardDrive, label: 'Mobile Network Video Recorder (MNVR)', status: 'In Development', href: '/solutions/video-surveillance' },
     ],
     ctaGradient: false,
     href: '/solutions/video-surveillance',
+    buttonText: 'Explore Solutions',
   },
   {
     id: 'industrial',
     icon: Factory,
     title: 'Industrial & Machine Vision Solutions',
     description:
-      'Embedded control, HMI, and vision systems for industrial automation and inspection.',
+      'Embedded hardware and vision processing capabilities for industrial monitoring and automation applications.',
     image: '/images/Automated Gear Inspection Line.png',
     imageAlt: 'Automated Gear Inspection Line',
-    features: [
-      { icon: Monitor, label: 'Industrial / Railway HMI', status: null, href: '/solutions/industrial-railway-hmi' },
-      { icon: Layers, label: 'Display / Video Controller', status: null, href: '/solutions/display-video-controller' },
-      { icon: Search, label: 'AI Visual Inspection', status: null, href: '/solutions/ai-visual-inspection' },
-      { icon: Camera, label: 'Smart Vision AI Camera', status: null, href: '/solutions/smart-vision-ai-camera' },
-      { icon: Server, label: 'Infrastructure Control Systems', status: null, href: '/solutions/infrastructure-control' },
-    ],
+    features: [],
     ctaGradient: false,
-    href: '/solutions/industrial-machine-vision',
+    href: '/contact',
+    buttonText: 'Contact Our Team',
   },
   {
     id: 'defence',
     icon: Shield,
     title: 'Defence & Advanced Vision Solutions',
     description:
-      'Specialized embedded vision and surveillance systems for defence applications.',
+      'Specialized embedded vision solutions for defence and mission-critical applications.',
     image: '/images/Futuristic Mountain Surveillance HUD.png',
     imageAlt: 'Futuristic Mountain Surveillance HUD',
     features: [
       { icon: Target, label: 'Seeker', status: 'In Development', href: '/solutions/seeker-systems' },
-      { icon: RadioTower, label: 'Surveillance Vision System', status: null, href: '/solutions/surveillance-vision' },
-      { icon: Eye, label: 'Target Tracking & Recognition', status: null, href: '/solutions/target-tracking-recognition' },
-      { icon: Cpu, label: 'Rugged AI Embedded System', status: null, href: '/solutions/rugged-ai-embedded' },
     ],
     ctaGradient: false,
     href: '/solutions/defence-advanced-vision',
+    buttonText: 'Explore Solutions',
   },
 ];
 
@@ -183,14 +162,14 @@ function SolutionCard({ solution, className = '' }) {
         })}
       </div>
 
-      {/* ── Full-width Explore Solutions CTA Button ── */}
+      {/* ── Full-width Explore Solutions / Contact CTA Button ── */}
       <div className="mt-auto pt-3">
         <a
           href={solution.href}
           onClick={(e) => navigateTo(solution.href, e)}
           className="explore-btn text-xs py-2"
         >
-          Explore Solutions
+          {solution.buttonText || 'Explore Solutions'}
           <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
         </a>
       </div>
