@@ -110,7 +110,9 @@ export default function AvailableHardware({
                   }
                 }}
                 aria-label={`View ${product.name} product details`}
-                className="w-full h-44 sm:h-48 shrink-0 rounded-xl bg-[#F8FAFD] dark:bg-[#101936] border border-[#E2EAF4] dark:border-[#24355A] flex items-center justify-center p-2.5 sm:p-3 mb-3.5 overflow-hidden cursor-pointer"
+                className={`w-full h-44 sm:h-48 shrink-0 rounded-xl bg-[#F8FAFD] dark:bg-[#101936] border border-[#E2EAF4] dark:border-[#24355A] flex items-center justify-center mb-3.5 overflow-hidden cursor-pointer ${
+                  product.imageCover ? 'p-0' : 'p-2.5 sm:p-3'
+                }`}
               >
                 <img
                   src={product.image}
@@ -120,7 +122,9 @@ export default function AvailableHardware({
                       e.currentTarget.src = product.fallbackImage;
                     }
                   }}
-                  className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+                  className={`w-full h-full transition-transform duration-300 group-hover:scale-105 ${
+                    product.imageCover ? 'object-cover' : 'object-contain'
+                  }`}
                   loading="lazy"
                 />
               </div>

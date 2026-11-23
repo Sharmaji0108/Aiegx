@@ -32,6 +32,7 @@ export const RZV2H_PLATFORM_DATA = {
     image: '/images/RZV2H.png',
     fallbackImage: '/images/RZV2H.png',
     imageAlt: 'AIEGX RZ/V2H High-Performance Edge AI Single Board Computer',
+    imageCover: true,
     highlights: [
       'Quad-core Arm Cortex-A55, up to 1.8 GHz',
       'DRP-A3 vision AI acceleration',
@@ -91,6 +92,7 @@ export const RZV2H_PLATFORM_DATA = {
       image: '/images/RZV2H.png',
       fallbackImage: '/images/RZV2H.png',
       imageAlt: 'RZ/V2H Single Board Computer Development Platform',
+      imageCover: true,
       features: [],
       buttonText: 'Contact Our Team',
       route: '/products/rzv2h/complete-sbc/',

@@ -125,7 +125,11 @@ export default function ProductHero({
           {/* Right Column: Prominent Processor / Board Visual */}
           <div className="order-1 lg:order-2 lg:col-span-5 flex items-center justify-center">
             <div className="w-full max-w-md lg:max-w-none rounded-2xl bg-white dark:bg-[#17264A] border border-[#DBE4F0] dark:border-[#24355A] p-4 sm:p-5 shadow-[0_12px_36px_rgba(15,23,42,0.06)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.35)] relative overflow-hidden">
-              <div className="aspect-[4/3] w-full rounded-xl bg-[#F8FAFD] dark:bg-[#101936] border border-[#E2EAF4] dark:border-[#24355A] flex items-center justify-center overflow-hidden p-1 sm:p-2">
+              <div
+                className={`aspect-[4/3] w-full rounded-xl bg-[#F8FAFD] dark:bg-[#101936] border border-[#E2EAF4] dark:border-[#24355A] flex items-center justify-center overflow-hidden ${
+                  hero.imageCover ? 'p-0' : 'p-1 sm:p-2'
+                }`}
+              >
                 {hero.model3d ? (
                   <SOM3DViewer
                     modelUrl={hero.model3d}
@@ -141,7 +145,11 @@ export default function ProductHero({
                         e.currentTarget.src = hero.fallbackImage;
                       }
                     }}
-                    className="max-h-full max-w-full object-contain drop-shadow-md transition-transform duration-500 hover:scale-[1.03]"
+                    className={
+                      hero.imageCover
+                        ? 'w-full h-full object-cover transition-transform duration-500 hover:scale-[1.03]'
+                        : 'max-h-full max-w-full object-contain drop-shadow-md transition-transform duration-500 hover:scale-[1.03]'
+                    }
                   />
                 )}
               </div>
