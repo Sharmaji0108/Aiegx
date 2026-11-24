@@ -178,11 +178,15 @@ export const VIDEO_SURVEILLANCE_DATA = {
     'Low-Power DRP-AI Inference',
     '24/7 Fanless Operation'
   ],
+  capabilitiesSubheading: 'SYSTEM CAPABILITIES & ARCHITECTURE',
+  capabilitiesHeading: 'Key Capabilities',
+  capabilitiesDescription:
+    'Core capabilities being developed for an embedded video recording and management solution.',
   keyCapabilities: [
-    { name: 'Real-Time Video Monitoring', icon: Video },
-    { name: 'Intelligent Video Analytics', icon: BrainCircuit },
-    { name: 'People Detection & Counting', icon: Users },
-    { name: 'Multi-Camera Processing', icon: Layers },
+    { name: 'Multi-Camera Recording', icon: Video },
+    { name: 'Live Video Monitoring', icon: BrainCircuit },
+    { name: 'Video Playback & Retrieval', icon: Users },
+    { name: 'Video Management', icon: Layers },
     { name: 'Smart Recording Systems', icon: HardDrive }
   ],
   overview: [
