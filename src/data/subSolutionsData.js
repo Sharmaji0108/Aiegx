@@ -24,8 +24,54 @@ import {
   Target,
   Eye,
   Zap,
-  HardDrive
+  HardDrive,
+  Gauge,
+  Settings
 } from 'lucide-react';
+
+function DroneIcon(props) {
+  return React.createElement(
+    'svg',
+    {
+      viewBox: '0 0 24 24',
+      fill: 'none',
+      stroke: 'currentColor',
+      strokeWidth: '2',
+      strokeLinecap: 'round',
+      strokeLinejoin: 'round',
+      ...props
+    },
+    React.createElement('circle', { cx: '12', cy: '12', r: '2.5' }),
+    React.createElement('path', { d: 'M10.2 10.2L6.5 6.5' }),
+    React.createElement('path', { d: 'M4 6.5h5' }),
+    React.createElement('path', { d: 'M13.8 10.2l3.7-3.7' }),
+    React.createElement('path', { d: 'M15 6.5h5' }),
+    React.createElement('path', { d: 'M10.2 13.8L6.5 17.5' }),
+    React.createElement('path', { d: 'M4 17.5h5' }),
+    React.createElement('path', { d: 'M13.8 13.8l3.7 3.7' }),
+    React.createElement('path', { d: 'M15 17.5h5' })
+  );
+}
+
+function ReticleScanIcon(props) {
+  return React.createElement(
+    'svg',
+    {
+      viewBox: '0 0 24 24',
+      fill: 'none',
+      stroke: 'currentColor',
+      strokeWidth: '2',
+      strokeLinecap: 'round',
+      strokeLinejoin: 'round',
+      ...props
+    },
+    React.createElement('path', { d: 'M3 7V5a2 2 0 0 1 2-2h2' }),
+    React.createElement('path', { d: 'M17 3h2a2 2 0 0 1 2 2v2' }),
+    React.createElement('path', { d: 'M21 17v2a2 2 0 0 1-2 2h-2' }),
+    React.createElement('path', { d: 'M7 21H5a2 2 0 0 1-2-2v-2' }),
+    React.createElement('circle', { cx: '12', cy: '12', r: '2.5' })
+  );
+}
 
 function FallenPersonIcon(props) {
   return React.createElement(
@@ -755,18 +801,54 @@ export const SUBSOLUTIONS_DATA = {
       'Deterministic Edge AI'
     ],
     overview: {
-      heading: 'Electro-Optical / Infrared (EO/IR) Seeker Guidance Platform',
-      summary: 'SWaP-C optimized electro-optical seeker guidance computing engine capable of executing high-framerate centroid tracking, visual-inertial odometry, and terminal kinetic intercept calculations at 120 FPS.',
-      purpose: 'Deliver autonomous optical guidance and terminal target sensing for unmanned systems, precision guidance kits, and aerospace testbeds.',
-      problem: 'Extreme Size, Weight, Power, and Cost (SWaP-C) constraints, high aerodynamic vibrations, and the critical operational requirement to navigate accurately in GPS-denied tactical environments.',
-      aiegxRole: 'AIEGX provides ultra-compact computing boards powered by Renesas RZ/V2H neural MPUs, achieving 10 TOPS of high-efficiency DRP-AI inference within a sub-20W conduction-cooled envelope.'
+      eyebrow: 'SOLUTION OVERVIEW',
+      heading: 'Overview',
+      summary:
+        'A camera-based embedded vision solution focused on detecting and tracking aerial objects for situational awareness and monitoring applications.'
     },
     features: [
-      { title: '120 FPS Neural Tracking', desc: 'Executes centroid tracking and target bounding box localization at 120 frames per second.' },
-      { title: 'GPS-Denied Visual Odometry', desc: 'Integrates high-speed camera optical flow with IMU sensor fusion for drift-free positioning.' },
-      { title: 'Dual-Spectrum Sensor Support', desc: 'Seamlessly interfaces with Visible CMOS, Short-Wave Infrared (SWIR), and LWIR sensors.' },
-      { title: 'Sub-Milliradian Guidance Precision', desc: 'Calculates line-of-sight angular rate vectors with micro-radian precision for autopilot actuation.' },
-      { title: 'SWaP-C Aerospace Envelope', desc: 'Consumes under 15W total power in a compact form factor optimized for uncooled aerodynamic chassis.' }
+      {
+        title: 'Aerial Object Detection',
+        desc: "Detects aerial objects within the camera's field of view.",
+        icon: DroneIcon
+      },
+      {
+        title: 'Object Tracking',
+        desc: 'Tracks detected objects across successive video frames.',
+        icon: ReticleScanIcon
+      },
+      {
+        title: 'Real-Time Image Processing',
+        desc: 'Processes camera input for object detection and tracking.',
+        icon: Gauge
+      },
+      {
+        title: 'Embedded Vision Processing',
+        desc: 'Integrates vision-processing algorithms with embedded computing hardware.',
+        icon: Cpu
+      }
+    ],
+    technologyOverview: [
+      {
+        label: 'Technology',
+        value: 'Embedded Computer Vision',
+        icon: Layers
+      },
+      {
+        label: 'Detection',
+        value: 'Camera-Based Aerial Object Detection',
+        icon: Video
+      },
+      {
+        label: 'Tracking',
+        value: 'Video-Based Object Tracking',
+        icon: ReticleScanIcon
+      },
+      {
+        label: 'Processing',
+        value: 'Embedded Image Processing',
+        icon: Settings
+      }
     ],
     architecture: [
       { step: '01', title: 'EO/IR Sensor Head', desc: 'High-speed optical or uncooled microbolometer thermal sensor head', icon: Eye },
@@ -774,15 +856,6 @@ export const SUBSOLUTIONS_DATA = {
       { step: '03', title: 'Centroid Tracker', desc: 'Sub-milliradian neural network estimating target line-of-sight angles at 120 FPS', icon: BrainCircuit },
       { step: '04', title: 'Flight State Estimation', desc: 'Visual-inertial odometry fusion with IMU gyroscope and accelerometer telemetry', icon: Cpu },
       { step: '05', title: 'Autopilot Guidance Bus', desc: 'Ultra-low latency deterministic serial bus outputting steering commands to control fins', icon: Activity }
-    ],
-    specifications: [
-      { label: 'Camera Interface', value: 'Dual 4-lane MIPI CSI-2 with high-speed serial LVDS sensor adapter options' },
-      { label: 'Video Input / Resolution', value: 'Visible Global Shutter, SWIR, and LWIR uncooled thermal microbolometer cores' },
-      { label: 'Processing Capabilities', value: 'Quad Arm Cortex-A55 @ 1.2GHz + Dual Cortex-R8 lockstep real-time cores @ 800MHz' },
-      { label: 'AI Inference', value: 'Renesas DRP-AI (10 TOPS neural acceleration, sub-15W thermal envelope)' },
-      { label: 'Connectivity / Interfaces', value: 'Low-latency high-baud RS-422, SPI, Dual CAN-FD, Gigabit Ethernet' },
-      { label: 'Platform Support', value: 'Renesas RZ/V2H High-Density Compute SBC' },
-      { label: 'Operating Temperature', value: '-40°C to +85°C conduction cooled' }
     ]
   },
 

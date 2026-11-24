@@ -300,10 +300,13 @@ export default function SubSolutionPage({ slug, data: propData }) {
             </>
           )}
 
-          {/* 3. Specifications Section */}
-          {data.specifications && data.specifications.length > 0 && (
+          {/* 3. Specifications / Technology Overview Section */}
+          {((data.specifications && data.specifications.length > 0) || (data.technologyOverview && data.technologyOverview.length > 0)) && (
             <section id="specifications" className="scroll-mt-32 sm:scroll-mt-36">
-              <SubSolutionSpecs specifications={data.specifications} />
+              <SubSolutionSpecs
+                specifications={data.specifications}
+                technologyOverview={data.technologyOverview}
+              />
             </section>
           )}
 

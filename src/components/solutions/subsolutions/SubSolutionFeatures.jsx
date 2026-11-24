@@ -68,7 +68,7 @@ export default function SubSolutionFeatures({ features = [] }) {
         <div className="lg:col-span-9 xl:col-span-10">
           <div className={`grid grid-cols-1 sm:grid-cols-2 ${isSixCards ? 'md:grid-cols-3 xl:grid-cols-6' : 'lg:grid-cols-4'} gap-3.5 sm:gap-4`}>
             {features.map((feat, idx) => {
-              const IconComponent = getFeatureIcon(feat.title);
+              const IconComponent = feat.icon || getFeatureIcon(feat.title);
               return (
                 <div
                   key={idx}
