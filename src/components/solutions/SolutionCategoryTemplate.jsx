@@ -126,6 +126,16 @@ export default function SolutionCategoryTemplate({ data }) {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="eager"
                   />
+                  {data.imageConceptLabel && (
+                    <div className="absolute bottom-3.5 right-3.5 z-10 pointer-events-none">
+                      <span
+                        className="image-concept-pill inline-flex items-center text-xs sm:text-[13px] font-medium tracking-normal px-4 py-1.5 rounded-full border border-white/25 shadow-md bg-black/85 backdrop-blur-xs"
+                        style={{ color: '#FFFFFF' }}
+                      >
+                        {data.imageConceptLabel}
+                      </span>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
