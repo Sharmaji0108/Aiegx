@@ -793,6 +793,7 @@ export const SUBSOLUTIONS_DATA = {
     subtitle:
       'An embedded vision solution under development for real-time aerial object detection and tracking using camera-based image processing.',
     heroImage: '/images/Aerial Object Detection Drone.png',
+    imageConceptLabel: 'Illustrative Concept',
     highlights: [
       'Renesas RZ Silicon',
       '10+ Year Longevity',
