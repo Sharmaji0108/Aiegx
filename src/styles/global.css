@@ -421,7 +421,9 @@ html.light button[class*="bg-gradient-to-r"] *,
 html.light .badge,
 html.light [class*="bg-emerald-"] *,
 html.light [class*="bg-blue-600"] *,
-html.light [class*="bg-purple-500"] * {
+html.light [class*="bg-purple-500"] *,
+html.light .image-concept-pill,
+html.light .image-concept-pill * {
   color: #FFFFFF !important;
 }
 

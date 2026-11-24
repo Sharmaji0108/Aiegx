@@ -170,8 +170,11 @@ export default function SubSolutionPage({ slug, data: propData }) {
                     loading="eager"
                   />
                   {data.imageConceptLabel && (
-                    <div className="absolute bottom-3 right-3 flex items-center text-white pointer-events-none">
-                      <span className="text-[11px] sm:text-xs font-medium tracking-normal bg-black/85 text-white px-3.5 py-1 rounded-full border border-white/20 shadow-sm">
+                    <div className="absolute bottom-3.5 right-3.5 z-10 pointer-events-none">
+                      <span
+                        className="image-concept-pill inline-flex items-center text-xs sm:text-[13px] font-medium tracking-normal px-4 py-1.5 rounded-full border border-white/25 shadow-md bg-black/85 backdrop-blur-xs"
+                        style={{ color: '#FFFFFF' }}
+                      >
                         {data.imageConceptLabel}
                       </span>
                     </div>
