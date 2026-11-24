@@ -95,11 +95,10 @@ function StatusBadge({ status }) {
   const isDev = status === 'In Development';
   return (
     <span
-      className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold whitespace-nowrap flex-shrink-0 ${
-        isDev
-          ? 'bg-amber-100 text-amber-700 border border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-700/40'
-          : 'bg-[#E2EEFB] text-[#089EC2] border border-[#C5DDF5] dark:bg-[#1A2C52] dark:text-[#2DD4F0] dark:border-[#244277]'
-      }`}
+      className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold whitespace-nowrap flex-shrink-0 ${isDev
+        ? 'bg-amber-100 text-amber-700 border border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-700/40'
+        : 'bg-[#E2EEFB] text-[#089EC2] border border-[#C5DDF5] dark:bg-[#1A2C52] dark:text-[#2DD4F0] dark:border-[#244277]'
+        }`}
     >
       {status}
     </span>
@@ -348,11 +347,10 @@ function MobileSolutionsCarousel({ solutions }) {
                 aria-selected={isActive}
                 aria-label={`Go to ${sol.title}`}
                 onClick={() => handleDotClick(idx)}
-                className={`transition-all duration-300 rounded-full cursor-pointer ${
-                  isActive
-                    ? 'w-7 h-2.5 bg-[#089EC2] dark:bg-[#2DD4F0]'
-                    : 'w-2.5 h-2.5 bg-slate-300 dark:bg-slate-600 hover:bg-slate-400 dark:hover:bg-slate-500'
-                }`}
+                className={`transition-all duration-300 rounded-full cursor-pointer ${isActive
+                  ? 'w-7 h-2.5 bg-[#089EC2] dark:bg-[#2DD4F0]'
+                  : 'w-2.5 h-2.5 bg-slate-300 dark:bg-slate-600 hover:bg-slate-400 dark:hover:bg-slate-500'
+                  }`}
               />
             );
           })}
