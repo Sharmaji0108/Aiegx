@@ -180,7 +180,7 @@ export default function SolutionCategoryTemplate({ data }) {
               onClick={(e) => navigateTo('#contact', e)}
               className="px-6 py-3.5 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-[#17264D] hover:bg-slate-50 dark:hover:bg-[#1E3360] border border-slate-200 dark:border-white/10 cursor-pointer transition-colors"
             >
-              Contact Our Team
+              {data.ctaSecondaryButtonText || 'Contact Our Team'}
             </a>
           </div>
         </div>

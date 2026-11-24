@@ -183,6 +183,9 @@ export const VIDEO_SURVEILLANCE_DATA = {
   capabilitiesHeading: 'Key Capabilities',
   capabilitiesDescription:
     'Core capabilities being developed for an embedded video recording and management solution.',
+  ctaHeading: 'Ready to Accelerate Your Video & Surveillance Solutions?',
+  ctaDescription: 'Get in touch with our team to discuss your requirements.',
+  ctaSecondaryButtonText: 'Contact Our Team →',
   keyCapabilities: [
     { name: 'Multi-Camera Recording', icon: Video },
     { name: 'Live Video Monitoring', icon: BrainCircuit },
