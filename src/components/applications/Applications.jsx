@@ -112,10 +112,10 @@ function SolutionCard({ solution, className = '' }) {
 
   return (
     <div
-      className={`flex flex-col bg-white dark:bg-[#17264A] border border-[#DCE8F5] dark:border-[#24355A] rounded-[18px] shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 p-4 sm:p-4.5 ${className}`}
+      className={`flex flex-col h-full bg-white dark:bg-[#17264A] border border-[#DCE8F5] dark:border-[#24355A] rounded-[18px] shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 p-4 sm:p-4.5 ${className}`}
     >
       {/* ── Icon + Heading Row ── */}
-      <div className="flex items-center gap-2.5 mb-2">
+      <div className="flex items-center gap-2.5 mb-2.5 min-h-[40px]">
         <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-[#EBF5FD] dark:bg-[#1A2C52] border border-[#C5DDF5] dark:border-[#244277] flex items-center justify-center shadow-2xs">
           <CardIcon className="w-4.5 h-4.5 text-[#089EC2] dark:text-[#2DD4F0]" />
         </div>
@@ -131,7 +131,7 @@ function SolutionCard({ solution, className = '' }) {
       </div>
 
       {/* ── Description directly below heading ── */}
-      <p className="text-xs leading-relaxed text-[#52627C] dark:text-[#AAB6D0] mb-3 min-h-[34px]">
+      <p className="text-xs leading-relaxed text-[#52627C] dark:text-[#AAB6D0] mb-3 min-h-[48px] sm:min-h-[52px]">
         {solution.description}
       </p>
 
@@ -139,7 +139,7 @@ function SolutionCard({ solution, className = '' }) {
       <a
         href={solution.href}
         onClick={(e) => navigateTo(solution.href, e)}
-        className="w-full h-32 sm:h-36 rounded-xl overflow-hidden border border-[#DCE8F5] dark:border-[#24355A] mb-3.5 block group/img flex-shrink-0"
+        className="w-full h-32 sm:h-36 rounded-xl overflow-hidden border border-[#DCE8F5] dark:border-[#24355A] mb-3 block group/img flex-shrink-0"
       >
         <img
           src={solution.image}
@@ -150,7 +150,7 @@ function SolutionCard({ solution, className = '' }) {
       </a>
 
       {/* ── Subtopics List (Compact horizontal rows) ── */}
-      <div className="flex-1 space-y-2 min-h-[150px]">
+      <div className="flex-1 space-y-2">
         {solution.features.map((feat, i) => {
           const FeatIcon = feat.icon;
           return (
