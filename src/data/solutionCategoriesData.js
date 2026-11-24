@@ -448,7 +448,7 @@ export const DEFENCE_VISION_DATA = {
   solutionsSubtitle:
     'Explore mission-critical electro-optical guidance, tactical target tracking, and ruggedized edge computing systems.',
   description:
-    'SWaP-C optimized electro-optical seeker guidance, dual-spectrum surveillance, multi-target tracking, and MIL-STD-810H rugged embedded AI systems.',
+    'Embedded vision and image-processing solutions for advanced sensing, detection and tracking applications.',
   heroImage: '/images/Futuristic Mountain Surveillance HUD.png',
   featureHighlights: [
     'MIL-STD-810H & SWaP-C',
