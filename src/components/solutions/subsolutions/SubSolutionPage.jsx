@@ -111,8 +111,13 @@ export default function SubSolutionPage({ slug, data: propData }) {
                 </span>
               </div>
 
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#14213D] dark:text-white leading-tight">
-                {data.title}
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#14213D] dark:text-white leading-tight flex flex-wrap items-center gap-3">
+                <span>{data.title}</span>
+                {data.status && (
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs sm:text-sm font-semibold border border-amber-300 dark:border-amber-700/60 bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 tracking-normal shadow-2xs">
+                    {data.status}
+                  </span>
+                )}
               </h1>
 
               <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-medium leading-relaxed max-w-2xl">

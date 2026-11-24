@@ -275,9 +275,27 @@ export const SUBSOLUTIONS_DATA = {
   'nvr-systems': {
     slug: 'nvr-systems',
     category: 'Video & Surveillance Solutions',
-    title: 'Network Video Recorder (NVR)',
-    subtitle: 'Multi-channel edge recording platform with hardware video decoding and on-device neural indexing on NVMe storage.',
+    title: 'Mobile Network Video Recorder (MNVR)',
+    status: 'In Development',
+    subtitle:
+      'An integrated video management solution for multi-camera recording, live monitoring, playback and AI-enabled video analytics.',
     heroImage: '/images/AI City Surveillance Camera.png',
+    primaryButtonText: 'Contact Our Team',
+    secondaryButtonText: 'Explore Features',
+    secondaryTab: 'key-features',
+    highlights: [
+      '8 Camera Channels',
+      'Full HD Recording',
+      'AI Video Analytics'
+    ],
+    ctaHeading: 'Interested in our Mobile Network Video Recorder (MNVR)?',
+    ctaDescription: 'Get in touch with our team to discuss your requirements.',
+    ctaButtonText: 'Contact Our Team',
+    tabs: [
+      { id: 'overview', label: 'Overview' },
+      { id: 'key-features', label: 'Key Features' },
+      { id: 'specifications', label: 'Specifications' }
+    ],
     overview: {
       heading: 'Multi-Channel High-Throughput Edge Network Video Recorder',
       summary: 'Heavy-duty, fanless edge recording appliance engineered for high-bitrate multi-stream H.264/H.265 video capture, local NVMe storage, and on-device neural metadata indexing.',

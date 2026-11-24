@@ -191,7 +191,7 @@ export const SOLUTIONS_MAP = {
   'nvr-systems': {
     slug: 'nvr-systems',
     category: 'Video & Surveillance Solutions',
-    title: 'Network Video Recorder (NVR)',
+    title: 'Mobile Network Video Recorder (MNVR)',
     subtitle: 'Multi-channel edge video recording, real-time H.264/H.265 hardware decoding, and neural threat detection.',
     heroImage: '/images/AI City Surveillance Camera.png',
     overview: [
