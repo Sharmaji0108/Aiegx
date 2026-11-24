@@ -143,6 +143,7 @@ export const SOLUTIONS_MAP = {
     title: 'Vehicle Detection Camera',
     subtitle: 'Intelligent traffic monitoring sensor combining global-shutter imaging with edge neural classification.',
     heroImage: '/images/vdc-zone-detection.png',
+    imageConceptLabel: 'Zone: Occupied',
     overview: [
       'AIEGX Vehicle Detection Cameras integrate high-resolution CMOS image sensors directly with Renesas RZ/V Series vision microprocessors in a compact, thermally optimized enclosure.',
       'Designed for smart intersections, highway incident detection, and priority transit dispatch, the camera calculates vehicle queue lengths, average traffic velocities, and stopped-vehicle incidents on-die.',

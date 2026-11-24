@@ -253,6 +253,7 @@ export const SUBSOLUTIONS_DATA = {
     subtitle:
       'AI-based vehicle detection and classification solution developed on the Renesas RZ/V2H EVK, supporting five camera streams, vehicle recognition and zone-based occupancy monitoring.',
     heroImage: '/images/vdc-zone-detection.png',
+    imageConceptLabel: 'Zone: Occupied',
     primaryButtonText: 'Contact Our Team',
     secondaryButtonText: 'Explore Features',
     secondaryTab: 'key-features',
