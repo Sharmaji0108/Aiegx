@@ -79,8 +79,8 @@ const solutions = [
     title: 'Defence & Advanced Vision Solutions',
     description:
       'Specialized embedded vision solutions for defence and mission-critical applications.',
-    image: '/images/Aerial Object Detection Drone.png',
-    imageAlt: 'Aerial Object Detection Drone',
+    image: '/images/Realistic Outdoor Surveillance Camera Close-Up.png',
+    imageAlt: 'Realistic Outdoor Surveillance Camera Close-Up',
     features: [
       { icon: Target, label: 'Seeker', status: 'In Development', href: '/solutions/seeker-systems' },
     ],
