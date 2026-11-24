@@ -378,13 +378,6 @@ export const SUBSOLUTIONS_DATA = {
       'Integrated video management with live view, playback and system control',
       'AI-driven analytics for enhanced situational awareness'
     ],
-    architecture: [
-      { step: '01', title: 'Multi-Channel IP Cameras', desc: 'Distributed surveillance cameras streaming ONVIF / RTSP video', icon: Camera },
-      { step: '02', title: 'RTSP Stream Ingestion', desc: 'Gigabit Ethernet network interface ingesting concurrent multi-channel camera feeds', icon: Server },
-      { step: '03', title: 'Hardware Video Decoding', desc: 'Hardware H.264/H.265 multi-stream video decoding with minimal CPU overhead', icon: Cpu },
-      { step: '04', title: 'Real-Time Metadata Indexing', desc: 'Neural feature extraction generating forensic searchable tags for persons and vehicles', icon: BrainCircuit },
-      { step: '05', title: 'NVMe Storage & Streaming', desc: 'Zero-loss recording to local high-speed SSDs and encrypted client playback streaming', icon: Database }
-    ],
     specifications: [
       { label: 'Camera Interface', value: '8 to 16 channels @ 1080p30 or 4 channels @ 4K30 concurrent RTSP streams' },
       { label: 'Video Input / Resolution', value: 'Hardware H.264 / H.265 (HEVC), MJPEG decoding up to 4K resolution' },
