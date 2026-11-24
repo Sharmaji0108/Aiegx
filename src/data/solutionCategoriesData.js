@@ -461,6 +461,8 @@ export const DEFENCE_VISION_DATA = {
   capabilitiesHeading: 'Key Capabilities',
   capabilitiesDescription:
     'Core capabilities being developed for embedded vision and imaging applications.',
+  ctaHeading: 'Have a Defence & Advanced Vision Project in Mind?',
+  ctaDescription: 'Connect with our engineering team to discuss your requirements.',
   keyCapabilities: [
     {
       name: 'Image Processing',
