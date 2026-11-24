@@ -168,8 +168,9 @@ export const VIDEO_SURVEILLANCE_DATA = {
   route: '/solutions/video-surveillance',
   title: 'Video & Surveillance Solutions',
   badge: 'INTELLIGENT VISION & PERIMETER SECURITY',
+  solutionsHeading: 'Our Solution',
   solutionsSubtitle:
-    'Explore intelligent edge video recording, perimeter monitoring, and real-time AI vision analytics engineered for high-security environments.',
+    'Explore our embedded video recording and monitoring solution under development.',
   description:
     'Embedded video recording, live monitoring and video management solutions for multi-camera surveillance applications.',
   heroImage: '/images/AI Security Surveillance at Modern Entrance.png',
@@ -215,11 +216,12 @@ export const VIDEO_SURVEILLANCE_DATA = {
   subtopics: [
     {
       id: 'nvr-systems',
-      title: 'Network Video Recorder (NVR)',
-      status: null,
+      title: 'Mobile Network Video Recorder (MNVR)',
+      status: 'In Development',
+      badge: 'In Development',
       image: '/images/AI City Surveillance Camera.png',
       shortDescription:
-        'Multi-channel edge recording platform with hardware video decoding and on-device neural indexing on NVMe storage.',
+        'An embedded video recording and management system designed for multi-camera recording, live viewing and video playback.',
       keyFeatures: [
         'Multi-channel H.264/H.265 hardware video decoding',
         'Real-time metadata indexing for person and vehicle search'

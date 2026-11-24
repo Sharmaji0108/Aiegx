@@ -67,7 +67,7 @@ const SUB_SOLUTION_DESCRIPTIONS = {
 
   // Video & Surveillance Solutions
   'nvr-systems':
-    'High-throughput edge recording platform with hardware decoding and on-device neural search.',
+    'An embedded video recording and management system designed for multi-camera recording, live viewing and video playback.',
   'cctv-monitoring':
     'Continuous 24/7 perimeter surveillance with automated intrusion tripwires and PTZ camera tracking.',
   'ai-video-analytics':
@@ -120,6 +120,8 @@ export function getSubSolutionsForCategory(categoryKey, fallbackSubtopics) {
         href: item.href || `/solutions/${slug}`,
         slug,
         description,
+        badge: item.badge || item.status,
+        status: item.status || item.badge,
       };
     });
   }
@@ -133,6 +135,8 @@ export function getSubSolutionsForCategory(categoryKey, fallbackSubtopics) {
         href: `/solutions/${slug}`,
         slug,
         description: s.shortDescription || s.description || SUB_SOLUTION_DESCRIPTIONS[slug] || '',
+        badge: s.badge || s.status,
+        status: s.status || s.badge,
       };
     });
   }
@@ -202,7 +206,7 @@ export default function OurSolutions({
       <div className="section-container">
         {/* Section Heading: "Our Solutions" with dynamic subtitle */}
         <SectionHeadingContainer
-          heading="Our Solutions"
+          heading={data?.solutionsHeading || "Our Solutions"}
           description={subtitle}
         />
 
@@ -222,15 +226,22 @@ export default function OurSolutions({
               >
                 {/* 1. Sub-solution name and short description (max 2 lines) */}
                 <div className="flex-1 min-w-0 flex flex-col mb-4">
-                  <h3 className="text-sm sm:text-base font-bold text-[#14213D] dark:text-white leading-snug tracking-tight">
-                    <a
-                      href={item.href}
-                      onClick={(e) => handleNavigate(item.href, e)}
-                      className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors"
-                    >
-                      {item.name || item.title}
-                    </a>
-                  </h3>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h3 className="text-sm sm:text-base font-bold text-[#14213D] dark:text-white leading-snug tracking-tight">
+                      <a
+                        href={item.href}
+                        onClick={(e) => handleNavigate(item.href, e)}
+                        className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors"
+                      >
+                        {item.name || item.title}
+                      </a>
+                    </h3>
+                    {(item.badge || item.status) && (
+                      <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-400 border border-amber-300/80 dark:border-amber-700/50">
+                        {item.badge || item.status}
+                      </span>
+                    )}
+                  </div>
 
                   {desc && (
                     <p className="mt-2 text-xs sm:text-[13px] text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-2">
