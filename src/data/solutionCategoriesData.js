@@ -446,8 +446,9 @@ export const DEFENCE_VISION_DATA = {
   route: '/solutions/defence-advanced-vision',
   title: 'Defence & Advanced Vision Solutions',
   badge: 'STRATEGIC & DEFENCE TECHNOLOGIES',
+  solutionsHeading: 'Our Solution',
   solutionsSubtitle:
-    'Explore mission-critical electro-optical guidance, tactical target tracking, and ruggedized edge computing systems.',
+    'Explore our embedded vision solution under development.',
   description:
     'Embedded vision and image-processing solutions for advanced sensing, detection and tracking applications.',
   heroImage: '/images/Futuristic Mountain Surveillance HUD.png',
@@ -514,9 +515,10 @@ export const DEFENCE_VISION_DATA = {
       id: 'seeker-systems',
       title: 'Seeker',
       status: 'In Development',
+      badge: 'In Development',
       image: '/images/Futuristic Mountain Surveillance HUD.png',
       shortDescription:
-        'High-framerate electro-optical seeker guidance computing terminal intercept trajectories at 120 FPS.',
+        'An embedded vision solution under development for image processing, aerial object detection and tracking applications.',
       keyFeatures: [
         '120 FPS centroid tracking with sub-milliradian precision',
         'GPS-denied visual-inertial odometry terminal guidance'

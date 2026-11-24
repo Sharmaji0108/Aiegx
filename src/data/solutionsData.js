@@ -449,7 +449,7 @@ export const SOLUTIONS_MAP = {
     slug: 'seeker-systems',
     category: 'Defence & Advanced Vision Solutions',
     title: 'Seeker',
-    subtitle: 'Precision electro-optical seeker guidance and real-time terminal target tracking under strict SWaP-C constraints.',
+    subtitle: 'An embedded vision solution under development for image processing, aerial object detection and tracking applications.',
     heroImage: '/images/Futuristic Mountain Surveillance HUD.png',
     badge: 'In Development',
     overview: [

@@ -743,7 +743,7 @@ export const SUBSOLUTIONS_DATA = {
     slug: 'seeker-systems',
     category: 'Defence & Advanced Vision Solutions',
     title: 'Seeker',
-    subtitle: 'High-framerate electro-optical seeker guidance computing terminal intercept trajectories at 120 FPS.',
+    subtitle: 'An embedded vision solution under development for image processing, aerial object detection and tracking applications.',
     heroImage: '/images/Futuristic Mountain Surveillance HUD.png',
     overview: {
       heading: 'Electro-Optical / Infrared (EO/IR) Seeker Guidance Platform',

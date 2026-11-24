@@ -46,9 +46,9 @@ const CATEGORY_SUBTITLES = {
   'industrial-machine-vision':
     'Explore automated optical inspection, industrial control HMIs, and edge vision systems engineered for zero-defect manufacturing.',
   'defence-advanced':
-    'Explore mission-critical electro-optical guidance, tactical target tracking, and ruggedized edge computing systems.',
+    'Explore our embedded vision solution under development.',
   'defence-advanced-vision':
-    'Explore mission-critical electro-optical guidance, tactical target tracking, and ruggedized edge computing systems.',
+    'Explore our embedded vision solution under development.',
 };
 
 /**
@@ -91,7 +91,7 @@ const SUB_SOLUTION_DESCRIPTIONS = {
 
   // Defence & Advanced Vision Solutions
   'seeker-systems':
-    'High-framerate electro-optical seeker guidance computing terminal intercept trajectories at 120 FPS.',
+    'An embedded vision solution under development for image processing, aerial object detection and tracking applications.',
   'surveillance-vision':
     'Long-range multi-spectral situational awareness combining pixel-aligned thermal and optical sensors.',
   'target-tracking-recognition':
