@@ -170,10 +170,15 @@ export default function SubSolutionPage({ slug, data: propData }) {
                     loading="eager"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent pointer-events-none" />
-                  <div className="absolute bottom-3 left-3 right-3 text-white">
+                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white pointer-events-none">
                     <span className="text-[11px] font-mono tracking-wider uppercase bg-[#089EC2]/90 px-2 py-0.5 rounded text-white font-semibold">
-                      Production Architecture
+                      {data.imageOverlayLabel || 'Production Architecture'}
                     </span>
+                    {data.imageConceptLabel && (
+                      <span className="text-[11px] font-mono tracking-wider bg-slate-900/80 px-2.5 py-0.5 rounded-full text-white font-medium border border-white/10">
+                        {data.imageConceptLabel}
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>

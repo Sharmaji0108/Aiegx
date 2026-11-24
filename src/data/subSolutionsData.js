@@ -743,8 +743,17 @@ export const SUBSOLUTIONS_DATA = {
     slug: 'seeker-systems',
     category: 'Defence & Advanced Vision Solutions',
     title: 'Seeker',
-    subtitle: 'An embedded vision solution under development for image processing, aerial object detection and tracking applications.',
+    status: 'In Development',
+    subtitle:
+      'An embedded vision solution under development for real-time aerial object detection and tracking using camera-based image processing.',
     heroImage: '/images/Futuristic Mountain Surveillance HUD.png',
+    imageOverlayLabel: 'Aerial Object',
+    imageConceptLabel: 'Illustrative Concept',
+    highlights: [
+      'Renesas RZ Silicon',
+      '10+ Year Longevity',
+      'Deterministic Edge AI'
+    ],
     overview: {
       heading: 'Electro-Optical / Infrared (EO/IR) Seeker Guidance Platform',
       summary: 'SWaP-C optimized electro-optical seeker guidance computing engine capable of executing high-framerate centroid tracking, visual-inertial odometry, and terminal kinetic intercept calculations at 120 FPS.',

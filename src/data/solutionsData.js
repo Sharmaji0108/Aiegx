@@ -449,7 +449,7 @@ export const SOLUTIONS_MAP = {
     slug: 'seeker-systems',
     category: 'Defence & Advanced Vision Solutions',
     title: 'Seeker',
-    subtitle: 'An embedded vision solution under development for image processing, aerial object detection and tracking applications.',
+    subtitle: 'An embedded vision solution under development for real-time aerial object detection and tracking using camera-based image processing.',
     heroImage: '/images/Futuristic Mountain Surveillance HUD.png',
     badge: 'In Development',
     overview: [

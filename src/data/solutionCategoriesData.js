@@ -520,7 +520,7 @@ export const DEFENCE_VISION_DATA = {
       badge: 'In Development',
       image: '/images/Futuristic Mountain Surveillance HUD.png',
       shortDescription:
-        'An embedded vision solution under development for image processing, aerial object detection and tracking applications.',
+        'An embedded vision solution under development for real-time aerial object detection and tracking using camera-based image processing.',
       keyFeatures: [
         '120 FPS centroid tracking with sub-milliradian precision',
         'GPS-denied visual-inertial odometry terminal guidance'
