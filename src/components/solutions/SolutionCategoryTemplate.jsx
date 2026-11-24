@@ -146,6 +146,7 @@ export default function SolutionCategoryTemplate({ data }) {
         heading={data.capabilitiesHeading}
         description={data.capabilitiesDescription}
         capabilities={data.keyCapabilities}
+        layout={data.capabilitiesLayout || 'default'}
       />
 
       {/* ── 3. Our Solutions Section ── */}

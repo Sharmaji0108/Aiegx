@@ -12,7 +12,8 @@ export default function KeyCapabilities({
   subheading = 'SYSTEM CAPABILITIES & ARCHITECTURE',
   heading = 'Key Capabilities',
   description = 'Core functional capabilities engineered into this platform architecture for demanding real-time operational environments.',
-  capabilities = []
+  capabilities = [],
+  layout = 'default'
 }) {
   const scrollRef = useRef(null);
   const [isPaused, setIsPaused] = useState(false);
@@ -22,9 +23,7 @@ export default function KeyCapabilities({
 
   if (!capabilities || capabilities.length === 0) return null;
 
-  const hasDescriptions = capabilities.some((cap) => cap.description || cap.desc);
-
-  if (hasDescriptions) {
+  if (layout === 'unified') {
     return (
       <section className="py-8 sm:py-10 bg-transparent border-b border-slate-200/80 dark:border-white/10 transition-colors duration-300">
         <div className="section-container">

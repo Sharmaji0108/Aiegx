@@ -185,6 +185,7 @@ export const VIDEO_SURVEILLANCE_DATA = {
   capabilitiesHeading: 'Key Capabilities',
   capabilitiesDescription:
     'Core capabilities being developed for an embedded video recording and management solution.',
+  capabilitiesLayout: 'unified',
   ctaHeading: 'Ready to Accelerate Your Video & Surveillance Solutions?',
   ctaDescription: 'Get in touch with our team to discuss your requirements.',
   ctaSecondaryButtonText: 'Contact Our Team →',
@@ -455,12 +456,35 @@ export const DEFENCE_VISION_DATA = {
     '120 FPS Target Tracking',
     'GPS-Denied Autonomy'
   ],
+  capabilitiesSubheading: 'SYSTEM CAPABILITIES & ARCHITECTURE',
+  capabilitiesHeading: 'Key Capabilities',
+  capabilitiesDescription:
+    'Core capabilities being developed for embedded vision and imaging applications.',
   keyCapabilities: [
-    { name: 'Target Detection & Recognition', icon: Target },
-    { name: 'Object Tracking', icon: Radar },
-    { name: 'Advanced Image Processing', icon: Eye },
-    { name: 'Embedded Edge AI', icon: Cpu },
-    { name: 'Real-Time Vision Processing', icon: Zap }
+    {
+      name: 'Image Processing',
+      description: 'Processing and enhancement of camera images.',
+      icon: Target
+    },
+    {
+      name: 'Object Detection',
+      description: 'AI-based detection for objects in image data.',
+      icon: Radar
+    },
+    {
+      name: 'Object Tracking',
+      description: 'Tracking detected objects across image frames.',
+      icon: Eye
+    },
+    {
+      name: 'Embedded Vision Processing',
+      description: 'Running vision algorithms on embedded computing platforms.',
+      icon: Cpu
+    },
+    {
+      name: 'Real-Time Vision Processing',
+      icon: Zap
+    }
   ],
   overview: [
     'SWaP-C optimized electro-optical guidance, dual-spectrum surveillance, and tactical neural situational awareness.',
