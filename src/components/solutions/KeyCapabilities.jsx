@@ -22,6 +22,51 @@ export default function KeyCapabilities({
 
   if (!capabilities || capabilities.length === 0) return null;
 
+  const hasDescriptions = capabilities.some((cap) => cap.description || cap.desc);
+
+  if (hasDescriptions) {
+    return (
+      <section className="py-8 sm:py-10 bg-transparent border-b border-slate-200/80 dark:border-white/10 transition-colors duration-300">
+        <div className="section-container">
+          <SectionHeadingContainer
+            subheading={subheading}
+            heading={heading}
+            description={description}
+            className="mb-0"
+          >
+            {/* Grid of Capability Cards with Icon on Left, Title & Description on Right */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4">
+              {capabilities.map((cap, idx) => {
+                const Icon = cap.icon;
+                const desc = cap.description || cap.desc;
+                return (
+                  <div
+                    key={cap.name || idx}
+                    className="flex items-start gap-3 sm:gap-3.5 p-4 sm:p-4.5 rounded-xl bg-white dark:bg-[#14234B]/80 border border-[#DCE6F3] dark:border-white/10 shadow-xs hover:border-[#0066FF]/30 dark:hover:border-[#38BDF8]/30 transition-all duration-200"
+                  >
+                    <div className="w-11 h-11 rounded-xl bg-blue-50/90 dark:bg-[#1C2C55] border border-blue-100/70 dark:border-blue-900/40 text-[#0066FF] dark:text-[#38BDF8] flex items-center justify-center shrink-0">
+                      {Icon ? <Icon className="w-5 h-5 text-[#0066FF] dark:text-[#38BDF8]" /> : null}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-sm font-bold text-[#0D1733] dark:text-white leading-snug">
+                        {cap.name}
+                      </h3>
+                      {desc && (
+                        <p className="mt-1 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                          {desc}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </SectionHeadingContainer>
+        </div>
+      </section>
+    );
+  }
+
   // Repeat sequence 4 times for seamless mobile marquee
   const trackItems = [
     ...capabilities,

@@ -12,6 +12,8 @@ import {
   HardDrive,
   AlertTriangle,
   Monitor,
+  MonitorPlay,
+  PlaySquare,
   Cpu,
   Gauge,
   Target,
@@ -187,11 +189,26 @@ export const VIDEO_SURVEILLANCE_DATA = {
   ctaDescription: 'Get in touch with our team to discuss your requirements.',
   ctaSecondaryButtonText: 'Contact Our Team →',
   keyCapabilities: [
-    { name: 'Multi-Camera Recording', icon: Video },
-    { name: 'Live Video Monitoring', icon: BrainCircuit },
-    { name: 'Video Playback & Retrieval', icon: Users },
-    { name: 'Video Management', icon: Layers },
-    { name: 'Smart Recording Systems', icon: HardDrive }
+    {
+      name: 'Multi-Camera Recording',
+      description: 'Recording video from multiple IP cameras.',
+      icon: Video
+    },
+    {
+      name: 'Live Video Monitoring',
+      description: 'Viewing camera feeds through local and web interfaces.',
+      icon: MonitorPlay
+    },
+    {
+      name: 'Video Playback & Retrieval',
+      description: 'Accessing and reviewing recorded video.',
+      icon: PlaySquare
+    },
+    {
+      name: 'Video Management',
+      description: 'Managing cameras, recording and system operations.',
+      icon: Layers
+    }
   ],
   overview: [
     'Proactive edge video intelligence transforming conventional CCTV streams into real-time threat detection networks.',

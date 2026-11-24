@@ -260,7 +260,6 @@ export default function SectionHeadingContainer({
               {description}
             </p>
           )}
-          {children}
         </div>
 
         {/* Optional Right Content (e.g. badge, action, or custom count) */}
@@ -270,6 +269,13 @@ export default function SectionHeadingContainer({
           </div>
         )}
       </div>
+
+      {/* ── Optional Children (e.g. composite card grids) ── */}
+      {children && (
+        <div className="relative z-10 w-full min-w-0 mt-5 sm:mt-6">
+          {children}
+        </div>
+      )}
     </div>
   );
 }
