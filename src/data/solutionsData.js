@@ -114,7 +114,7 @@ export const SOLUTIONS_MAP = {
     category: 'Vehicle & Mobility Solutions',
     title: 'Automatic Number Plate Recognition (ANPR)',
     subtitle: 'High-speed multi-lane license plate capture, character segmentation, and vehicle classification at the edge.',
-    heroImage: '/images/AI Traffic Surveillance with Plate Detection.png',
+    heroImage: '/images/AI Traffic Surveillance Dashboard.png',
     overview: [
       'AIEGX ANPR / LPR edge platforms provide deterministic license plate detection and character recognition at vehicle speeds exceeding 160 km/h, eliminating costly cloud streaming bandwidth.',
       'Utilizing Renesas RZ/V2H multi-core vision MPUs with DRP-AI neural acceleration, the system performs simultaneous vehicle detection, country/state plate localization, OCR character recognition, and color/make classification.',
@@ -142,7 +142,7 @@ export const SOLUTIONS_MAP = {
     category: 'Vehicle & Mobility Solutions',
     title: 'Vehicle Detection Camera',
     subtitle: 'Intelligent traffic monitoring sensor combining global-shutter imaging with edge neural classification.',
-    heroImage: '/images/Electric Bus at Smart City Stop.png',
+    heroImage: '/images/vdc-zone-detection.png',
     overview: [
       'AIEGX Vehicle Detection Cameras integrate high-resolution CMOS image sensors directly with Renesas RZ/V Series vision microprocessors in a compact, thermally optimized enclosure.',
       'Designed for smart intersections, highway incident detection, and priority transit dispatch, the camera calculates vehicle queue lengths, average traffic velocities, and stopped-vehicle incidents on-die.',

@@ -164,7 +164,7 @@ export const SUBSOLUTIONS_DATA = {
     title: 'Automatic Number Plate Recognition (ANPR)',
     subtitle:
       'AI-based vehicle recognition solution developed on the Renesas RZ/V2H Evaluation Kit, supporting four RTSP camera streams for number plate recognition, vehicle classification, manufacturer logo detection and speed estimation.',
-    heroImage: '/images/AI Traffic Surveillance with Plate Detection.png',
+    heroImage: '/images/AI Traffic Surveillance Dashboard.png',
     primaryButtonText: 'Contact Our Team',
     secondaryButtonText: 'Explore Features',
     secondaryTab: 'key-features',
@@ -252,7 +252,7 @@ export const SUBSOLUTIONS_DATA = {
     title: 'Vehicle Detection Camera (VDC)',
     subtitle:
       'AI-based vehicle detection and classification solution developed on the Renesas RZ/V2H EVK, supporting five camera streams, vehicle recognition and zone-based occupancy monitoring.',
-    heroImage: '/images/vdc-zone-detection.jpg',
+    heroImage: '/images/vdc-zone-detection.png',
     primaryButtonText: 'Contact Our Team',
     secondaryButtonText: 'Explore Features',
     secondaryTab: 'key-features',

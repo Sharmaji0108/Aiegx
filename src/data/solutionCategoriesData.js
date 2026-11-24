@@ -124,7 +124,7 @@ export const VEHICLE_MOBILITY_DATA = {
       id: 'anpr-systems',
       title: 'Automatic Number Plate Recognition (ANPR)',
       status: null,
-      image: '/images/AI Traffic Surveillance with Plate Detection.png',
+      image: '/images/AI Traffic Surveillance Dashboard.png',
       shortDescription:
         'Detect and recognize vehicle number plates with high accuracy in real-time environments.',
       keyFeatures: [
@@ -136,7 +136,7 @@ export const VEHICLE_MOBILITY_DATA = {
       id: 'vehicle-detection-camera',
       title: 'Vehicle Detection Camera (VDC)',
       status: null,
-      image: '/images/vdc-zone-detection.jpg',
+      image: '/images/vdc-zone-detection.png',
       shortDescription:
         'Detect and monitor vehicles for traffic management, safety and automation.',
       keyFeatures: [
