@@ -23,6 +23,7 @@ import {
   ArrowRight,
   ChevronLeft,
   ChevronRight,
+  Mail,
 } from 'lucide-react';
 import { navigateTo } from '../../utils/navigation';
 
@@ -67,6 +68,7 @@ const solutions = [
     image: '/images/Automated Gear Inspection Line.png',
     imageAlt: 'Automated Gear Inspection Line',
     features: [],
+    buttonText: 'Contact Our Team',
     buttonHref: '#contact',
     ctaGradient: false,
     href: '/solutions/industrial-machine-vision',
@@ -172,14 +174,25 @@ function SolutionCard({ solution, className = '' }) {
 
       {/* ── Full-width Explore Solutions CTA Button ── */}
       <div className="mt-auto pt-3">
-        <a
-          href={solution.buttonHref || solution.href}
-          onClick={(e) => navigateTo(solution.buttonHref || solution.href, e)}
-          className="explore-btn text-xs py-2"
-        >
-          <span>Explore Solutions</span>
-          <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
-        </a>
+        {solution.buttonText === 'Contact Our Team' ? (
+          <a
+            href={solution.buttonHref || '#contact'}
+            onClick={(e) => navigateTo(solution.buttonHref || '#contact', e)}
+            className="explore-btn text-xs py-2"
+          >
+            <span>Contact Our Team</span>
+            <Mail className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+          </a>
+        ) : (
+          <a
+            href={solution.buttonHref || solution.href}
+            onClick={(e) => navigateTo(solution.buttonHref || solution.href, e)}
+            className="explore-btn text-xs py-2"
+          >
+            <span>{solution.buttonText || 'Explore Solutions'}</span>
+            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+          </a>
+        )}
       </div>
     </div>
   );
