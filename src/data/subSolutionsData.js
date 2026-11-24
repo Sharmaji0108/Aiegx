@@ -14,13 +14,7 @@ import {
   Target,
   Eye,
   Zap,
-  HardDrive,
-  Tv,
-  Users,
-  ScanFace,
-  UserX,
-  Flame,
-  MoreHorizontal
+  HardDrive
 } from 'lucide-react';
 
 /**
@@ -281,69 +275,38 @@ export const SUBSOLUTIONS_DATA = {
   'nvr-systems': {
     slug: 'nvr-systems',
     category: 'Video & Surveillance Solutions',
-    title: 'Mobile Network Video Recorder (MNVR)',
-    status: 'In Development',
-    subtitle:
-      'An integrated video management solution for multi-camera recording, live monitoring, playback and AI-enabled video analytics.',
-    heroImage: '/images/mnvr-live-view.jpg',
-    primaryButtonText: 'Contact Our Team',
-    secondaryButtonText: 'Explore Features',
-    secondaryTab: 'key-features',
-    highlights: [
-      { label: '8 Camera Channels', icon: Video },
-      { label: 'Full HD Recording', icon: Tv },
-      { label: 'AI Video Analytics', icon: Cpu }
-    ],
-    ctaHeading: 'Interested in Our Mobile Network Video Recorder (MNVR)?',
-    ctaDescription: 'Get in touch with our team to discuss your requirements.',
-    ctaButtonText: 'Contact Our Team',
+    title: 'Network Video Recorder (NVR)',
+    subtitle: 'Multi-channel edge recording platform with hardware video decoding and on-device neural indexing on NVMe storage.',
+    heroImage: '/images/AI City Surveillance Camera.png',
     overview: {
-      eyebrow: 'SOLUTION OVERVIEW',
-      heading: 'Overview',
-      summary:
-        'A comprehensive video management solution that enables multi-camera recording, live monitoring, video playback, system management and AI-based video analytics in a single integrated platform.'
+      heading: 'Multi-Channel High-Throughput Edge Network Video Recorder',
+      summary: 'Heavy-duty, fanless edge recording appliance engineered for high-bitrate multi-stream H.264/H.265 video capture, local NVMe storage, and on-device neural metadata indexing.',
+      purpose: 'Provide tamper-resistant, 24/7 video recording and rapid forensic AI search across dozens of IP camera streams without cloud storage costs.',
+      problem: 'High monthly cloud bandwidth and storage fees, network bottleneck vulnerabilities during emergencies, and slow manual forensic video reviews across hundreds of hours of raw footage.',
+      aiegxRole: 'AIEGX combines high-bandwidth storage interfaces (SATA/PCIe Gen3 NVMe) and multi-stream hardware video decoders in Renesas RZ/G2N and RZ/V2H platforms to deliver high-capacity recording and real-time metadata tagging.'
     },
     features: [
-      {
-        title: 'Multi-Camera Recording',
-        desc: 'Recording video from multiple IP cameras.'
-      },
-      {
-        title: 'Live Video Monitoring',
-        desc: 'Viewing camera feeds through local display and web interface.'
-      },
-      {
-        title: 'Video Playback & Retrieval',
-        desc: 'Searching and reviewing recorded video.'
-      },
-      {
-        title: 'Video Management',
-        desc: 'Camera configuration, health monitoring and diagnostics.'
-      },
-      {
-        title: 'Storage Management',
-        desc: 'Managing recorded video and storage resources.'
-      },
-      {
-        title: 'System Integration',
-        desc: 'Integration with external systems through secure interfaces.'
-      }
+      { title: 'Multi-Channel Hardware Video Decoding', desc: 'Hardware-accelerated decoding of up to 16x 1080p or 4x 4K H.264/H.265 camera streams.' },
+      { title: 'High-Sustained NVMe / SATA Throughput', desc: 'Dedicated PCIe Gen3 and SATA interfaces guarantee jitter-free concurrent multi-drive writes.' },
+      { title: 'Real-Time Metadata Indexing', desc: 'Neural engines tag timestamps with vehicle, person, and object metadata for instant forensic queries.' },
+      { title: 'Tamper-Resistant Cryptographic Storage', desc: 'Hardware Root of Trust with AES-256 encrypted storage volumes prevents unauthorized data extraction.' },
+      { title: '24/7 Fanless Industrial Operation', desc: 'Conduction-cooled design with zero moving parts qualified for round-the-clock enterprise reliability.' }
     ],
-    analytics: {
-      title: 'AI Video Analytics',
-      desc: 'AI-enabled video analytics for automated detection and event monitoring.',
-      items: [
-        { label: 'Overcrowding Detection', icon: Users },
-        { label: 'Face Cropping', icon: ScanFace },
-        { label: 'Fallen Person Detection', icon: UserX },
-        { label: 'Smoke & Fire Detection', icon: Flame },
-        { label: 'More Analytics', icon: MoreHorizontal }
-      ]
-    },
-    highlightsList: [
-      '8-channel Full HD (1920 × 1080) recording.',
-      'Integrated video management with live view, playback and system control.',
-      'AI-driven analytics for enhanced situational awareness.'
+    architecture: [
+      { step: '01', title: 'Multi-Channel IP Cameras', desc: 'Distributed surveillance cameras streaming ONVIF / RTSP video', icon: Camera },
+      { step: '02', title: 'RTSP Stream Ingestion', desc: 'Gigabit Ethernet network interface ingesting concurrent multi-channel camera feeds', icon: Server },
+      { step: '03', title: 'Hardware Video Decoding', desc: 'Hardware H.264/H.265 multi-stream video decoding with minimal CPU overhead', icon: Cpu },
+      { step: '04', title: 'Real-Time Metadata Indexing', desc: 'Neural feature extraction generating forensic searchable tags for persons and vehicles', icon: BrainCircuit },
+      { step: '05', title: 'NVMe Storage & Streaming', desc: 'Zero-loss recording to local high-speed SSDs and encrypted client playback streaming', icon: Database }
+    ],
+    specifications: [
+      { label: 'Camera Interface', value: '8 to 16 channels @ 1080p30 or 4 channels @ 4K30 concurrent RTSP streams' },
+      { label: 'Video Input / Resolution', value: 'Hardware H.264 / H.265 (HEVC), MJPEG decoding up to 4K resolution' },
+      { label: 'Processing Capabilities', value: 'Dual Arm Cortex-A57 @ 1.5GHz (RZ/G2N) or Quad Cortex-A55 @ 1.2GHz (RZ/V2H)' },
+      { label: 'AI Inference', value: 'Integrated DRP-AI hardware acceleration (up to 10 TOPS on RZ/V2H)' },
+      { label: 'Connectivity / Interfaces', value: 'Dual Gigabit Ethernet ports (isolated WAN/LAN architecture), M.2 NVMe, SATA III' },
+      { label: 'Platform Support', value: 'Renesas RZ/G2N Development Platform / Renesas RZ/V2H Complete SBC' },
+      { label: 'Operating Temperature', value: '-40°C to +75°C fanless conduction cooled' }
     ]
   },
 

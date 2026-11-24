@@ -10,15 +10,10 @@ import {
   Car,
   Shield,
   Gauge,
-  Cpu,
-  Play,
-  Monitor,
-  Sliders,
-  HardDrive,
-  Share2
+  Cpu
 } from 'lucide-react';
 
-export function getFeatureIcon(title = '') {
+function getFeatureIcon(title = '') {
   const lower = title.toLowerCase();
   if (lower.includes('eye') || lower.includes('drowsiness') || lower.includes('closure')) {
     return Eye;
@@ -32,22 +27,7 @@ export function getFeatureIcon(title = '') {
   if (lower.includes('yawn') || lower.includes('fatigue')) {
     return Smile;
   }
-  if (lower.includes('playback') || lower.includes('retrieval')) {
-    return Play;
-  }
-  if (lower.includes('monitoring') || lower.includes('live video')) {
-    return Monitor;
-  }
-  if (lower.includes('storage')) {
-    return HardDrive;
-  }
-  if (lower.includes('management') || lower.includes('configuration')) {
-    return Sliders;
-  }
-  if (lower.includes('integration')) {
-    return Share2;
-  }
-  if (lower.includes('camera') || lower.includes('stream') || lower.includes('recording')) {
+  if (lower.includes('camera') || lower.includes('stream') || lower.includes('multi-camera')) {
     return Video;
   }
   if (lower.includes('plate') || lower.includes('number plate') || lower.includes('registration') || lower.includes('zone') || lower.includes('occupancy')) {

@@ -38,13 +38,7 @@ export const SOLUTIONS_CATEGORIES = [
     href: '/solutions/video-surveillance',
     icon: Video,
     items: [
-      {
-        name: 'Mobile Network Video Recorder (MNVR)',
-        href: '/solutions/nvr-systems',
-        slug: 'nvr-systems',
-        badge: 'In Development',
-        description: 'An embedded video recording and management system designed for multi-camera recording, live viewing and video playback.'
-      },
+      { name: 'Mobile Network Video Recorder (MNVR)', href: '/solutions/nvr-systems', slug: 'nvr-systems', badge: 'In Development' },
     ],
   },
   {
