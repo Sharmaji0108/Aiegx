@@ -800,6 +800,11 @@ export const SUBSOLUTIONS_DATA = {
       '10+ Year Longevity',
       'Deterministic Edge AI'
     ],
+    tabs: [
+      { id: 'overview', label: 'Overview' },
+      { id: 'key-features', label: 'Key Features' },
+      { id: 'specifications', label: 'Specifications' }
+    ],
     overview: {
       eyebrow: 'SOLUTION OVERVIEW',
       heading: 'Overview',
@@ -849,13 +854,6 @@ export const SUBSOLUTIONS_DATA = {
         value: 'Embedded Image Processing',
         icon: Settings
       }
-    ],
-    architecture: [
-      { step: '01', title: 'EO/IR Sensor Head', desc: 'High-speed optical or uncooled microbolometer thermal sensor head', icon: Eye },
-      { step: '02', title: 'Image Preprocessing', desc: 'Hardware non-uniformity correction (NUC), bad pixel replacement & image stabilization', icon: Scan },
-      { step: '03', title: 'Centroid Tracker', desc: 'Sub-milliradian neural network estimating target line-of-sight angles at 120 FPS', icon: BrainCircuit },
-      { step: '04', title: 'Flight State Estimation', desc: 'Visual-inertial odometry fusion with IMU gyroscope and accelerometer telemetry', icon: Cpu },
-      { step: '05', title: 'Autopilot Guidance Bus', desc: 'Ultra-low latency deterministic serial bus outputting steering commands to control fins', icon: Activity }
     ]
   },
 
