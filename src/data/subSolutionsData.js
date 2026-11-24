@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Camera,
   Cpu,
@@ -9,6 +10,15 @@ import {
   Activity,
   Layers,
   Monitor,
+  MonitorPlay,
+  PlaySquare,
+  Sliders,
+  Share2,
+  Users,
+  ScanFace,
+  Flame,
+  MoreHorizontal,
+  Info,
   Shield,
   Video,
   Target,
@@ -16,6 +26,24 @@ import {
   Zap,
   HardDrive
 } from 'lucide-react';
+
+function FallenPersonIcon(props) {
+  return React.createElement(
+    'svg',
+    {
+      viewBox: '0 0 24 24',
+      fill: 'none',
+      stroke: 'currentColor',
+      strokeWidth: '2',
+      strokeLinecap: 'round',
+      strokeLinejoin: 'round',
+      ...props
+    },
+    React.createElement('circle', { cx: '5', cy: '18', r: '2' }),
+    React.createElement('path', { d: 'M7 16l4-3 3 2 4-4' }),
+    React.createElement('path', { d: 'M11 13l2 4 4 1' })
+  );
+}
 
 /**
  * Comprehensive, verified sub-solutions configuration across all 4 AIEGX categories.
@@ -297,18 +325,58 @@ export const SUBSOLUTIONS_DATA = {
       { id: 'specifications', label: 'Specifications' }
     ],
     overview: {
-      heading: 'Multi-Channel High-Throughput Edge Network Video Recorder',
-      summary: 'Heavy-duty, fanless edge recording appliance engineered for high-bitrate multi-stream H.264/H.265 video capture, local NVMe storage, and on-device neural metadata indexing.',
-      purpose: 'Provide tamper-resistant, 24/7 video recording and rapid forensic AI search across dozens of IP camera streams without cloud storage costs.',
-      problem: 'High monthly cloud bandwidth and storage fees, network bottleneck vulnerabilities during emergencies, and slow manual forensic video reviews across hundreds of hours of raw footage.',
-      aiegxRole: 'AIEGX combines high-bandwidth storage interfaces (SATA/PCIe Gen3 NVMe) and multi-stream hardware video decoders in Renesas RZ/G2N and RZ/V2H platforms to deliver high-capacity recording and real-time metadata tagging.'
+      eyebrow: 'SOLUTION OVERVIEW',
+      heading: 'Overview',
+      summary:
+        'A comprehensive video management solution that enables multi-camera recording, live monitoring, video playback, system management and AI-based video analytics in a single integrated platform.'
     },
     features: [
-      { title: 'Multi-Channel Hardware Video Decoding', desc: 'Hardware-accelerated decoding of up to 16x 1080p or 4x 4K H.264/H.265 camera streams.' },
-      { title: 'High-Sustained NVMe / SATA Throughput', desc: 'Dedicated PCIe Gen3 and SATA interfaces guarantee jitter-free concurrent multi-drive writes.' },
-      { title: 'Real-Time Metadata Indexing', desc: 'Neural engines tag timestamps with vehicle, person, and object metadata for instant forensic queries.' },
-      { title: 'Tamper-Resistant Cryptographic Storage', desc: 'Hardware Root of Trust with AES-256 encrypted storage volumes prevents unauthorized data extraction.' },
-      { title: '24/7 Fanless Industrial Operation', desc: 'Conduction-cooled design with zero moving parts qualified for round-the-clock enterprise reliability.' }
+      {
+        title: 'Multi-Camera Recording',
+        desc: 'Recording video from multiple IP cameras.',
+        icon: Video
+      },
+      {
+        title: 'Live Video Monitoring',
+        desc: 'Viewing camera feeds through local display and web interfaces.',
+        icon: MonitorPlay
+      },
+      {
+        title: 'Video Playback & Retrieval',
+        desc: 'Searching and reviewing recorded video.',
+        icon: PlaySquare
+      },
+      {
+        title: 'Video Management',
+        desc: 'Camera configuration, health monitoring and diagnostics.',
+        icon: Sliders
+      },
+      {
+        title: 'Storage Management',
+        desc: 'Managing recorded video and storage resources.',
+        icon: Database
+      },
+      {
+        title: 'System Integration',
+        desc: 'Integration with external systems through secure interfaces.',
+        icon: Share2
+      }
+    ],
+    analytics: {
+      title: 'AI Video Analytics',
+      desc: 'AI-enabled video analytics for automated detection and event monitoring.',
+      items: [
+        { label: 'Overcrowding Detection', icon: Users },
+        { label: 'Face Cropping', icon: ScanFace },
+        { label: 'Fallen Person Detection', icon: FallenPersonIcon },
+        { label: 'Smoke & Fire Detection', icon: Flame },
+        { label: 'More Analytics', icon: MoreHorizontal }
+      ]
+    },
+    highlightsList: [
+      '8-channel Full HD (1920 × 1080) recording',
+      'Integrated video management with live view, playback and system control',
+      'AI-driven analytics for enhanced situational awareness'
     ],
     architecture: [
       { step: '01', title: 'Multi-Channel IP Cameras', desc: 'Distributed surveillance cameras streaming ONVIF / RTSP video', icon: Camera },

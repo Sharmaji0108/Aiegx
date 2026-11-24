@@ -11,7 +11,7 @@ import {
 import ProductBreadcrumb from '../../products/ProductBreadcrumb';
 import SubSolutionTabs from './SubSolutionTabs';
 import SubSolutionOverview from './SubSolutionOverview';
-import SubSolutionFeatures from './SubSolutionFeatures';
+import SubSolutionFeatures, { getFeatureIcon } from './SubSolutionFeatures';
 import SubSolutionArchitecture from './SubSolutionArchitecture';
 import SubSolutionSpecs from './SubSolutionSpecs';
 import { ProductEnquiryModal } from '../../products/ProductEnquiry';
@@ -198,11 +198,101 @@ export default function SubSolutionPage({ slug, data: propData }) {
             <SubSolutionOverview overview={data.overview} title={data.title} />
           </section>
 
-          {/* 2. Key Features Section */}
-          {data.features && data.features.length > 0 && (
-            <section id="key-features" className="scroll-mt-32 sm:scroll-mt-36">
-              <SubSolutionFeatures features={data.features} />
-            </section>
+          {/* 2. Key Features & Analytics/Highlights */}
+          {(data.analytics || data.highlightsList) ? (
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+              {/* Left Column: Key Features */}
+              <section id="key-features" className="lg:col-span-7 xl:col-span-7 scroll-mt-32 sm:scroll-mt-36 bg-white/90 dark:bg-[#101936]/90 backdrop-blur-xs rounded-2xl border border-[#DCE8F5] dark:border-white/10 shadow-xs p-6 sm:p-7 transition-colors duration-300">
+                <div className="mb-5">
+                  <h2 className="text-xl sm:text-2xl font-bold text-[#14213D] dark:text-white tracking-tight">
+                    Key Features
+                  </h2>
+                  <div className="w-8 h-1 bg-[#089EC2] dark:bg-[#2DD4F0] rounded-full mt-2" />
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4">
+                  {data.features.map((feat, idx) => {
+                    const IconComponent = feat.icon || getFeatureIcon(feat.title);
+                    return (
+                      <div
+                        key={idx}
+                        className="flex flex-col p-4 rounded-xl bg-gradient-to-br from-[#F8FAFD] to-[#F1F6FC] dark:from-[#132247]/70 dark:to-[#0f1a38]/80 border border-[#DCE8F5] dark:border-white/10 shadow-2xs hover:border-[#089EC2]/40 dark:hover:border-[#2DD4F0]/40 transition-all duration-200"
+                      >
+                        <div className="w-10 h-10 rounded-xl bg-white dark:bg-[#17264D] border border-[#CDE1F5] dark:border-[#244277] flex items-center justify-center shrink-0 text-[#089EC2] dark:text-[#2DD4F0] shadow-2xs mb-3">
+                          <IconComponent className="w-5 h-5" />
+                        </div>
+                        <h3 className="text-sm font-bold text-[#14213D] dark:text-white leading-snug mb-1.5">
+                          {feat.title}
+                        </h3>
+                        {feat.desc && (
+                          <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
+                            {feat.desc}
+                          </p>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </section>
+
+              {/* Right Column: AI Video Analytics & Highlights */}
+              <div className="lg:col-span-5 xl:col-span-5 space-y-6">
+                {/* AI Video Analytics Card */}
+                {data.analytics && (
+                  <section id="ai-analytics" className="bg-white/90 dark:bg-[#101936]/90 backdrop-blur-xs rounded-2xl border border-[#DCE8F5] dark:border-white/10 shadow-xs p-6 sm:p-7 transition-colors duration-300">
+                    <h2 className="text-xl sm:text-2xl font-bold text-[#14213D] dark:text-white tracking-tight">
+                      {data.analytics.title || 'AI Video Analytics'}
+                    </h2>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 mb-5">
+                      {data.analytics.desc}
+                    </p>
+                    <div className="grid grid-cols-5 gap-2">
+                      {data.analytics.items.map((item, aIdx) => {
+                        const ItemIcon = item.icon || Cpu;
+                        return (
+                          <div key={aIdx} className="flex flex-col items-center text-center group">
+                            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white dark:bg-[#17264D] border border-[#CDE1F5] dark:border-[#244277] flex items-center justify-center text-[#089EC2] dark:text-[#2DD4F0] shadow-2xs mb-2 group-hover:border-[#089EC2] transition-colors">
+                              <ItemIcon className="w-5 h-5" />
+                            </div>
+                            <span className="text-[11px] font-semibold text-[#14213D] dark:text-slate-200 leading-tight">
+                              {item.label}
+                            </span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </section>
+                )}
+
+                {/* Highlights Card */}
+                {data.highlightsList && (
+                  <section id="highlights" className="bg-white/90 dark:bg-[#101936]/90 backdrop-blur-xs rounded-2xl border border-[#DCE8F5] dark:border-white/10 shadow-xs p-6 sm:p-7 transition-colors duration-300">
+                    <div className="mb-4">
+                      <h2 className="text-xl sm:text-2xl font-bold text-[#14213D] dark:text-white tracking-tight">
+                        Highlights
+                      </h2>
+                      <div className="w-8 h-1 bg-[#089EC2] dark:bg-[#2DD4F0] rounded-full mt-2" />
+                    </div>
+                    <ul className="space-y-3">
+                      {data.highlightsList.map((hl, hlIdx) => (
+                        <li key={hlIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-200 font-medium">
+                          <CheckCircle2 className="w-4 h-4 text-[#0066FF] dark:text-[#38BDF8] shrink-0 mt-0.5" />
+                          <span>{hl}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
+                )}
+              </div>
+            </div>
+          ) : (
+            <>
+              {/* Default Key Features Section */}
+              {data.features && data.features.length > 0 && (
+                <section id="key-features" className="scroll-mt-32 sm:scroll-mt-36">
+                  <SubSolutionFeatures features={data.features} />
+                </section>
+              )}
+            </>
           )}
 
           {/* 3. Specifications Section */}

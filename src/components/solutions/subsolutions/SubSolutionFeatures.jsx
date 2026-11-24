@@ -13,7 +13,7 @@ import {
   Cpu
 } from 'lucide-react';
 
-function getFeatureIcon(title = '') {
+export function getFeatureIcon(title = '') {
   const lower = title.toLowerCase();
   if (lower.includes('eye') || lower.includes('drowsiness') || lower.includes('closure')) {
     return Eye;
