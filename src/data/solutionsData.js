@@ -450,7 +450,7 @@ export const SOLUTIONS_MAP = {
     category: 'Defence & Advanced Vision Solutions',
     title: 'Seeker',
     subtitle: 'An embedded vision solution under development for real-time aerial object detection and tracking using camera-based image processing.',
-    heroImage: '/images/Futuristic Mountain Surveillance HUD.png',
+    heroImage: '/images/Aerial Object Detection Drone.png',
     badge: 'In Development',
     overview: [
       'AIEGX Seeker platforms integrate multi-spectral imaging with dedicated Renesas DRP-AI neural acceleration to deliver autonomous terminal guidance and target acquisition in GPS-denied environments.',

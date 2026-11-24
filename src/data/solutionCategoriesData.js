@@ -518,7 +518,7 @@ export const DEFENCE_VISION_DATA = {
       title: 'Seeker',
       status: 'In Development',
       badge: 'In Development',
-      image: '/images/Futuristic Mountain Surveillance HUD.png',
+      image: '/images/Aerial Object Detection Drone.png',
       shortDescription:
         'An embedded vision solution under development for real-time aerial object detection and tracking using camera-based image processing.',
       keyFeatures: [
@@ -540,7 +540,7 @@ export const DEFENCE_VISION_DATA = {
     {
       id: 'target-tracking-recognition',
       title: 'Target Tracking & Recognition',
-      image: '/images/Futuristic Mountain Surveillance HUD.png',
+      image: '/images/Aerial Object Detection Drone.png',
       shortDescription:
         'Neural multi-target tracking maintaining lock through smoke, foliage, and visual occlusions.',
       keyFeatures: [

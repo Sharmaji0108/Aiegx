@@ -792,7 +792,7 @@ export const SUBSOLUTIONS_DATA = {
     status: 'In Development',
     subtitle:
       'An embedded vision solution under development for real-time aerial object detection and tracking using camera-based image processing.',
-    heroImage: '/images/Futuristic Mountain Surveillance HUD.png',
+    heroImage: '/images/Aerial Object Detection Drone.png',
     imageOverlayLabel: 'Aerial Object',
     imageConceptLabel: 'Illustrative Concept',
     highlights: [
@@ -900,7 +900,7 @@ export const SUBSOLUTIONS_DATA = {
     category: 'Defence & Advanced Vision Solutions',
     title: 'Target Tracking & Recognition',
     subtitle: 'Neural multi-target tracking maintaining lock through smoke, foliage, and visual occlusions.',
-    heroImage: '/images/Futuristic Mountain Surveillance HUD.png',
+    heroImage: '/images/Aerial Object Detection Drone.png',
     overview: {
       heading: 'Multi-Target Optical Tracking & Autonomous Recognition System',
       summary: 'Real-time kinematic tracking and neural target recognition engine engineered for remote weapon stations, counter-UAS turrets, and unmanned aerial sensor gimbals.',
