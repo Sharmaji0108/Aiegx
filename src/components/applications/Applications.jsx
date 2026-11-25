@@ -75,7 +75,7 @@ const solutions = [
     imageAlt: 'Automated Gear Inspection Line',
     subtopics: [],
     buttonText: 'Contact Our Team',
-    buttonHref: '#contact',
+    buttonHref: '/contact-us',
     ctaGradient: false,
     href: '/solutions/industrial-machine-vision',
   },
@@ -280,10 +280,10 @@ function SolutionCard({ solution, className = '' }) {
           <div className="mt-auto pt-3">
             {solution.buttonText === 'Contact Our Team' ? (
               <a
-                href={solution.buttonHref || '#contact'}
+                href={solution.buttonHref || '/contact-us'}
                 onClick={(e) => {
                   e.stopPropagation();
-                  navigateTo(solution.buttonHref || '#contact', e);
+                  navigateTo(solution.buttonHref || '/contact-us', e);
                 }}
                 className="explore-btn text-xs py-2 w-full"
               >

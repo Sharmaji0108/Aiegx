@@ -161,8 +161,8 @@ export default function SolutionCategoryTemplate({ data }) {
 
           <div className="mt-6 flex flex-col sm:flex-row items-center gap-3">
             <a
-              href="#contact"
-              onClick={(e) => navigateTo('#contact', e)}
+              href="/contact-us"
+              onClick={(e) => navigateTo('/contact-us', e)}
               className="px-6 py-3.5 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-[#17264D] hover:bg-slate-50 dark:hover:bg-[#1E3360] border border-slate-200 dark:border-white/10 cursor-pointer transition-colors"
             >
               {data.ctaSecondaryButtonText || 'Contact Our Team'}
