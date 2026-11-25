@@ -451,7 +451,7 @@ export const DEFENCE_VISION_DATA = {
     'Explore our embedded vision solution under development.',
   description:
     'Embedded vision and image-processing solutions for advanced sensing, detection and tracking applications.',
-  heroImage: '/images/Realistic Outdoor Surveillance Camera Close-Up.png',
+  heroImage: '/images/Aerial Object Detection Drone.png',
   imageConceptLabel: 'Illustrative Concept',
   featureHighlights: [
     'MIL-STD-810H & SWaP-C',
