@@ -8,7 +8,6 @@ import {
   Server,
   ChevronRight,
   MessageSquare,
-  Sparkles,
   ExternalLink,
   Shield,
   Clock,
@@ -21,7 +20,6 @@ import SectionHeadingContainer from '../common/SectionHeadingContainer';
 import KeyCapabilities from './KeyCapabilities';
 import OurSolutions from './OurSolutions';
 import { ProductEnquiryModal } from '../products/ProductEnquiry';
-import { navigateTo } from '../../utils/navigation';
 
 export default function SolutionCategoryTemplate({ data }) {
   const [enquiryModalOpen, setEnquiryModalOpen] = useState(false);
@@ -142,41 +140,6 @@ export default function SolutionCategoryTemplate({ data }) {
 
       {/* ── 3. Our Solutions Section ── */}
       <OurSolutions categoryId={data.id} data={data} />
-
-      {/* ── 4. Contact Us / Discuss Your Project CTA ── */}
-      <section className="py-14 sm:py-20 relative bg-gradient-to-b from-[#F5F8FC] to-blue-50/50 dark:from-[#0D1733] dark:to-[#081026] text-center">
-        <div className="section-container max-w-3xl mx-auto flex flex-col items-center">
-          <div className="w-12 h-12 rounded-2xl bg-blue-100 dark:bg-[#17264D] text-[#089EC2] dark:text-[#2DD4F0] flex items-center justify-center mb-4 shadow-sm">
-            <Sparkles className="w-6 h-6" />
-          </div>
-
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#14213D] dark:text-white tracking-tight">
-            {data.ctaHeading || `Ready to Accelerate Your ${data.title}?`}
-          </h2>
-
-          <p className="mt-3 text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-xl leading-relaxed">
-            {data.ctaDescription ||
-              'Connect with our engineering team to discuss solution customization, integration and technical requirements.'}
-          </p>
-
-          <div className="mt-6 flex flex-col sm:flex-row items-center gap-3">
-            <button
-              type="button"
-              onClick={() => handleOpenEnquiry(data.title)}
-              className="px-7 py-3.5 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-[#089EC2] to-[#0284C7] hover:from-[#0aa8cf] hover:to-[#0394de] shadow-lg shadow-[#089EC2]/25 cursor-pointer active:scale-95 transition-all"
-            >
-              Discuss Your Project
-            </button>
-            <a
-              href="#contact"
-              onClick={(e) => navigateTo('#contact', e)}
-              className="px-6 py-3.5 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-[#17264D] hover:bg-slate-50 dark:hover:bg-[#1E3360] border border-slate-200 dark:border-white/10 cursor-pointer transition-colors"
-            >
-              {data.ctaSecondaryButtonText || 'Contact Our Team'}
-            </a>
-          </div>
-        </div>
-      </section>
 
       {/* Product Enquiry Modal */}
       {enquiryModalOpen && (

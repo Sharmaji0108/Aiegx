@@ -4,9 +4,7 @@ import {
   Sparkles,
   CheckCircle2,
   Cpu,
-  Layers,
-  Rocket,
-  ArrowRight
+  Layers
 } from 'lucide-react';
 import ProductBreadcrumb from '../../products/ProductBreadcrumb';
 import SubSolutionTabs from './SubSolutionTabs';
@@ -16,7 +14,6 @@ import SubSolutionArchitecture from './SubSolutionArchitecture';
 import SubSolutionSpecs from './SubSolutionSpecs';
 import { ProductEnquiryModal } from '../../products/ProductEnquiry';
 import { SUBSOLUTIONS_DATA } from '../../../data/subSolutionsData';
-import { navigateTo } from '../../../utils/navigation';
 
 export default function SubSolutionPage({ slug, data: propData }) {
   const [activeTab, setActiveTab] = useState('overview');
@@ -312,46 +309,6 @@ export default function SubSolutionPage({ slug, data: propData }) {
           )}
         </div>
       </div>
-
-      {/* ── Consultation / Solution Enquiry CTA Banner ── */}
-      <section className="relative py-7 sm:py-9 bg-gradient-to-r from-[#F0F7FF] via-[#E8F3FE] to-[#F1F7FF] dark:from-[#0B142D] dark:via-[#0F1C3F] dark:to-[#0B142D] border-t border-[#DCE8F5] dark:border-white/10 overflow-hidden transition-colors duration-300">
-        {/* Subtle curved / diagonal decorative background elements */}
-        <div className="absolute right-0 top-0 bottom-0 w-2/5 bg-gradient-to-l from-blue-200/30 to-transparent dark:from-blue-600/10 pointer-events-none rounded-l-full blur-2xl" />
-        <div className="absolute right-1/4 -top-24 w-72 h-72 bg-blue-400/15 dark:bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -left-12 -bottom-12 w-48 h-48 bg-[#089EC2]/10 dark:bg-[#2DD4F0]/10 rounded-full blur-2xl pointer-events-none" />
-
-        <div className="section-container relative z-10 flex flex-col md:flex-row items-center justify-between gap-5 sm:gap-6">
-          {/* Left: Rocket Icon, Divider & Text */}
-          <div className="flex items-center gap-4 sm:gap-5 w-full md:w-auto">
-            <div className="w-12 h-12 rounded-full bg-white dark:bg-[#15234A] border border-blue-100/90 dark:border-white/10 shadow-xs flex items-center justify-center shrink-0">
-              <Rocket className="w-6 h-6 text-[#0066FF] dark:text-[#38BDF8]" />
-            </div>
-
-            <div className="hidden sm:block w-px h-8 bg-slate-300/70 dark:bg-white/15" />
-
-            <div className="flex flex-col">
-              <h2 className="text-base sm:text-lg lg:text-xl font-bold text-[#14213D] dark:text-white tracking-tight">
-                {data.ctaHeading || `Interested in our ${data.title}?`}
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-normal mt-0.5">
-                {data.ctaDescription || 'Get in touch with our team to discuss your requirements.'}
-              </p>
-            </div>
-          </div>
-
-          {/* Right: Single Blue CTA Button */}
-          <div className="w-full md:w-auto flex justify-start md:justify-end shrink-0">
-            <button
-              type="button"
-              onClick={() => setEnquiryModalOpen(true)}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm text-white bg-[#0066FF] hover:bg-[#0052cc] shadow-md shadow-blue-500/20 active:scale-98 transition-all cursor-pointer"
-            >
-              <span>{data.ctaButtonText || 'Contact Our Team'}</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
-      </section>
 
       {/* Enquiry Modal */}
       {enquiryModalOpen && (
