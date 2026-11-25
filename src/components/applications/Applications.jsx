@@ -260,12 +260,12 @@ function SolutionCard({ solution, className = '' }) {
           }}
         >
           {/* ── Header: Icon + Title + Flip-Back Button ── */}
-          <div className="flex items-center justify-between gap-2 mb-2 min-h-[40px]">
+          <div className="flex items-center justify-between gap-2 mb-2.5 min-h-[40px]">
             <div className="flex items-center gap-2.5 min-w-0">
               <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-[#EBF5FD] dark:bg-[#1A2C52] border border-[#C5DDF5] dark:border-[#244277] flex items-center justify-center shadow-2xs">
                 <CardIcon className="w-4.5 h-4.5 text-[#089EC2] dark:text-[#2DD4F0]" />
               </div>
-              <h3 className="text-sm sm:text-[14px] font-bold leading-snug text-[#14213D] dark:text-[#F8FAFC] truncate">
+              <h3 className="text-sm sm:text-[14.5px] font-bold leading-snug text-[#14213D] dark:text-[#F8FAFC]">
                 {solution.title}
               </h3>
             </div>
@@ -281,7 +281,7 @@ function SolutionCard({ solution, className = '' }) {
           </div>
 
           {/* ── Short Description ── */}
-          <p className="text-xs leading-relaxed text-[#52627C] dark:text-[#AAB6D0] mb-3 min-h-[36px] line-clamp-2">
+          <p className="text-xs leading-relaxed text-[#52627C] dark:text-[#AAB6D0] mb-3 min-h-[48px] sm:min-h-[52px]">
             {solution.backDescription || solution.description}
           </p>
 
@@ -325,11 +325,7 @@ function SolutionCard({ solution, className = '' }) {
               </div>
             </>
           ) : (
-            <div className="flex-1 flex flex-col justify-center text-center py-4 px-2">
-              <p className="text-xs leading-relaxed text-[#52627C] dark:text-[#AAB6D0]">
-                Contact our engineering team to explore custom hardware development, BSP engineering, and machine vision integration for your project.
-              </p>
-            </div>
+            <div className="flex-1" />
           )}
 
           {/* ── Bottom CTA Button ── */}
