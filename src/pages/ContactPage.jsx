@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductBreadcrumb from '../components/products/ProductBreadcrumb';
 import {
   Mail,
@@ -6,9 +6,6 @@ import {
   MapPin,
   Clock,
   Send,
-  UploadCloud,
-  FileText,
-  X,
   AlertCircle,
   CheckCircle2,
   Sparkles,
@@ -36,10 +33,6 @@ const PRODUCT_PLATFORMS = [
   'Not Sure Yet'
 ];
 
-const ALLOWED_EXTENSIONS = ['pdf', 'doc', 'docx', 'png', 'jpg', 'jpeg'];
-const MAX_FILE_SIZE_MB = 10;
-const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
-
 export default function ContactPage() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
@@ -57,13 +50,10 @@ export default function ContactPage() {
     projectDescription: ''
   });
 
-  const [fileAttachment, setFileAttachment] = useState(null);
-  const [fileError, setFileError] = useState('');
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null); // { type: 'success' | 'error', message: string }
-  const fileInputRef = useRef(null);
 
   const breadcrumbItems = [
     { label: 'Home', path: '/' },
@@ -126,41 +116,6 @@ export default function ContactPage() {
     setErrors((prev) => ({ ...prev, [name]: err }));
   };
 
-  const handleFileChange = (e) => {
-    setFileError('');
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    const extension = file.name.split('.').pop()?.toLowerCase();
-    if (!extension || !ALLOWED_EXTENSIONS.includes(extension)) {
-      setFileError(`Invalid file format. Supported formats: ${ALLOWED_EXTENSIONS.map((ext) => ext.toUpperCase()).join(', ')}.`);
-      setFileAttachment(null);
-      if (fileInputRef.current) fileInputRef.current.value = '';
-      return;
-    }
-
-    if (file.size > MAX_FILE_SIZE_BYTES) {
-      setFileError(`File size exceeds ${MAX_FILE_SIZE_MB}MB limit. Please attach a smaller file.`);
-      setFileAttachment(null);
-      if (fileInputRef.current) fileInputRef.current.value = '';
-      return;
-    }
-
-    setFileAttachment(file);
-  };
-
-  const handleRemoveFile = () => {
-    setFileAttachment(null);
-    setFileError('');
-    if (fileInputRef.current) fileInputRef.current.value = '';
-  };
-
-  const formatFileSize = (bytes) => {
-    if (bytes < 1024) return `${bytes} B`;
-    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
-    return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
-  };
-
   const validateAll = () => {
     const newErrors = {};
     const fieldsToValidate = [
@@ -209,9 +164,6 @@ export default function ContactPage() {
       Object.keys(formData).forEach((key) => {
         payload.append(key, formData[key]);
       });
-      if (fileAttachment) {
-        payload.append('attachment', fileAttachment);
-      }
 
       const response = await fetch(endpoint, {
         method: 'POST',
@@ -233,10 +185,8 @@ export default function ContactPage() {
           productPlatform: '',
           projectDescription: ''
         });
-        setFileAttachment(null);
         setTouched({});
         setErrors({});
-        if (fileInputRef.current) fileInputRef.current.value = '';
       } else {
         const errorData = await response.json().catch(() => null);
         throw new Error(errorData?.message || `Submission failed with server status ${response.status}.`);
@@ -690,68 +640,6 @@ export default function ContactPage() {
                   <p className="text-red-500 dark:text-red-400 text-xs mt-1.5 flex items-center gap-1 font-medium">
                     <AlertCircle className="w-3.5 h-3.5 shrink-0" />
                     <span>{errors.projectDescription}</span>
-                  </p>
-                )}
-              </div>
-
-              {/* Row 6: File Attachment */}
-              <div>
-                <label className="block text-xs sm:text-sm font-semibold text-[#101B32] dark:text-slate-200 mb-2">
-                  File Attachment <span className="text-xs font-normal text-[#536987] dark:text-[#AAB6D0]">(Optional, Max 10MB)</span>
-                </label>
-
-                {!fileAttachment ? (
-                  <div
-                    onClick={() => fileInputRef.current?.click()}
-                    className="border-2 border-dashed border-[#D8E5F3] dark:border-[#24355A] hover:border-[#1672E8] dark:hover:border-[#2DD4F0] bg-[#F9FBFE] dark:bg-[#0D1733] rounded-2xl p-6 text-center cursor-pointer transition-colors group"
-                  >
-                    <input
-                      ref={fileInputRef}
-                      type="file"
-                      id="fileAttachment"
-                      accept=".pdf,.doc,.docx,.png,.jpg,.jpeg"
-                      onChange={handleFileChange}
-                      className="hidden"
-                    />
-                    <UploadCloud className="w-8 h-8 text-[#1672E8] dark:text-[#2DD4F0] mx-auto mb-2 transition-transform group-hover:-translate-y-0.5" />
-                    <p className="text-sm font-semibold text-[#101B32] dark:text-white mb-1">
-                      Click to upload architecture specs, block diagrams, or RFQs
-                    </p>
-                    <p className="text-xs text-[#536987] dark:text-[#AAB6D0]">
-                      Supported formats: PDF, DOC, DOCX, PNG, JPG (up to 10MB)
-                    </p>
-                  </div>
-                ) : (
-                  <div className="flex items-center justify-between p-4 bg-[#F9FBFE] dark:bg-[#0D1733] rounded-2xl border border-[#D8E5F3] dark:border-[#24355A]">
-                    <div className="flex items-center gap-3 min-w-0">
-                      <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-900/30 text-[#1672E8] dark:text-[#2DD4F0] flex items-center justify-center shrink-0">
-                        <FileText className="w-5 h-5" />
-                      </div>
-                      <div className="min-w-0">
-                        <p className="text-sm font-semibold text-[#101B32] dark:text-white truncate">
-                          {fileAttachment.name}
-                        </p>
-                        <p className="text-xs text-[#536987] dark:text-[#AAB6D0]">
-                          {formatFileSize(fileAttachment.size)}
-                        </p>
-                      </div>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={handleRemoveFile}
-                      className="p-2 text-slate-400 hover:text-red-500 rounded-lg hover:bg-slate-100 dark:hover:bg-white/5 transition-colors cursor-pointer shrink-0"
-                      title="Remove file"
-                      aria-label="Remove uploaded file"
-                    >
-                      <X className="w-5 h-5" />
-                    </button>
-                  </div>
-                )}
-
-                {fileError && (
-                  <p className="text-red-500 dark:text-red-400 text-xs mt-2 flex items-center gap-1 font-medium">
-                    <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                    <span>{fileError}</span>
                   </p>
                 )}
               </div>
