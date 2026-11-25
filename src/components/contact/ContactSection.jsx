@@ -74,9 +74,9 @@ export default function ContactSection() {
             <button
               onClick={() => setIsModalOpen(true)}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full font-bold text-sm sm:text-base text-[#0D1733] bg-gradient-to-r from-[#2DD4F0] to-[#3285FF] hover:from-[#4be0f7] hover:to-[#4392ff] shadow-lg shadow-[#3285FF]/25 hover:shadow-[#2DD4F0]/35 transition-all duration-300 transform hover:-translate-y-0.5 group cursor-pointer"
-              aria-label="Contact Us to build your next product"
+              aria-label="Contact AIEGX to build your next product"
             >
-              <span>Contact Us</span>
+              <span>Contact</span>
               <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform" />
             </button>
           </div>

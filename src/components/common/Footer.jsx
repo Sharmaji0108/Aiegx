@@ -63,7 +63,7 @@ export default function Footer() {
               <li><a href="/#engineering-capabilities" onClick={(e) => navigateTo('/#engineering-capabilities', e)} className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Edge AI Application Development</a></li>
               <li><a href="/#engineering-capabilities" onClick={(e) => navigateTo('/#engineering-capabilities', e)} className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Custom Hardware Design</a></li>
               <li><a href="/about-us" onClick={(e) => navigateTo('/about-us', e)} className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">About Us</a></li>
-              <li><a href="/#contact" onClick={(e) => navigateTo('/#contact', e)} className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Contact Us</a></li>
+              <li><a href="/contact-us" onClick={(e) => navigateTo('/contact-us', e)} className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors">Contact</a></li>
             </ul>
           </div>
 

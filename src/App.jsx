@@ -20,6 +20,7 @@ import VideoSurveillancePage from './pages/solutions/VideoSurveillancePage';
 import IndustrialVisionPage from './pages/solutions/IndustrialVisionPage';
 import DefenceVisionPage from './pages/solutions/DefenceVisionPage';
 import AboutUsPage from './pages/AboutUsPage';
+import ContactPage from './pages/ContactPage';
 import Footer from './components/common/Footer';
 import ThemeToggle from './components/common/ThemeToggle';
 
@@ -139,12 +140,14 @@ export default function App() {
     cleanPath === '/solutions/defence-advanced' ||
     cleanPath === '/defence-advanced-vision';
   const isAboutUsPage = cleanPath === '/about-us' || cleanPath === '/about';
+  const isContactPage = cleanPath === '/contact-us' || cleanPath === '/contact';
   const isSolutionsPage = cleanPath.startsWith('/solutions');
   const solutionSlug = isSolutionsPage
     ? cleanPath.replace(/^\/solutions\/?/, '').split('/')[0]
     : '';
 
   const renderContent = () => {
+    if (isContactPage) return <ContactPage />;
     if (isAboutUsPage) return <AboutUsPage />;
     if (isVehicleMobilityPage) return <VehicleMobilityPage />;
     if (isVideoSurveillancePage) return <VideoSurveillancePage />;

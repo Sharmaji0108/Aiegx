@@ -576,7 +576,7 @@ export default function AboutUsPage() {
               onClick={() => handleOpenEnquiry('Final CTA Contact')}
               className="w-full sm:w-auto px-8 py-3.5 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-[#089EC2] to-[#0284C7] hover:from-[#0aa8cf] hover:to-[#0394de] shadow-lg shadow-[#089EC2]/25 dark:shadow-cyan-950/40 cursor-pointer active:scale-95 transition-all"
             >
-              Contact Us
+              Contact
             </button>
             <button
               type="button"

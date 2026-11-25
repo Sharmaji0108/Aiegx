@@ -53,7 +53,7 @@ export default function Type1Product() {
     { id: 'toradex-community', label: 'Toradex Community', icon: Users },
     { id: 'why-toradex', label: 'Why Toradex', icon: Compass },
     { id: 'aquila-family', label: 'Aquila Family', icon: Layers },
-    { id: 'contact', label: 'Contact Us', icon: Mail }
+    { id: 'contact', label: 'Contact', icon: Mail }
   ];
 
   // 8 Hardware highlights (4 per row in 4-column responsive grid)

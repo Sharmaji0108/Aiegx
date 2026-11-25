@@ -102,6 +102,10 @@ export default function Header() {
       setIsScrolled(window.scrollY > 20);
 
       const path = window.location.pathname.toLowerCase();
+      if (path.startsWith('/contact-us') || path.startsWith('/contact')) {
+        setActiveNav('contact');
+        return;
+      }
       if (path.startsWith('/about-us') || path === '/about') {
         setActiveNav('company');
         return;
@@ -385,9 +389,12 @@ export default function Header() {
 
             {/* 5. Contact Link */}
             <a
-              href="#contact"
+              href="/contact-us"
               onMouseEnter={closeAllMenus}
-              onClick={closeAllMenus}
+              onClick={(e) => {
+                closeAllMenus();
+                navigateTo('/contact-us', e);
+              }}
               className={`nav-link inline-flex items-center justify-center rounded-lg px-2.5 py-1.5 md:px-3 md:py-2 text-sm lg:text-base tracking-normal transition-all duration-200 cursor-pointer ${activeNav === 'contact'
                 ? 'active text-[#089EC2] dark:text-[#2DD4F0] font-semibold'
                 : 'text-slate-600 dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] font-medium'
@@ -691,13 +698,13 @@ export default function Header() {
                 {/* 5. Contact */}
                 <button
                   type="button"
-                  onClick={() => handleMobileNavigate('#contact')}
+                  onClick={() => handleMobileNavigate('/contact-us')}
                   className={`w-full px-4 py-3 rounded-xl text-sm font-semibold transition-colors flex items-center justify-between text-left cursor-pointer ${activeNav === 'contact'
                     ? 'text-[#089EC2] dark:text-[#2DD4F0] bg-blue-50 dark:bg-[#17264A] border border-[#089EC2]/40 dark:border-[#2DD4F0]/40'
                     : 'text-slate-700 dark:text-[#AAB6D0] bg-slate-50 dark:bg-[#17264A]/60 hover:bg-slate-100 dark:hover:bg-[#17264A] border border-slate-200 dark:border-[#24355A]'
                     }`}
                 >
-                  <span>Contact Us</span>
+                  <span>Contact</span>
                   <ChevronRight className="w-4 h-4 text-[#089EC2] dark:text-[#2DD4F0]" />
                 </button>
               </div>
