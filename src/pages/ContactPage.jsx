@@ -251,103 +251,10 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* ─── SECTION 2: CONTACT INFORMATION ───────────────────────────────── */}
-      <section className="py-12 sm:py-16 lg:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          
-          {/* Card 1: Email */}
-          <div className="bg-white dark:bg-[#142247] rounded-2xl border border-[#D8E5F3] dark:border-[#24355A] p-6 sm:p-7 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full">
-            <div>
-              <div className="w-12 h-12 rounded-xl bg-[#EAF5FF] dark:bg-[#1C2C55] text-[#1672E8] dark:text-[#2DD4F0] flex items-center justify-center mb-5 border border-[#D8E5F3]/60 dark:border-white/5">
-                <Mail className="w-6 h-6" />
-              </div>
-              <h2 className="text-lg font-bold text-[#101B32] dark:text-white tracking-tight mb-2">
-                Email
-              </h2>
-              <p className="text-xs sm:text-sm text-[#536987] dark:text-[#AAB6D0] mb-4">
-                Reach out to our engineering and technical sales teams for consultation.
-              </p>
-            </div>
-            <div className="pt-4 border-t border-[#D8E5F3]/70 dark:border-white/10">
-              <a
-                href="mailto:contact@aiegx.com"
-                className="font-semibold text-sm sm:text-base text-[#1672E8] dark:text-[#2DD4F0] hover:underline break-all inline-flex items-center gap-1.5"
-              >
-                contact@aiegx.com
-              </a>
-            </div>
-          </div>
-
-          {/* Card 2: Phone */}
-          <div className="bg-white dark:bg-[#142247] rounded-2xl border border-[#D8E5F3] dark:border-[#24355A] p-6 sm:p-7 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full">
-            <div>
-              <div className="w-12 h-12 rounded-xl bg-[#EAF5FF] dark:bg-[#1C2C55] text-[#1672E8] dark:text-[#2DD4F0] flex items-center justify-center mb-5 border border-[#D8E5F3]/60 dark:border-white/5">
-                <Phone className="w-6 h-6" />
-              </div>
-              <h2 className="text-lg font-bold text-[#101B32] dark:text-white tracking-tight mb-2">
-                Phone
-              </h2>
-              <p className="text-xs sm:text-sm text-[#536987] dark:text-[#AAB6D0] mb-4">
-                Speak directly with our technical representatives during business hours.
-              </p>
-            </div>
-            <div className="pt-4 border-t border-[#D8E5F3]/70 dark:border-white/10">
-              <a
-                href="tel:+18005550199"
-                className="font-semibold text-sm sm:text-base text-[#1672E8] dark:text-[#2DD4F0] hover:underline inline-flex items-center gap-1.5"
-              >
-                +1 (800) 555-0199
-              </a>
-            </div>
-          </div>
-
-          {/* Card 3: Location */}
-          <div className="bg-white dark:bg-[#142247] rounded-2xl border border-[#D8E5F3] dark:border-[#24355A] p-6 sm:p-7 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full">
-            <div>
-              <div className="w-12 h-12 rounded-xl bg-[#EAF5FF] dark:bg-[#1C2C55] text-[#1672E8] dark:text-[#2DD4F0] flex items-center justify-center mb-5 border border-[#D8E5F3]/60 dark:border-white/5">
-                <MapPin className="w-6 h-6" />
-              </div>
-              <h2 className="text-lg font-bold text-[#101B32] dark:text-white tracking-tight mb-2">
-                Location
-              </h2>
-              <p className="text-xs sm:text-sm text-[#536987] dark:text-[#AAB6D0] mb-4">
-                Global engineering laboratories and hardware design facilities.
-              </p>
-            </div>
-            <div className="pt-4 border-t border-[#D8E5F3]/70 dark:border-white/10">
-              <span className="font-semibold text-sm text-[#101B32] dark:text-slate-200 block">
-                Silicon Valley &amp; Global Engineering Centers
-              </span>
-            </div>
-          </div>
-
-          {/* Card 4: Business Hours */}
-          <div className="bg-white dark:bg-[#142247] rounded-2xl border border-[#D8E5F3] dark:border-[#24355A] p-6 sm:p-7 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full">
-            <div>
-              <div className="w-12 h-12 rounded-xl bg-[#EAF5FF] dark:bg-[#1C2C55] text-[#1672E8] dark:text-[#2DD4F0] flex items-center justify-center mb-5 border border-[#D8E5F3]/60 dark:border-white/5">
-                <Clock className="w-6 h-6" />
-              </div>
-              <h2 className="text-lg font-bold text-[#101B32] dark:text-white tracking-tight mb-2">
-                Business Hours
-              </h2>
-              <p className="text-xs sm:text-sm text-[#536987] dark:text-[#AAB6D0] mb-4">
-                Our core hardware engineering and support availability schedule.
-              </p>
-            </div>
-            <div className="pt-4 border-t border-[#D8E5F3]/70 dark:border-white/10">
-              <span className="font-semibold text-sm text-[#101B32] dark:text-slate-200 block">
-                Monday – Friday: 9:00 AM – 6:00 PM
-              </span>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      {/* ─── SECTION 3: TECHNICAL INQUIRY FORM ────────────────────────────── */}
+      {/* ─── SECTION 2: TECHNICAL INQUIRY FORM ────────────────────────────── */}
       <section
         id="inquiry-form"
-        className="py-12 sm:py-16 lg:py-20 border-t border-[#D8E5F3] dark:border-white/10 bg-white/50 dark:bg-[#0B132B]/50 backdrop-blur-xs scroll-mt-20"
+        className="py-12 sm:py-16 lg:py-20 bg-white/50 dark:bg-[#0B132B]/50 backdrop-blur-xs scroll-mt-20"
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           
@@ -666,6 +573,99 @@ export default function ContactPage() {
               </div>
 
             </form>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ─── SECTION 3: CONTACT INFORMATION ───────────────────────────────── */}
+      <section className="py-12 sm:py-16 lg:py-20 border-t border-[#D8E5F3] dark:border-white/10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          {/* Card 1: Email */}
+          <div className="bg-white dark:bg-[#142247] rounded-2xl border border-[#D8E5F3] dark:border-[#24355A] p-6 sm:p-7 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full">
+            <div>
+              <div className="w-12 h-12 rounded-xl bg-[#EAF5FF] dark:bg-[#1C2C55] text-[#1672E8] dark:text-[#2DD4F0] flex items-center justify-center mb-5 border border-[#D8E5F3]/60 dark:border-white/5">
+                <Mail className="w-6 h-6" />
+              </div>
+              <h2 className="text-lg font-bold text-[#101B32] dark:text-white tracking-tight mb-2">
+                Email
+              </h2>
+              <p className="text-xs sm:text-sm text-[#536987] dark:text-[#AAB6D0] mb-4">
+                Reach out to our engineering and technical sales teams for consultation.
+              </p>
+            </div>
+            <div className="pt-4 border-t border-[#D8E5F3]/70 dark:border-white/10">
+              <a
+                href="mailto:contact@aiegx.com"
+                className="font-semibold text-sm sm:text-base text-[#1672E8] dark:text-[#2DD4F0] hover:underline break-all inline-flex items-center gap-1.5"
+              >
+                contact@aiegx.com
+              </a>
+            </div>
+          </div>
+
+          {/* Card 2: Phone */}
+          <div className="bg-white dark:bg-[#142247] rounded-2xl border border-[#D8E5F3] dark:border-[#24355A] p-6 sm:p-7 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full">
+            <div>
+              <div className="w-12 h-12 rounded-xl bg-[#EAF5FF] dark:bg-[#1C2C55] text-[#1672E8] dark:text-[#2DD4F0] flex items-center justify-center mb-5 border border-[#D8E5F3]/60 dark:border-white/5">
+                <Phone className="w-6 h-6" />
+              </div>
+              <h2 className="text-lg font-bold text-[#101B32] dark:text-white tracking-tight mb-2">
+                Phone
+              </h2>
+              <p className="text-xs sm:text-sm text-[#536987] dark:text-[#AAB6D0] mb-4">
+                Speak directly with our technical representatives during business hours.
+              </p>
+            </div>
+            <div className="pt-4 border-t border-[#D8E5F3]/70 dark:border-white/10">
+              <a
+                href="tel:+18005550199"
+                className="font-semibold text-sm sm:text-base text-[#1672E8] dark:text-[#2DD4F0] hover:underline inline-flex items-center gap-1.5"
+              >
+                +1 (800) 555-0199
+              </a>
+            </div>
+          </div>
+
+          {/* Card 3: Location */}
+          <div className="bg-white dark:bg-[#142247] rounded-2xl border border-[#D8E5F3] dark:border-[#24355A] p-6 sm:p-7 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full">
+            <div>
+              <div className="w-12 h-12 rounded-xl bg-[#EAF5FF] dark:bg-[#1C2C55] text-[#1672E8] dark:text-[#2DD4F0] flex items-center justify-center mb-5 border border-[#D8E5F3]/60 dark:border-white/5">
+                <MapPin className="w-6 h-6" />
+              </div>
+              <h2 className="text-lg font-bold text-[#101B32] dark:text-white tracking-tight mb-2">
+                Location
+              </h2>
+              <p className="text-xs sm:text-sm text-[#536987] dark:text-[#AAB6D0] mb-4">
+                Global engineering laboratories and hardware design facilities.
+              </p>
+            </div>
+            <div className="pt-4 border-t border-[#D8E5F3]/70 dark:border-white/10">
+              <span className="font-semibold text-sm text-[#101B32] dark:text-slate-200 block">
+                Silicon Valley &amp; Global Engineering Centers
+              </span>
+            </div>
+          </div>
+
+          {/* Card 4: Business Hours */}
+          <div className="bg-white dark:bg-[#142247] rounded-2xl border border-[#D8E5F3] dark:border-[#24355A] p-6 sm:p-7 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full">
+            <div>
+              <div className="w-12 h-12 rounded-xl bg-[#EAF5FF] dark:bg-[#1C2C55] text-[#1672E8] dark:text-[#2DD4F0] flex items-center justify-center mb-5 border border-[#D8E5F3]/60 dark:border-white/5">
+                <Clock className="w-6 h-6" />
+              </div>
+              <h2 className="text-lg font-bold text-[#101B32] dark:text-white tracking-tight mb-2">
+                Business Hours
+              </h2>
+              <p className="text-xs sm:text-sm text-[#536987] dark:text-[#AAB6D0] mb-4">
+                Our core hardware engineering and support availability schedule.
+              </p>
+            </div>
+            <div className="pt-4 border-t border-[#D8E5F3]/70 dark:border-white/10">
+              <span className="font-semibold text-sm text-[#101B32] dark:text-slate-200 block">
+                Monday – Friday: 9:00 AM – 6:00 PM
+              </span>
+            </div>
           </div>
 
         </div>
