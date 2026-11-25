@@ -40,11 +40,6 @@ const solutions = [
       'Automotive-qualified embedded vision platforms for driver monitoring, license plate recognition, and vehicle detection.',
     image: '/images/AI Traffic Surveillance with Plate Detection.png',
     imageAlt: 'AI Traffic Surveillance with Plate Detection',
-    features: [
-      { icon: Eye, label: 'Driver Monitoring System (DMS)', status: null, href: '/solutions/driver-monitoring-system' },
-      { icon: ScanLine, label: 'Automatic Number Plate Recognition (ANPR)', status: null, href: '/solutions/anpr-systems' },
-      { icon: Camera, label: 'Vehicle Detection Camera (VDC)', status: null, href: '/solutions/vehicle-detection-camera' },
-    ],
     subtopics: [
       { icon: Eye, title: 'Driver Monitoring System (DMS)', status: null, href: '/solutions/driver-monitoring-system' },
       { icon: ScanLine, title: 'Automatic Number Plate Recognition (ANPR)', status: null, href: '/solutions/anpr-systems' },
@@ -63,9 +58,6 @@ const solutions = [
       'Embedded video recording, live monitoring, and intelligent analytics for security and surveillance.',
     image: '/images/AI Security Surveillance at Modern Entrance.png',
     imageAlt: 'AI Security Surveillance at Modern Entrance',
-    features: [
-      { icon: HardDrive, label: 'Mobile Network Video Recorder (MNVR)', status: 'In Development', href: '/solutions/nvr-systems' },
-    ],
     subtopics: [
       { icon: HardDrive, title: 'Mobile Network Video Recorder (MNVR)', status: 'In Development', href: '/solutions/nvr-systems' },
       { icon: Monitor, title: 'CCTV Monitoring System', status: null, href: '/solutions/cctv-monitoring' },
@@ -85,7 +77,6 @@ const solutions = [
       'Automated optical inspection, industrial HMIs, and edge vision systems engineered for smart manufacturing.',
     image: '/images/Automated Gear Inspection Line.png',
     imageAlt: 'Automated Gear Inspection Line',
-    features: [],
     subtopics: [
       { icon: Monitor, title: 'Industrial / Railway HMI', status: null, href: '/solutions/industrial-railway-hmi' },
       { icon: Layers, title: 'Display / Video Controller', status: null, href: '/solutions/display-video-controller' },
@@ -107,9 +98,6 @@ const solutions = [
       'Specialized embedded vision and image-processing solutions for defence and mission-critical applications.',
     image: '/images/Realistic Outdoor Surveillance Camera Close-Up.png',
     imageAlt: 'Realistic Outdoor Surveillance Camera Close-Up',
-    features: [
-      { icon: Target, label: 'Seeker', status: 'In Development', href: '/solutions/seeker-systems' },
-    ],
     subtopics: [
       { icon: Target, title: 'Seeker', status: 'In Development', href: '/solutions/seeker-systems' },
       { icon: Eye, title: 'Surveillance Vision System', status: null, href: '/solutions/surveillance-vision' },
@@ -178,7 +166,7 @@ function SolutionCard({ solution, className = '' }) {
       onClick={handleCardClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`relative h-full min-h-[460px] sm:min-h-[480px] w-full [perspective:1200px] select-none group/card cursor-pointer ${className}`}
+      className={`relative h-full min-h-[390px] sm:min-h-[410px] w-full [perspective:1200px] select-none group/card cursor-pointer ${className}`}
     >
       {/* ── 3D Flipper Container ── */}
       <div
@@ -189,7 +177,7 @@ function SolutionCard({ solution, className = '' }) {
           transform: showBack ? 'rotateX(180deg)' : 'rotateX(0deg)',
         }}
       >
-        {/* ── Front Face (Existing Design Preserved 100%) ── */}
+        {/* ── Front Face (Clean card without subtopics) ── */}
         <div
           className={`flex flex-col h-full w-full bg-white dark:bg-[#17264A] border border-[#DCE8F5] dark:border-[#24355A] rounded-[18px] shadow-xs hover:shadow-md transition-shadow duration-300 p-4 sm:p-4.5 ${
             showBack ? 'pointer-events-none' : 'pointer-events-auto'
@@ -231,7 +219,7 @@ function SolutionCard({ solution, className = '' }) {
               e.stopPropagation();
               navigateTo(solution.href, e);
             }}
-            className="w-full h-32 sm:h-36 rounded-xl overflow-hidden border border-[#DCE8F5] dark:border-[#24355A] mb-3 block group/img flex-shrink-0"
+            className="w-full h-36 sm:h-40 rounded-xl overflow-hidden border border-[#DCE8F5] dark:border-[#24355A] mb-3 block group/img flex-shrink-0"
           >
             <img
               src={solution.image}
@@ -240,32 +228,6 @@ function SolutionCard({ solution, className = '' }) {
               loading="lazy"
             />
           </a>
-
-          {/* ── Subtopics List (Compact horizontal rows) ── */}
-          <div className="flex-1 space-y-2">
-            {solution.features.map((feat, i) => {
-              const FeatIcon = feat.icon;
-              return (
-                <a
-                  key={i}
-                  href={feat.href}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    navigateTo(feat.href, e);
-                  }}
-                  className="flex items-center justify-between gap-2 group/feat hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors cursor-pointer py-0.5"
-                >
-                  <div className="flex items-center gap-2 min-w-0">
-                    <FeatIcon className="w-3.5 h-3.5 text-[#089EC2] dark:text-[#2DD4F0] flex-shrink-0" />
-                    <span className="text-xs text-[#14213D] dark:text-[#D4E3F5] group-hover/feat:text-[#089EC2] dark:group-hover/feat:text-[#2DD4F0] font-medium leading-tight truncate">
-                      {feat.label}
-                    </span>
-                  </div>
-                  {feat.status && <StatusBadge status={feat.status} />}
-                </a>
-              );
-            })}
-          </div>
 
           {/* ── Full-width Explore Solutions CTA Button ── */}
           <div className="mt-auto pt-3">
