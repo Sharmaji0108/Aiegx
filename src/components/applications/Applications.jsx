@@ -60,9 +60,6 @@ const solutions = [
     imageAlt: 'AI Security Surveillance at Modern Entrance',
     subtopics: [
       { icon: HardDrive, title: 'Mobile Network Video Recorder (MNVR)', status: 'In Development', href: '/solutions/nvr-systems' },
-      { icon: Monitor, title: 'CCTV Monitoring System', status: null, href: '/solutions/cctv-monitoring' },
-      { icon: Cpu, title: 'AI Video Analytics', status: null, href: '/solutions/ai-video-analytics' },
-      { icon: Users, title: 'People Counting', status: null, href: '/solutions/people-counting' },
     ],
     ctaGradient: false,
     href: '/solutions/video-surveillance',
@@ -77,12 +74,7 @@ const solutions = [
       'Automated optical inspection, industrial HMIs, and edge vision systems engineered for smart manufacturing.',
     image: '/images/Automated Gear Inspection Line.png',
     imageAlt: 'Automated Gear Inspection Line',
-    subtopics: [
-      { icon: Monitor, title: 'Industrial / Railway HMI', status: null, href: '/solutions/industrial-railway-hmi' },
-      { icon: Layers, title: 'Display / Video Controller', status: null, href: '/solutions/display-video-controller' },
-      { icon: Search, title: 'AI Visual Inspection', status: null, href: '/solutions/ai-visual-inspection' },
-      { icon: Camera, title: 'Smart Vision AI Camera', status: null, href: '/solutions/smart-vision-ai-camera' },
-    ],
+    subtopics: [],
     buttonText: 'Contact Our Team',
     buttonHref: '#contact',
     ctaGradient: false,
@@ -100,9 +92,6 @@ const solutions = [
     imageAlt: 'Realistic Outdoor Surveillance Camera Close-Up',
     subtopics: [
       { icon: Target, title: 'Seeker', status: 'In Development', href: '/solutions/seeker-systems' },
-      { icon: Eye, title: 'Surveillance Vision System', status: null, href: '/solutions/surveillance-vision' },
-      { icon: RadioTower, title: 'Target Tracking & Recognition', status: null, href: '/solutions/target-tracking-recognition' },
-      { icon: Shield, title: 'Rugged AI Embedded System', status: null, href: '/solutions/rugged-ai-embedded' },
     ],
     ctaGradient: false,
     href: '/solutions/defence-advanced-vision',
@@ -296,60 +285,80 @@ function SolutionCard({ solution, className = '' }) {
             {solution.backDescription || solution.description}
           </p>
 
-          {/* ── Subtopics Section Header ── */}
-          <div className="flex items-center justify-between mb-2 pb-1 border-b border-[#E8EFF7] dark:border-[#223555]">
-            <span className="text-[10.5px] font-semibold tracking-wider uppercase text-[#089EC2] dark:text-[#2DD4F0]">
-              Solution Subtopics
-            </span>
-            <span className="text-[10px] text-slate-400 dark:text-slate-500 font-medium">
-              {solution.subtopics?.length || 0} modules
-            </span>
-          </div>
+          {/* ── Subtopics Section Header & List ── */}
+          {solution.subtopics && solution.subtopics.length > 0 ? (
+            <>
+              <div className="mb-2 pb-1 border-b border-[#E8EFF7] dark:border-[#223555]">
+                <span className="text-[10.5px] font-semibold tracking-wider uppercase text-[#089EC2] dark:text-[#2DD4F0]">
+                  Solution Subtopics
+                </span>
+              </div>
 
-          {/* ── Subtopics List ── */}
-          <div className="flex-1 space-y-1.5 overflow-y-auto pr-0.5">
-            {solution.subtopics?.map((sub, i) => {
-              const SubIcon = sub.icon || Eye;
-              return (
-                <a
-                  key={i}
-                  href={sub.href}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    navigateTo(sub.href, e);
-                  }}
-                  className="flex items-center justify-between gap-2 p-1.5 sm:p-2 rounded-lg bg-[#F8FBFE] dark:bg-[#13203E] border border-[#E3EDF7] dark:border-[#1E3156] hover:border-[#089EC2]/60 hover:bg-[#EBF5FD] dark:hover:bg-[#1A2B50] group/sub transition-all cursor-pointer"
-                >
-                  <div className="flex items-center gap-2 min-w-0">
-                    <div className="w-5 h-5 rounded-md bg-white dark:bg-[#17264A] flex items-center justify-center flex-shrink-0 border border-[#DCE8F5] dark:border-[#24355A]">
-                      <SubIcon className="w-3 h-3 text-[#089EC2] dark:text-[#2DD4F0]" />
-                    </div>
-                    <span className="text-xs text-[#14213D] dark:text-[#D4E3F5] group-hover/sub:text-[#089EC2] dark:group-hover/sub:text-[#2DD4F0] font-medium leading-tight truncate">
-                      {sub.title}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-1.5 flex-shrink-0">
-                    {sub.status && <StatusBadge status={sub.status} />}
-                    <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover/sub:text-[#089EC2] dark:group-hover/sub:text-[#2DD4F0] group-hover/sub:translate-x-0.5 transition-all" />
-                  </div>
-                </a>
-              );
-            })}
-          </div>
+              <div className="flex-1 space-y-1.5 overflow-y-auto pr-0.5">
+                {solution.subtopics.map((sub, i) => {
+                  const SubIcon = sub.icon || Eye;
+                  return (
+                    <a
+                      key={i}
+                      href={sub.href}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        navigateTo(sub.href, e);
+                      }}
+                      className="flex items-center justify-between gap-2 p-1.5 sm:p-2 rounded-lg bg-[#F8FBFE] dark:bg-[#13203E] border border-[#E3EDF7] dark:border-[#1E3156] hover:border-[#089EC2]/60 hover:bg-[#EBF5FD] dark:hover:bg-[#1A2B50] group/sub transition-all cursor-pointer"
+                    >
+                      <div className="flex items-center gap-2 min-w-0">
+                        <div className="w-5 h-5 rounded-md bg-white dark:bg-[#17264A] flex items-center justify-center flex-shrink-0 border border-[#DCE8F5] dark:border-[#24355A]">
+                          <SubIcon className="w-3 h-3 text-[#089EC2] dark:text-[#2DD4F0]" />
+                        </div>
+                        <span className="text-xs text-[#14213D] dark:text-[#D4E3F5] group-hover/sub:text-[#089EC2] dark:group-hover/sub:text-[#2DD4F0] font-medium leading-tight truncate">
+                          {sub.title}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-1.5 flex-shrink-0">
+                        {sub.status && <StatusBadge status={sub.status} />}
+                        <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover/sub:text-[#089EC2] dark:group-hover/sub:text-[#2DD4F0] group-hover/sub:translate-x-0.5 transition-all" />
+                      </div>
+                    </a>
+                  );
+                })}
+              </div>
+            </>
+          ) : (
+            <div className="flex-1 flex flex-col justify-center text-center py-4 px-2">
+              <p className="text-xs leading-relaxed text-[#52627C] dark:text-[#AAB6D0]">
+                Contact our engineering team to explore custom hardware development, BSP engineering, and machine vision integration for your project.
+              </p>
+            </div>
+          )}
 
-          {/* ── Bottom Explore Solutions CTA ── */}
+          {/* ── Bottom CTA Button ── */}
           <div className="mt-auto pt-3">
-            <a
-              href={solution.href}
-              onClick={(e) => {
-                e.stopPropagation();
-                navigateTo(solution.href, e);
-              }}
-              className="explore-btn text-xs py-2 w-full"
-            >
-              <span>Explore Solutions</span>
-              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
-            </a>
+            {solution.buttonText === 'Contact Our Team' ? (
+              <a
+                href={solution.buttonHref || '#contact'}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigateTo(solution.buttonHref || '#contact', e);
+                }}
+                className="explore-btn text-xs py-2 w-full"
+              >
+                <span>Contact Our Team</span>
+                <Mail className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+              </a>
+            ) : (
+              <a
+                href={solution.buttonHref || solution.href}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigateTo(solution.buttonHref || solution.href, e);
+                }}
+                className="explore-btn text-xs py-2 w-full"
+              >
+                <span>{solution.buttonText || 'Explore Solutions'}</span>
+                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+              </a>
+            )}
           </div>
         </div>
       </div>
