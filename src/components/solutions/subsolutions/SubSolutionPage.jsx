@@ -144,19 +144,7 @@ export default function SubSolutionPage({ slug, data: propData }) {
                 </button>
               </div>
 
-              {/* Quick Spec Highlights */}
-              <div className="pt-4 grid grid-cols-2 sm:grid-cols-3 gap-3 border-t border-slate-200/80 dark:border-white/10 text-xs font-medium text-slate-600 dark:text-slate-300">
-                {(data.highlights || [
-                  'Renesas RZ Silicon',
-                  '10+ Year Longevity',
-                  'Deterministic Edge AI'
-                ]).map((highlight, hIdx) => (
-                  <div key={hIdx} className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-[#089EC2] dark:text-[#2DD4F0] shrink-0" />
-                    <span>{highlight}</span>
-                  </div>
-                ))}
-              </div>
+
             </div>
 
             {/* Right Column: Visual */}
