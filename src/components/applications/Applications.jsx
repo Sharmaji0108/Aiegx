@@ -208,7 +208,7 @@ function SolutionCard({ solution, className = '' }) {
               e.stopPropagation();
               navigateTo(solution.href, e);
             }}
-            className="w-full h-36 sm:h-40 rounded-xl overflow-hidden border border-[#DCE8F5] dark:border-[#24355A] mb-3 block group/img flex-shrink-0"
+            className="w-full flex-1 min-h-[180px] sm:min-h-[200px] rounded-xl overflow-hidden border border-[#DCE8F5] dark:border-[#24355A] block group/img"
           >
             <img
               src={solution.image}
@@ -217,35 +217,6 @@ function SolutionCard({ solution, className = '' }) {
               loading="lazy"
             />
           </a>
-
-          {/* ── Full-width Explore Solutions CTA Button ── */}
-          <div className="mt-auto pt-3">
-            {solution.buttonText === 'Contact Our Team' ? (
-              <a
-                href={solution.buttonHref || '#contact'}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  navigateTo(solution.buttonHref || '#contact', e);
-                }}
-                className="explore-btn text-xs py-2"
-              >
-                <span>Contact Our Team</span>
-                <Mail className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
-              </a>
-            ) : (
-              <a
-                href={solution.buttonHref || solution.href}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  navigateTo(solution.buttonHref || solution.href, e);
-                }}
-                className="explore-btn text-xs py-2"
-              >
-                <span>{solution.buttonText || 'Explore Solutions'}</span>
-                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
-              </a>
-            )}
-          </div>
         </div>
 
         {/* ── Back Face (Revealed on Bottom-to-Top Flip) ── */}
