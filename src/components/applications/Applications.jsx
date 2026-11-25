@@ -24,7 +24,6 @@ import {
   ChevronLeft,
   ChevronRight,
   Mail,
-  RotateCcw,
 } from 'lucide-react';
 import { navigateTo } from '../../utils/navigation';
 
@@ -144,12 +143,6 @@ function SolutionCard({ solution, className = '' }) {
     }
   };
 
-  const handleFlipBack = (e) => {
-    e.stopPropagation();
-    setIsFlipped(false);
-    setIsHovered(false);
-  };
-
   return (
     <div
       onClick={handleCardClick}
@@ -230,31 +223,15 @@ function SolutionCard({ solution, className = '' }) {
             transform: 'rotateX(180deg)',
           }}
         >
-          {/* ── Header: Icon + Title + Flip-Back Button ── */}
-          <div className="flex items-center justify-between gap-2 mb-2.5 min-h-[40px]">
-            <div className="flex items-center gap-2.5 min-w-0">
-              <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-[#EBF5FD] dark:bg-[#1A2C52] border border-[#C5DDF5] dark:border-[#244277] flex items-center justify-center shadow-2xs">
-                <CardIcon className="w-4.5 h-4.5 text-[#089EC2] dark:text-[#2DD4F0]" />
-              </div>
-              <h3 className="text-sm sm:text-[14.5px] font-bold leading-snug text-[#14213D] dark:text-[#F8FAFC]">
-                {solution.title}
-              </h3>
+          {/* ── Header: Icon + Title ── */}
+          <div className="flex items-center gap-2.5 mb-3 min-h-[40px]">
+            <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-[#EBF5FD] dark:bg-[#1A2C52] border border-[#C5DDF5] dark:border-[#244277] flex items-center justify-center shadow-2xs">
+              <CardIcon className="w-4.5 h-4.5 text-[#089EC2] dark:text-[#2DD4F0]" />
             </div>
-            <button
-              type="button"
-              onClick={handleFlipBack}
-              aria-label="Flip card back to front"
-              title="Return to front"
-              className="p-1.5 rounded-lg text-slate-400 hover:text-[#089EC2] dark:hover:text-[#2DD4F0] hover:bg-[#EBF5FD] dark:hover:bg-[#1A2C52] transition-colors flex-shrink-0 cursor-pointer"
-            >
-              <RotateCcw className="w-3.5 h-3.5" />
-            </button>
+            <h3 className="text-sm sm:text-[14.5px] font-bold leading-snug text-[#14213D] dark:text-[#F8FAFC]">
+              {solution.title}
+            </h3>
           </div>
-
-          {/* ── Short Description ── */}
-          <p className="text-xs leading-relaxed text-[#52627C] dark:text-[#AAB6D0] mb-3 min-h-[48px] sm:min-h-[52px]">
-            {solution.backDescription || solution.description}
-          </p>
 
           {/* ── Subtopics Section Header & List ── */}
           {solution.subtopics && solution.subtopics.length > 0 ? (
