@@ -333,7 +333,7 @@ export default function AboutUsPage() {
               <div className="relative w-full max-w-md rounded-2xl overflow-hidden border border-slate-200/90 dark:border-white/15 bg-slate-50 dark:bg-[#101936] shadow-xl p-2.5 sm:p-3 group">
                 <div className="relative rounded-xl overflow-hidden aspect-[4/3] bg-slate-100 dark:bg-[#0b1226]">
                   <img
-                    src="/images/industrial-computing-hd.jpg"
+                    src="/images/industrial-computing-hd.png"
                     alt="AIEGX Industrial Embedded Computing"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"

@@ -41,8 +41,8 @@ export const heroSlides = [
     description: 'Delivering embedded hardware products and integrated solutions for Railways, Public Transportation, Security & Surveillance, Smart Cities, and Defence applications.',
     ctaText: 'Explore Industries',
     ctaHref: '#industries',
-    image: '/images/industrial-computing-hd.jpg',
-    fallbackImage: '/images/sbc-platform-hd.jpg',
+    image: '/images/industrial-computing-hd.png',
+    fallbackImage: '/images/industrial-computing-hd.png',
     alt: 'AIEGX Industrial Computing Hardware'
   },
   {
