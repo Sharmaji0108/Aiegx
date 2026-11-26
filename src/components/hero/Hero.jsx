@@ -30,8 +30,8 @@ export const heroSlides = [
     description: 'We combine embedded hardware and software to develop integrated solutions for transportation, surveillance, industrial automation, and intelligent vision applications.',
     ctaText: 'Explore Solutions',
     ctaHref: '#integrated-solutions',
-    image: '/images/integrated-solution-hd.jpg',
-    fallbackImage: '/images/vdc-solution-hd.jpg',
+    image: '/images/vdc-solution-hd.png',
+    fallbackImage: '/images/vdc-solution-hd.png',
     alt: 'AIEGX Integrated Vision & Controller Solution'
   },
   {
