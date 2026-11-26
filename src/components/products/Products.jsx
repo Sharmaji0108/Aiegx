@@ -78,18 +78,16 @@ function HardwareCard({ product, className = '' }) {
           : 'border-[#DCE8F5] dark:border-[#24355A] hover:border-[#089EC2]/40 dark:hover:border-[#2DD4F0]/30'
       } ${className}`}
     >
-      {/* 1. Platform name & optional Development Badge */}
-      <div className="flex flex-wrap items-start justify-between gap-1.5 min-h-[28px]">
-        <h3 className="text-base sm:text-[17px] font-extrabold text-[#14213D] dark:text-[#F8FAFC] tracking-tight leading-snug">
-          {product.name}
-        </h3>
+      {/* 1. Platform name & adjacent Development Badge */}
+      <h3 className="text-base sm:text-[17px] font-extrabold text-[#14213D] dark:text-[#F8FAFC] tracking-tight leading-snug">
+        <span className="align-middle">{product.name}</span>
         {product.status && (
-          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold tracking-wide bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 border border-amber-300/80 dark:border-amber-700/50 whitespace-nowrap shrink-0 mt-0.5">
+          <span className="inline-flex items-center gap-1 ml-2 px-2 py-0.5 rounded-full text-[10px] font-semibold tracking-wide bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 border border-amber-300/80 dark:border-amber-700/50 align-middle whitespace-nowrap">
             <Wrench className="w-2.5 h-2.5 text-amber-600 dark:text-amber-400" />
             {product.status}
           </span>
         )}
-      </div>
+      </h3>
 
       {/* 2. Subtitle */}
       <p className="text-xs sm:text-[13px] font-bold text-[#14213D] dark:text-[#F8FAFC] mt-0.5">
