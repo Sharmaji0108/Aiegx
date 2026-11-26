@@ -35,14 +35,12 @@ const solutions = [
     title: 'Vehicle & Mobility Solutions',
     description:
       'Embedded vision solutions for driver monitoring, vehicle identification and detection.',
-    backDescription:
-      'Automotive-qualified embedded vision platforms for driver monitoring, license plate recognition, and vehicle detection.',
     image: '/images/AI Traffic Surveillance with Plate Detection.png',
     imageAlt: 'AI Traffic Surveillance with Plate Detection',
-    subtopics: [
-      { icon: Eye, title: 'Driver Monitoring System (DMS)', status: null, href: '/solutions/driver-monitoring-system' },
-      { icon: ScanLine, title: 'Automatic Number Plate Recognition (ANPR)', status: null, href: '/solutions/anpr-systems' },
-      { icon: Camera, title: 'Vehicle Detection Camera (VDC)', status: null, href: '/solutions/vehicle-detection-camera' },
+    features: [
+      { icon: Eye, label: 'Driver Monitoring System (DMS)', status: null, href: '/solutions/driver-monitoring-system' },
+      { icon: ScanLine, label: 'Automatic Number Plate Recognition (ANPR)', status: null, href: '/solutions/anpr-systems' },
+      { icon: Camera, label: 'Vehicle Detection Camera (VDC)', status: null, href: '/solutions/vehicle-detection-camera' },
     ],
     ctaGradient: true,
     href: '/vehicle-mobility',
@@ -53,12 +51,10 @@ const solutions = [
     title: 'Video & Surveillance Solutions',
     description:
       'Embedded video recording, monitoring, and analytics for enhanced security.',
-    backDescription:
-      'Embedded video recording, live monitoring, and intelligent analytics for security and surveillance.',
     image: '/images/AI Security Surveillance at Modern Entrance.png',
     imageAlt: 'AI Security Surveillance at Modern Entrance',
-    subtopics: [
-      { icon: HardDrive, title: 'Mobile Network Video Recorder (MNVR)', status: 'In Development', href: '/solutions/nvr-systems' },
+    features: [
+      { icon: HardDrive, label: 'Mobile Network Video Recorder (MNVR)', status: 'In Development', href: '/solutions/nvr-systems' },
     ],
     ctaGradient: false,
     href: '/solutions/video-surveillance',
@@ -69,13 +65,11 @@ const solutions = [
     title: 'Industrial & Machine Vision Solutions',
     description:
       'Embedded hardware and vision processing capabilities for industrial monitoring and automation applications.',
-    backDescription:
-      'Automated optical inspection, industrial HMIs, and edge vision systems engineered for smart manufacturing.',
     image: '/images/Automated Gear Inspection Line.png',
     imageAlt: 'Automated Gear Inspection Line',
-    subtopics: [],
+    features: [],
     buttonText: 'Contact Our Team',
-    buttonHref: '/contact-us',
+    buttonHref: '#contact',
     ctaGradient: false,
     href: '/solutions/industrial-machine-vision',
   },
@@ -85,12 +79,10 @@ const solutions = [
     title: 'Defence & Advanced Vision Solutions',
     description:
       'Specialized embedded vision solutions for defence and mission-critical applications.',
-    backDescription:
-      'Specialized embedded vision and image-processing solutions for defence and mission-critical applications.',
     image: '/images/Realistic Outdoor Surveillance Camera Close-Up.png',
     imageAlt: 'Realistic Outdoor Surveillance Camera Close-Up',
-    subtopics: [
-      { icon: Target, title: 'Seeker', status: 'In Development', href: '/solutions/seeker-systems' },
+    features: [
+      { icon: Target, label: 'Seeker', status: 'In Development', href: '/solutions/seeker-systems' },
     ],
     ctaGradient: false,
     href: '/solutions/defence-advanced-vision',
@@ -113,198 +105,93 @@ function StatusBadge({ status }) {
   );
 }
 
-/* ─── Single Card with Bottom-to-Top 3D Flip Animation ─────────────────── */
+/* ─── Single Card ───────────────────────────────────────────────────────── */
 function SolutionCard({ solution, className = '' }) {
   const CardIcon = solution.icon;
-  const [isFlipped, setIsFlipped] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-
-  const showBack = isFlipped || isHovered;
-
-  const handleMouseEnter = () => {
-    if (typeof window !== 'undefined' && window.matchMedia('(hover: hover)').matches) {
-      setIsHovered(true);
-    }
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-    setIsFlipped(false);
-  };
-
-  const handleCardClick = (e) => {
-    // If clicked on an interactive link or button inside, allow navigation without toggling
-    if (e.target.closest('a, button')) return;
-    if (showBack) {
-      setIsFlipped(false);
-      setIsHovered(false);
-    } else {
-      setIsFlipped(true);
-    }
-  };
 
   return (
     <div
-      onClick={handleCardClick}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      className={`relative h-full min-h-[390px] sm:min-h-[410px] w-full [perspective:1200px] select-none group/card cursor-pointer ${className}`}
+      className={`flex flex-col h-full bg-white dark:bg-[#17264A] border border-[#DCE8F5] dark:border-[#24355A] rounded-[18px] shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 p-4 sm:p-4.5 ${className}`}
     >
-      {/* ── 3D Flipper Container ── */}
-      <div
-        className="relative w-full h-full transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] motion-reduce:transition-none will-change-transform"
-        style={{
-          transformStyle: 'preserve-3d',
-          WebkitTransformStyle: 'preserve-3d',
-          transform: showBack ? 'rotateX(180deg)' : 'rotateX(0deg)',
-        }}
-      >
-        {/* ── Front Face (Clean card without subtopics) ── */}
-        <div
-          className={`flex flex-col h-full w-full bg-white dark:bg-[#17264A] border border-[#DCE8F5] dark:border-[#24355A] rounded-[18px] shadow-xs hover:shadow-md transition-shadow duration-300 p-4 sm:p-4.5 ${
-            showBack ? 'pointer-events-none' : 'pointer-events-auto'
-          }`}
-          style={{
-            backfaceVisibility: 'hidden',
-            WebkitBackfaceVisibility: 'hidden',
-            transform: 'rotateX(0deg)',
-          }}
-        >
-          {/* ── Icon + Heading Row ── */}
-          <div className="flex items-center gap-2.5 mb-2.5 min-h-[40px]">
-            <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-[#EBF5FD] dark:bg-[#1A2C52] border border-[#C5DDF5] dark:border-[#244277] flex items-center justify-center shadow-2xs">
-              <CardIcon className="w-4.5 h-4.5 text-[#089EC2] dark:text-[#2DD4F0]" />
-            </div>
-            <h3 className="text-sm sm:text-[14.5px] font-bold leading-snug text-[#14213D] dark:text-[#F8FAFC]">
-              <a
-                href={solution.href}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  navigateTo(solution.href, e);
-                }}
-                className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors"
-              >
-                {solution.title}
-              </a>
-            </h3>
-          </div>
-
-          {/* ── Description directly below heading ── */}
-          <p className="text-xs leading-relaxed text-[#52627C] dark:text-[#AAB6D0] mb-3 min-h-[48px] sm:min-h-[52px]">
-            {solution.description}
-          </p>
-
-          {/* ── Image below description ── */}
+      {/* ── Icon + Heading Row ── */}
+      <div className="flex items-center gap-2.5 mb-2.5 min-h-[40px]">
+        <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-[#EBF5FD] dark:bg-[#1A2C52] border border-[#C5DDF5] dark:border-[#244277] flex items-center justify-center shadow-2xs">
+          <CardIcon className="w-4.5 h-4.5 text-[#089EC2] dark:text-[#2DD4F0]" />
+        </div>
+        <h3 className="text-sm sm:text-[14.5px] font-bold leading-snug text-[#14213D] dark:text-[#F8FAFC]">
           <a
             href={solution.href}
-            onClick={(e) => {
-              e.stopPropagation();
-              navigateTo(solution.href, e);
-            }}
-            className="w-full flex-1 min-h-[180px] sm:min-h-[200px] rounded-xl overflow-hidden border border-[#DCE8F5] dark:border-[#24355A] block group/img"
+            onClick={(e) => navigateTo(solution.href, e)}
+            className="hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors"
           >
-            <img
-              src={solution.image}
-              alt={solution.imageAlt}
-              className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-300"
-              loading="lazy"
-            />
+            {solution.title}
           </a>
-        </div>
+        </h3>
+      </div>
 
-        {/* ── Back Face (Revealed on Bottom-to-Top Flip) ── */}
-        <div
-          className={`absolute inset-0 flex flex-col h-full w-full bg-white dark:bg-[#17264A] border border-[#DCE8F5] dark:border-[#24355A] rounded-[18px] shadow-md p-4 sm:p-4.5 overflow-hidden ${
-            showBack ? 'pointer-events-auto' : 'pointer-events-none'
-          }`}
-          style={{
-            backfaceVisibility: 'hidden',
-            WebkitBackfaceVisibility: 'hidden',
-            transform: 'rotateX(180deg)',
-          }}
-        >
-          {/* ── Header: Icon + Title ── */}
-          <div className="flex items-center gap-2.5 mb-3 min-h-[40px]">
-            <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-[#EBF5FD] dark:bg-[#1A2C52] border border-[#C5DDF5] dark:border-[#244277] flex items-center justify-center shadow-2xs">
-              <CardIcon className="w-4.5 h-4.5 text-[#089EC2] dark:text-[#2DD4F0]" />
-            </div>
-            <h3 className="text-sm sm:text-[14.5px] font-bold leading-snug text-[#14213D] dark:text-[#F8FAFC]">
-              {solution.title}
-            </h3>
-          </div>
+      {/* ── Description directly below heading ── */}
+      <p className="text-xs leading-relaxed text-[#52627C] dark:text-[#AAB6D0] mb-3 min-h-[48px] sm:min-h-[52px]">
+        {solution.description}
+      </p>
 
-          {/* ── Subtopics Section Header & List ── */}
-          {solution.subtopics && solution.subtopics.length > 0 ? (
-            <>
-              <div className="mb-2 pb-1 border-b border-[#E8EFF7] dark:border-[#223555]">
-                <span className="text-[10.5px] font-semibold tracking-wider uppercase text-[#089EC2] dark:text-[#2DD4F0]">
-                  Solution Subtopics
+      {/* ── Image below description ── */}
+      <a
+        href={solution.href}
+        onClick={(e) => navigateTo(solution.href, e)}
+        className="w-full h-32 sm:h-36 rounded-xl overflow-hidden border border-[#DCE8F5] dark:border-[#24355A] mb-3 block group/img flex-shrink-0"
+      >
+        <img
+          src={solution.image}
+          alt={solution.imageAlt}
+          className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-300"
+          loading="lazy"
+        />
+      </a>
+
+      {/* ── Subtopics List (Compact horizontal rows) ── */}
+      <div className="flex-1 space-y-2">
+        {solution.features.map((feat, i) => {
+          const FeatIcon = feat.icon;
+          return (
+            <a
+              key={i}
+              href={feat.href}
+              onClick={(e) => navigateTo(feat.href, e)}
+              className="flex items-center justify-between gap-2 group/feat hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors cursor-pointer py-0.5"
+            >
+              <div className="flex items-center gap-2 min-w-0">
+                <FeatIcon className="w-3.5 h-3.5 text-[#089EC2] dark:text-[#2DD4F0] flex-shrink-0" />
+                <span className="text-xs text-[#14213D] dark:text-[#D4E3F5] group-hover/feat:text-[#089EC2] dark:group-hover/feat:text-[#2DD4F0] font-medium leading-tight truncate">
+                  {feat.label}
                 </span>
               </div>
+              {feat.status && <StatusBadge status={feat.status} />}
+            </a>
+          );
+        })}
+      </div>
 
-              <div className="flex-1 space-y-1.5 overflow-y-auto pr-0.5">
-                {solution.subtopics.map((sub, i) => {
-                  const SubIcon = sub.icon || Eye;
-                  return (
-                    <a
-                      key={i}
-                      href={sub.href}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        navigateTo(sub.href, e);
-                      }}
-                      className="flex items-center justify-between gap-2 p-1.5 sm:p-2 rounded-lg bg-[#F8FBFE] dark:bg-[#13203E] border border-[#E3EDF7] dark:border-[#1E3156] hover:border-[#089EC2]/60 hover:bg-[#EBF5FD] dark:hover:bg-[#1A2B50] group/sub transition-all cursor-pointer"
-                    >
-                      <div className="flex items-center gap-2 min-w-0">
-                        <div className="w-5 h-5 rounded-md bg-white dark:bg-[#17264A] flex items-center justify-center flex-shrink-0 border border-[#DCE8F5] dark:border-[#24355A]">
-                          <SubIcon className="w-3 h-3 text-[#089EC2] dark:text-[#2DD4F0]" />
-                        </div>
-                        <span className="text-xs text-[#14213D] dark:text-[#D4E3F5] group-hover/sub:text-[#089EC2] dark:group-hover/sub:text-[#2DD4F0] font-medium leading-tight truncate">
-                          {sub.title}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-1.5 flex-shrink-0">
-                        {sub.status && <StatusBadge status={sub.status} />}
-                        <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover/sub:text-[#089EC2] dark:group-hover/sub:text-[#2DD4F0] group-hover/sub:translate-x-0.5 transition-all" />
-                      </div>
-                    </a>
-                  );
-                })}
-              </div>
-            </>
-          ) : (
-            <div className="flex-1" />
-          )}
-
-          {/* ── Bottom CTA Button ── */}
-          <div className="mt-auto pt-3">
-            {solution.buttonText === 'Contact Our Team' ? (
-              <a
-                href={solution.buttonHref || '/contact-us'}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  navigateTo(solution.buttonHref || '/contact-us', e);
-                }}
-                className="explore-btn text-xs py-2 w-full"
-              >
-                <span>Contact Our Team</span>
-                <Mail className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
-              </a>
-            ) : (
-              <a
-                href={solution.buttonHref || solution.href}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  navigateTo(solution.buttonHref || solution.href, e);
-                }}
-                className="explore-btn text-xs py-2 w-full"
-              >
-                <span>{solution.buttonText || 'Explore Solutions'}</span>
-                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
-              </a>
-            )}
-          </div>
-        </div>
+      {/* ── Full-width Explore Solutions CTA Button ── */}
+      <div className="mt-auto pt-3">
+        {solution.buttonText === 'Contact Our Team' ? (
+          <a
+            href={solution.buttonHref || '#contact'}
+            onClick={(e) => navigateTo(solution.buttonHref || '#contact', e)}
+            className="explore-btn text-xs py-2"
+          >
+            <span>Contact Our Team</span>
+            <Mail className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+          </a>
+        ) : (
+          <a
+            href={solution.buttonHref || solution.href}
+            onClick={(e) => navigateTo(solution.buttonHref || solution.href, e)}
+            className="explore-btn text-xs py-2"
+          >
+            <span>{solution.buttonText || 'Explore Solutions'}</span>
+            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+          </a>
+        )}
       </div>
     </div>
   );

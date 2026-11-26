@@ -187,18 +187,13 @@ export default function OurSolutions({
     navigateTo(href, e);
   };
 
-  // Responsive grid: 5 cols for 5 items, 4 cols for 4 items, 3 cols for 3 items, 2 cols for 2 items, and 12-col layout (spanning at least middle of the page horizontally) for 1 item
-  const isSingleItem = items.length === 1;
+  // Responsive grid: 5 columns for 5 items, 3 columns for 3 items, 4 columns for 4 items on desktop
   const gridColsClass =
     items.length === 5
       ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5'
-      : items.length === 4
-        ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
-        : items.length === 3
-          ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
-          : items.length === 2
-            ? 'grid-cols-1 sm:grid-cols-2'
-            : 'grid-cols-1 md:grid-cols-12';
+      : items.length === 3
+        ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
+        : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4';
 
   return (
     <section
@@ -227,11 +222,9 @@ export default function OurSolutions({
               <div
                 key={item.slug || item.id || idx}
                 id={item.slug || item.id}
-                className={`group bg-white dark:bg-[#101936] rounded-xl sm:rounded-2xl border border-slate-200/90 dark:border-white/10 shadow-xs hover:shadow-md hover:border-[#089EC2]/60 dark:hover:border-[#2DD4F0]/60 transition-all duration-200 p-5 sm:p-6 flex flex-col justify-between h-full scroll-mt-24 ${
-                  isSingleItem ? 'md:col-span-8 lg:col-span-7 xl:col-span-6' : ''
-                }`}
+                className="group bg-white dark:bg-[#101936] rounded-xl sm:rounded-2xl border border-slate-200/90 dark:border-white/10 shadow-xs hover:shadow-md hover:border-[#089EC2]/60 dark:hover:border-[#2DD4F0]/60 transition-all duration-200 p-4 sm:p-5 flex flex-col justify-between h-full scroll-mt-24"
               >
-                {/* 1. Sub-solution name and short description */}
+                {/* 1. Sub-solution name and short description (max 2 lines) */}
                 <div className="flex-1 min-w-0 flex flex-col mb-4">
                   <div className="flex flex-wrap items-center gap-2">
                     <h3 className="text-sm sm:text-base font-bold text-[#14213D] dark:text-white leading-snug tracking-tight">
@@ -251,7 +244,7 @@ export default function OurSolutions({
                   </div>
 
                   {desc && (
-                    <p className={`mt-2 text-xs sm:text-[13px] text-slate-600 dark:text-slate-300 leading-relaxed ${isSingleItem ? '' : 'line-clamp-2'}`}>
+                    <p className="mt-2 text-xs sm:text-[13px] text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-2">
                       {desc}
                     </p>
                   )}
@@ -262,9 +255,7 @@ export default function OurSolutions({
                   <a
                     href={item.href}
                     onClick={(e) => handleNavigate(item.href, e)}
-                    className={`${
-                      isSingleItem ? 'w-full sm:w-fit px-6' : 'w-full px-3.5'
-                    } inline-flex items-center justify-center gap-2 py-2.5 rounded-lg sm:rounded-xl font-semibold text-xs sm:text-sm text-[#089EC2] dark:text-[#2DD4F0] bg-[#089EC2]/10 dark:bg-[#2DD4F0]/10 hover:bg-[#089EC2]/20 dark:hover:bg-[#2DD4F0]/20 border border-[#089EC2]/25 dark:border-[#2DD4F0]/25 transition-all duration-150 cursor-pointer group/btn`}
+                    className="w-full inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-lg sm:rounded-xl font-semibold text-xs sm:text-sm text-[#089EC2] dark:text-[#2DD4F0] bg-[#089EC2]/10 dark:bg-[#2DD4F0]/10 hover:bg-[#089EC2]/20 dark:hover:bg-[#2DD4F0]/20 border border-[#089EC2]/25 dark:border-[#2DD4F0]/25 transition-all duration-150 cursor-pointer group/btn"
                   >
                     <span>Explore Solution</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
