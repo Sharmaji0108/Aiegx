@@ -93,8 +93,8 @@ export default function Developers() {
         className={`group relative rounded-xl bg-white dark:bg-[#17264A] border border-[#DBE4F0] dark:border-[#24355A] hover:border-[#089EC2]/70 dark:hover:border-[#2DD4F0]/70 p-1 flex flex-col justify-center items-center text-center hover:-translate-y-1 hover:shadow-xl hover:shadow-[#3285FF]/10 transition-all duration-300 backdrop-blur-md shadow-xs w-[70px] h-[70px] min-w-[70px] max-w-[70px] shrink-0 aspect-square mr-2.5 cursor-pointer select-none lg:w-full lg:max-w-none lg:min-w-0 lg:h-full lg:aspect-auto lg:mr-0 lg:py-7 lg:px-4 lg:rounded-2xl lg:cursor-default ${isExtra ? 'lg:hidden' : ''}`}
       >
         {/* Industry Icon Container: 22px on mobile, 56px (w-14) on desktop */}
-        <div className="w-[22px] h-[22px] rounded-md bg-[#EDF2F7] dark:bg-[#101936] text-[#089EC2] dark:text-[#2DD4F0] border border-[#DBE4F0] dark:border-[#24355A] flex items-center justify-center mb-1 shrink-0 group-hover:scale-105 group-hover:bg-gradient-to-tr group-hover:from-[#2DD4F0] group-hover:to-[#3285FF] group-hover:text-[#0D1733] group-hover:border-transparent group-hover:shadow-sm group-hover:shadow-[#2DD4F0]/20 transition-all duration-300 lg:w-14 lg:h-14 lg:rounded-2xl lg:mb-4 lg:group-hover:scale-110">
-          <Icon className="w-3 h-3 lg:w-7 lg:h-7" />
+        <div className="w-[22px] h-[22px] rounded-md bg-[#EDF2F7] dark:bg-[#101936] text-[#14213D] dark:text-[#F8FAFC] border border-[#DBE4F0] dark:border-[#24355A] flex items-center justify-center mb-1 shrink-0 group-hover:scale-105 transition-all duration-300 lg:w-14 lg:h-14 lg:rounded-2xl lg:mb-4 lg:group-hover:scale-110">
+          <Icon className="w-3 h-3 lg:w-7 lg:h-7 text-[#14213D] dark:text-[#F8FAFC]" />
         </div>
 
         {/* Industry Label: 8.5px with 2-line wrap on mobile, 17px on desktop */}
