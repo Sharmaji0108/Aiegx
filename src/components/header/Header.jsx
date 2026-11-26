@@ -163,7 +163,8 @@ export default function Header() {
   const solutionsHoverTimeoutRef = useRef(null);
   const aboutHoverTimeoutRef = useRef(null);
 
-  const CLOSE_DELAY_MS = 220;
+  // Configured dropdown closing delay: ~800ms (0.8s) to allow seamless cursor movement into dropdowns
+  const CLOSE_DELAY_MS = 800;
 
   const clearAllTimeouts = () => {
     if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
