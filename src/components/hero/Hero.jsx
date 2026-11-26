@@ -14,8 +14,8 @@ export const heroSlides = [
     description: 'We design and develop embedded hardware platforms for industrial, multimedia, and intelligent applications, combining performance, flexibility, and reliability.',
     ctaText: 'Explore Hardware',
     ctaHref: '#hardware-platforms',
-    image: '/images/sbc-platform-hd.jpg',
-    fallbackImage: '/images/rz-g2l-hd.jpg',
+    image: '/images/sbc-platform-hd.png',
+    fallbackImage: '/images/sbc-platform-hd.png',
     alt: 'AIEGX Embedded Single Board Computer'
   },
   {
