@@ -152,6 +152,31 @@ function SolutionCard({ solution, className = '' }) {
       <div className="flex-1 space-y-2">
         {solution.features.map((feat, i) => {
           const FeatIcon = feat.icon;
+          const isSurveillance = solution.id === 'surveillance';
+
+          if (isSurveillance) {
+            return (
+              <a
+                key={i}
+                href={feat.href}
+                onClick={(e) => navigateTo(feat.href, e)}
+                className="flex flex-col gap-1.5 group/feat hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors cursor-pointer py-0.5"
+              >
+                <div className="flex items-center gap-2 min-w-0">
+                  <FeatIcon className="w-3.5 h-3.5 text-[#089EC2] dark:text-[#2DD4F0] flex-shrink-0" />
+                  <span className="text-xs text-[#14213D] dark:text-[#D4E3F5] group-hover/feat:text-[#089EC2] dark:group-hover/feat:text-[#2DD4F0] font-medium leading-tight">
+                    {feat.label}
+                  </span>
+                </div>
+                {feat.status && (
+                  <div className="pl-[22px]">
+                    <StatusBadge status={feat.status} />
+                  </div>
+                )}
+              </a>
+            );
+          }
+
           return (
             <a
               key={i}
