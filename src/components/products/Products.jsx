@@ -72,11 +72,10 @@ function HardwareCard({ product, className = '' }) {
 
   return (
     <div
-      className={`group relative flex flex-col bg-white dark:bg-[#17264A] rounded-[18px] border transition-all duration-300 overflow-hidden shadow-xs hover:shadow-md hover:-translate-y-0.5 p-4 sm:p-4.5 ${
-        product.ctaGradient
-          ? 'border-[#089EC2]/50 dark:border-[#2DD4F0]/40 shadow-[0_2px_12px_rgba(8,158,194,0.12)]'
-          : 'border-[#DCE8F5] dark:border-[#24355A] hover:border-[#089EC2]/40 dark:hover:border-[#2DD4F0]/30'
-      } ${className}`}
+      className={`group relative flex flex-col bg-white dark:bg-[#17264A] rounded-[18px] border transition-all duration-300 overflow-hidden shadow-xs hover:shadow-md hover:-translate-y-0.5 p-4 sm:p-4.5 ${product.ctaGradient
+        ? 'border-[#089EC2]/50 dark:border-[#2DD4F0]/40 shadow-[0_2px_12px_rgba(8,158,194,0.12)]'
+        : 'border-[#DCE8F5] dark:border-[#24355A] hover:border-[#089EC2]/40 dark:hover:border-[#2DD4F0]/30'
+        } ${className}`}
     >
       {/* 1. Platform name & optional Development Badge */}
       <div className="flex items-center gap-2 flex-nowrap min-h-[28px]">
@@ -144,21 +143,19 @@ function HardwareCard({ product, className = '' }) {
             Hardware in Development
           </div>
         )}
-
-        {/* Optional Concept Illustration label overlay */}
-        {product.imageConceptLabel && (
-          <div className="absolute bottom-1.5 right-1.5 pointer-events-none z-10">
-            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[9.5px] font-medium tracking-normal bg-slate-100/90 dark:bg-[#101936]/90 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-white/10 shadow-2xs backdrop-blur-xs">
-              {product.imageConceptLabel}
-            </span>
-          </div>
-        )}
       </div>
 
-      {/* 5. AVAILABLE HARDWARE label */}
-      <p className="text-[10px] font-bold tracking-[0.15em] uppercase text-[#52627C] dark:text-[#AAB6D0] mb-1.5">
-        AVAILABLE HARDWARE
-      </p>
+      {/* 5. AVAILABLE HARDWARE label & optional Concept Illustration badge */}
+      <div className="flex items-center gap-2 flex-nowrap mb-1.5">
+        <p className="text-[10px] font-bold tracking-[0.15em] uppercase text-[#52627C] dark:text-[#AAB6D0] whitespace-nowrap">
+          AVAILABLE HARDWARE
+        </p>
+        {product.imageConceptLabel && (
+          <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[9.5px] font-medium tracking-normal bg-slate-100 dark:bg-[#1A2C52] text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-[#244277] whitespace-nowrap shrink-0">
+            {product.imageConceptLabel}
+          </span>
+        )}
+      </div>
 
       {/* 6. Hardware tags */}
       <div className="flex flex-wrap gap-1.5 mb-3.5 min-h-[26px]">
@@ -311,9 +308,8 @@ function MobileHardwareCarousel({ products }) {
         {outgoingIndex !== null && (
           <div
             key={`outgoing-${outgoingIndex}`}
-            className={`absolute inset-0 w-full h-full z-0 pointer-events-none ${
-              slideDirection === 'next' ? 'solution-slide-out-left' : 'solution-slide-out-right'
-            }`}
+            className={`absolute inset-0 w-full h-full z-0 pointer-events-none ${slideDirection === 'next' ? 'solution-slide-out-left' : 'solution-slide-out-right'
+              }`}
           >
             <HardwareCard product={products[outgoingIndex]} />
           </div>
@@ -322,13 +318,12 @@ function MobileHardwareCarousel({ products }) {
         {/* Incoming / Active Card (Fades in and slides into view) */}
         <div
           key={`active-${currentIndex}`}
-          className={`relative w-full z-10 ${
-            isTransitioning
-              ? slideDirection === 'next'
-                ? 'solution-slide-in-right'
-                : 'solution-slide-in-left'
-              : ''
-          }`}
+          className={`relative w-full z-10 ${isTransitioning
+            ? slideDirection === 'next'
+              ? 'solution-slide-in-right'
+              : 'solution-slide-in-left'
+            : ''
+            }`}
         >
           <HardwareCard product={products[currentIndex]} />
         </div>
@@ -358,11 +353,10 @@ function MobileHardwareCarousel({ products }) {
                 aria-selected={isActive}
                 aria-label={`Go to ${prod.name}`}
                 onClick={() => handleDotClick(idx)}
-                className={`transition-all duration-300 rounded-full cursor-pointer ${
-                  isActive
-                    ? 'w-7 h-2.5 bg-[#089EC2] dark:bg-[#2DD4F0]'
-                    : 'w-2.5 h-2.5 bg-slate-300 dark:bg-slate-600 hover:bg-slate-400 dark:hover:bg-slate-500'
-                }`}
+                className={`transition-all duration-300 rounded-full cursor-pointer ${isActive
+                  ? 'w-7 h-2.5 bg-[#089EC2] dark:bg-[#2DD4F0]'
+                  : 'w-2.5 h-2.5 bg-slate-300 dark:bg-slate-600 hover:bg-slate-400 dark:hover:bg-slate-500'
+                  }`}
               />
             );
           })}
