@@ -52,8 +52,8 @@ export const heroSlides = [
     description: 'From hardware design and embedded Linux development to software, camera integration, and edge AI, we provide engineering expertise to develop complete embedded products.',
     ctaText: 'Talk to Engineers',
     ctaHref: '#contact',
-    image: '/images/hero-som-module.jpg',
-    fallbackImage: '/images/aiegx-hardware-som-hd.jpg',
+    image: '/images/hero-som-module.png',
+    fallbackImage: '/images/hero-som-module.png',
     alt: 'AIEGX Embedded Engineering Capabilities'
   }
 ];

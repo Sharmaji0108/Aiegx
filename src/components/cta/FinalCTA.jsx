@@ -116,10 +116,6 @@ export default function FinalCTA() {
       <div id="ecosystem-partners" className="sr-only" />
       <div id="technical-support" className="sr-only" />
 
-      {/* Ambient Background Lighting Glow */}
-      <div className="absolute top-1/3 left-1/4 w-[600px] h-[500px] bg-gradient-to-tr from-[#3285FF]/10 via-[#2DD4F0]/10 to-transparent rounded-full blur-[140px] pointer-events-none -z-10" />
-      <div className="absolute bottom-1/3 right-1/4 w-[500px] h-[400px] bg-gradient-to-bl from-[#2DD4F0]/10 via-[#3285FF]/10 to-transparent rounded-full blur-[140px] pointer-events-none -z-10" />
-
       <div className="section-container relative">
 
         {/* Section Heading */}
