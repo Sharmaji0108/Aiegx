@@ -152,9 +152,9 @@ function SolutionCard({ solution, className = '' }) {
       <div className="flex-1 space-y-2">
         {solution.features.map((feat, i) => {
           const FeatIcon = feat.icon;
-          const isSurveillance = solution.id === 'surveillance';
+          const isStackedBadge = solution.id === 'surveillance' || solution.id === 'defence';
 
-          if (isSurveillance) {
+          if (isStackedBadge) {
             return (
               <a
                 key={i}
