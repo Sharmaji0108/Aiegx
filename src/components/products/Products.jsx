@@ -19,6 +19,7 @@ import {
   Server,
   Zap,
   Settings,
+  Wrench,
 } from 'lucide-react';
 
 /* ─── Hardware tag data per product ─────────────────────────────────── */
@@ -77,10 +78,18 @@ function HardwareCard({ product, className = '' }) {
           : 'border-[#DCE8F5] dark:border-[#24355A] hover:border-[#089EC2]/40 dark:hover:border-[#2DD4F0]/30'
       } ${className}`}
     >
-      {/* 1. Platform name */}
-      <h3 className="text-base sm:text-[17px] font-extrabold text-[#14213D] dark:text-[#F8FAFC] tracking-tight leading-snug">
-        {product.name}
-      </h3>
+      {/* 1. Platform name & optional Development Badge */}
+      <div className="flex flex-wrap items-start justify-between gap-1.5 min-h-[28px]">
+        <h3 className="text-base sm:text-[17px] font-extrabold text-[#14213D] dark:text-[#F8FAFC] tracking-tight leading-snug">
+          {product.name}
+        </h3>
+        {product.status && (
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold tracking-wide bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 border border-amber-300/80 dark:border-amber-700/50 whitespace-nowrap shrink-0 mt-0.5">
+            <Wrench className="w-2.5 h-2.5 text-amber-600 dark:text-amber-400" />
+            {product.status}
+          </span>
+        )}
+      </div>
 
       {/* 2. Subtitle */}
       <p className="text-xs sm:text-[13px] font-bold text-[#14213D] dark:text-[#F8FAFC] mt-0.5">
@@ -94,7 +103,7 @@ function HardwareCard({ product, className = '' }) {
 
       {/* 4. Hardware Image / 3D Model */}
       <div
-        className="w-full h-28 sm:h-32 flex items-center justify-center bg-white dark:bg-[#17264A] my-3 overflow-hidden rounded-xl cursor-pointer"
+        className="relative w-full h-28 sm:h-32 flex items-center justify-center bg-white dark:bg-[#17264A] my-3 overflow-hidden rounded-xl cursor-pointer"
         onClick={(e) => navigateTo(`/products/${product.id}`, e)}
         role="button"
         tabIndex={0}
@@ -129,6 +138,15 @@ function HardwareCard({ product, className = '' }) {
         ) : (
           <div className="w-full h-full flex items-center justify-center text-[#AAB6D0] text-xs italic">
             Hardware in Development
+          </div>
+        )}
+
+        {/* Optional Concept Illustration label overlay */}
+        {product.imageConceptLabel && (
+          <div className="absolute bottom-1.5 right-1.5 pointer-events-none z-10">
+            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[9.5px] font-medium tracking-normal bg-slate-100/90 dark:bg-[#101936]/90 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-white/10 shadow-2xs backdrop-blur-xs">
+              {product.imageConceptLabel}
+            </span>
           </div>
         )}
       </div>
@@ -431,12 +449,14 @@ export default function Products() {
     {
       id: 'rz-v2h',
       name: 'RZ/V2H-Based Platform',
+      status: 'In Development',
       subtitle: 'High-Performance Edge AI',
       image: RZV2H,
       fallbackImage: '/images/RZV2H.png',
+      imageConceptLabel: 'Concept Illustration',
       fullName: 'Renesas RZ/V2H High-Performance AI Vision Module',
       shortDescription:
-        'High-performance edge AI platform based on Renesas RZ/V2H for multi-camera processing and advanced vision applications.',
+        'Embedded computing platform under development, based on the Renesas RZ/V2H processor for advanced vision AI applications.',
       categoryLabel: 'Edge AI Processor',
       badge: 'DRP-AI 2nd Gen',
       headline: 'High-Performance Embedded AI with 2nd Gen DRP-AI @ 10 TOPS',
