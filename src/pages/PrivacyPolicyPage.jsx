@@ -2,18 +2,8 @@ import React, { useEffect } from 'react';
 import {
   ShieldCheck,
   ArrowLeft,
-  Mail,
-  Phone,
-  MapPin,
-  Building2,
   FileText,
-  Lock,
-  Eye,
-  Database,
-  ExternalLink,
-  RefreshCw,
-  Cookie,
-  UserCheck
+  Eye
 } from 'lucide-react';
 import ProductBreadcrumb from '../components/products/ProductBreadcrumb';
 import { navigateTo } from '../utils/navigation';
@@ -355,79 +345,6 @@ export default function PrivacyPolicyPage() {
               <p>
                 Whenever changes occur, we will post the revised version on this page and update the &quot;Last Updated&quot; date at the top. We encourage you to periodically review this page to stay informed about how we protect your personal information.
               </p>
-            </div>
-          </section>
-
-          <hr className="border-t border-[#E2ECF7] dark:border-white/10" />
-
-          {/* SECTION 11: Contact Us */}
-          <section id="section-11" className="space-y-4">
-            <div className="flex items-center gap-3">
-              <span className="w-8 h-8 rounded-lg bg-[#EAF5FF] dark:bg-[#17264D] text-[#089EC2] dark:text-[#2DD4F0] font-mono text-xs font-bold flex items-center justify-center shrink-0">
-                11
-              </span>
-              <h2 className="text-xl sm:text-2xl font-bold text-[#101B32] dark:text-white tracking-tight">
-                11. Contact Us
-              </h2>
-            </div>
-            <div className="text-sm sm:text-base text-[#536987] dark:text-[#AAB6D0] leading-relaxed space-y-4 pl-0 sm:pl-11">
-              <p>
-                If you have questions, comments, or requests regarding this Privacy Policy or how AIEGX handles your data, please contact us using our verified company channels:
-              </p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                
-                {/* Email Box */}
-                <div className="p-4 rounded-xl bg-[#F8FAFD] dark:bg-[#152347] border border-[#E2ECF7] dark:border-[#20325D]">
-                  <div className="flex items-center gap-2 font-semibold text-sm text-[#101B32] dark:text-white mb-1">
-                    <Mail className="w-4 h-4 text-[#1672E8] dark:text-[#2DD4F0]" />
-                    <span>Privacy &amp; Support Email</span>
-                  </div>
-                  <a
-                    href="mailto:contact@aiegx.com"
-                    className="text-xs sm:text-sm font-semibold text-[#1672E8] dark:text-[#2DD4F0] hover:underline"
-                  >
-                    contact@aiegx.com
-                  </a>
-                </div>
-
-                {/* Phone Box */}
-                <div className="p-4 rounded-xl bg-[#F8FAFD] dark:bg-[#152347] border border-[#E2ECF7] dark:border-[#20325D]">
-                  <div className="flex items-center gap-2 font-semibold text-sm text-[#101B32] dark:text-white mb-1">
-                    <Phone className="w-4 h-4 text-[#1672E8] dark:text-[#2DD4F0]" />
-                    <span>Phone Inquiries</span>
-                  </div>
-                  <a
-                    href="tel:+18005550199"
-                    className="text-xs sm:text-sm font-semibold text-[#1672E8] dark:text-[#2DD4F0] hover:underline"
-                  >
-                    +1 (800) 555-0199
-                  </a>
-                </div>
-
-                {/* Location Box */}
-                <div className="p-4 rounded-xl bg-[#F8FAFD] dark:bg-[#152347] border border-[#E2ECF7] dark:border-[#20325D]">
-                  <div className="flex items-center gap-2 font-semibold text-sm text-[#101B32] dark:text-white mb-1">
-                    <MapPin className="w-4 h-4 text-[#1672E8] dark:text-[#2DD4F0]" />
-                    <span>Hardware Engineering Centers</span>
-                  </div>
-                  <p className="text-xs sm:text-sm text-[#536987] dark:text-[#AAB6D0]">
-                    Silicon Valley &amp; Global Engineering Centers
-                  </p>
-                </div>
-
-                {/* Legal Entity Placeholder */}
-                <div className="p-4 rounded-xl bg-[#F8FAFD] dark:bg-[#152347] border border-[#E2ECF7] dark:border-[#20325D]">
-                  <div className="flex items-center gap-2 font-semibold text-sm text-[#101B32] dark:text-white mb-1">
-                    <Building2 className="w-4 h-4 text-[#1672E8] dark:text-[#2DD4F0]" />
-                    <span>Corporate Entity</span>
-                  </div>
-                  <p className="text-xs sm:text-sm text-[#536987] dark:text-[#AAB6D0]">
-                    [Legal Entity / Registered Address: AIEGX Inc. / Corporate Headquarters]
-                  </p>
-                </div>
-
-              </div>
             </div>
           </section>
 
