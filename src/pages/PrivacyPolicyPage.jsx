@@ -23,43 +23,44 @@ export default function PrivacyPolicyPage() {
     <div className="w-full min-h-screen bg-[#F3F8FD] dark:bg-[#0D1733] text-[#101B32] dark:text-[#F8FAFC] transition-colors duration-300">
       
       {/* ─── HERO HEADER ────────────────────────────────────────────────── */}
-      <section className="relative pt-[104px] pb-12 sm:pt-[124px] sm:pb-16 lg:pt-[136px] lg:pb-18 overflow-hidden border-b border-[#D8E5F3] dark:border-white/10 bg-gradient-to-b from-[#EAF5FF] via-[#F3F8FD] to-[#F3F8FD] dark:from-[#111F42] dark:via-[#0D1733] dark:to-[#0D1733]">
+      <section className="relative pt-[96px] pb-8 sm:pt-[104px] sm:pb-10 lg:pt-[116px] lg:pb-12 overflow-hidden border-b border-[#D8E5F3] dark:border-white/10 bg-gradient-to-b from-[#EAF5FF] via-[#F3F8FD] to-[#F3F8FD] dark:from-[#111F42] dark:via-[#0D1733] dark:to-[#0D1733]">
         {/* Subtle Ambient Decorative Lighting */}
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#089EC2]/10 dark:bg-[#2DD4F0]/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute top-1/3 left-10 w-80 h-80 bg-[#1672E8]/10 dark:bg-[#1672E8]/15 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <ProductBreadcrumb items={breadcrumbItems} />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Top Navigation Row: Breadcrumb on left, Back to Home on right */}
+          <div className="flex items-center justify-between gap-4 mb-6">
+            <ProductBreadcrumb items={breadcrumbItems} className="mb-0 sm:mb-0" />
+            <button
+              type="button"
+              onClick={(e) => navigateTo('/', e)}
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#52627C] dark:text-[#AAB6D0] hover:text-[#089EC2] dark:hover:text-[#2DD4F0] transition-colors cursor-pointer group"
+            >
+              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform duration-200" />
+              <span>Back to Home</span>
+            </button>
+          </div>
 
-          {/* Back to Home Quick Action */}
-          <button
-            type="button"
-            onClick={(e) => navigateTo('/', e)}
-            className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-[#089EC2] dark:text-[#2DD4F0] hover:text-[#1672E8] dark:hover:text-cyan-300 transition-colors mb-5 cursor-pointer group"
-          >
-            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-200" />
-            <span>Back to Home</span>
-          </button>
-
-          <div className="text-left">
+          <div className="max-w-3xl mx-auto text-center flex flex-col items-center">
             {/* Category Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-[#17264A] border border-[#089EC2]/30 dark:border-[#2DD4F0]/30 text-xs font-mono font-bold tracking-wider uppercase text-[#089EC2] dark:text-[#2DD4F0] mb-5 shadow-2xs">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-[#17264A] border border-[#089EC2]/30 dark:border-[#2DD4F0]/30 text-xs font-mono font-bold tracking-wider uppercase text-[#089EC2] dark:text-[#2DD4F0] mb-4 shadow-2xs">
               <ShieldCheck className="w-3.5 h-3.5" />
               <span>Legal &amp; Compliance</span>
             </div>
 
             {/* Main Heading */}
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#101B32] dark:text-white leading-[1.18] mb-4">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#101B32] dark:text-white leading-[1.18] mb-3">
               Privacy Policy
             </h1>
 
             {/* Introductory Description */}
-            <p className="text-base sm:text-lg text-[#536987] dark:text-[#AAB6D0] font-normal leading-relaxed max-w-3xl mb-4">
+            <p className="text-sm sm:text-base text-[#536987] dark:text-[#AAB6D0] font-normal leading-relaxed max-w-2xl mb-4">
               This Privacy Policy explains how AIEGX collects, uses, protects, and handles your personal information when you visit our website, request quotes, or communicate with our engineering and support teams.
             </p>
 
             {/* Last Updated Date */}
-            <div className="flex items-center gap-2 text-xs sm:text-sm font-medium text-[#536987] dark:text-[#AAB6D0] pt-2">
+            <div className="flex items-center gap-2 text-xs sm:text-sm font-medium text-[#536987] dark:text-[#AAB6D0]">
               <span className="font-semibold text-[#101B32] dark:text-slate-200">Last Updated:</span>
               <time dateTime="2026-11-27">November 27, 2026</time>
             </div>
@@ -68,8 +69,8 @@ export default function PrivacyPolicyPage() {
       </section>
 
       {/* ─── POLICY CONTENT CONTAINER ───────────────────────────────────── */}
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-        <article className="bg-white dark:bg-[#101A36] rounded-2xl border border-[#D8E5F3] dark:border-[#1E2E55] p-6 sm:p-10 lg:p-12 shadow-sm text-[#101B32] dark:text-slate-200 space-y-12">
+      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <article className="bg-white dark:bg-[#101A36] rounded-2xl border border-[#D8E5F3] dark:border-[#1E2E55] p-6 sm:p-8 lg:p-10 shadow-sm text-[#101B32] dark:text-slate-200 space-y-8 sm:space-y-10">
 
           {/* SECTION 1: Introduction */}
           <section id="section-1" className="space-y-4">
