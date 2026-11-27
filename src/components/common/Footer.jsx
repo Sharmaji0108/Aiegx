@@ -75,7 +75,7 @@ export default function Footer() {
           <div className="flex flex-wrap items-center gap-4 text-xs text-slate-500 dark:text-white/40">
             <span>&copy; 2026 AIEGX. All rights reserved.</span>
             <span className="text-slate-400 dark:text-white/20">|</span>
-            <a href="#why-aiegx" onClick={(e) => navigateTo('/#why-aiegx', e)} className="hover:text-slate-900 dark:hover:text-white transition-colors">Privacy Policy</a>
+            <a href="/privacy-policy" onClick={(e) => navigateTo('/privacy-policy', e)} className="hover:text-slate-900 dark:hover:text-white transition-colors">Privacy Policy</a>
           </div>
 
           {/* Social Icons */}
