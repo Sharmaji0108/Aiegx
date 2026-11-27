@@ -3,7 +3,6 @@ import SectionHeadingContainer from '../common/SectionHeadingContainer';
 import {
   Car,
   Camera,
-  Factory,
   Shield,
   Eye,
   ScanLine,
@@ -58,20 +57,6 @@ const solutions = [
     ],
     ctaGradient: false,
     href: '/solutions/video-surveillance',
-  },
-  {
-    id: 'industrial',
-    icon: Factory,
-    title: 'Industrial & Machine Vision Solutions',
-    description:
-      'Embedded hardware and vision processing capabilities for industrial monitoring and automation applications.',
-    image: '/images/Automated Gear Inspection Line.png',
-    imageAlt: 'Automated Gear Inspection Line',
-    features: [],
-    buttonText: 'Contact Our Team',
-    buttonHref: '#contact',
-    ctaGradient: false,
-    href: '/solutions/industrial-machine-vision',
   },
   {
     id: 'defence',
@@ -426,8 +411,8 @@ export default function Applications() {
           description="Embedded hardware and software solutions for transportation, surveillance, industrial automation, and defence applications."
         />
 
-        {/* ── Desktop & Tablet Grid: Exactly 4 Cards ── */}
-        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 items-stretch">
+        {/* ── Desktop & Tablet Grid: 3 Cards ── */}
+        <div className="hidden sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 sm:gap-5 items-stretch">
           {solutions.map((sol) => (
             <SolutionCard key={sol.id} solution={sol} />
           ))}
