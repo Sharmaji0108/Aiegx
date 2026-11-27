@@ -3,30 +3,46 @@ import {
   X,
   ChevronRight,
   Cpu,
-  Server
+  Server,
+  LayoutGrid,
+  Layers
 } from 'lucide-react';
 
 const categories = [
   {
     id: 'som',
-    name: 'System on Modules',
+    name: 'SOM',
     icon: Cpu,
     items: [
+      { name: 'RZ/G2L', href: '/products/rz-g2l/smarc-som' },
+      { name: 'RZ/V2L', href: '/products/rz-v2l/som' },
+    ],
+  },
+  {
+    id: 'embedded-computing-platform',
+    name: 'Embedded Computing Platform',
+    icon: LayoutGrid,
+    items: [
       { name: 'RZ/G2L', href: '/products/rz-g2l' },
-      { name: 'RZ/G2N', href: '/products/rz-g2n' },
       { name: 'RZ/V2L', href: '/products/rz-v2l' },
-      { name: 'RZ/V2H', href: '/products/rz-v2h' },
     ],
   },
   {
     id: 'sbc',
-    name: 'Single Board Computers',
+    name: 'SBC',
     icon: Server,
     items: [
-      { name: 'RZ/G2L Development Kit', href: '/products/rzg2l/complete-sbc/' },
-      { name: 'RZ/G2N Embedded Computing Platform', href: '/products/rz-g2n/sbc' },
-      { name: 'RZ/V2L Development Kit', href: '/products/rzv2l/complete-sbc/' },
-      { name: 'RZ/V2H Embedded Computing Platform', href: '/products/rzv2h/complete-sbc/' },
+      { name: 'RZ/G2N', href: '/products/rz-g2n/sbc' },
+      { name: 'RZ/V2H', href: '/products/rzv2h/complete-sbc/' },
+    ],
+  },
+  {
+    id: 'carrier-board',
+    name: 'Carrier Board',
+    icon: Layers,
+    items: [
+      { name: 'RZ/G2L', href: '/products/rz-g2l/carrier-board' },
+      { name: 'RZ/V2L', href: '/products/rz-v2l/carrier-board' },
     ],
   },
 ];
@@ -35,6 +51,14 @@ export default function ProductsMegaMenu({ isOpen, onClose, onMouseEnter, onMous
   const [selectedCategory, setSelectedCategory] = useState('som');
   const [mobileStep, setMobileStep] = useState(1); // 1 = Categories, 2 = Items
   const menuRef = useRef(null);
+
+  // Reset to default category 'som' whenever dropdown opens
+  useEffect(() => {
+    if (isOpen) {
+      setSelectedCategory('som');
+      setMobileStep(1);
+    }
+  }, [isOpen]);
 
   // Close on Escape key
   useEffect(() => {
