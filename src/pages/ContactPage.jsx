@@ -12,27 +12,6 @@ import {
   ArrowDown
 } from 'lucide-react';
 
-const INQUIRY_TYPES = [
-  'Hardware Product Inquiry',
-  'Custom Hardware Development',
-  'Linux / Yocto BSP Development',
-  'Software Engineering',
-  'Camera & Multimedia Integration',
-  'Edge AI Development',
-  'Technical Support',
-  'Partnership / Business Inquiry',
-  'Other'
-];
-
-const PRODUCT_PLATFORMS = [
-  'RZ/G2L',
-  'RZ/G2N',
-  'RZ/V2L',
-  'RZ/V2H',
-  'Custom Hardware',
-  'Not Sure Yet'
-];
-
 export default function ContactPage() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
@@ -45,8 +24,6 @@ export default function ContactPage() {
     businessEmail: '',
     phoneNumber: '',
     country: '',
-    inquiryType: '',
-    productPlatform: '',
     projectDescription: ''
   });
 
@@ -87,9 +64,6 @@ export default function ContactPage() {
       case 'country':
         if (!value.trim()) return 'Country is required.';
         return '';
-      case 'inquiryType':
-        if (!value) return 'Please select an inquiry type.';
-        return '';
       case 'projectDescription':
         if (!value.trim()) return 'Project description is required.';
         if (value.trim().length < 15) return 'Please provide at least 15 characters describing your project.';
@@ -124,7 +98,6 @@ export default function ContactPage() {
       'businessEmail',
       'phoneNumber',
       'country',
-      'inquiryType',
       'projectDescription'
     ];
 
@@ -181,8 +154,6 @@ export default function ContactPage() {
           businessEmail: '',
           phoneNumber: '',
           country: '',
-          inquiryType: '',
-          productPlatform: '',
           projectDescription: ''
         });
         setTouched({});
@@ -427,101 +398,37 @@ export default function ContactPage() {
 
               </div>
 
-              {/* Row 3: Country & Inquiry Type */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                
-                {/* 5. Country */}
-                <div data-error={!!errors.country}>
-                  <label
-                    htmlFor="country"
-                    className="block text-xs sm:text-sm font-semibold text-[#101B32] dark:text-slate-200 mb-2"
-                  >
-                    Country <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="country"
-                    name="country"
-                    value={formData.country}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    placeholder="e.g. United States, Germany, India"
-                    className={`w-full px-4 py-3 rounded-xl text-sm bg-[#F9FBFE] dark:bg-[#0D1733] border text-[#101B32] dark:text-white placeholder-[#8A9EB8] dark:placeholder-[#64748B] transition-colors focus:outline-none ${
-                      errors.country && touched.country
-                        ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-200 dark:focus:ring-red-900/30'
-                        : 'border-[#D8E5F3] dark:border-[#24355A] focus:border-[#1672E8] focus:ring-2 focus:ring-[#1672E8]/20 dark:focus:ring-[#2DD4F0]/20'
-                    }`}
-                  />
-                  {errors.country && touched.country && (
-                    <p className="text-red-500 dark:text-red-400 text-xs mt-1.5 flex items-center gap-1 font-medium">
-                      <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                      <span>{errors.country}</span>
-                    </p>
-                  )}
-                </div>
-
-                {/* 6. Inquiry Type */}
-                <div data-error={!!errors.inquiryType}>
-                  <label
-                    htmlFor="inquiryType"
-                    className="block text-xs sm:text-sm font-semibold text-[#101B32] dark:text-slate-200 mb-2"
-                  >
-                    Inquiry Type <span className="text-red-500">*</span>
-                  </label>
-                  <select
-                    id="inquiryType"
-                    name="inquiryType"
-                    value={formData.inquiryType}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    className={`w-full px-4 py-3 rounded-xl text-sm bg-[#F9FBFE] dark:bg-[#0D1733] border text-[#101B32] dark:text-white transition-colors focus:outline-none cursor-pointer ${
-                      errors.inquiryType && touched.inquiryType
-                        ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-200 dark:focus:ring-red-900/30'
-                        : 'border-[#D8E5F3] dark:border-[#24355A] focus:border-[#1672E8] focus:ring-2 focus:ring-[#1672E8]/20 dark:focus:ring-[#2DD4F0]/20'
-                    }`}
-                  >
-                    <option value="">Select an Inquiry Type</option>
-                    {INQUIRY_TYPES.map((type) => (
-                      <option key={type} value={type}>
-                        {type}
-                      </option>
-                    ))}
-                  </select>
-                  {errors.inquiryType && touched.inquiryType && (
-                    <p className="text-red-500 dark:text-red-400 text-xs mt-1.5 flex items-center gap-1 font-medium">
-                      <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                      <span>{errors.inquiryType}</span>
-                    </p>
-                  )}
-                </div>
-
-              </div>
-
-              {/* Row 4: Product / Platform */}
-              <div>
+              {/* Row 3: Country */}
+              <div data-error={!!errors.country}>
                 <label
-                  htmlFor="productPlatform"
+                  htmlFor="country"
                   className="block text-xs sm:text-sm font-semibold text-[#101B32] dark:text-slate-200 mb-2"
                 >
-                  Product / Platform <span className="text-xs font-normal text-[#536987] dark:text-[#AAB6D0]">(Optional)</span>
+                  Country <span className="text-red-500">*</span>
                 </label>
-                <select
-                  id="productPlatform"
-                  name="productPlatform"
-                  value={formData.productPlatform}
+                <input
+                  type="text"
+                  id="country"
+                  name="country"
+                  value={formData.country}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-xl text-sm bg-[#F9FBFE] dark:bg-[#0D1733] border border-[#D8E5F3] dark:border-[#24355A] text-[#101B32] dark:text-white transition-colors focus:outline-none focus:border-[#1672E8] focus:ring-2 focus:ring-[#1672E8]/20 dark:focus:ring-[#2DD4F0]/20 cursor-pointer"
-                >
-                  <option value="">Select a Platform (Optional)</option>
-                  {PRODUCT_PLATFORMS.map((plat) => (
-                    <option key={plat} value={plat}>
-                      {plat}
-                    </option>
-                  ))}
-                </select>
+                  onBlur={handleBlur}
+                  placeholder="e.g. United States, Germany, India"
+                  className={`w-full px-4 py-3 rounded-xl text-sm bg-[#F9FBFE] dark:bg-[#0D1733] border text-[#101B32] dark:text-white placeholder-[#8A9EB8] dark:placeholder-[#64748B] transition-colors focus:outline-none ${
+                    errors.country && touched.country
+                      ? 'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-200 dark:focus:ring-red-900/30'
+                      : 'border-[#D8E5F3] dark:border-[#24355A] focus:border-[#1672E8] focus:ring-2 focus:ring-[#1672E8]/20 dark:focus:ring-[#2DD4F0]/20'
+                  }`}
+                />
+                {errors.country && touched.country && (
+                  <p className="text-red-500 dark:text-red-400 text-xs mt-1.5 flex items-center gap-1 font-medium">
+                    <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                    <span>{errors.country}</span>
+                  </p>
+                )}
               </div>
 
-              {/* Row 5: Project Description */}
+              {/* Row 4: Project Description */}
               <div data-error={!!errors.projectDescription}>
                 <label
                   htmlFor="projectDescription"
