@@ -115,7 +115,7 @@ function SolutionCard({ solution, className = '' }) {
       </div>
 
       {/* ── Description directly below heading ── */}
-      <p className="text-xs leading-relaxed text-[#52627C] dark:text-[#AAB6D0] mb-3 min-h-[48px] sm:min-h-[52px]">
+      <p className="text-xs leading-relaxed text-[#52627C] dark:text-[#AAB6D0] mb-2 sm:mb-2.5 min-h-[32px] sm:min-h-[36px]">
         {solution.description}
       </p>
 
@@ -123,7 +123,7 @@ function SolutionCard({ solution, className = '' }) {
       <a
         href={solution.href}
         onClick={(e) => navigateTo(solution.href, e)}
-        className="w-full h-32 sm:h-36 rounded-xl overflow-hidden border border-[#DCE8F5] dark:border-[#24355A] mb-3 block group/img flex-shrink-0"
+        className="w-full h-40 sm:h-44 md:h-48 lg:h-48 rounded-xl overflow-hidden border border-[#DCE8F5] dark:border-[#24355A] mb-3 block group/img flex-shrink-0"
       >
         <img
           src={solution.image}
